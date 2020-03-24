@@ -5,13 +5,12 @@
     </view>
     <view class="cont" wx:if="{{ active === 0 }}">
         <view class="items ml16 mr16" wx:for="{{ storeData }}" wx:key="index">
-            <view class="time f24 c-999999 mt32 mb16" wx:if="{{item.createTimeStr}}">{{item.createTimeStr}}</view>
-            <view class="content bg-white flex p16 mb16" data-title="{{item.expTitle}}" data-id="{{item.expSerial}}" bindtap="tapToDetail">
+            <view class="content bg-white flex p16 mb16" data-title="{{item.name || '' }}" data-id="{{item.id}}" bindtap="tapToDetail">
                 <image class="i-img mr16 bg-EFEFF4" src="{{item.coverUrl || '/images/default/bg_img.png'}}" lazy-load mode="aspectFill"/>
                 <view class="flex-1 c-222222">
-                    <view class="f32 fw6">{{item.expTitle}}</view>
-                    <view class="f24 mt8 mb8">{{item.merchantName || ''}}</view>
-                    <view class="f24 c-999999">参考价格：{{item.currencySymbol||'MOP$'}} {{item.price || 0}}</view>
+                    <view class="f32 fw6">{{item.name || ''}}</view>
+                    <view class="f24 mt8 mb8">{{item.Introduction || ''}}</view>
+                    <!-- <view class="f24 c-999999">参考价格：{{item.currencySymbol||'MOP$'}} {{item.price || 0}}</view> -->
                 </view>
             </view>
         </view>

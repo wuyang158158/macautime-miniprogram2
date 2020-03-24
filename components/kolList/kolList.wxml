@@ -8,7 +8,7 @@
 
     <view class="kol-msg">
         <view class="flex">
-        <view class="f26 c-222222 fw6">{{item.nickName}}</view>
+        <view class="f26 c-222222 fw6">{{item.nickName || '' }}</view>
         <image class="icon-vip" src="/images/index/icon_vip.png" mode="aspectFill" wx:if="{{item.level!='0'}}"/>
         </view>
         <view class="flex f24 c-666666 mt5">

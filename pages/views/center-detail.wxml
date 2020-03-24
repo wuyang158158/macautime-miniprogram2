@@ -1,9 +1,9 @@
 <!--pages/views/center-detail.wxml-->
 <view class="container">
     <view class="content pl32 pr32 bg-white f30 c-222222">
-        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.headIco || '' }}" data-type="0" bindtap="fnLinkToEdit">
+        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.headIco  || userInfo.url || '' }}" data-type="0" bindtap="fnLinkToEdit">
             <view class="flex-1">头像</view>
-            <image class="header-bg" src="{{userInfo.headIco || '/images/default/bg_img.png'}}" mode="aspectFill"/>
+            <image class="header-bg" src="{{userInfo.headIco || userInfo.url || '/images/default/bg_img.png'}}" mode="aspectFill"/>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
         <!-- <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.headBackIco }}" data-type="1" bindtap="fnLinkToEdit">

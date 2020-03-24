@@ -3,7 +3,7 @@
     <view class="bg-white">
         <view class="flex bd1 f30 ml32 pr32" bindtap="tapToCenterDetail">
             <view class="c-222222 flex-1">个人信息</view>
-            <image class="header-bg" src="{{ userInfo.headIco || userInfo.url}}" mode="aspectFill"/>
+            <image class="header-bg" src="{{ userInfo.headIco || userInfo.url || '/images/default/avatar.png' }}" mode="aspectFill"/>
             <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
         <view class="flex bd1 f30 ml32 pr32" data-url='/pages/views/account-management' bindtap="tapToAccountManagement">
