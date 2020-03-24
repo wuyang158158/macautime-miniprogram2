@@ -42,7 +42,7 @@ Page({
   fnGetAddress(type) {
     if(type) NT.showToast('加载中...')
     api.ctAddressList().then(res => {
-      this.setData({ addressList: res })
+      this.setData({ addressList: res, noData: !res.length })
     }).catch(err => {
       this.setData({ noData: true, addressList: [] })
       NT.showModal(err.codeMsg || err.message || '请求失败！')

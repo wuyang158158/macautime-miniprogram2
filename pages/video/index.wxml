@@ -1,5 +1,5 @@
 
 <view class="content">
     <cp-video result="{{ videoList }}"></cp-video>
-    <gh-empty prop-type="no-data" prop-text="暂无视频数据" prop-mt="200" wx:if="{{ noData }}"></gh-empty>
+    <gh-empty prop-type="no-video" prop-text="还没有任何视频哦~~" prop-mt="200" wx:if="{{ noData }}"></gh-empty>
 </view>

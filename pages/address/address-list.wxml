@@ -20,7 +20,7 @@
               <view class="button delete flex f28" data-index="{{ index }}" data-id="{{ item.id }}" bindtap="fnDeleteAddress">删除</view>
             </view>
       </view>
-    <gh-empty prop-type="no-data" prop-text="还没有任何收货地址哦~~" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+    <gh-empty prop-type="no-address" prop-text="还没有任何收货地址哦~~" prop-mt="200" wx:if="{{noData}}"></gh-empty>
 
   </view>
 
