@@ -38,6 +38,15 @@ Page({
       storeData: [],
       noData: true
     })
+    return
+    NT.showToast('加载中..')
+    api.ctMyLikeStore({ accountId: wx.getStorageSync('userInfo').userId }).then(res => {
+      
+      this.setData({ storeData: res, noData:!res.length })
+    }).catch( err => {
+      this.setData({ noData: true })
+      NT.showModal(err.codeMsg || err.message || '请求失败！')
+    })
   },
   // 切换tab
   fnChangeTab(e) {

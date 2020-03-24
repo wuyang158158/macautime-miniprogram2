@@ -1,11 +1,11 @@
 <view>
   <view class="bg-white item">
-        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.remark }}" data-type="5" bindtap="fnLinkToEdit">
+        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.remark || '' }}" data-type="5" bindtap="fnLinkToEdit">
             <view class="flex-1">个人简介</view>
             <view class="c-B3">编辑</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
-        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.headBackIco }}" data-type="1" bindtap="fnLinkToEdit">
+        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.headBackIco || '' }}" data-type="1" bindtap="fnLinkToEdit">
             <view class="flex-1">主题背景</view>
             <view class="c-B3">更改</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>

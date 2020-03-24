@@ -376,8 +376,9 @@ Page({
         let timer = []
          res.forEach((ele, index) => {
            let time = null
-          //  let curTimeCount = (index + 1) * 3
-          if(ele.status === 1) {
+          //   isUseTimer 防止后端状态未及时更新 页面出现闪动
+           let isUseTimer = (parseInt(ele.reciprocal/1000) - parseInt(new Date().getTime()/1000)) > 0
+          if(ele.status === 1 && isUseTimer) {
             time = setInterval(() => {
               let endTime = parseInt(ele.reciprocal/1000)
               let nowTime = parseInt(new Date().getTime()/1000)
@@ -399,6 +400,8 @@ Page({
                 });
               }
             }, 1000);
+          } else if(ele.status === 1 && !isUseTimer) {
+            ele.hidden = true
           }
           timer.push(time)
         })

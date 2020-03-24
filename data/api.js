@@ -54,7 +54,7 @@ const execute = (url, method, params, resolve, reject) => {
     header: header,
     dataType: 'json',
     success: res => {
-      console.log({url:baseUrl + url,body,global})
+      // console.log({url:baseUrl + url,body,global})
       NT.hideToast()
       const result = res.data.body || {}
       // if(url === '/usRegist/1.0/'&&result.openId === 'oBV8p4yY71L8CE18QD7KDq_ydfWM'){
@@ -187,7 +187,7 @@ export default {
               resolve1(data)
             },
             fail: err => {
-              console.log(err)
+              // console.log(err)
               NT.showModal(err)
             }
           })
@@ -242,7 +242,7 @@ export default {
           resolve(data)
         },
         fail: err => {
-          console.log(err)
+          // console.log(err)
           NT.showModal(err)
         }
       })
@@ -254,6 +254,7 @@ export default {
       wx.login({
         success(res) {
           if (res.code) {
+            // console.log(res.code)
             const query = { code: res.code }
             if(option && option.spreadCode) {
               query.spreadCode = option.spreadCode
@@ -902,7 +903,7 @@ export default {
   usInsertFocus(query) {
     const url = query.isFocus?'/usDelFocus':'/usInsertFocus'
     delete query.isFocus
-    console.log(query)
+    // console.log(query)
     return new Promise((resolve, reject) => {
       execute(
         `${url}/1.0/`,
@@ -1186,6 +1187,12 @@ export default {
   },
   // 个人中心 我的点赞视频
   ctMyLikeVideo(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/voSelectUserLikeVoId/1.0/`, 'POST', query, resolve, reject)
+    })
+  },
+  // 个人中心 我的点赞商家
+  ctMyLikeStore(query) {
     return new Promise((resolve, reject) => {
       execute(`/voSelectUserLikeVoId/1.0/`, 'POST', query, resolve, reject)
     })

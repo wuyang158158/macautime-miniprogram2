@@ -55,9 +55,9 @@ Page({
       NT.showModal(err.codeMsg || err.message || '请求失败！')
     })
     this.setData({ showModal: true })
-    setTimeout(() => {
+    // setTimeout(() => {
       this.setData({ showIn: true })
-    }, 10)
+    // }, 10)
   },
   // 关闭弹窗
   closeModal() {
@@ -80,9 +80,9 @@ Page({
       })
     }
     this.setData({ code: 0, showModal: e.currentTarget.dataset.flag })
-    setTimeout(()=>{
+    // setTimeout(()=>{
       this.setData({ showIn: e.currentTarget.dataset.flag})
-    },10)
+    // },10)
 
   },
   /**

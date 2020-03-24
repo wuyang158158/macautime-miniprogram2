@@ -1,7 +1,7 @@
 <!--pages/views/center-detail.wxml-->
 <view class="container">
     <view class="content pl32 pr32 bg-white f30 c-222222">
-        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.headIco }}" data-type="0" bindtap="fnLinkToEdit">
+        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.headIco || '' }}" data-type="0" bindtap="fnLinkToEdit">
             <view class="flex-1">头像</view>
             <image class="header-bg" src="{{userInfo.headIco || '/images/default/bg_img.png'}}" mode="aspectFill"/>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
@@ -16,12 +16,12 @@
             <view class="c-B3">编辑</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view> -->
-        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.nickName }}" data-type="2" bindtap="fnLinkToEdit">
+        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.nickName || '' }}" data-type="2" bindtap="fnLinkToEdit">
             <view class="flex-1">昵称</view>
             <view>{{ userInfo.nickName }}</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
-        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.sex }}" data-type="3" bindtap="fnLinkToEdit">
+        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.sex || '' }}" data-type="3" bindtap="fnLinkToEdit">
             <view class="flex-1">性别</view>
             <view>{{userInfo.sex === 1 ? '男' : '女'}}</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
@@ -30,7 +30,7 @@
             <view class="flex-1">城市</view>
             <view>{{userInfo.city||''}}</view>
         </view> -->
-        <view class="flex pt32 pb32" data-cont="{{ userInfo.birthday }}" data-type="4" bindtap="fnLinkToEdit">
+        <view class="flex pt32 pb32" data-cont="{{ userInfo.birthday || '' }}" data-type="4" bindtap="fnLinkToEdit">
             <view class="flex-1">生日</view>
             <view>{{userInfo.birthday}}</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
