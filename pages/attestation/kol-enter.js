@@ -92,7 +92,7 @@ Page({
     //   url: '/pages/views/gh-agreement'
     // })
     wx.navigateTo({
-      url: '/pages/views/about-us?id=3'
+      url: '/pages/views/about-us?id=1'
     })
   },
   // 添加平台信息
