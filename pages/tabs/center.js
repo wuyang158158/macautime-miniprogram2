@@ -181,6 +181,7 @@ Page({
   // },
   // 获取个人信息
   fnGetUserInfo() {
+    if(!wx.getStorageSync('userInfo')) return
     NT.showToast('加载中')
     api.ctGetUserInfo().then(res => {
       this.setData({ userInfo: res })
