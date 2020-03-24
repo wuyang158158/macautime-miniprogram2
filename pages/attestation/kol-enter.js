@@ -220,13 +220,13 @@ Page({
         return false;
       }
       //用户类别
-      var choseTagClass = res.usSysLabelTyle.labelRemark
+      var choseTagClass = res.usSysLabelTyle ? res.usSysLabelTyle.labelRemark : ''
       wx.setStorage({key:"choseTagClass",data: choseTagClass})
       //kol类别
       var kolClass = res.tyle == '1' ? '普通KOL' : '领域KOL'
       wx.setStorage({key:"kolClass",data: kolClass})
       //用户标签
-      var choseTag = res.usSysLabel
+      var choseTag = res.usSysLabel || []
       if(choseTag.length > 0) {
         choseTag.map(item=>{
           item.remark = item.labelRemark
@@ -234,7 +234,7 @@ Page({
       }
       wx.setStorage({key:"choseTag",data: choseTag})
       // 其他平台信息
-      var usKolOtherPlatform = res.UsKolOtherPlatform;
+      var usKolOtherPlatform = res.UsKolOtherPlatform || [];
       if(usKolOtherPlatform.length > 0) {
         usKolOtherPlatform.map(item=>{
           item.account = this.data.array.indexOf(item.platformName)
