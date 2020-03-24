@@ -1,0 +1,57 @@
+/* pages/wallet/cash-out/index.wxss */
+.choose-bank {
+  height: 120rpx;
+  margin: 16rpx 0;
+  padding: 0 24rpx;
+}
+.choose-bank text {
+  flex: 1;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  padding: 0 12rpx;
+}
+.choose-bank .icon-bank {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.icon-more {
+  width: 30rpx;
+  height: 30rpx;
+}
+.cash-form {
+  height: 303rpx;
+  padding-left: 25rpx;
+  padding-top: 40rpx;
+  box-sizing: border-box
+}
+input {
+  height: 95rpx;
+  border-bottom: 1rpx solid #E8E8E8;
+  font-size: 45rpx;
+  margin-top: 10rpx;
+  padding-left: 35rpx
+}
+.c-input {
+  position: relative
+}
+.c-input .i {
+  position: absolute;
+  left: 0;
+  bottom: 23rpx;
+}
+
+.c-desc text {
+  color: #00A653;
+  margin-left: 20rpx
+}
+.sub-btn {
+  width:686rpx;
+  height:88rpx;
+  background:rgba(0,166,83,1);
+  border-radius:44rpx;
+  margin: 64rpx auto;
+  color: #fff;
+  justify-content: center;
+  letter-spacing: 2rpx
+}

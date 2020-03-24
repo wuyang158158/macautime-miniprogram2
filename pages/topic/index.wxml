@@ -1,0 +1,9 @@
+<view class="content">
+  <view class="test">
+   <Parser html="{{ data.text }}" />
+  </view>
+  <view class="center">
+   <image src="{{ data.imageUrl }}" wx:if="{{ data.imageUrl }}" mode="widthFix"></image>
+  </view>
+  <video src="{{ data.videoUrl }}" wx:if="{{ data.videoUrl }}" controls="true"></video>
+</view>

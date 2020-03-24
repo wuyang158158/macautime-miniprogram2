@@ -1,0 +1,64 @@
+/* pages/address/address-list.wxss */
+.add {
+  width:686rpx;
+  height:88rpx;
+  background:rgba(0,166,83,1);
+  border-radius:44rpx;
+  position: fixed;
+  bottom: 64rpx;
+  left: 32rpx;
+}
+.list-cont {
+  padding-bottom: 180rpx;
+}
+.addr-item {
+  width:718rpx;
+  background:rgba(255,255,255,1);
+  border-radius:16rpx;
+  padding: 32rpx 32rpx 0;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+.in-top {
+  justify-content: space-between;
+}
+
+.in-top text {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.default {
+  flex: 1;
+}
+.operate {
+  height: 115rpx;
+}
+.button {
+  width:140rpx;
+  justify-content: center;
+  height:56rpx;
+  background:rgba(255,255,255,1);
+  border:1rpx solid rgba(0, 0, 0, 1);
+  border-radius:28rpx;
+}
+.edit {
+  border-color: #00A653;
+  color: #00A653;
+}
+.delete {
+  color: #999;
+  border-color: #ccc;
+  margin-left: 20rpx;
+}
+.default image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+page {
+  padding: 16rpx;
+  box-sizing: border-box;
+}
+.in-bottom {
+  padding: 20rpx 0 30rpx;
+}

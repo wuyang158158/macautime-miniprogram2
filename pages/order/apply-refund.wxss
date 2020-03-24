@@ -1,0 +1,40 @@
+/* pages/order/apply-refund.wxss */
+.container {
+  padding-top: 32rpx;
+  }
+  .content{
+    border-radius:16rpx;
+  }
+  .i-img{
+    width: 160rpx;
+    height: 160rpx;
+    border-radius:16rpx;
+  }
+  .topic {
+    height:108rpx;
+    padding: 0 22rpx;
+    background:rgba(255,255,255,1);
+    border-radius:16rpx;
+    justify-content: space-between;
+  }
+  .green {
+    color: #00A653;
+  }
+  .green-btn {
+    margin-top: 170rpx;
+  }
+  .text-cont {
+    background: #fff;
+    padding: 40rpx 20rpx;
+    border-radius: 16rpx;
+  }
+  textarea {
+    height:254rpx;
+    border:2rpx solid rgba(239,239,244,1);
+    border-radius:8rpx;
+    padding: 20rpx;
+    margin-top: 24rpx;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 24rpx;
+  }

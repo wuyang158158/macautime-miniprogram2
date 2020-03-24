@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "Parser":"/components/Parser/index"
+  }
+}

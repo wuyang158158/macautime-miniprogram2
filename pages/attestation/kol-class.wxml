@@ -1,0 +1,44 @@
+<!--pages/attestation/kol-class.wxml-->
+<view class="container">
+    <view class="f24 c-666666 p32 t-c">请选择您的KOL类别标签</view>
+    <view class="flex flex-r bd1 pb32 ml48 mr48">
+        <view wx:for="{{tagArray}}" wx:key="index" class="item f28 mb16 {{item.selected?'item-ac':''}}" data-remark="{{item.remark}}" bindtap="tapTag">{{item.remark}}</view>
+    </view>
+    <view class="explain ml48 mr48 pt32 pb32">
+        <view class="after">
+            <image class="after-icon" src="/images/attestation/icon_book_promise.png" mode="aspectFill"/>
+            <text class="f30 c-222222 fw5 pl16">领域KOL</text>
+        </view>
+        <view class="f24 c-222222 l-h fw3 bd1 pb32 mb32">
+            <view >权益</view>
+            <view >1.专属红v</view>
+            <view >2.澳门时光将做大幅度宣传入驻消息</view>
+            <view >3.享受会员所有权益</view>
+            <view >4.签订合同，提成点高，福利好</view>
+            <view >责任：</view>
+            <view >有一定的任务指标， 例如下载人数，商品购买量</view>
+            <view >条件</view>
+            <view >1.本身有庞大的粉丝群体</view>
+            <view >2.有相应的热度</view>
+        </view>
+
+        <view class="after">
+            <image class="after-icon" src="/images/attestation/icon_book_promise.png" mode="aspectFill"/>
+            <text class="f30 c-222222 fw5 pl16">普通KOL</text>
+        </view>
+        <view class="f24 c-222222 l-h fw3">
+            <view >权益</view>
+            <view >1.专属蓝v</view>
+            <view >2.澳门时光将做大幅度宣传入驻消息</view>
+            <view >3.享受会员所有权益</view>
+            <view >4.签订合同，提成点高，福利好</view>
+            <view >责任：</view>
+            <view >有少量的任务指标， 例如下载人数，商品购买量</view>
+            <view >条件</view>
+            <view >1.本身有小部分的粉丝群体，可慢慢发展规模</view>
+            <view >2.有小热度</view>
+        </view>
+    </view>
+
+    <button class="weui-btn f30 ml32 mr32 mb32" type="primary" bindtap="submit">确定</button>
+</view>

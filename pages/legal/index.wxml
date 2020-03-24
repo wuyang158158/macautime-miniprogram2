@@ -1,0 +1,43 @@
+<view class="content mt25 mb25 mr16 ml16">
+  <view class="rules mb16 bg-white">
+    <view class="rule-title mb25 f32 c-222222 fw6 flex bd1">平台基础权益（永久）</view>
+    <view class="r-text f26 c-222222 mt16">1.享受澳门往返机票报销30%</view>
+    <view class="r-text f26 c-222222 mt16">2.享受澳门往返机票报销30%</view>
+    <view class="r-text f26 c-222222 mt16">3.享受澳门往返机票报销30%</view>
+  </view>
+  <!-- 商家权益 -->
+  <view class="lagal mb16 bg-white">
+    <view class="rule-title f32 c-222222 fw6 flex bd1">商家权益</view>
+    <view class="f30 c-222222 flex link" bindtap="fnLinkTo" data-url="/pages/legal/check-store">
+      <view class="flex1 c-222222 f30">预约探店</view>
+      <view class="c-b3b3b3 f30">查看</view>
+      <image src="/images/center/icon_more-2.png" mode="aspectFill"></image>
+    </view>
+  </view>
+  <!-- 费用报销 -->
+  <view class="lagal mb16 bg-white">
+    <view class="rule-title f32 c-222222 fw6 flex bd1">费用报销</view>
+    <view class="f30 c-222222 flex link" bindtap="fnLinkTo" data-url="/pages/legal/refund">
+      <view class="flex1 c-222222 f30">报销凭证</view>
+      <view class="c-b3b3b3 f30">上传</view>
+      <image src="/images/center/icon_more-2.png" mode="aspectFill"></image>
+    </view>
+  </view>
+  <!-- 红包小任务 -->
+  <view class="lagal pb16 mb16 bg-white">
+    <view class="rule-title mb32 f32 c-222222 fw6 flex bd1">红包小任务</view>
+    <view class="discounts flex mt16" wx:for="{{ 3 }}" wx:key="*this">
+        <view class="flex-1 discounts-items flex ml32 mr32">
+            <view class="flex-1">
+                <view >
+                    <text class="f28 c-222222 fw6">获取200红包</text>
+                </view>
+                <view class="f24 c-999999 mt8">有效期至 2020-12-26</view>
+            </view>
+            <view >
+                <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" data-url="/pages/legal/apply-redpack" type="primary" bindtap="fnLinkTo">进入</button>
+            </view>
+        </view>
+    </view>
+  </view>
+</view>

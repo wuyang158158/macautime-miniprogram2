@@ -1,0 +1,35 @@
+/* pages/message/message.wxss */
+.v-item {
+  margin-bottom: 50rpx;
+}
+.time {
+  padding: 0 20rpx;
+  height:40rpx;
+  display: inline-block;
+  background:rgba(217,217,217,1);
+  border-radius:20px;
+  margin: 0 auto;font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+}
+.desc {
+  padding: 32rpx;
+  padding-bottom: 20rpx;
+  border-radius: 16rpx;
+}
+.mb20 {
+  margin-bottom: 20rpx;
+}
+.green {
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(0,166,83,1);
+}
+.lh30 {
+  line-height: 32rpx;
+}
+.center {
+  text-align: center;
+}

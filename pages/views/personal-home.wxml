@@ -1,0 +1,69 @@
+<!--pages/views/personal-home.wxml-->
+<view class="container">
+    <view class="title relative">
+        <!-- <image class="pic-default-new z-index5" src="/images/default/bg_img.png" mode="aspectFill"/> -->
+        <image class="pic-default-new bg-cccccc" src="{{ userInfo.headBackIco || '/images/default/bg_img.png' }}" mode="aspectFill"/>
+        <view class="pic-default-new z-index5">
+            <view class="p-avatar relative">
+                <image class="pic-default-new p-avatar-icon" src="{{ userInfo.headIco || '/images/default/bg_img.png' }}" mode="aspectFill" />
+                <image class="p-avatar-ac" src="/images/center/avatar_vip1.png" wx:if="{{ userInfo.level }}" />
+            </view>
+            <view class="f32 c-FFFFFF fw5 mt32">{{ userInfo.nickName }}</view>
+            <view class="flex c-center">
+                <view class="f22 c-FFFFFF p-tag" wx:for="{{ usSysLabel }}" wx:key="index">{{ item.labelRemark  }}</view>
+            </view>
+            <view class="flex c-FFFFFF ml32 mr32 pl32 pr32 mt32">
+                <view class="flex-1">
+                    <text class="f30">{{ userInfo.focus || 0}}</text>
+                    <text class="f24 ml10">关注</text>
+                </view>
+                <view class="flex-1">
+                    <text class="f30">{{ userInfo.fans }}</text>
+                    <text class="f24 ml10">粉丝</text>
+                </view>
+            </view>
+            <view class="flex c-FFFFFF ml32 mr32 pl32 pr32 mt32 pt32">
+                <button class="t-btn" type="primary1" bindtap="fnLinkInfos" wx:if="{{ isMine }}">编辑资料</button>
+                <button class="t-btn" type="primary1" bindtap="tapUsInsertFocus" wx:else>{{ isFocus? '取消关注': '关注'}}</button>
+                <button class="t-btn" open-type="share" type="primary1">分享主页</button>
+            </view>
+        </view>
+    </view>
+    <view class="f28 c-333333 m32 fw3">{{ userInfo.remark || '' }}</view>
+    <view class="flex bd1">
+        <view wx:for="{{navArray}}" wx:key="index" class="flex-1 f30 fw5 {{item.selected?'c-222222':'c-666666'}} nav relative" data-index="{{index}}" bindtap="tapNavArray">
+            <text wx:if="{{ index === 0 }}">{{item.name}}( 0 )</text>
+            <text wx:if="{{ index === 1 }}">{{item.name}}( {{ videoList.length }} )</text>
+            <text class="absolute bd2" wx:if="{{item.selected}}"></text>
+        </view>
+    </view>
+    <!-- 相册 -->
+    <block  wx:if="{{index===0}}">
+        <cp-photo result="{{ photoList }}"></cp-photo>
+        <gh-empty prop-type="no-data" prop-text="暂无相册数据" prop-mt="100" prop-mb="100" wx:if="{{ noData1 }}"></gh-empty>
+    </block>
+    <!-- 视频 -->
+    <block wx:if="{{index===1}}">
+        <cp-video result="{{ videoList }}"></cp-video>
+        <gh-empty prop-type="no-data" prop-text="暂无视频数据"  prop-mt="100" prop-mb="100" wx:if="{{ noData2 }}"></gh-empty>
+    </block>
+
+    <!-- 推荐体验 -->
+    <!-- <view class="ml16 mr16" wx:if="{{index===2}}">
+        <view class="recommend">
+            <view class="rec-title flex pt32 pb32 mt32 fw6 l-h32">
+                <view class="flex-1 f32  c-222222">推荐体验</view>
+                <view class="f30 c-00A653">查看更多</view>
+            </view>
+            <gh-aclist recommend="{{recommend}}"></gh-aclist>
+            <gh-empty prop-type="no-data" prop-text="暂无推荐体验" prop-mt="0" wx:if="{{noData}}"></gh-empty>
+            <view class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
+                <view wx:if="{{loadmore}}">
+                <view class="weui-loading"></view>
+                <view class="weui-loadmore__tips">正在加载</view>
+                </view>
+                <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">已经到底了！</view>
+            </view>
+        </view>
+    </view> -->
+</view>

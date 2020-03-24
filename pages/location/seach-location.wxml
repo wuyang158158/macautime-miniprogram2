@@ -1,0 +1,15 @@
+<!--pages/location/seach-location.wxml-->
+<view class="container">
+  <!-- 搜索组件 -->
+  <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="seach" source="location" input-val="{{inputVal}}" inputShowed searchPlaceholder="搜索地点"></gh-searchbar>
+  
+
+  <view class="content pl32 pr32">
+    <view wx:for="{{sugData}}" wx:if="{{sugData.length}}" wx:key="index" class="flex h-132 {{index+1 != sugData.length ? 'bd1' : ''}}" data-uid="{{item.uid}}" bindtap="tapTable">
+        <view class="f32 c-222222">{{item.name}}</view>
+        <view class="f24 c-999999">{{item.province+item.city+item.district}}</view>
+    </view>
+
+    <gh-empty prop-type="no-order" prop-text="搜索地点" prop-mt="250" wx:if="{{!sugData.length}}"></gh-empty>
+  </view>
+</view>

@@ -1,0 +1,109 @@
+/* pages/views/account-management.wxss */
+.container {
+  padding-bottom: 120rpx;
+}
+view {
+  box-sizing: content-box
+}
+.more-icon{
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 10rpx;
+}
+.tips {
+  height:70rpx;
+  color:rgba(255,118,38,1);
+  padding-left: 25rpx;
+  font-size: 24rpx;
+  background:rgba(255,242,235,1);
+}
+.avatar {
+  height: 375rpx;
+  padding-top: 60rpx;
+  text-align: center
+}
+.avatar.h840 {
+  height: 840rpx;
+  padding-top: 24rpx
+}
+.avatar.h840 image {
+  width: 702rpx;
+  height: 702rpx;
+  border-radius: 0;
+  background: #f8f8f8
+}
+.avatar view {
+  color: #00A653;
+  text-align: center;
+  margin-top: 30rpx
+}
+.avatar image {
+  width: 200rpx;
+  border-radius: 50%;
+  height: 200rpx;
+}
+.end-lint { padding-left: 25rpx; height: 105rpx; }
+.end-lint text {
+  color: #576B95
+}
+.nick-form {
+  height: 108rpx;
+  padding: 0 25rpx;
+}
+.nick-form input {
+  flex: 1;
+}
+.nick-form.textarea {
+  height: 400rpx;
+  position: relative
+}
+.b-postion { 
+  position: absolute;
+  bottom: 25rpx;
+  right: 40rpx;
+}
+.nick-form textarea {
+  width: 100%;
+  padding: 25rpx 0 80rpx;
+}
+.nick-form text {
+  width: 80rpx;
+  color: #ccc
+}
+.sex {
+  padding: 0 50rpx;
+}
+.mt25 {
+  margin-top: 25rpx
+}
+.sex-item {
+  height: 90rpx;
+  color: #222;
+  font-size: 30rpx;
+}
+.sex-item image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.birthday {
+  padding: 30rpx 48rpx 0;
+}
+.b-title {
+  justify-content: space-around;
+  height: 90rpx;
+}
+.b-cont {
+  height: 280rpx;
+}
+picker-view {
+  height: 100% !important
+}
+picker-view-column {
+  text-align: center
+}
+.active-column {
+  border-top: 2rpx solid #00A653;
+  border-bottom: 2rpx solid #00A653;
+  color: #00A653 !important
+}

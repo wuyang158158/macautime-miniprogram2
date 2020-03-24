@@ -1,0 +1,49 @@
+/* pages/coupon/my-coupon.wxss */
+@import "../views/ac-detail.wxss";
+page{
+    background-color: #EFEFF4!important;
+}
+.coupon{
+    border-radius:16rpx;
+}
+.title{
+    height: 100rpx;
+    line-height: 100rpx;
+}
+.mb0{
+    margin-bottom: 0;
+}
+.coupon-tab {
+  height: 116rpx;
+  padding: 0 128rpx;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  border-bottom: 16rpx solid #EFEFF4;
+  box-sizing: border-box
+}
+.coupon-tab view {
+  height: 100rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #666;
+  box-sizing: border-box
+}
+.coupon-tab view.bd2 {
+  color: #222;
+  position: relative
+}
+.coupon-tab view.bd2::after{
+  content: "";
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-bottom: 4rpx solid #00A653
+}
+.container {
+  padding-top: 100rpx;
+}

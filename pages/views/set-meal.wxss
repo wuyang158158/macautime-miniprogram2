@@ -1,0 +1,35 @@
+/* pages/views/set-meal.wxss */
+@import 'ac-detail.wxss';
+@import '../order/my-order.wxss';
+page{
+    background: #FFFFFF;
+}
+.w-296{
+    width: 240rpx;
+    height: 80rpx;
+    font-size: 30rpx;
+}
+.f20{
+    font-size: 20rpx;
+}
+.orders{
+    height: 120rpx;
+}
+.pb120{
+    padding-bottom: 120rpx;
+}
+.mt120{
+    margin-top: 120rpx;
+}
+.mer-type-icon{
+    width: 335rpx;
+    height: 335rpx;
+    border-radius:12rpx;
+}
+.scroll-view-item_H{
+    padding-left: 0;
+    height: 335rpx;
+}
+.pl32{
+    padding-left: 32rpx;
+}

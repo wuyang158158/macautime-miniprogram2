@@ -1,0 +1,49 @@
+<!--components/halfScreenDialog/halfScreenDialog.wxml-->
+<view class="weui-demo-dialog {{istrue ? 'weui-demo-dialog_show' : ''}}">
+    <view class="weui-mask" bindtap="closeDialog"></view>
+    <view class="weui-half-screen-dialog" catchtap="stopEvent">
+    <view class="weui-half-screen-dialog__hd dialog-tip w-100">
+        <!-- <view class="weui-half-screen-dialog__hd__side">
+            <view bindtap="closeDialog" class="weui-icon-btn weui-icon-btn_close">关闭</view>
+        </view> -->
+        <view class="flex bd1 f30 h-100 w-90">
+            <view class="c-999999 w-auto" bindtap="closeDialog">取消</view>
+            <view class="c-00A653 w-auto" bindtap="closeDialog">确定</view>
+        </view>
+    </view>
+    <view class="weui-half-screen-dialog__bd ofy-auto pl32 pr32">
+       <view class="mt32">
+            <radio-group class="radio-group" bindchange="radioChange">
+            <view class="" wx:for="{{result}}" wx:key="index">
+                <label>
+                    <view class="flex pr32 h80">
+                        <view class="flex-1 f36 ml32 ell w-0 {{item.checked?'c-00A653':'c-222222'}} {{!item.disabled?'c-999999':'c-222222'}}">
+                            <text >{{item.typeName}}</text>
+                            <text class="ml32">{{item.discountsName || ''}}</text>
+                        </view>
+                        <radio checked="{{item.checked}}" value="{{item.id}}" disabled="{{!item.disabled}}"></radio>
+                    </view>
+                </label>
+            </view>
+            </radio-group>
+        </view>
+    </view>
+    </view>
+</view>
+<!-- <view class="weui-demo-dialog {{istrue ? 'weui-demo-dialog_show' : ''}}">
+    <view class="weui-mask" bindtap="closeDialog"></view>
+    <view class="weui-half-screen-dialog" catchtap="stopEvent">
+    <view class="weui-half-screen-dialog__hd dialog-tip">
+        <view class="weui-half-screen-dialog__hd__side">
+        <view bindtap="closeDialog" class="weui-icon-btn weui-icon-btn_close">关闭</view>
+        </view>
+    </view>
+    <view class="weui-half-screen-dialog__bd ofy-auto pl32 pr32">
+       <view class="ql-container ql-snow">
+            <view class="ql-editor">
+                <rich-text nodes="{{result.details}}"></rich-text>
+            </view>
+        </view>
+    </view>
+    </view>
+</view> -->

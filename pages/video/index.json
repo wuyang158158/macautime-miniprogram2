@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "cp-video": "/components/video/video",
+    "gh-empty": "/components/empty/empty"
+  },
+  "navigationBarTitleText": "我的视频"
+}

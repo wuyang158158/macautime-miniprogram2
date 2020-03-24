@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "gh-empty": "/components/empty/empty"
+  },
+  "navigationBarTitleText": "账单明细",
+  "backgroundTextStyle": "dark",
+  "navigationStyle": "default"
+}

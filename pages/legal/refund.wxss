@@ -1,0 +1,68 @@
+/* pages/legal/refund.wxss */
+.mt26 {
+  margin-top: 26rpx;
+}
+.rule-title {
+  height: 100rpx
+}
+.link {
+  height: 90rpx;
+}
+.flex-1 {
+  flex: 1;
+  justify-content: flex-end
+}
+.c-b3b3b3 {
+  color: #b3b3b3
+}
+.c-b3b3b3 {
+  text-align: right
+}
+.link image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+.lagal {
+  padding: 0 35rpx;
+  border-radius: 16rpx
+}
+.upload {
+  padding: 30rpx 0 14rpx;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.upload .file-box {
+  width: 160rpx;
+  height: 160rpx;
+  position: relative
+}
+.delete {
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  justify-content: center;
+  color: #fff;
+  background: #f30;
+  top: -10rpx;
+  right: -5rpx;
+  border-radius: 50%;
+  font-size: 28rpx
+}
+.upload image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+}
+.introduce {
+  margin: 32rpx 50rpx;
+}
+.introduce view {
+  margin-top: 16rpx
+}
+.submitB {
+  margin-top: 100rpx;
+}
+.end {
+  justify-content: flex-end
+}

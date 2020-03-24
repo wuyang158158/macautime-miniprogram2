@@ -1,0 +1,12 @@
+
+
+<view class="photo-flex mb32">
+  <view bindtap="fnLinkTo" class="video relative" wx:for="{{ result }}" wx:key="index" data-src="{{ item.contentUrl }}">
+      <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
+      <image class="pic-default-new z-index5" src="{{ item.backgroundImage || item.videoThumbUrl }}" mode="aspectFill"/>
+      <view class="video-text c-FFFFFF flex ml16 mr16 mb16">
+          <image class="video-see mr16" src="/images/index/icon_view@2x.png" mode="aspectFill"/>
+          <text class="f24"> {{ item.lookNumber || 0 }}</text>
+      </view>
+  </view>
+</view>

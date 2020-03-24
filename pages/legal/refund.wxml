@@ -1,0 +1,49 @@
+<view class="content mt26 ml16 mr16 mb16">
+  <!-- 报销 -->
+  <view class="lagal mb16 bg-white">
+    <view class="rule-title f32 c-222222 fw6 flex bd1">报销</view>
+    <view class="f30 c-222222 flex link bd1">
+      <view class="c-222222 f30">类型</view>
+      <picker class="t-right flex-1" bindchange="bindPickerChange" value="{{typeName}}" range="{{array}}">
+        <view class="flex end">
+          <view class="c-b3b3b3 f30">{{ typeName? array[typeName] :'请选择' }}</view>
+          <image src="/images/center/icon_more-2.png" mode="aspectFill"></image>
+        </view>
+      </picker>
+    </view>
+    <view class="f30 c-222222 flex link bd1">
+      <view class="c-222222 f30">时间</view>
+        <picker mode="date" class="t-right flex-1" value="{{ date }}" start="1970-01" end="2099-12" bindchange="bindDateChange">
+          <view class="flex end">
+            <view class="c-b3b3b3 f30">{{ date?date:'请选择' }}</view>
+            <image src="/images/center/icon_more-2.png" mode="aspectFill"></image>
+          </view>
+        </picker>
+      </view>
+  </view>
+  <!-- 凭证 -->
+  <view class="lagal mb16 bg-white">
+    <view class="rule-title f32 c-222222 fw6 flex bd1">证明/凭据</view>
+    <!-- 上传图片 -->
+    <view class="upload flex">
+      <view class="file-box mr16 mb16" wx:for="{{ imgList }}" wx:key="*this">
+        <image src="{{ item }}" mode="aspectFill"></image>
+        <view class="delete flex" bindtap="fnDeleteImg" data-index="{{ index }}">×</view>
+      </view>
+      <view class="file-box mr16 mb16" bindtap="chooseImage">
+        <image src="/images/center/add_img1.png" mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 说明 -->
+  <view class="introduce mt32">
+   <view class="c-222222 f26">操作说明</view>
+   <view class="c-222222 f26">1.必须是本人报销，报销文件包括本人姓名，身份证明，报销事件，报销时间所有文件，必须真实</view>
+   <view class="c-222222 f26">2.必须在三天内完成报销。否则不给予处理</view>
+   <view class="c-222222 f26">3.最终解释权将由澳门时光集团公司所有</view>
+  </view>
+
+  <!-- 提交申请 -->
+  <view class="green-btn submitB">提交申请</view>
+</view>

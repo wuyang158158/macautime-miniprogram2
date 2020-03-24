@@ -1,0 +1,31 @@
+
+   
+   
+    <!-- 商家权益 -->
+    <view class="lagal mb16 bg-white">
+      <view class="rule-title f32 c-222222 fw6 flex bd1">信息</view>
+      <view class="f30 c-222222 flex link bd1">
+        <view class="c-222222 flex1 f30">KOL名字：苏小果</view>
+      </view>
+      <view class="f30 c-222222 flex link">
+        <view class="c-222222 flex1 f30">有效时间：2020-12-31</view>
+      </view>
+    </view>
+    <view wx:for="{{ 3 }}" wx:key="*this" class="coupon m16 bg-white pb16 mb0">
+        <view class="ml16 mr16">
+            <view class="title f32 fw6 bd1">旗舰综合日本料理（氹仔店）</view>
+            <view class="discounts flex mt32">
+                <view class="flex-1 discounts-items flex ml32 mr32">
+                    <view class="flex-1">
+                        <view >
+                            <text class="f28 c-222222 fw6">澳门出租车首单半价券</text>
+                        </view>
+                        <view class="f24 c-999999 mt8">有效期至 2020-12-31</view>
+                    </view>
+                    <view >
+                        <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" type="primary" catchtap="tapGetDiscounts">使用</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>

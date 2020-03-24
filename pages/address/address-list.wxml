@@ -1,0 +1,28 @@
+<view>
+
+  <view class="list-cont">
+  
+      <view class="addr-item" wx:for="{{ addressList }}" wx:key="index">
+          <view class="infos c-222222">
+            <view class="in-top flex">
+              <text>{{ item.realname }}</text>
+              <text>{{ item.phone }}</text>
+            </view>
+            <view class="in-bottom bd1">{{ item.province }}{{ item.city }}{{ item.county }}{{ item.addr }}</view>
+          </view>
+          <view class="operate flex">
+              <view class="default">
+                <view class="flex" bindtap="fnDefaultAddress" data-index="{{ index }}" data-id="{{ item.id }}">
+                  <image src="{{ item.isDefault ? '/images/route/icon_tick_pre.png' : '/images/route/icon_tick_nor.png' }}" mode="aspectFill"></image><text>默认地址</text>
+                </view>
+              </view>
+              <view class="button edit flex f28" data-id="{{ item.id }}" bindtap="fnEditAddress">编辑</view>
+              <view class="button delete flex f28" data-index="{{ index }}" data-id="{{ item.id }}" bindtap="fnDeleteAddress">删除</view>
+            </view>
+      </view>
+    <gh-empty prop-type="no-data" prop-text="还没有任何收货地址哦~~" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+
+  </view>
+
+  <navigator url="/pages/address/address-add" class="green-btn add flex white f36">添加新地址</navigator>
+</view>

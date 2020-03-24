@@ -1,0 +1,22 @@
+/* pages/legal/check-store.wxss */
+@import "../views/ac-detail.wxss";
+page {
+  background: #efeff4 !important
+}
+.title {
+  padding: 30rpx 0
+}
+.coupon {
+  border-radius: 16rpx
+}
+.rule-title {
+  height: 100rpx
+}
+.link {
+  height: 90rpx;
+}
+.lagal {
+  padding: 0 35rpx;
+  margin: 25rpx 16rpx 16rpx;
+  border-radius: 16rpx
+}

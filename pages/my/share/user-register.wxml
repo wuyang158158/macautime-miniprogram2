@@ -1,0 +1,72 @@
+<view class="container">
+  <!-- 顶部 -->
+  <view class="top-section">
+    <view class="top-cont flex">
+      <text>用户名称</text>
+      <text>用户ID</text>
+      <text>注册时间</text>
+    </view>
+  </view>
+
+  <!-- 中部滚动 -->
+  <view class="mid-section">
+    <view class="mid-cont">
+      <view class="item flex" wx:for="{{ accountList }}" wx:key="index">
+        <text>{{ item.nickName ||'无' }}</text>
+        <text>{{ item.accountId ||'无' }}</text>
+        <text>{{ item.createTime ||'无' }}</text>
+      </view>
+    </view>
+    <gh-empty prop-type="no-data" prop-text="暂无已注册用户" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+  </view>
+
+  <!-- 底部 -->
+  <view class="bot-section flex">
+    <view class="flex">总注册量 <text>{{ accountList.length || 0  }}</text></view>
+    <button class="green-btn grey" data-flag="true" data-bind="1" bindtap="controlModal">领取条件</button>
+    <button class="green-btn" bindtap="receiveT">领取奖励</button>
+  </view>
+</view>
+
+<view class="modal-menu" wx:if="{{ showModal }}">
+  <view class="content g_transition3s {{ showIn? 'g_scale1': 'g_scale0'}}" wx:if="{{ code === 0 }}">
+    <view class="mid-cont">
+          <view class="c-title">
+            <view>每周日凌晨0点进行注册量结算</view>
+            <view>每周一可以提取上周注册量奖励</view>
+          </view>
+          <view class="c-cont">
+            <view class="item bold flex">
+              <text>注册量</text>
+              <text>提取金额</text>
+            </view>
+            <view class="item flex" wx:for="{{ limitData }}" wx:key="index">
+              <text>{{ item.startQuantity }}-{{ item.endQuantity }}</text>
+              <text>MOP {{ item.rewardMode }}</text>
+            </view>
+          </view>
+    </view>
+    <view class="c-btn flex" data-flag="" bindtap="closeModal">我知道了</view>
+  </view>
+  <view class="content g_transition3s {{ showIn? 'g_scale1': 'g_scale0'}} h350" wx:if="{{ code === 1 }}">
+      <view class="mid-cont">
+        <view class="test">你当前的注册量为 <text>{{ rewardData.count }}</text></view>
+        <view class="test">可领取奖励为 <text>MOP {{ rewardData.reward }}</text></view>
+      </view>
+      <view class="c-btn flex" bindtap="fnGetMoney">确定领取</view>
+  </view>
+  <view class="content g_transition3s {{ showIn? 'g_scale1': 'g_scale0'}} h350" wx:if="{{ code === 2 }}">
+      <view class="mid-cont">
+        <view class="test">目前不在奖励领取时</view>
+        <view class="test">请查看领取条件相关规定</view>
+      </view>
+      <view class="c-btn flex" data-flag="" bindtap="closeModal">我知道了</view>
+  </view>
+  <!-- <view class="content g_transition3s {{ showIn? 'g_scale1': 'g_scale0'}} h350" wx:if="{{ code === 3 }}">
+      <view class="mid-cont">
+        <view class="test">您本周的注册用户数量未达到</view>
+        <view class="test">最低领取标准，无法领取奖励</view>
+      </view>
+      <view class="c-btn flex" data-flag="" bindtap="controlModal">我知道了</view>
+  </view> -->
+</view>

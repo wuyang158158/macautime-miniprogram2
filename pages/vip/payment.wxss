@@ -1,0 +1,28 @@
+/* pages/vip/payment.wxss */
+page{
+    background: #fff;
+}
+.pt100{
+    padding-top: 100rpx;
+}
+.h-85{
+    height: 85rpx;
+    line-height: 85rpx;
+}
+.pay-icon{
+    width: 36rpx;
+    height: 36rpx;
+}
+.h-120{
+    height: 120rpx;
+}
+radio{
+    display: block;
+}
+.mt100{
+    margin-top: 100rpx;
+}
+checkbox,radio{
+    transform:scale(0.6);
+    margin-top: -3rpx;
+}

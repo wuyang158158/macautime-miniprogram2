@@ -1,0 +1,35 @@
+/* pages/legal/index.wxss */
+@import "../views/ac-detail.wxss";
+.mt25 { margin-top: 25rpx }
+.mb25 { margin-bottom: 25rpx;}
+.rules {
+  padding: 0 35rpx 35rpx 35rpx;
+  border-radius: 16rpx
+}
+.lagal {
+  padding: 0 35rpx;
+  border-radius: 16rpx
+}
+.rule-title {
+  height: 100rpx
+}
+.link {
+  height: 90rpx;
+}
+.flex1 {
+  flex: 1;
+}
+.c-b3b3b3 {
+  color: #b3b3b3
+}
+.link image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+page {
+  background: #EFEFF4 !important
+}
+.pb16 {
+  padding-bottom: 16rpx
+}

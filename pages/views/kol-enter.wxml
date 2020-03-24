@@ -1,0 +1,107 @@
+<!--pages/views/kol-enter.wxml-->
+<view class="container pb32">
+    <view wx:if="{{container}}">
+        <view class="list bg-white ml16 mr16 mt16">
+            <view class="flex f32 c-222222 h-100 fw6 ml32 mr32 bd1">澳门时光个人信息</view>
+            <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
+                <view class="">账号昵称</view>
+                <input class="flex-1 weui-input t-right" disabled="{{true}}" placeholder="请输入账号昵称" value="{{userInfo.userName}}"/>
+            </view>
+            <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
+                <view class="">注册手机</view>
+                <input class="flex-1 weui-input t-right" disabled="{{true}}" placeholder="请输入注册手机" value="{{userInfo.phone}}"/>
+            </view>
+            <view class="flex f30 c-222222 h-90 ml32 mr32">
+                <view class="">粉丝数量</view>
+                <input class="flex-1 weui-input t-right" placeholder="请输入粉丝数量" disabled="{{true}}" value="{{userInfo.fans}}"/>
+            </view>
+        </view>
+        <!-- 个人形象照片 -->
+        <view class="list bg-white ml16 mr16 mt16">
+            <view class="flex f32 c-222222 h-100 fw6 ml32 mr32 bd1">个人形象照</view>
+            <view class="personage">
+                <image class="personage-icon" src="{{accordingImage?accordingImage:'/images/center/pic1@2x.png'}}" mode="aspectFill" bindtap="tapChooseImage"/>
+            </view>
+            <view class="f24 c-666666 mt16 pb32 text-algin-c">请选择您的个人形象照，用于封面展示</view>
+        </view>
+
+        <view class="list bg-white ml16 mr16 mt16">
+            <view class="flex f32 c-222222 h-100 fw6 ml32 mr32 bd1">类型</view>
+            <view class="flex f30 c-222222 h-90 ml32 mr32 bd1" data-source="class" bindtap="tapToSpeciality">
+                <view class="mr5">申请类别</view>
+                <input class="flex-1 weui-input t-right" placeholder="请选择" disabled value="{{choseTagClass}}"/>
+                <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
+            </view>
+            <view class="flex f30 c-222222 h-90 ml32 mr32 bd1" bindtap="tapToKolClass">
+                <view class="mr5">KOL类别</view>
+                <input class="flex-1 weui-input t-right" placeholder="请选择" disabled value="{{kolClass}}"/>
+                <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
+            </view>
+        </view>
+
+
+        <!-- 优势特长 -->
+        <view class="list bg-white ml16 mr16 mt16">
+            <view class="flex f32 c-222222 h-100 fw6 ml32 mr32 bd1">优势特长</view>
+            <view class="flex f30 c-222222 h-90 ml32 mr32 bd1" bindtap="tapToSpeciality">
+                <view wx:for="{{choseTag}}" wx:key="index" class="mr5">{{item.remark}}、</view>
+                <input class="flex-1 weui-input t-right" placeholder="请选择" disabled value="{{array[item.account]}}"/>
+                <picker class="t-right" data-index="{{index}}" bindchange="bindPickerChange" disabled value="{{index}}" range="{{array}}">
+                    <view class="picker flex">
+                        <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
+                    </view>
+                    
+                </picker>
+            </view>
+        </view>
+
+
+        <view class="list bg-white ml16 mr16 mt16" wx:for="{{platformList}}" wx:key="index">
+            <view class="flex f32 c-222222 h-100 fw6 ml32 mr32 bd1">
+                <view class="flex-1">其他平台信息</view>
+                <view class="delete f28 fw4 c-F24949" data-index="{{index}}" bindtap="tapDeletePlatformMsg" wx:if="{{index!==0}}">删除</view>
+            </view>
+            <view class="f30 c-222222 ml32 mr32 bd1">
+                <picker class="t-right" data-index="{{index}}" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                <view class="flex h-90">
+                    <view class="">平台名称</view>
+                    <input class="flex-1 weui-input t-right" placeholder="请选择平台" disabled="{{true}}" value="{{array[item.account]}}"/>
+                    <view class="picker flex">
+                        <!-- <text >{{array[item.account]}}</text> -->
+                        <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
+                    </view>
+                </view>   
+                </picker>
+            </view>
+            <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
+                <view class="">账号昵称</view>
+                <input class="flex-1 weui-input t-right" data-index="{{index}}" data-type="nickName" bindinput="bindinput" placeholder="请输入账号昵称" value="{{item.nickName}}"/>
+            </view>
+            <view class="flex f30 c-222222 h-90 ml32 mr32">
+                <view class="">账号 ID</view>
+                <input class="flex-1 weui-input t-right" data-index="{{index}}" data-type="accountId" bindinput="bindinput" placeholder="请输入账号 ID（选填）" value="{{item.accountId}}"/>
+            </view>
+        </view>
+
+        <view class="flex" wx:if="{{platformList.length<4}}">
+            <button class="weui-btn c-00A653 ml16 f30 add" type="primary-kol" catchtap="tapAddPlatformMsg">添加平台信息</button>
+        </view>
+
+        <view class="ml16 mr16 mt32 mb32">
+            <checkbox-group class="radio-group" bindchange="radioChange">
+            <label class="checkbox f24 flex">
+                <checkbox value="agreement" checked color="#00A653"/>
+                <text class="c-999999">我已阅读并同意</text>
+                <text class="c-00A653" catchtap="tapToAgreement">《相关协议》</text>
+            </label>
+            </checkbox-group>
+        </view>
+
+        <view class="ml16 mr16">
+            <button class="weui-btn c-00A653 ml16 f36 next" type="primary" catchtap="tapNext">提交</button>
+        </view>
+    </view>
+    
+    <gh-empty prop-type="{{noData.type}}" prop-text="{{noData.text}}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+</view>
+

@@ -1,0 +1,33 @@
+<view class="container">
+    <view class="cont">
+        <view class="items ml16 mr16">
+            <view class="content bg-white flex p16 mb16">
+                <image class="i-img mr16 bg-EFEFF4" src="/images/default/bg_img.png" lazy-load mode="aspectFill"/>
+                <view class="flex-1 c-222222">
+                    <view class="f32 fw6">好多多没事</view>
+                    <view class="f24 mt8 mb8">编号： 5415615161</view>
+                    <view class="f24 c-999999">内容： AAA套餐</view>
+                </view>
+            </view>
+        </view>
+
+        <view class="topic flex ml16 mr16 mb16">
+          <view class="f26 c-222222">退款金额</view>
+          <view class="f26 green">MOP <text class="f36">400</text></view>
+        </view>
+
+        <view class="topic flex ml16 mr16 mb16">
+          <view class="f26 c-222222">退款方式</view>
+          <view class="f26 green">原路返回</view>
+        </view>
+
+        <view class="text-cont ml16 mr16">
+          <view class="f26">退款原因</view>
+          <view class="area-text">
+            <textarea placeholder="请输入退款原因"></textarea>
+          </view>
+        </view>
+
+        <view class="green-btn">提交申请</view>
+    </view>
+</view>

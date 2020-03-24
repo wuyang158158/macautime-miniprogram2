@@ -1,0 +1,65 @@
+/* pages/appointment/index.wxss */
+.coupon-tab {
+  height: 116rpx;
+  padding: 0 128rpx;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  border-bottom: 16rpx solid #EFEFF4;
+  box-sizing: border-box
+}
+.coupon-tab view {
+  height: 100rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #666;
+  box-sizing: border-box
+}
+.coupon-tab view.bd2 {
+  color: #222;
+  position: relative
+}
+.coupon-tab view.bd2::after{
+  content: "";
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-bottom: 4rpx solid #00A653
+}
+.c-item {
+  padding: 40rpx 0;
+}
+/* .act:active {
+  background: #f8f8f8
+} */
+.c-title {
+  font-size: 30rpx;
+  color: #00A653;
+  font-weight: 600;
+}
+.c-font {
+  font-size: 30rpx;
+  color: #333;
+  margin-top: 25rpx;
+}
+.c-font.limit {
+  position: relative;
+  padding-right: 100rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.limit image {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  right: 0;
+  top: 0
+}
+.container {
+  padding-top: 100rpx;
+}

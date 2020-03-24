@@ -1,0 +1,35 @@
+<view>
+  <form bindsubmit="fnFormSubmit">
+  <view class="bg-white addr-content">
+    <view class="flex a-input bd1">
+      <text class="label">收货人</text>
+      <input placeholder="请输入" value="{{ submitParam.realname }}" name="realname"></input>
+    </view>
+    <view class="flex a-input bd1">
+      <text class="label">联系电话</text>
+      <input placeholder="请输入" value="{{ submitParam.phone }}" type="number" maxlength="11" name="phone"></input>
+    </view>
+    <view class="flex a-input bd1">
+      <text class="label">所在地区</text>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+        <view class="picker">
+          <view class="phone flex">{{ area?area:'请选择' }} <image mode="aspectFill" src="/images/center/icon_more-2.png"></image></view>
+        </view>
+      </picker>
+      
+
+    </view>
+    <view class="detail">
+      <textarea placeholder="详细地址" value="{{ submitParam.addr }}" name="addr"></textarea>
+    </view>
+  </view>
+  <view class="default" bindtap="fnDefaultAddress">
+      <view class="flex">
+          <image src="{{ submitParam.isDefault ? '/images/route/icon_tick_pre.png' : '/images/route/icon_tick_nor.png' }}" mode="aspectFill"></image><text>设为默认地址</text>
+       </view>
+  </view>
+
+  <!-- 保存 -->
+  <button class="sub-btn flex white" formType="submit">保存</button>
+  </form>
+</view>

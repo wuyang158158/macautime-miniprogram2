@@ -1,0 +1,24 @@
+/* pages/topic/index.wxss */
+page {
+  background: #fff !important;
+}
+.content {
+  padding: 16rpx 32rpx;
+  box-sizing: border-box;
+}
+video {
+  width: 100%;
+  margin: 16rpx 0;
+}
+image {
+  width: 100%;
+  margin: 16rpx 0;
+  display: inline-block;
+  height: auto;
+}
+.center {
+  text-align: center;
+}
+.test {
+  padding: 16rpx 0;
+}

@@ -1,0 +1,6 @@
+<view class="photo-flex mb32">
+    <view class="photo relative" wx:for="{{ result }}" wx:key="index" data-cur="{{ item }}" bindtap="fnPreviewPhoto">
+        <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
+        <image class="pic-default-new z-index5" src="{{ item }}" mode="aspectFill"/>
+    </view>
+</view>

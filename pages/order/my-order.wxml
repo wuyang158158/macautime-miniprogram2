@@ -1,0 +1,95 @@
+<!--pages/order/my-order.wxml-->
+<view class="container">
+    <!-- 顶部操作 -->
+    <view class="title">
+        <!-- <scroll-view class="scroll-view_H" scroll-x="true">
+        <view wx:for="{{titleBar}}" class="scroll-view-item_H {{item.name==name?'demo-text-1':''}}" data-name="{{item.name}}" data-type="{{item.type}}" wx:key="index" bindtap="tapTitleBar">
+            <text>{{item.name}}</text>
+            <text class="item-bd" wx:if="{{item.name==name}}"></text>
+        </view>
+        </scroll-view> -->
+        <view class="view_H">
+        <view wx:for="{{titleBar}}" class="view-item_H {{item.name==name?'demo-text-1':''}}" data-name="{{item.name}}" data-type="{{item.type}}" wx:key="index" bindtap="tapTitleBar">
+            <text>{{item.name}}</text>
+            <text class="item-bd" wx:if="{{item.name==name}}"></text>
+        </view>
+        </view>
+    </view>
+    <!-- 内容展示 -->
+    <view class="content pl16 pr16 pt90" wx:if="{{ticketData.length>0}}">
+        <block wx:for="{{ticketData}}" wx:key="index">
+            <view wx:if="{{ !item.hidden }}" class="ticket-list bg-white mt16" data-id="{{item.orderNumber}}" data-status="{{item.status}}" data-coverimgurl="{{item.GoodsPic}}" bindtap="tapToOrderDetail">
+                <view class="t-top ml16 mr16 flex bd1">
+                    <view class="flex-1 f30 c-222222 fw6 ell">{{item.msName || ''}}</view>
+                    <view class="t-status f26 fw5 c-666666">
+                        <text wx:if="{{item.status === 1 }}">待付款</text>
+                        <text wx:if="{{item.status === 2 }}">待使用</text>
+                        <text wx:if="{{item.status === 3 }}">已完成</text>
+                        <text wx:if="{{item.status === 4 }}">退款售后</text>
+                        <text wx:if="{{item.status === 5 }}">已取消</text>
+                    </view>
+                </view>
+                <view class="t-bottom ml16 mr16">
+                    <view class="flex">
+                        <view class="relative order-icon mr16">
+                            <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill" />
+                            <image class="pic-default-new z-index5" src="{{item.GoodsPic}}" mode="aspectFill" />
+                        </view>
+                        <view class="flex-1 pt16 f26 c-666666 w-0">
+                            <view class="ell mt10">编号：{{item.orderNumber}}</view>
+                            <view class="ell mt10">内容：{{item.content}}</view>
+                            <view class="ell mt10">总价：MOP {{item.moneny || 0}}</view>
+                        </view>
+                    </view>
+                    <view class="t-handle flex">
+                        <view class="flex-1">
+                            <view wx:if="{{ item.status === 1 }}" class="f26 green"> 付款剩余时间 {{ item.curTime }} </view>
+                        </view>
+                        <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" catchtap="tapCancelOrder">取消</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" data-price="{{item.moneny}}" data-reciprocal="{{item.reciprocal}}" catchtap="tapToPay">付款</button>
+                        <!-- <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 'D' || item.status === 'E'}}" data-id="{{item.orderNumber}}" catchtap="deleteOrder">删除</button> -->
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" data-index="{{ index }}" wx:if="{{item.status === 3}}" catchtap="tapToExpComment">评价</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="default-ticket" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}" catchtap="tapToRefund">退款</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}">使用</button>
+                    </view>
+                </view>
+            </view>
+        </block>
+          
+        
+        <!-- 加载更多 -->
+        <view class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
+            <view wx:if="{{loadmore}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+            </view>
+            <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">已经到底了！</view>
+        </view>
+    </view>
+
+    <!-- 缺省页面，暂无数据 -->
+    <view class="no-data pl16 pr16" wx:if="{{noData}}">
+        <gh-empty prop-type="no-order" prop-text="{{emptytext?emptytext:'暂无订单'}}" prop-mt="200"></gh-empty>
+        <!-- 推荐体验 -->
+        <view class="recommend mt200" wx:if="{{recommend.length}}">
+            <view class="rec-title flex pt32 pb32 mt32 fw6 l-h32">
+                <view class="flex-1 f32  c-222222">为您推荐</view>
+            </view>
+            <gh-aclist recommend="{{recommend}}"></gh-aclist>
+            <view class="weui-loadmore">
+                <view wx:if="{{loadmore}}">
+                <view class="weui-loading"></view>
+                <view class="weui-loadmore__tips">正在加载</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="no-login" wx:if="{{!userInfo}}">
+        <view class="ml32 mr32 pl32 pr32 flex no-login-content">
+            <text class="flex-1 f28 c-FFFFFF">登录Macau Time立享体验</text>
+            <button class="weui-btn f30 c-00A653 w-auto" type="tologin" open-type="getUserInfo" bindtap="tapToLogin">立即登录</button>
+        </view>
+        
+    </view>
+</view>

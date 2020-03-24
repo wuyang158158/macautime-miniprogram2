@@ -1,0 +1,170 @@
+<!--pages/views/submit-order.wxml-->
+<view class="container pb220">
+    <view class="user default m16 l-h30">
+        <view class="f32 c-222222 p32 fw6">联系人</view>
+        <view class="f30 c-222222 p32 bd1">{{userInfo.nickName}}</view>
+        <view class="f30 c-222222 p32">{{userInfo.phone}}</view>
+    </view>
+    <!-- <view class="gh-vip default m16 mt0 p32">
+        <radio-group bindchange="checkboxChange">
+        <label class="checkbox">
+            <view class="flex">
+                <image class="v-icon mr16" src="/images/submit-order/logo_vip.png" mode="aspectFill"/>
+                <view class="flex-1 f-222222 f-32 fw6">Macau Time会员</view>
+                <radio value="vip" checked color="#00A653"/>
+            </view>
+            <view class="flex">
+                <image class="v-icon mr16" src="" mode="aspectFill"/>
+                <view class="flex-1 f-222222 f24 fw3 l-h30 mt16">尊敬的Macau Time会员，该体验已加入「Macau Time会员行动」，本次预订您可享受专属会员优惠政策。</view>
+            </view>
+        </label>
+        </radio-group>
+    </view> -->
+    <view class="default m16 mt0 p32 pb16">
+        <view class="f32 c-222222 pb30 fw6 bd1">{{params.msName}}</view>
+        <view class="flex bd1 pb30 pt30">
+            <view class="relative icon-100 mr16">
+                <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
+                <image class="pic-default-new z-index5" src="{{params.imageUrlArray[0]}}" mode="aspectFill"/>
+            </view>
+            <view class="flex-1">
+                <view class=" c-222222 l-h32 mt16 flex">
+                    <view class="f28 fw5 flex-1">{{params.title}}</view>
+                    <view class="f24">
+                        <text >{{params.symbol||'MOP$'}} </text>
+                        <text class="f28">{{params.price}}</text>
+                    </view>
+                </view>
+                <view class="f24 c-222222 mt16">
+                    <!-- <text >线上支付</text> -->
+                    <view class="tag1 c-FF7626 bg-FFF2EB" wx:if="{{params.payType == 2}}">到店支付</view>
+                    <view class="tag1 c-00A653 bg-DAF2E6 mr16" wx:else>线上支付</view>
+                    
+                </view>
+            </view>
+        </view>
+        <!-- <view class="flex h-100 bd1 f30 fw6">
+            <view class="flex-1">日期</view>
+            <view class="fw4">{{options.useDate}}</view>
+        </view> -->
+        <view class="flex h-100 bd1 f30">
+            <view class="flex-1">数量</view>
+            <image class="icon-36" src="/images/submit-order/icon_sub_dis.png" mode="aspectFill" bindtap="tapReduce"/>
+            <view class="ml32 mr32 fw6">{{orderCount}}</view>
+            <image class="icon-36" src="/images/submit-order/icon_plus.png" mode="aspectFill" bindtap="tapAdd"/>
+        </view>
+        <!-- <view class="flex h-100 bd1 f30 fw6">
+            <view class="flex-1">原价</view>
+            <view class="">{{options.symbol||'MOP$'}} {{sPrice}}</view>
+        </view> -->
+        <!-- <view class="flex h-100 bd1 f30 fw6">
+            <view class="flex-1">会员专属折扣</view>
+            <view class="c-00A653 fw4">{{options.discount}}%OFF</view>
+        </view> -->
+        <!-- <view class="flex h-100 bd1 f30 fw6">
+            <view class="flex-1">会员红包</view>
+            <view class="c-00A653 fw4">减 {{options.symbol||'MOP$'}} 20</view>
+        </view> -->
+         <view class="flex h-100 f30">
+            <view class="flex-1">合计</view>
+            <view class="c-00A653">
+                <text class="">{{params.symbol||'MOP$' }} </text>
+                <text class="f36 fw5">{{params.price * orderCount}}</text>
+            </view>
+        </view>
+    </view>
+
+    <!-- 我的卡劵 -->
+    <view class="default m16 mt0 p32" wx:if="{{userInfo.level}}" bindtap="tapGetCard">
+        <view class="flex">
+            <view class="flex-1 f28 c-222222 fw5 m-130">我的卡券</view>
+            <view class="f24 c-00A653 ell">
+                <text wx:if="{{choseCardId}}">{{discountsName || ''}}</text>
+                <text class="c-999999" wx:else>请选择使用您的优惠券</text>
+            </view>
+            <image class="icon-30 ml16" src="/images/default/icon_more.png" mode="aspectFill"/>
+        </view>
+    </view>
+
+    <!-- 会员特享 -->
+    <view class="default m16 mt0 p32" wx:else>
+        <view class="flex">
+            <image class="icon-30 mr16" src="/images/submit-order/avatar_vip.png" mode="aspectFill"/>
+            <view class="flex-1 f28 c-222222 fw5">【会员特享】满100减20</view>
+            <button class="weui-btn w-120" type="primary" bindtap="tapToVip">开通会员</button>
+        </view>
+    </view>
+    
+    
+
+    <!-- <view class="default m16 mt0 p32">
+        <view class="bd1 pb32">
+            <view class="flex">
+                <image class="icon-24 mr16" src="/images/submit-order/icon_book_promise.png" mode="aspectFill"/>
+                <view class="flex-1 f-222222 f-32 fw6">Macau Time承诺</view>
+            </view>
+            <view class="f-222222 f24 fw3 l-h30 mt16">体验均为Macau Time官方上线，保证真实可靠；Macau Time保障用户的最高权益和个人隐私。</view>
+        </view>
+        <view class="pt32">
+            <view class="flex">
+                <image class="icon-24 mr16" src="/images/submit-order/icon_book_prompt.png" mode="aspectFill"/>
+                <view class="flex-1 f-222222 f-32 fw6">预订须知</view>
+            </view>
+            <view class="f-222222 f24 fw3 l-h30 mt16">用户通过Macau Time预订体验，一天内取消订单超过三次则当日不接受预订，订单提交成功后超过三日不能取消。</view>
+        </view>
+    </view>
+
+    <view class="default m16 mt0 p32">
+        <view class="bd1 pb32">
+            <view class="flex">
+                <view class="flex-1 f-222222 f-30">付款说明</view>
+            </view>
+            <view class="f-222222 f24 fw3 l-h30 mt16">1. 本活动仅支持线上付款；</view>
+            <view class="f-222222 f24 fw3 l-h30 mt16">2. 付款费用为报名费。</view>
+        </view>
+        <view class="pt32">
+            <view class="flex">
+                <view class="flex-1 f-222222 f-30">退款说明</view>
+            </view>
+            <view class="f-222222 f24 fw3 l-h30 mt16">1. 付款成功后 7 天内可申请退款；</view>
+            <view class="f-222222 f24 fw3 l-h30 mt16">2. 活动开始前 24 小时内不支持退款。</view>
+        </view>
+    </view>
+
+    <view class="m32">
+        <checkbox-group class="radio-group" bindchange="radioChange">
+        <label class="checkbox f24 flex">
+            <checkbox value="agreement" checked color="#00A653"/>
+            <text>我已阅读并同意</text>
+            <text class="c-00A653" catchtap="tapToAgreement">《Macau Time服务协议》</text>
+        </label>
+        </checkbox-group>
+    </view> -->
+
+    <!-- 下单 -->
+    <view class="orders bg-white bt1 {{isIphoneX ?'fix-iphonex-button':''}}">
+        <view class="flex pl32 pr32">
+            <view class="flex-1">
+                <view class="c-00A653 f24">
+                    <text class="f24">{{params.symbol||'MOP$'}} </text>
+                    <!-- 折扣券 -->
+                    <text class="f36 fw5" wx:if="{{typeId == 1}}">{{params.price * orderCount * discount}}</text>
+                    <!-- 满减券 -->
+                    <text class="f36 fw5" wx:elif="{{typeId == 2}}">{{params.price * orderCount - money < 0 ? 0 : params.price * orderCount - money}}</text>
+                    <!-- 抵扣券 -->
+                    <text class="f36 fw5" wx:elif="{{typeId == 3}}">{{params.price * orderCount - money < 0 ? 0 : params.price * orderCount - money}}</text>
+                    <!-- 没有选中券 -->
+                    <text class="f36 fw5" wx:else>{{params.price * orderCount}}</text>
+                </view>
+                <!-- <view class="c-222222 f24">
+                    <text class="">到店支付剩余 {{options.symbol||'MOP$'}} </text>
+                    <text class="f36 fw6">{{ePrice}}</text>
+                </view> -->
+            </view>
+            <!-- <button class="weui-btn w-296" type="primary" bindtap="submitOrder">确认</button> -->
+            <button class="weui-btn w-296" type="primary" bindtap="submitOrderNew">确认</button>
+        </view>
+    </view>
+</view>
+
+<half-screen-dialog istrue="{{istrue}}" result="{{cardResult}}" source="order" bind:closeDialog="closeDialog" bind:radioChange="cardRadioChange"></half-screen-dialog>

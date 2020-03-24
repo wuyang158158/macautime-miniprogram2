@@ -1,0 +1,26 @@
+<view class="container">
+  <navigator wx:if="bankList.length > 0" url="/pages/wallet/bank/bank-list?s=1" class="choose-bank flex bg-white">
+    <image src="/images/center/icon_edict.png" class="icon-bank" mode="aspectFill"></image>
+    <text>{{ bankJson.bankName }} {{ bankJson.cardType }} ( {{ bankJson.lastFourNum }} )</text>
+    <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
+  </navigator>
+  <navigator wx:else url="/pages/attestation/bind-bank-card" class="choose-bank flex bg-white">
+    <text>添加银行卡</text>
+    <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
+  </navigator>
+
+  <!-- 输入提现金额 -->
+  <view class="cash-form bg-white">
+    <view class="c-title f28">提现金额</view>
+    <view class="c-input flex">
+      <input value="{{ number }}" bindinput="setInputValue" placeholder="请输入提现金额"></input>
+      <text class="i f35">$</text>
+    </view>
+    <view class="c-desc flex mt35 f26 c-999999">
+      可提现金额￥{{ totalNum }} <text bindtap="chooseTotal">全部提现</text>
+    </view>
+  </view>
+
+  <!-- 提交 -->
+  <view class="sub-btn flex f36" bindtap="submitRefund"> 确认提现 </view>
+</view>

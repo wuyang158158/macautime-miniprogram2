@@ -1,0 +1,38 @@
+/* pages/wallet/bank/bank-list.wxss */
+page {
+  padding-top: 30rpx;
+  padding-bottom: 180rpx;
+}
+.bank-list {
+  width:686rpx;
+  height:240rpx;
+  background:#5180E9;
+  border-radius:16rpx;
+  margin: 0 auto 16rpx;
+  padding: 30rpx;
+  display: flex;
+  box-sizing: border-box
+}
+.b-logo {
+  width: 110rpx;
+}
+.b-logo image {
+  width: 80rpx;
+  height: 80rpx;
+}
+.b--name {
+  color: #fff
+}
+.add-bank {
+  width:296rpx;
+  height:100rpx;
+  background:rgba(0,166,83,1);
+  border:2rpx solid rgba(255, 255, 255, 1);
+  border-radius:50rpx;
+  position: fixed;
+  bottom: 64rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+  letter-spacing: 3rpx;
+}

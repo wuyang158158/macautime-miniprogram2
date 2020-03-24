@@ -1,0 +1,75 @@
+/* pages/views/personal-home.wxss */
+page{
+    background: #fff;
+}
+.title{
+    width: 100%;
+    height: 700rpx;
+    text-align: center;
+}
+.container {
+    padding-bottom: 32rpx;
+}
+.p-avatar{
+    width: 132rpx;
+    height: 132rpx;
+    border: 2rpx solid #fff;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 100rpx;
+}
+.p-avatar-ac{
+    width: 32rpx;
+    height: 32rpx;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+}
+.p-avatar-icon{
+    border-radius: 50%;
+}
+.c-center {
+    justify-content: center;
+}
+.p-tag{
+    padding: 0 20rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    background:rgba(255,255,255,0);
+    border:1rpx solid rgba(255, 255, 255, 1);
+    border-radius:20rpx;
+    margin: 10rpx 5rpx 0 5rpx;
+}
+.ml10{
+    margin-left: 10rpx;
+}
+.t-btn{
+    width: 200rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 30rpx;
+    color: #333333;
+    border-radius:40rpx;
+}
+button[type=primary1]{
+    color: rgba(51,51,51,1);
+    background: rgba(255,255,255,1);
+}
+.button-hover[type=primary1]{
+    color: rgba(51,51,51, 0.6);
+    background-color: rgb(255,255,255, 0.6);
+}
+.nav{
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+}
+.bd2{
+    width: 60rpx;
+    height: 6rpx;
+    background: #00A653;
+    bottom: 0;
+    left: 50%;
+    margin-left: -30rpx;
+}

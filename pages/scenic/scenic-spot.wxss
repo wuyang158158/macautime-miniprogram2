@@ -1,0 +1,2 @@
+/* pages/scenic/scenic-spot.wxss */
+@import "/pages/tabs/experience.wxss";

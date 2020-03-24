@@ -1,0 +1,18 @@
+/* pages/vip/payment-ok.wxss */
+page{
+    background: #fff;
+}
+.mt60{
+    margin-top: 60rpx;
+}
+.mt150{
+    margin-top: 150rpx;
+}
+.btn-see-vip{
+    width: 360rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+.flex{
+    justify-content: center;
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "cp-photo": "/components/photo/photo",
+    "gh-empty": "/components/empty/empty"
+  },
+  "navigationBarTitleText": "我的相册"
+}

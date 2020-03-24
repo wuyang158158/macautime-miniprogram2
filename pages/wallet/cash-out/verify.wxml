@@ -1,0 +1,24 @@
+<view>
+  <view class="c-top">
+    <view class="bank-title flex">
+      <image src="/images/center/icon_edict.png" mode=""></image>
+      <text class="f30">招商银行</text>
+    </view>
+    <view class="cash-num f30 flex">提现金额： <text class="c-00A653">{{ payAmount }}元</text></view>
+  </view>
+
+  <!-- 提现流程 -->
+  <view class="cash-section">
+    <view class="c-item" wx:for="{{ actionMenu }}" wx:key="index">
+      <view class="item-left">
+        <view class="{{ item.type === active ? 'item-circle seclect': 'item-circle'}}"></view>
+        <view class="item-line" wx:if="{{ index !== 2}}" ></view>
+      </view>
+      <view class="{{ item.type === active ? 'item-right seclect' : 'item-right'}}">{{ item.title }}</view>
+    </view>
+  </view>
+  <!-- 提交按钮 -->
+  <view class="submit flex f36" bindtap="sureBtn">
+    确认
+  </view>
+</view>

@@ -1,0 +1,4 @@
+<view class="content">
+  <cp-photo result="{{ photoList }}"></cp-photo>
+  <gh-empty prop-type="no-data" prop-text="暂无相册数据" prop-mt="200" wx:if="{{ noData }}"></gh-empty>
+</view>

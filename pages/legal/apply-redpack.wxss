@@ -1,0 +1,22 @@
+/* pages/legal/apply-redpack.wxss */
+.text {
+  margin: 50rpx 32rpx 37rpx;
+}
+textarea {
+  flex: 1;
+  height: 250rpx;
+  border: 1rpx solid #e6e6e6;
+  padding: 30rpx;
+}
+.tips {
+  margin: 0 50rpx;
+}
+.tips view {
+  margin-bottom: 16rpx;
+}
+page {
+  background: #fff
+}
+.mt80 {
+  margin-top: 80rpx;
+}

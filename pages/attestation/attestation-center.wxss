@@ -1,0 +1,9 @@
+/* pages/attestation/attestation-center.wxss */
+.h-120{
+    height: 120rpx;
+    line-height: 120rpx;
+}
+.img{
+    width: 30rpx;
+    height: 30rpx;
+}

@@ -1,0 +1,60 @@
+/* pages/views/exp-comment.wxss */
+page{
+    background: #fff;
+}
+.weui-btn{
+    height: 88rpx;
+    line-height: 88rpx;
+    font-size: 36rpx;
+    border-radius: 44rpx;
+}
+.star {
+    margin: 32rpx 0;
+}
+.w42 {
+    width: 42rpx;
+    margin-right: 10rpx;
+    height: 42rpx;
+}
+.form-btn{
+    position: absolute;
+    bottom: 80rpx;
+    width: 100%;
+}
+.weui-cells{
+    /* position: static; */
+}
+.weui-cells::after{
+    content: none;
+}
+.weui-uploader__bd  {
+    padding-top: 20rpx;
+}
+.delete {
+    background: #f30;
+    color: #fff;
+    font-size: 26rpx;
+    text-align: center;
+    width: 30rpx;
+    height: 30rpx;
+    line-height: 26rpx;
+    border-radius: 50%;
+    position: absolute;
+    top: -10rpx;
+    right: -10rpx;
+}
+.weui-cells::before{
+    content: none;
+}
+.weui-uploader__file{
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+.weui-uploader__input-box,.weui-uploader__img{
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 16rpx;
+}
+.bd{
+    border: 1rpx solid #E6E6E6;
+}

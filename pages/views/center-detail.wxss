@@ -1,0 +1,15 @@
+/* pages/views/center-detail.wxss */
+.header-bg{
+    width: 144rpx;
+    height: 144rpx;
+    background: #e6e6e6;
+    border-radius: 50%;
+}
+.header-bg.rule {
+  border-radius: 4rpx
+}
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
+}

@@ -1,0 +1,44 @@
+<!--pages/views/set-meal.wxml-->
+<view class="container pb120">
+    <!-- 顶部操作 -->
+    <view class="title">
+        <view class="view_H">
+        <view wx:for="{{result}}" class="view-item_H {{item.id==id?'demo-text-1':''}}" data-id="{{item.id}}" data-type="{{item.type}}" wx:key="index" bindtap="tapTitleBar">
+            <text>{{item.title}}</text>
+            <text class="item-bd" wx:if="{{item.id==id}}"></text>
+        </view>
+        </view>
+    </view>
+
+    <!-- 套餐图片查看 -->
+    <scroll-view class="scroll-view_H mt120" scroll-x="true">
+        <view wx:for="{{choseData.imageUrlArray}}" class="scroll-view-item_H {{index===0?'pl32':''}}" wx:key="index" data-item="{{item}}" bindtap="tapPreviewImage">
+            <view class="relative mer-type-icon">
+                <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
+                <image class="pic-default-new z-index5" src="{{item}}" mode="aspectFill"/>
+            </view>
+        </view>
+    </scroll-view>
+
+    <view class="p32">
+        <view class="f30 c-222222 fw5">商品内容</view>
+        <view class="f28 c-222222">{{choseData.text}}</view>
+    </view>
+    
+    
+    <view class="orders bg-white bt1 {{isIphoneX ?'fix-iphonex-button':''}}">
+        <view class="flex w-100 pl32 pr32">
+            <view class="flex-1">
+                <view class="c-00AF66 mr16">
+                    <text class="f24">{{choseData.symbol||'MOP$'}}</text>
+                    <text class="f36 fw5 ml8">{{choseData.price}}</text>
+                </view>
+                <view class="f20 c-222222">
+                    <text class="f20">门市价 {{choseData.symbol||'MOP$'}}</text>
+                    <text class="f22 fw5"> {{choseData.oldAmount || 420}}</text>
+                </view>
+            </view>
+            <button class="weui-btn w-296" type="primary" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{userInfo?'tapToSubmitOrder':'tapToLogin'}}">立即购买</button>
+        </view>
+    </view>
+</view>

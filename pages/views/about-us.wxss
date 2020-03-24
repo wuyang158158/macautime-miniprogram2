@@ -1,0 +1,105 @@
+/* pages/views/about-us.wxss */
+@import '/style/quill.snow.wxss';
+
+.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100rpx;
+    background: #fff;
+}
+.container {
+    padding-top: 100rpx;
+}
+.gh-logo{
+    display: block;
+    margin: 0 auto;
+    width: 200rpx;
+    height: 200rpx;
+    /* margin-top: 16rpx; */
+}
+.mt6 {
+    margin-top: 6rpx;
+}
+.content{
+    font-size: 26rpx;
+    color: #808080;
+    /* line-height:40rpx; */
+}
+.gh-message{
+    /* position: absolute; */
+    bottom: 80rpx;
+    width: 100%;
+    text-align: center;
+}
+.rich-img {
+    width: 100%;
+    margin: 16rpx 0;
+    height: auto;
+}
+.t-c{
+    text-align: center;
+}
+.f-w5{
+    font-weight: 500;
+}
+.spce{
+    text-indent: 40rpx;
+}
+.c-333333{
+    color: #333333;
+}
+.scroll-view_H{
+    width: 100%;
+    white-space: nowrap;
+}
+.scroll-view-item{
+    height: 100%;
+}
+.scroll-view-item_H{
+    display: inline-block;
+    width: auto;
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0 20rpx;
+    text-align: center;
+    position: relative;
+}
+.view_H{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.view-item_H{
+    height: 100%;
+    display: inline-block;
+    width: auto;
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0 20rpx;
+    text-align: center;
+    position: relative;
+}
+.demo-text-1{
+    color: #222222;
+    font-weight: 500;
+}
+.item-bd{
+    position: absolute;
+    width: 80rpx;
+    height: 4rpx;
+    bottom: 0;
+    background: #00A653;
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.demo-text-1{
+    font-weight: normal;
+}
+.mt10 {
+    margin-top: 10rpx;
+}
+.pt16 {
+    padding-top: 10rpx;
+}

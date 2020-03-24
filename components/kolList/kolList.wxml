@@ -1,0 +1,24 @@
+<!--components/kolList.wxml-->
+<view class="kol-content flex">
+    <view class="kol-list" wx:for="{{kolList}}" wx:key="index" data-id="{{ item.id }}" bindtap="fnLinkTo">
+    <view class="relative">
+        <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
+        <image class="kol-slide-image" src="{{item.accordingImage}}" mode="aspectFill"/>
+    </view>
+
+    <view class="kol-msg">
+        <view class="flex">
+        <view class="f26 c-222222 fw6">{{item.nickName}}</view>
+        <image class="icon-vip" src="/images/index/icon_vip.png" mode="aspectFill" wx:if="{{item.level!='0'}}"/>
+        </view>
+        <view class="flex f24 c-666666 mt5">
+        <view wx:for="{{item.usSysLabel}}" wx:key="index" class="mr16">{{item.labelRemark}}</view>
+        </view>
+        <view class="flex mt5">
+        <view class="f24 c-666666 flex-1">{{item.focus}} 粉丝</view>
+        <button class="weui-btn w-86 f24" type="{{item.isfocus?'p-delete':'primary'}}" data-fAccountId="{{item.id}}" data-isfocus="{{item.isfocus}}" catchtap="tapUsInsertFocus">{{item.isfocus?'已关注':'关注'}}</button>
+        </view>
+    </view>
+    </view>
+    
+</view>

@@ -1,0 +1,37 @@
+/* pages/my/share/index.wxss */
+page {
+  background: #fff !important;
+  padding-top: 90rpx;
+}
+.logo {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: #ccc;
+}
+.information {
+  text-align: center
+}
+.information view {
+  text-align: center
+}
+image {
+  display: inline-block;
+}
+.er-code {
+  margin: 140rpx 0;
+  text-align: center;
+}
+.er-code image {
+  width: 260rpx;
+  height: 260rpx
+}
+.for-register {
+  justify-content: center;
+  color: #999;
+}
+.for-register image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx
+}

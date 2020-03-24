@@ -1,0 +1,16 @@
+/* pages/location/seach-location.wxss */
+page{
+    background: #fff;
+}
+.content{
+    margin-top: 52px;
+}
+.h-132{
+    height: 132rpx;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+.c-999999{
+    height: 38rpx;
+}

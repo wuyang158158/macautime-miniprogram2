@@ -1,0 +1,12 @@
+<view>
+  <view class="text flex">
+    <textarea bindinput="fnSetLink" value="{{ link }}" placeholder="粘贴你的链接领红包..."></textarea>
+  </view>
+  <view class="tips">
+    <view class="f26 c-222222">领取说明</view>
+    <view class="f26 c-222222">1在其他平台宣传澳门时光平台(文章，视频等形式）文章超过1000浏览量  100评论流量 及可获得200红包</view>
+    <view class="f26 c-222222">2.在其他平台发布视频超过 5000点赞量500评论量 即可获得500</view>
+  </view>
+
+  <view class="green-btn mt80">申请领取</view>
+</view>

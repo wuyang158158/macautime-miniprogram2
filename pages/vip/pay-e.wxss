@@ -1,0 +1,19 @@
+/* pages/vip/pay-e.wxss */
+.content{
+    border-radius:16rpx;
+}
+.copy{
+    width: 296rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-top: 163rpx;
+}
+.copy-txt{
+    word-break: break-all;
+    height: 95rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

@@ -1,0 +1,8 @@
+/* pages/my/editInfo/index.wxss */
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+}
+.item {
+  padding: 0 32rpx;
+}

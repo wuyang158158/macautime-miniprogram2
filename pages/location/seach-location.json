@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "gh-searchbar": "/components/searchbar/searchbar",
+    "gh-empty": "/components/empty/empty"
+  },
+  "navigationBarTitleText": "更改位置",
+  "backgroundTextStyle": "dark",
+  "navigationStyle": "default"
+}

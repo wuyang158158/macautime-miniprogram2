@@ -1,0 +1,76 @@
+/* pages/wallet/cash-out/verify.wxss */
+.c-top {
+  margin: 0 auto;
+}
+.bank-title {
+  height: 80rpx;
+  justify-content: center;
+}
+.bank-title image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx
+}
+.cash-num {
+  margin: 60rpx auto 110rpx;
+  justify-content: center;
+}
+page {
+  background: #fff !important;
+  padding-top: 120rpx
+}
+.c-item {
+  margin-left: 260rpx;
+  display: flex;
+}
+.item-left {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10rpx;
+}
+.item-circle {
+  width: 26rpx;
+  height: 26rpx;
+  border-radius: 50%;
+  border: 2rpx solid #E8E8E8;
+}
+.item-circle.seclect {
+  border-color: #00A653;
+  position: relative
+}
+.item-circle.seclect::after {
+  content: '';
+  width: 18rpx;
+  height: 18rpx;
+  background: #00A653;
+  position: absolute;
+  left: 4rpx;
+  border-radius: 50%;
+  top: 4rpx;
+}
+.item-right {
+  color: #999;
+  padding-left: 36rpx;
+}
+.item-right.seclect {
+  color: #00A653
+}
+.item-line {
+  height: 100rpx;
+  width: 2rpx;
+  margin-left: 13rpx;
+  background: #E8E8E8;
+}
+.submit {
+  width:686rpx;
+  height:88rpx;
+  background:rgba(0,166,83,1);
+  border-radius:44rpx;
+  justify-content: center;
+  letter-spacing: 2rpx;
+  margin: 120rpx auto 0;
+  color: #fff
+}
+.submit:active {
+  background:rgba(0,166,83,.8);
+}

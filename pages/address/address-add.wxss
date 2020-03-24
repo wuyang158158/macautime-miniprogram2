@@ -1,0 +1,55 @@
+/* pages/address/address-add.wxss */
+.addr-content {
+  padding-left: 32rpx;
+  box-sizing: border-box;
+}
+.a-input {
+  height: 120rpx;
+}
+.label {
+  width: 160rpx;
+}
+input, .phone {
+  flex: 1;
+}
+.detail {
+  margin-top: 30rpx;
+}
+textarea {
+  width: 100%;
+  height: 200rpx;
+}
+.phone {
+  justify-content: space-between;
+}
+
+.phone image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 32rpx
+}
+.default {
+  margin-left: 32rpx; 
+  padding: 40rpx 0;
+}
+.default image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.sub-btn {
+  height:100rpx;
+  background:rgba(0,166,83,1);
+  justify-content: center;
+  letter-spacing: 3rpx;
+  font-weight: 600;
+  position: fixed;
+  bottom: 0;
+  width: 100%
+}
+picker {
+  flex: 1;
+}
+.picker {
+  width: 100%
+}

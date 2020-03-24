@@ -1,0 +1,64 @@
+/* pages/upvote/upvote.wxss */
+.title{
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.mb0{
+  margin-bottom: 0;
+}
+.coupon-tab {
+height: 104rpx;
+padding: 0 128rpx;
+justify-content: space-between;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 10;
+width: 100%;
+border-bottom: 16rpx solid #EFEFF4;
+box-sizing: border-box
+}
+.coupon-tab view {
+height: 88rpx;
+font-size: 30rpx;
+font-weight: 600;
+color: #666;
+box-sizing: border-box
+}
+.coupon-tab view.bd2 {
+color: #222;
+position: relative
+}
+.coupon-tab view.bd2::after{
+content: "";
+width: 100%;
+position: absolute;
+bottom: 0;
+height: 4rpx;
+left: 0;
+background: #00A653;
+display: inline-block;
+}
+.w120 {
+  justify-content: center;
+  width: 120rpx;
+}
+.container {
+padding-top: 100rpx;
+}
+.content{
+  border-radius:16rpx;
+}
+.i-img{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius:16rpx;
+}
+.weui-loadmore{
+  margin: 0 auto;
+  margin-top: 1.4em;
+  padding-bottom: 2em;
+}
+.weui-loadmore_line{
+  margin-top: 2.4em;
+}

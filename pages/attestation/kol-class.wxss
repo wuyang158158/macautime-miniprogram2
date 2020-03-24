@@ -1,0 +1,40 @@
+/* pages/attestation/kol-class.wxss */
+page{
+    background: #fff;
+}
+.item{
+    width: 207rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    display: inline-block;
+    color: #00A653;
+    border: 1rpx solid #00A653;
+    border-radius: 40rpx;
+    margin-right: 20rpx;
+    margin-right: 20rpx;
+}
+.item-ac{
+    background: #00A653;
+    color: #fff;
+}
+.flex-r{
+    justify-content: center;
+}
+.ml48{
+    margin-left: 48rpx;
+}
+.mr48{
+    margin-right: 48rpx;
+}
+.after-icon{
+    width: 24rpx;
+    height: 24rpx;
+}
+.l-h{
+    line-height: 32rpx;
+}
+.weui-btn{
+    height: 80rpx;
+    line-height: 80rpx;
+}

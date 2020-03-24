@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "gh-empty": "/components/empty/empty",
+    "gh-aclist": "/components/acList/acList",
+    "cp-photo": "/components/photo/photo",
+    "cp-video": "/components/video/video"
+  },
+  "navigationBarTitleText": "个人主页",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "backgroundColor": "#FFFFFF"
+}
