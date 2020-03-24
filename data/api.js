@@ -1194,7 +1194,7 @@ export default {
   // 个人中心 我的点赞商家
   ctMyLikeStore(query) {
     return new Promise((resolve, reject) => {
-      execute(`/voSelectUserLikeVoId/1.0/`, 'POST', query, resolve, reject)
+      execute(`/imSelectOrderEvaluateByOrderIdAndMsId/1.0/`, 'POST', query, resolve, reject)
     })
   },
   // 我的视频

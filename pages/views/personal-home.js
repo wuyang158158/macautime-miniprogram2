@@ -53,8 +53,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    NT.showToast('加载中...')
-    if(options.id) {
+    if(options && options.id) {
       this.setData({userId: options.id,isMine: options.id === wx.getStorageSync('userInfo').userId})
     } else {
       this.setData({isMine: true })
@@ -76,6 +75,7 @@ Page({
   },
   // 获取我的信息
   fnGetMyVideoInfo() {
+    NT.showToast('加载中...')
     api.ctMyVideoc({ userId: this.data.userId }).then(res => {
       console.log(res)
       res.vobaseInfo.forEach(ele => {
@@ -131,6 +131,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
+    this.onLoad()
     // NT.showToast('刷新中...')
     // this.setData({
     //   params: { //请求首页推荐列表

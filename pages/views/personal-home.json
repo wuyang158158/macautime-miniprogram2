@@ -7,5 +7,6 @@
   },
   "navigationBarTitleText": "个人主页",
   "navigationBarBackgroundColor": "#FFFFFF",
+  "enablePullDownRefresh": true,
   "backgroundColor": "#FFFFFF"
 }

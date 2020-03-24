@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     api.ctGetKolId().then(res => {
-      const kolId = res.id
+      const kolId = res && res.id || ''
       this.setData({ kolId: kolId })
       this.fnGetAccount(kolId)
     })

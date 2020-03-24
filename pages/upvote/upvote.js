@@ -34,18 +34,19 @@ Page({
   },
   // 获取我的商家
   fnGetMyStore() {
-    this.setData({
-      storeData: [],
-      noData: true
-    })
-    return
     NT.showToast('加载中..')
-    api.ctMyLikeStore({ accountId: wx.getStorageSync('userInfo').userId }).then(res => {
-      
+    api.ctMyLikeStore().then(res => {
       this.setData({ storeData: res, noData:!res.length })
     }).catch( err => {
-      this.setData({ noData: true })
+      this.setData({ storeData: [], noData: true })
       NT.showModal(err.codeMsg || err.message || '请求失败！')
+    })
+  },
+  tapToDetail(e) { // 点击查看体验详情
+    const ID = e.currentTarget.dataset.id
+    const TITLE = e.currentTarget.dataset.title
+    wx.navigateTo({
+      url: '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE
     })
   },
   // 切换tab
