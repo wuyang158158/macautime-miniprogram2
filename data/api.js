@@ -250,13 +250,12 @@ export default {
   },
   // 登录
   login(option) {
-    console.log(option)
     return new Promise((resolve, reject) => {
       wx.login({
         success(res) {
           if (res.code) {
             const query = { code: res.code }
-            if(option.spreadCode) {
+            if(option && option.spreadCode) {
               query.spreadCode = option.spreadCode
             }
             //发起网络请求

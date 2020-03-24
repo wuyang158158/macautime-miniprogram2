@@ -193,6 +193,7 @@ Page({
     let that = this;
     wx.getSetting({
       success(res) {
+        console.log(res)
         if (!res.authSetting['scope.userInfo']) {
           wx.authorize({
             scope: 'scope.userInfo',

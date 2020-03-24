@@ -26,7 +26,7 @@
                     </view>
                     <!-- <view class="f24 c-FFFFFF bg-00A653 kol-tag1">KOL</view> -->
                 </button>
-                <view class="f24 c-222222" bindtap="tapTopagesPersonalHome">个人主页</view>
+                <view class="f24 c-222222" wx:if="{{ userInfo }}" bindtap="tapTopagesPersonalHome">个人主页</view>
                 <image class="more-icon mr32" src="/images/center/icon_more-2.png" mode="aspectFill" wx:if="{{userInfo}}"/>
             </view>
             <!-- 菜单栏 -->
