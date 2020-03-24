@@ -41,12 +41,16 @@ Page({
       title: source === 'vip' ? '开通会员' : '购买商品'
     })
     var reciprocal = Number(options.reciprocal)
+    //获取当前时间
+    var nowDate = new Date().getTime();
+    //时间差
+    var differTime = reciprocal - nowDate;
     this.setData({
       source: source,
       id: options.id,
       money: options.money,
       reciprocal: reciprocal,
-      h: Math.floor(reciprocal / 1000 / 60 / 60),
+      h: Math.floor(differTime / 1000 / 60 / 60),
       type: options.type
     })
     // var reciprocal = Number(options.reciprocal)
@@ -59,7 +63,7 @@ Page({
     var date = new Date();
     var now = date.getTime();
     //设置截止时间
-    var end = now + this.data.reciprocal;
+    var end = this.data.reciprocal;
     //时间差
     var differTime = end - now;
     //定义变量,h,m,s保存倒计时的时间
