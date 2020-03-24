@@ -276,6 +276,11 @@ Page({
     })
   },
   tapMenu(e) { //点击菜单
+
+    // 未登录跳转登录页面
+    if(!this.data.userInfo && !(e.currentTarget.dataset.button)) {
+      return this.tapToLogin()
+    }
     const menu = e.currentTarget.dataset.menu
     const url = e.currentTarget.dataset.url
     if (url) return wx.navigateTo({ url})
@@ -363,10 +368,14 @@ Page({
   },
   // 跳转到我的订单
   tapToMyOrder(e) {
-    const type = e.currentTarget.dataset.type
-    const title = e.currentTarget.dataset.title
-    wx.navigateTo({
-      url: type ? `/pages/order/my-order?type=${type}&name=${title}`:`/pages/order/my-order`
-    })
+    if(this.data.userInfo) {
+      const type = e.currentTarget.dataset.type
+      const title = e.currentTarget.dataset.title
+      wx.navigateTo({
+        url: type ? `/pages/order/my-order?type=${type}&name=${title}`:`/pages/order/my-order`
+      })
+    } else {
+      this.tapToLogin()
+    }
   }
 })

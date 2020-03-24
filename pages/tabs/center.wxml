@@ -57,11 +57,11 @@
     <!-- 开通菜单栏 -->
     <view class="ml16 mr16">
         <view class="c-nav flex bg-white">
-            <view class="flex-1 flex br1" bindtap="tapToVip">
+            <view class="flex-1 flex br1" bindtap="{{ userInfo? 'tapToVip': 'tapToLogin' }}">
                 <image class="open-vip-icon" src="/images/center/icon_vip42.png" mode="aspectFill"/>
                 <view class="open-vip-text f30 c-222222 fw6 ml16">{{ userInfo.level? '会员中心': '开通会员'}}</view>
             </view>
-            <view class="flex-1 flex" bindtap="tapAttestation">
+            <view class="flex-1 flex" bindtap="{{ userInfo? 'tapAttestation': 'tapToLogin' }}">
                 <image class="open-vip-icon" src="/images/center/icon_attest.png" mode="aspectFill"/>
                 <view class="open-vip-text f30 c-222222 fw6 ml16">认证中心</view>
             </view>
@@ -106,7 +106,7 @@
 
     <!-- 用户反馈等 -->
     <view class="user-menu bg-white m16 pl32 pr32">
-        <view wx:for="{{menu}}" wx:key="index" class="flex h-120 bd1" data-menu="{{item.text}}" bindtap="tapMenu">
+        <view wx:for="{{menu}}" wx:key="index" class="flex h-120 bd1" data-button="{{ true }}" data-menu="{{item.text}}" bindtap="tapMenu">
             <image class="menu-icon mr32" src="{{item.iconPath}}" mode="aspectFill"/>
             <view class="flex-1 f32 c-222222">
                 <button class="weui-btn w-auto" type="contact" open-type="contact" wx:if="{{item.text==='联系客服'}}">{{item.text}}</button>
@@ -124,7 +124,7 @@
            
             <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view> -->
-        <view class="flex h-120" wx:if="{{ userInfo }}" data-menu="更多设置" bindtap="tapMenu">
+        <view class="flex h-120" data-menu="更多设置" bindtap="tapMenu">
             <image class="menu-icon mr32" src="/images/center/mine_icon_set.png" mode="aspectFill"/>
             <view class="flex-1 f32 c-222222">
                 <text>更多设置</text>
