@@ -97,7 +97,7 @@ Page({
   poSelectOrderPaySuccess() {
     var that = this;
     var options = that.data.options
-    api.poSelectOrderPaySuccess({orderNumber:'200320175813010500000'})
+    api.poSelectOrderPaySuccess({orderNumber:options.orderNumber})
     .then(res=>{
       if(res){
         // clearInterval(that.data.ctime)
