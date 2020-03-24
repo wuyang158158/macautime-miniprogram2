@@ -20,8 +20,8 @@
 .gh-empty-logo {
     position: absolute;
     left: 50%;
-    width: 320rpx;
-    height: 320rpx;
+    width: 300rpx;
+    height: 352rpx;
     margin-left: -160rpx;
 }
 
@@ -32,9 +32,9 @@
     left: 0;
     right: 0;
     text-align: center;
-    color: #000;
-    font-size: 32rpx;
-    font-weight: 600;
+    color: #00A653;
+    font-size: 28rpx;
+    /* font-weight: 600; */
 }
 .gh-empty-tips.news {
     color: #00A653;
