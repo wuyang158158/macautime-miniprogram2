@@ -279,10 +279,14 @@ Page({
     .then(res=>{
       console.log(res)
       let data = res.data || []
+      if(data.length && !this.data.params.labelId){
+        that.setData({
+          swiperData: data.slice(0,3)
+        })
+      }
       that.setData({
         noData: false,
         merchantList: source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data),
-        swiperData: data.length && this.data.params.start == 1 ? data.slice(0,3) : [],
         total: res.total,
         loadmore: false
       })

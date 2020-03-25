@@ -12,13 +12,14 @@
                     <view class="f32 fw6 flex-1">{{item.name}}</view>
                     <view class="tag c-00A653 f24" wx:if="{{item.labelRemark}}">{{item.labelRemark}}</view>
                 </view>
+                <!-- 评分处理 -->
                 <view class="flex l-h32">
-                    <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                    <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                    <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                    <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                    <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                    <view class="f24 c-222222 ml5">5.0</view>
+                    <view wx:for="{{[1,2,3,4,5]}}" wx:key="{{index}}" wx:for-item="i">
+                        <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" wx:if="{{item.averageScore >= index+1 }}"></image>
+                        <image class="merchant-star-icon" src="/images/index/icon_star3@2x.png" wx:elif="{{item.averageScore >= index && item.averageScore%1 !=0 }}"></image>
+                        <image class="merchant-star-icon" src="/images/index/icon_star2@2x.png" wx:else></image>
+                    </view>
+                    <view class="f24 c-222222 ml5">{{ item.averageScore || ' 未评分'}}</view>
                 </view>
             </view>
             <!-- <view class="f24 mt8 mb8">{{item.name || ''}}</view> -->

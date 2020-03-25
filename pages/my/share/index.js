@@ -7,22 +7,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: wx.getStorageSync('userInfo') || {},
-    imageUrl: ''
+    // userInfo: wx.getStorageSync('userInfo') || {},
+    // imageUrl: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    NT.showToast('加载中..')
-    api.shareIusGetQRCode().then( res => {
-      this.setData({
-        imageUrl: res.imageUrl
-      })
-    }).catch(err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+    var userInfo = wx.getStorageSync('userInfo') || {}
+    this.setData({
+      userInfo: userInfo,
+      imageUrl: userInfo.filePath || ''
     })
+    if(!userInfo.filePath){
+      NT.showToast('加载中..')
+      api.shareIusGetQRCode().then( res => {
+        this.setData({
+          imageUrl: res.imageUrl
+        })
+      }).catch(err => {
+        NT.showModal(err.codeMsg || err.message || '请求失败！')
+      })
+    }
   },
 
   /**
