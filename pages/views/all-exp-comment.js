@@ -10,10 +10,6 @@ Page({
    */
   data: {
     userInfo: wx.getStorageSync("userInfo"), //用户信息
-    params: { //请求订单列表
-      pageSize: PAGE.limit,
-      page: PAGE.start
-    },
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
     onReachBottom: false,
@@ -26,14 +22,17 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu()
+    var params = options.msId ? { //请求列表
+      msId: options.msId,
+      pageSize: PAGE.limit,
+      pageNo: PAGE.start
+    } : {}
     this.setData({
-      params: { //请求列表
-        pageSize: PAGE.limit,
-        page: PAGE.start
-      },
+      params: params,
       userInfo: wx.getStorageSync("userInfo"), //用户信息
     })
     NT.showToast('加载中...')
+
     this.imSelectOrderToEvaluateByOrderId()
   },
 
@@ -70,12 +69,14 @@ Page({
    */
   onPullDownRefresh: function () {
     NT.showToast('刷新中...')
+    var params = this.data.params.msId ? { //请求列表
+      msId: this.data.params.msId,
+      pageSize: PAGE.limit,
+      pageNo: PAGE.start
+    } : {}
     this.setData({
       userInfo: wx.getStorageSync("userInfo"),
-      params: { //请求列表
-        pageSize: PAGE.limit,
-        page: PAGE.start
-      },
+      params: params,
       loadmoreLine: false,
       loadmore: false,
       onReachBottom: false
@@ -87,15 +88,15 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    // if(!this.data.onReachBottom){
-    //   wx.showNavigationBarLoading();
-    //   this.setData({
-    //     loadmoreLine: false,
-    //     loadmore: true
-    //   })
-    //   this.data.params.page = this.data.params.page + 1;
-    //   this.imSelectOrderToEvaluateByOrderId('onReachBottom')
-    // }
+    if(!this.data.onReachBottom && this.data.params.msId){
+      wx.showNavigationBarLoading();
+      this.setData({
+        loadmoreLine: false,
+        loadmore: true
+      })
+      this.data.params.pageNo = this.data.params.pageNo + 1;
+      this.imSelectOrderToEvaluateByOrderId('onReachBottom')
+    }
   },
   /**
    * 用户点击右上角分享
@@ -112,8 +113,10 @@ Page({
     
   },
   imSelectOrderToEvaluateByOrderId(source) { // 请求评论列表
-    api.imSelectOrderToEvaluateByOrderId()
+    var apiCommon = this.data.params.msId ? api.selectMsEvaluateScoreList : api.imSelectOrderToEvaluateByOrderId;
+    apiCommon(params)
     .then(res=>{
+      var res = this.data.params.msId ? res.data : res
       if(source === 'onReachBottom' && !res.length > 0){
         this.data.onReachBottom = true
         if(this.data.expComment.length){
@@ -133,6 +136,9 @@ Page({
       })
       const data = source === 'onPullDownRefresh' ? res : this.data.expComment.concat(res||[])
 
+      if(this.data.params.msId){
+        data.imageUrl = data.imEvaluationImage.imageUrl
+      }
 
       this.setData({
         expComment: data,

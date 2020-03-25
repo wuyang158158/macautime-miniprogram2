@@ -347,6 +347,7 @@ rich-text .rich-img {
     border-radius:4rpx;
     margin-left: 16rpx;
     vertical-align: 3rpx;
+    display: inline-block;
 }
 .mer-type-icon{
     width: 148rpx;

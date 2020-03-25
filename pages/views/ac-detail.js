@@ -12,7 +12,9 @@ Page({
    */
   data: {
     isIphoneX: app.globalData.isIphoneX, //iphonex适配
-    roleFrom: {}, //请求详情参数
+    roleFrom: { //评论请求参数
+      // msId: 
+    }, 
     userInfo: wx.getStorageSync("userInfo"), //用户信息
     acData: '', //详情数据
     markers: [{ //定位信息
@@ -53,10 +55,11 @@ Page({
       options: options,
       msId: options.id,
       recommend: options.recommend,
-      roleFrom: {
-        expSerial: options.id,
-        userName: this.data.userInfo.userName
-      }
+      roleFrom: { //评论请求参数
+        msId: options.id,
+        pageSize: PAGE.limit,
+        pageNo: PAGE.start
+      }, 
     })
     this.getExpDetails()
   },
@@ -144,7 +147,6 @@ Page({
   },
   //获取详情数据
   getExpDetails() {
-    // api.getExpDetails(this.data.roleFrom)
     api.msSelectedMsDetailsByMsId({msId:this.data.msId})
     .then(res=>{
       const data = res
@@ -174,24 +176,23 @@ Page({
       }) : ''
       // console.log(util.transleteDate(data.msBaseInfo.openDate))
       data.msBaseInfo.openDate = util.transleteDate(data.msBaseInfo.openDate || '')
-
       // 评分
       // data.msBaseInfo.averageScore = Number(data.msBaseInfo.averageScore)
-      // 评论时间
-      // debugger
-      if(data.evaluateScore){
-        data.evaluateScore.map(item=>{
-          item.createTimeStr = util.formatTimeTwo(item.createTime,'Y年M月D日')
+
+      // 优惠券时间戳转换
+      if(data.discountsCardList) {
+        data.discountsCardList.map(item=>{
+          item.endTimeStr = util.formatTimeTwo(item.endTime,'Y-M-D')
         })
       }
       this.setData({
         acData: data
       })
-      // if(this.data.recommend){
-      //   this.getGuessLike() //获取推荐喜欢数据
-      // }
-      this.getGuessLike() //获取推荐喜欢数据
+      this.selectMsEvaluateScoreList() //评论列表
       this.msSelectedMsVideoByMsId() //相关视频
+      if(this.data.recommend){
+        this.getGuessLike() //获取推荐喜欢数据
+      }
     })
     .catch(err=>{
       console.log(err)
@@ -445,7 +446,7 @@ Page({
   //点击查看全部评论
   tapToAllExpComment() {
     wx.navigateTo({
-      url: '/pages/views/all-exp-comment',
+      url: '/pages/views/all-exp-comment?msId=' + this.data.msId,
     })
   },
   // 预览图片
@@ -537,6 +538,27 @@ Page({
       console.log(data)
       this.setData({
         videoList: data||[]
+      })
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  },
+  // 获取评价列表
+  selectMsEvaluateScoreList() {
+    api.selectMsEvaluateScoreList(this.data.roleFrom)
+    .then(res=>{
+      console.log(res)
+      var evaluateScore = res.data || []
+      // 评论时间
+      // debugger
+      if(evaluateScore){
+        evaluateScore.map(item=>{
+          item.createTimeStr = util.formatTimeTwo(item.createTime,'Y年M月D日')
+        })
+      }
+      this.setData({
+        evaluateScore: evaluateScore
       })
     })
     .catch(err=>{

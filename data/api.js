@@ -839,6 +839,18 @@ export default {
       )
     })
   },
+  // 分页获取商家评价的接口
+  selectMsEvaluateScoreList(query) {
+    return new Promise((resolve, reject) => {
+      execute(
+        `/selectMsEvaluateScoreList/1.0/`,
+        'POST',
+        query,
+        resolve,
+        reject
+      )
+    })
+  },
   // 获取商家标签类别列表
   msSelectMsLabelList(query) {
     return new Promise((resolve, reject) => {
