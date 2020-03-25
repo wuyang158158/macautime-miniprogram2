@@ -12,17 +12,11 @@
     </view>
     
     <!-- 轮播图 -->
-    <swiper class="swiper ml16 mr16 none" indicator-dots autoplay interval="5000" indicator-color="rgba(255,255,255,1)" indicator-active-color="#00A653" bindchange="vSwiperChange">
-        <swiper-item>
+    <swiper class="swiper ml16 mr16" indicator-dots autoplay interval="5000" indicator-color="rgba(255,255,255,1)" indicator-active-color="#00A653" bindchange="vSwiperChange">
+        <swiper-item wx:for="{{swiperData}}" wx:key="index" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
             <view class="relative swiper-url mr16">
                 <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
-                <image class="pic-default z-index5" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFill"/>
-            </view>
-        </swiper-item>
-        <swiper-item>
-            <view class="relative swiper-url mr16">
-                <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
-                <image class="pic-default z-index5" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFill"/>
+                <image class="pic-default z-index5" src="{{item.mImage}}" mode="aspectFill"/>
             </view>
         </swiper-item>
     </swiper>
