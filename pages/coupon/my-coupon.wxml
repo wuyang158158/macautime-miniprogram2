@@ -5,8 +5,8 @@
       <view class="flex {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">商家卡券</view>
     </view>
     <view wx:for="{{ accountList }}" wx:key="index" class="coupon m16 bg-white pb16 mb0">
-        <view class="ml16 mr16">
-            <view class="title f32 fw6 bd1">{{ item.labelName }}</view>
+        <view class="ml16 mr16 {{ item.labelName?'':'pt1' }}">
+            <view class="title f32 fw6 bd1" wx:if="{{ item.labelName }}">{{ item.labelName }}</view>
             <view class="discounts flex mt32" wx:for="{{ item.couponData }}" wx:for-item="iData" wx:key="validityTime">
                 <view class="flex-1 discounts-items flex ml32 mr32">
                     <view class="flex-1">
