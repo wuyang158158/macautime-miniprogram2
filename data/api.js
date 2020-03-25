@@ -1216,7 +1216,9 @@ export default {
         url: `${baseUrl}/voSelectByUserId/1.0/`,
         method: 'POST',
         data: {
-          body: {},
+          body: {
+            accountId: query && query.userId || wx.getStorageSync('userInfo').userId
+          },
           global:{
           appType: 1,  // appType  1-用户 2-商户
           appVersion: '',
