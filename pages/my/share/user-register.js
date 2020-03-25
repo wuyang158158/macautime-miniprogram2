@@ -64,6 +64,8 @@ Page({
     api.shareInsertMoney({ payAmount: this.data.rewardData }).then( res => {
       this.setData({ showModal: false, code: '' })
       NT.showModal('成功！')
+    }).catch(err => {
+      NT.showModal(err.codeMsg || err.message || '请求失败！')
     })
   },
   controlModal(e) {

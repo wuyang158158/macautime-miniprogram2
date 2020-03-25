@@ -20,6 +20,8 @@ Page({
       this.setData({
         imageUrl: res.imageUrl
       })
+    }).catch(err => {
+      NT.showModal(err.codeMsg || err.message || '请求失败！')
     })
   },
 

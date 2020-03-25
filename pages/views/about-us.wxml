@@ -435,7 +435,7 @@
                 <view class="mt16">生效日期：2020年1月5日</view>
             </view>
 
-             <!-- 使用协议 -->
+             <!-- 使用协议 已更新 -->
             <view class="f24 c-333333" wx:if="{{roleForm.type == 1}}">
                 <view class="t-c c-222222 f26 mb16 fw6">（Macau Time）澳門時光 網購APPS 用戶使用協議</view>
                 <view class="t-c c-222222 f24 mb16">歡迎使用時光數鏈時代科技有限公司團購平台服務！</view>
@@ -517,7 +517,7 @@
                 <view class="t-l mt6">七、定時依相關作業系統廠商或應用程式廠商的安全維護通知，更新適當的修補程式(PATCH)。</view>
                 <view class="t-l mt6">四、利用弱點偵測軟體，不定期針對網路系統弱點掃描，並予以補強修正。</view>
             </view>
-             <!-- 服务接受协议 -->
+             <!-- 服务接受协议  已更新 -->
             <view class="f24 c-333333" wx:if="{{roleForm.type == 3}}">
                  <view class="t-c c-222222 f26 fw6 mb16">澳门时光服务协议</view>
 
@@ -583,7 +583,7 @@
                 </view>
             </view>
 
-             <!-- 商家隐私政策 -->
+             <!-- 商家隐私政策 已更新 -->
             <view class="f24 c-333333" wx:if="{{roleForm.type == 6}}">
                 <view class="t-c f26 fw6 mb16">（Macau Time）澳門時光商家隱私政策</view>
                 <view class="t-l spce">澳门时光（以下或称“我们”）非常注重保护用户（以下或称“您”）的个人信息，我们深知个人信息对您的重要性，并将按照法律法规要求和业界成熟的安全标准，采取相应的安全保护措施来保护您的个人信息。</view>
