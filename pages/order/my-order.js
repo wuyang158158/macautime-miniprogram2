@@ -383,7 +383,6 @@ Page({
               let endTime = parseInt(ele.reciprocal/1000)
               let nowTime = parseInt(new Date().getTime()/1000)
               let curTimeCount = endTime - nowTime
-              curTimeCount--
               if(curTimeCount < 0) {
                 clearInterval(time)
                 let stateHidden = "ticketData[" + index + "].hidden";
