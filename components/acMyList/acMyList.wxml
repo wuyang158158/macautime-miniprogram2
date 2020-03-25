@@ -2,10 +2,9 @@
 <view class="items ml16 mr16" wx:for="{{result}}" wx:key="index">
     <view class="time f24 c-999999 mt32 mb16" wx:if="{{item.createTimeStr}}">{{item.createTimeStr}}</view>
     <view class="content bg-white flex p16 mb16" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
-        <!-- <image class="i-img mr16 bg-EFEFF4" src="{{item.mImage}}" lazy-load mode="aspectFill"/> -->
         <view class="relative i-img mr16">
             <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
-            <image class="pic-default-new z-index5" src="{{item.mImage}}" mode="aspectFill"/>
+            <image class="pic-default-new z-index5" src="{{item.coverUrl}}" mode="aspectFill"/>
         </view>
         <view class="flex-1 c-222222 flex flex-custom">
             <view class="flex-1">

@@ -148,7 +148,7 @@
         <image class="handpick-merchant-pic-default" src="/images/index/bg@2x.png" mode="aspectFill"/>
         <view class="merchant ml16 mr16 relative">
           <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
-          <image class="items-slide-image" src="{{item.mImage}}" mode="aspectFill"/>
+          <image class="items-slide-image" src="{{item.coverUrl}}" mode="aspectFill"/>
           <view class="merchant-msg" data-id="{{item.msId}}">
             <view class="merchant-discount" wx:if="{{item.discount}}">
               <image class="merchant-discount-tag" src="/images/index/bg_tag@2x.png" mode="aspectFill"/>
@@ -171,12 +171,12 @@
             <view class="flex flex-jc mt16">
                <view class="tag c-00A653 f24 mr16" wx:for="{{ item.labelRemark }}" wx:for-item="itLabel" wx:for-index="idx" wx:key="idx">{{itLabel.labelRemark}}</view>
             </view>
-            <!-- <view class="flex merchant-info-pic-list mt16">
-              <view wx:for="{{ 3 }}" wx:key="*this" class="info-pics ml16">
+            <view class="flex merchant-info-pic-list mt16 mb16" wx:if="{{item.imageUrls}}">
+              <view wx:for="{{ item.imageUrls }}" wx:key="index" class="info-pics ml16" wx:if="{{index<3}}">
                 <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
-                <image class="pic-default z-index5" src="" mode="aspectFill"/>
+                <image class="pic-default z-index5" src="{{item}}" mode="aspectFill"/>
               </view>
-            </view> -->
+            </view>
           </view>
           
         </view>

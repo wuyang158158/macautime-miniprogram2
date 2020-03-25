@@ -304,8 +304,14 @@ Page({
   msSelectedMsListHome() {
     api.msSelectedMsListHome(this.data.params)
     .then(res=>{
+      var data = res.data || []
+      if(data.length) {
+        data.map(item=>{
+          item.imageUrls =  item.imageUrls ? item.imageUrls.split(',') : ''
+        })
+      }
       this.setData({
-        selecMerchants: this.data.params.start === 1 ? res.data : this.data.selecMerchants.concat(res.data),
+        selecMerchants: this.data.params.start === 1 ? data : this.data.selecMerchants.concat(data),
         total: res.total,
         noData: !res.total
       })

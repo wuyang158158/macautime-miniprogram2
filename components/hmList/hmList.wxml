@@ -7,7 +7,7 @@
                 <view class="merchant-discount-text f22 c-FFFFFF fw5">8折</view>
             </view> -->
             <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
-            <image class="pic-default-new z-index5" src="{{item.mImage}}" mode="aspectFill"/>
+            <image class="pic-default-new z-index5" src="{{item.coverUrl}}" mode="aspectFill"/>
         </view>
         <view class="hm-bottom">
             <view class="f30 c-222222 fw6">{{item.name}}</view>

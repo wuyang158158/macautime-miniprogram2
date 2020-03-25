@@ -16,7 +16,7 @@
         <swiper-item wx:for="{{swiperData}}" wx:key="index" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
             <view class="relative swiper-url mr16">
                 <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
-                <image class="pic-default z-index5" src="{{item.mImage}}" mode="aspectFill"/>
+                <image class="pic-default z-index5" src="{{item.coverUrl}}" mode="aspectFill"/>
             </view>
         </swiper-item>
     </swiper>

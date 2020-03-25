@@ -274,14 +274,28 @@ Page({
   // 下单
   submitOrderNew(){
     var choseData = this.data.params
-    var payAmount = choseData.price * this.data.orderCount //支付金额
+
+    var orderCount = this.data.orderCount;
+    var discount = this.data.discount;
+    var price = choseData.price;
+    var money = this.data.money;
+    var payAmount;
+    if(this.data.typeId == 1) {
+      payAmount = price * orderCount * discount
+    }else if(this.data.typeId == 2) {
+      payAmount = price * orderCount - money < 0 ? 0 : price * orderCount - money
+    }else if(this.data.typeId == 3) {
+      payAmount = price * orderCount - money < 0 ? 0 : price * orderCount - money
+    }else{
+      payAmount = price * orderCount
+    }
     const query = {
       userId: this.data.userInfo.userId,  // 用户账户
       payAmount: payAmount, //支付金额
       contentTypeId: choseData.contentTypeId ,//商品内容类别Id
       contentInfoId: choseData.id, // 内容详情Id
-      price: choseData.price, // 商品单价
-      quantity: this.data.orderCount, //数量
+      price: price, // 商品单价
+      quantity: orderCount, //数量
       msAccountId: choseData.msId, // 店铺所属者Id
       baseTypeId: choseData.baseTypeId, //基础类别Id
       baseTypeName: choseData.baseTypeName, //基础类别名称

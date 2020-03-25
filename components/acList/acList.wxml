@@ -2,7 +2,7 @@
 <view wx:for="{{recommend}}" wx:key="index" class="rec-items mb16 relative {{source === 'hot-activity' ? 'rec-items-1' : ''}}" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
     <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
     <view class="con-top">
-        <image class="item-pic" src="{{item.mImage}}" lazy-load mode="aspectFill"/>
+        <image class="item-pic" src="{{item.coverUrl || '/images/default/bg_img.png'}}" lazy-load mode="aspectFill"/>
         <view class="item pl32 pr32 f24">
             <view class="flex l-h32 pt32">
             <view class="flex-1 f32 c-222222 fw6 ell mr16">{{item.activityTitle}}</view>
