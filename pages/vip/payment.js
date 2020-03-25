@@ -87,7 +87,7 @@ Page({
     }
     this.setData({
       timeDom: timeDom,
-      reciprocal: this.data.reciprocal - 1000
+      // reciprocal: this.data.reciprocal - 1000
     })
   },
   /**

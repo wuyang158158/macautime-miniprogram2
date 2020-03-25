@@ -48,7 +48,7 @@ const record = [{
   {
     iconPath: '/images/center/mine_icon_card.png',
     text: '我的卡券',
-    isMember: true //KOL用户享有菜单
+    // isMember: true //KOL用户享有菜单
   },
   {
     iconPath: '/images/center/mine_icon_store.png',

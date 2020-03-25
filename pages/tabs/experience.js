@@ -20,9 +20,6 @@ Page({
   data: {
     navArray: ['推荐路线','精选商家'],
     idx: 1,
-    titleBar: titleBar, //顶部标题bar
-    name: titleBar[0].name, // 选中标题bar,默认第一位
-
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
     noData: false,  //没有数据时
@@ -107,6 +104,7 @@ Page({
     })
     this.data.params.limit = PAGE.limit
     this.data.params.start = PAGE.start
+    this.msSelectMsLabelList()
     this.msSearchHome('onPullDownRefresh')
   },
 
@@ -317,7 +315,8 @@ Page({
         item.labelId = item.id
       })
       this.setData({
-        titleBar: this.data.titleBar.concat(data)
+        titleBar: titleBar.concat(data),
+        name: '全部'
       })
     })
     .catch(err=>{

@@ -8,8 +8,8 @@
             <view class="userinfo mt140 flex {{userInfo.level?'userinfo-vip':''}}">
                 <view class="relative avatar m32 mr32" bindtap="{{userInfo?'tapToCenterDetail':''}}">
                     <image class="avatar-url" src="{{userInfo?userInfo.headIco || userInfo.url:'/images/center/avater.png'}}" mode="aspectFill"/>
-                    <image class="avatar-vip" wx:if="{{ userInfo.level && userInfo.kolType === 1 }}" src="/images/center/avatar_vip-1.png" mode="aspectFill"/>
-                    <image class="avatar-vip" wx:if="{{ userInfo.level && userInfo.kolType === 2 }}" src="/images/center/avatar_vip-2.png" mode="aspectFill"/>
+                    <image class="avatar-vip" wx:if="{{ userInfo.level && userInfo.kolType === 2 }}" src="/images/center/avatar_vip-1.png" mode="aspectFill"/>
+                    <image class="avatar-vip" wx:if="{{ userInfo.level && userInfo.kolType === 1 }}" src="/images/center/avatar_vip-2.png" mode="aspectFill"/>
                     <image class="avatar-vip" wx:if="{{ userInfo.level && !userInfo.kolType }}" src="/images/center/avatar_vip.png" mode="aspectFill"/>
                 </view>
                 
@@ -17,7 +17,7 @@
                     <view>{{userInfo?userInfo.nickName || userInfo.nick || userInfo.userName :'登录/注册'}}</view>
                     <view class="f24 fw4" wx:if="{{userInfo.id}}">ID：{{ userInfo.id }}</view>
                     <view class="flex f24 mt16" wx:if="{{ userInfo.kolType }}">
-                        <view class="c-tag kol-tag {{userInfo.kolType === 1 ? 'red':''}} {{userInfo.kolType === 2 ? 'blue':''}}">
+                        <view class="c-tag kol-tag {{userInfo.kolType === 1 ? 'blue':''}} {{userInfo.kolType === 2 ? 'red':''}}">
                             <image class="c-tag-icon" src="/images/center/icon_kol.png" mode="aspectFill"/>
                             <text class="c-FFFFFF"> KOL</text>
                         </view>
@@ -90,18 +90,18 @@
     <view class="ml16 mr16 mt16 pb16 bg-white my-order">
         <view class="flex t-c flex-wrap">
             <block wx:for="{{record}}" wx:key="index" >
-              <view class="flex-1" data-url="{{item.url || ''}}" data-menu="{{item.text}}" bindtap="tapMenu">
+              <!-- <view class="flex-1" data-url="{{item.url || ''}}" data-menu="{{item.text}}" bindtap="tapMenu">
                   <image class="my-order-icon" src="{{item.iconPath}}" mode="aspectFill"/>
                   <view class="f24 c-222222 mb16">{{item.text}}</view>
-              </view>
-              <!-- <view wx:if="{{ !item.isMember }}" class="flex-1" data-url="{{item.url || ''}}" data-menu="{{item.text}}" bindtap="tapMenu">
+              </view> -->
+              <view wx:if="{{ !item.isMember }}" class="flex-1" data-url="{{item.url || ''}}" data-menu="{{item.text}}" bindtap="tapMenu">
                   <image class="my-order-icon" src="{{item.iconPath}}" mode="aspectFill"/>
                   <view class="f24 c-222222 mb16">{{item.text}}</view>
               </view>
               <view wx:if="{{ item.isMember && userInfo.kolType}}" class="flex-1" data-url="{{item.url || ''}}" data-menu="{{item.text}}" bindtap="tapMenu">
                   <image class="my-order-icon" src="{{item.iconPath}}" mode="aspectFill"/>
                   <view class="f24 c-222222 mb16">{{item.text}}</view>
-              </view> -->
+              </view>
             </block>
         </view>
     </view>

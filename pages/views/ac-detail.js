@@ -56,11 +56,6 @@ Page({
       roleFrom: {
         expSerial: options.id,
         userName: this.data.userInfo.userName
-      },
-      queryExpCommentForm:{ //评论分页
-        expId: options.id,
-        pageSize: PAGE.limit,
-        page: PAGE.start,
       }
     })
     this.getExpDetails()
@@ -104,13 +99,6 @@ Page({
    */
   onPullDownRefresh: function () {
     NT.showToast('加载中...')
-    this.setData({
-      queryExpCommentForm:{ //评论分页
-        expId: this.data.queryExpCommentForm.expId,
-        pageSize: PAGE.limit,
-        page: PAGE.start,
-      }
-    })
     this.getExpDetails()
   },
 
@@ -186,6 +174,16 @@ Page({
       }) : ''
       // console.log(util.transleteDate(data.msBaseInfo.openDate))
       data.msBaseInfo.openDate = util.transleteDate(data.msBaseInfo.openDate || '')
+
+      // 评分
+      // data.msBaseInfo.averageScore = Number(data.msBaseInfo.averageScore)
+      // 评论时间
+      // debugger
+      if(data.evaluateScore){
+        data.evaluateScore.map(item=>{
+          item.createTimeStr = util.formatTimeTwo(item.createTime,'Y年M月D日')
+        })
+      }
       this.setData({
         acData: data
       })
@@ -194,8 +192,6 @@ Page({
       // }
       this.getGuessLike() //获取推荐喜欢数据
       this.msSelectedMsVideoByMsId() //相关视频
-      //查询评论
-      // this.queryExpComment()
     })
     .catch(err=>{
       console.log(err)
@@ -206,19 +202,6 @@ Page({
         }
       })
       // NT.showModal(err.codeMsg||'请求失败！')
-    })
-  },
-  // 查询评论
-  queryExpComment() {
-    api.queryExpComment(this.data.queryExpCommentForm)
-    .then(res=>{
-      console.log(res)
-      this.setData({
-        expComment: res || {}
-      })
-    })
-    .catch(err=>{
-      console.log(err)
     })
   },
   //获取猜你喜欢推荐数据
@@ -462,7 +445,7 @@ Page({
   //点击查看全部评论
   tapToAllExpComment() {
     wx.navigateTo({
-      url: '/pages/views/all-exp-comment?expId=' + this.data.queryExpCommentForm.expId,
+      url: '/pages/views/all-exp-comment',
     })
   },
   // 预览图片

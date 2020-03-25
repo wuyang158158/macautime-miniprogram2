@@ -606,18 +606,6 @@ export default {
       )
     })
   },
-  // 查询体验评论
-  queryExpComment(query) {
-    return new Promise((resolve, reject) => {
-      execute(
-        `/experience/expCMNT/queryExpComment`,
-        'POST',
-        query,
-        resolve,
-        reject
-      )
-    })
-  },
   // 我的评论
   myComment(query) {
     return new Promise((resolve, reject) => {
