@@ -83,6 +83,7 @@ Page({
       })
       this.setData({ usSysLabel: res.usSysLabel,userInfo: res.usBaseInfo,videoList: res.vobaseInfo, noData2:!res.vobaseInfo.length })
     }).catch( err => {
+      this.setData({ noData2: true, noData1: true })
       NT.showModal(err.codeMsg || err.message || '请求失败！')
     })
   },

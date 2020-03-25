@@ -10,6 +10,9 @@ page{
 .container {
     padding-bottom: 32rpx;
 }
+.rgba40 {
+    background: rgba(0,0,0,0.4);
+}
 .p-avatar{
     width: 132rpx;
     height: 132rpx;

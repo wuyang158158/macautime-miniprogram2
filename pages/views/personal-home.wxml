@@ -3,7 +3,7 @@
     <view class="title relative">
         <!-- <image class="pic-default-new z-index5" src="/images/default/bg_img.png" mode="aspectFill"/> -->
         <image class="pic-default-new bg-cccccc" src="{{ userInfo.headBackIco || '/images/default/bg_img.png' }}" mode="aspectFill"/>
-        <view class="pic-default-new z-index5">
+        <view class="pic-default-new z-index5 rgba40">
             <view class="p-avatar relative">
                 <image class="pic-default-new p-avatar-icon" src="{{ userInfo.headIco || '/images/default/avatar.png' }}" mode="aspectFill" />
                 <image class="p-avatar-ac" src="/images/center/avatar_vip1.png" wx:if="{{ userInfo.level }}" />

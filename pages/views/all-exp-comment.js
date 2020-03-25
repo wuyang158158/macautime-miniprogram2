@@ -87,15 +87,15 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(!this.data.onReachBottom){
-      wx.showNavigationBarLoading();
-      this.setData({
-        loadmoreLine: false,
-        loadmore: true
-      })
-      this.data.params.page = this.data.params.page + 1;
-      this.imSelectOrderToEvaluateByOrderId('onReachBottom')
-    }
+    // if(!this.data.onReachBottom){
+    //   wx.showNavigationBarLoading();
+    //   this.setData({
+    //     loadmoreLine: false,
+    //     loadmore: true
+    //   })
+    //   this.data.params.page = this.data.params.page + 1;
+    //   this.imSelectOrderToEvaluateByOrderId('onReachBottom')
+    // }
   },
   /**
    * 用户点击右上角分享

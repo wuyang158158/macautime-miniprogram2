@@ -18,10 +18,11 @@
                 <view class="user-content f28 l-h40">{{item.content || ''}}</view>
                 <!-- 评分 -->
                 <view class="flex star">
-                    <image src="/images/index/icon_star1@2x.png" wx:for="{{ item.grade }}"></image>
+                    <image src="/images/index/icon_star1@2x.png" wx:for="{{ item.grade }}" wx:key="index"></image>
+                    <image src="/images/index/icon_star2@2x.png" wx:for="{{ 5 - item.grade }}" wx:key="index"></image>
                 </view>
                 <!-- <view class="user-activity f24 c-666666" wx:if="{{item.mealTitle}}">{{item.mealTitle}}</view> -->
-                <view class="weui-uploader__bd mt8">
+                <view class="weui-uploader__bd mt8" wx:if="{{ item.imageUrl }}">
                     <view class="weui-uploader__files" id="uploaderFiles">
                         <!-- <block wx:for="{{item.imgUrl}}" wx:key="*this" wx:for-item="imgItem"> -->
                             <view class="weui-uploader__file" bindtap="previewImage" data-url="{{item.imageUrl}}">
