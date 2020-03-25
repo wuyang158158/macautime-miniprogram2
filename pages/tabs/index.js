@@ -154,6 +154,9 @@ Page({
     // wx.navigateTo({
     //   url: '/pages/views/map-activity'
     // })
+    wx.switchTab({
+      url: '/pages/tabs/experience'
+    })
   },
   // 获取会员专属体验接口
   getPromotions() {

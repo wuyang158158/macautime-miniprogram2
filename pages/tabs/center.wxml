@@ -9,7 +9,7 @@
                 <view class="relative avatar m32 mr32" bindtap="{{userInfo?'tapToCenterDetail':''}}">
                     <image class="avatar-url" src="{{userInfo?userInfo.headIco || userInfo.url:'/images/center/avater.png'}}" mode="aspectFill"/>
                     <image class="avatar-vip" wx:if="{{ userInfo.level && userInfo.kolType === 2 }}" src="/images/center/avatar_vip-1.png" mode="aspectFill"/>
-                    <image class="avatar-vip" wx:if="{{ userInfo.level && userInfo.kolType === 1 }}" src="/images/center/avatar_vip-2.png" mode="aspectFill"/>
+                    <image class="avatar-vip" wx:if="{{ userInfo.level && (userInfo.kolType === 1 || userInfo.kolType === 3) }}" src="/images/center/avatar_vip-2.png" mode="aspectFill"/>
                     <image class="avatar-vip" wx:if="{{ userInfo.level && !userInfo.kolType }}" src="/images/center/avatar_vip.png" mode="aspectFill"/>
                 </view>
                 
@@ -17,7 +17,7 @@
                     <view>{{userInfo?userInfo.nickName || userInfo.nick || userInfo.userName :'登录/注册'}}</view>
                     <view class="f24 fw4" wx:if="{{userInfo.id}}">ID：{{ userInfo.id }}</view>
                     <view class="flex f24 mt16" wx:if="{{ userInfo.kolType }}">
-                        <view class="c-tag kol-tag {{userInfo.kolType === 1 ? 'blue':''}} {{userInfo.kolType === 2 ? 'red':''}}">
+                        <view class="c-tag kol-tag {{userInfo.kolType === 1 || userInfo.kolType === 3 ? 'blue':''}} {{userInfo.kolType === 2 ? 'red':''}}">
                             <image class="c-tag-icon" src="/images/center/icon_kol.png" mode="aspectFill"/>
                             <text class="c-FFFFFF"> KOL</text>
                         </view>
