@@ -6,7 +6,7 @@
     <view class="cont" wx:if="{{ active === 0 }}">
         <view class="items ml16 mr16" wx:for="{{ storeData }}" wx:key="index">
             <view class="content bg-white p16 mb16" data-title="{{item.name || '' }}" data-id="{{ item.msId }}" bindtap="tapToDetail">
-                <image class="i-img mr16 bg-EFEFF4" src="{{item.coverUrl || '/images/default/bg_img.png'}}" lazy-load mode="aspectFill"/>
+                <image class="i-img mr16 bg-EFEFF4" src="{{item.imageUrl || '/images/default/avatar.png'}}" lazy-load mode="aspectFill"/>
                 <view class="w500 c-222222">
                     <view class="f32 fw6 limit1">{{item.name || ''}}</view>
                     <view class="f24 mt8 mb8 limit2">{{item.introduction || ''}}</view>

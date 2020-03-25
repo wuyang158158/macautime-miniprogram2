@@ -92,7 +92,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.onLoad()
+    let type = this.data.active
+    if(type === 0) {
+      this.fnGetMyStore()
+    } else {
+      this.fnGetMyVideo()
+    }
   },
 
   /**
