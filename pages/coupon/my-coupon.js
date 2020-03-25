@@ -95,8 +95,9 @@ Page({
     //   url: '/pages/views/ticket-detail?orderCode=' + orderCode + '&userName=' + wx.getStorageSync("userInfo").userName
     // })
     // 业务更改 - 跳转首页
+    wx.setStorageSync('activeMenu',2)
     wx.switchTab({
-      url: '/pages/tabs/index?activeMenu=2',
+      url: '/pages/tabs/index'
     })
   }
 })

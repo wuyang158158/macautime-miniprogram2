@@ -115,9 +115,9 @@
 				},
 				{
 					"id": 8,
-					"name": "pages/views/about-us",
-					"pathName": "pages/views/about-us",
-					"query": "id=1",
+					"name": "pages/coupon/my-coupon",
+					"pathName": "pages/coupon/my-coupon",
+					"query": "",
 					"scene": null
 				},
 				{

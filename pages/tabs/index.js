@@ -34,8 +34,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if(options.activeMenu) {
-      this.setData({ activeMenu: Number(options.activeMenu) })
+    let activeMenu = wx.getStorageSync('activeMenu')
+    if(activeMenu) {
+        this.setData({
+          activeMenu: Number(activeMenu)
+        })
+        wx.removeStorageSync('activeMenu')
     }
     // wx.navigateTo({
     //   url: '/pages/views/all-exp-comment',
