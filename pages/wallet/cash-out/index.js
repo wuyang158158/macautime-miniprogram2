@@ -68,7 +68,7 @@ Page({
       NT.showModal('请输入提现金额！')
       return
     }
-    if (!this.data.number === '0.00') {
+    if (this.data.number === '0.00' || this.data.number === '0' || this.data.number === '0.0') {
       NT.showModal('提现金额不能为0')
       return
     }

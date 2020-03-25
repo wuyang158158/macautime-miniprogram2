@@ -125,7 +125,6 @@ Page({
     // wx.navigateTo({
     //   url: '/pages/integral/time-coin-task'
     // })
-    this.fnGetUserInfo()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -139,9 +138,10 @@ Page({
    */
   onShow: function () {
     // console.log(this.data.userInfo)
-    this.setData({
-      userInfo: wx.getStorageSync("userInfo"), //用户信息
-    })
+    // this.setData({
+    //   userInfo: wx.getStorageSync("userInfo"), //用户信息
+    // })
+    this.fnGetUserInfo()
   },
 
   /**
@@ -181,7 +181,7 @@ Page({
   // 获取个人信息
   fnGetUserInfo() {
     if(!wx.getStorageSync('userInfo')) return
-    NT.showToast('加载中')
+    // NT.showToast('加载中')
     api.ctGetUserInfo().then(res => {
       this.setData({ userInfo: res })
       const data = Object.assign(wx.getStorageSync('userInfo') || {}, res)
