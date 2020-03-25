@@ -93,4 +93,7 @@
 .w-custom{
     width: 100rpx;
 }
+.pic-default{
+    height: 100%;
+}
 

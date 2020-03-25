@@ -284,6 +284,7 @@ Page({
       that.setData({
         noData: false,
         merchantList: source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data),
+        swiperData: data.length && this.data.params.start == 1 ? data.slice(0,3) : [],
         total: res.total,
         loadmore: false
       })
@@ -321,6 +322,14 @@ Page({
     })
     .catch(err=>{
       console.log(err)
+    })
+  },
+  // 跳转到详情
+  tapToDetail(e) {
+    const ID = e.currentTarget.dataset.id
+    const TITLE = e.currentTarget.dataset.title
+    wx.navigateTo({
+      url: '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE
     })
   }
 })
