@@ -8,6 +8,7 @@
         <view class="b-num f36 white mt20">{{ item.bankCode }}</view>
       </view>
     </view>
+    <gh-empty prop-type="no-data" prop-text="还没有关联银行卡哦~~" prop-mt="200" wx:if="{{ noData }}"></gh-empty>
   </view>
   <!-- 添加 -->
   <navigator url="/pages/attestation/bind-bank-card" class="add-bank white f32 flex"> + 添加银行卡 </navigator>

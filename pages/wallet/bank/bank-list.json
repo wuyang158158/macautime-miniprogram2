@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "gh-empty": "/components/empty/empty"
+  },
   "navigationBarTitleText": "银行卡"
 }

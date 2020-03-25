@@ -417,18 +417,11 @@ Page({
       }
     })
     .catch(err=>{
-      if(err.code === '401'){
         this.setData({
-          emptytext: err.codeMsg
-        })
-      }else{
-        NT.showModal(err.codeMsg||err.message||'请求失败！')
-      }
-      if(!this.data.ticketData.length){ //暂无数据
-        this.setData({
+          emptytext: err.codeMsg,
           noData: true
         })
-      }
+        NT.showModal(err.codeMsg||err.message||'请求失败！')
     })
   },
   // 判断订单是否为空
