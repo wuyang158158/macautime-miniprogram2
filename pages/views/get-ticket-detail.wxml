@@ -11,7 +11,7 @@
                     <text class="f24">%</text>
                 </view>
                 <view class="" wx:else>
-                    <text class="f24">MOP$</text>
+                    <text class="f24">MOP</text>
                     <text class="f24">{{item.money}}</text>
                 </view>
                 <view >{{item.typeName}}</view>

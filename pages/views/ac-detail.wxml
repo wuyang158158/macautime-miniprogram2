@@ -126,11 +126,11 @@
                             <text class="f24">%</text>
                         </view>
                         <view class="" wx:if="{{item.typeId == 2}}">
-                            <text class="f24">MOP$</text>
+                            <text class="f24">MOP</text>
                             <text class="f24">{{item.money}}</text>
                         </view>
                         <view class="" wx:if="{{item.typeId == 3}}">
-                            <text class="f24">MOP$</text>
+                            <text class="f24">MOP</text>
                             <text class="f24">{{item.money}}</text>
                         </view>
                         <view >{{item.typeName}}</view>
@@ -182,7 +182,7 @@
                     </view>
                     <view class="flex-1 c-222222">
                         <view class="f30 fw5">{{item.title}}</view>
-                        <view class="f26">{{item.iconUnit|| 'MOP$ '}} {{item.price}}</view>
+                        <view class="f26">{{item.iconUnit|| 'MOP '}} {{item.price}}</view>
                     </view>
                 </view>
                 <image class="more" src="/images/index/icon_more-2.png" mode="aspectFill"/>
@@ -339,7 +339,7 @@
         </cover-view>
         <cover-view class="flex">
             <cover-view class="price">
-                <cover-view class="sp2 mr16">{{acData.symbol||'MOP$'}} {{lowestPrice ? lowestPrice : 0 }}</cover-view>
+                <cover-view class="sp2 mr16">{{acData.symbol||'MOP'}} {{lowestPrice ? lowestPrice : 0 }}</cover-view>
                 <cover-view class="f24 c-999999 upper-price">
                     <cover-view>{{ upperPrice ? upperPrice : 0 }}</cover-view>
                     <cover-view class="text-bd"></cover-view>

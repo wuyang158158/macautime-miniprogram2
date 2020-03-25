@@ -11,7 +11,7 @@
                 <view class="f32 c-222222 fw6 view">{{orderData.msName || ''}}</view>
                 <view class="f24 c-666666 view">编号：{{orderData.orderNumber || ''}}</view>
                 <view class="f24 c-666666 view">内容：{{orderData.mealType || ''}}</view>
-                <!-- <view class="f24 c-222222 view" wx:if="{{orderData.price}}">{{orderData.currencySymbol||'MOP$'}} {{orderData.price}} x {{orderData.number}}</view> -->
+                <!-- <view class="f24 c-222222 view" wx:if="{{orderData.price}}">{{orderData.currencySymbol||'MOP'}} {{orderData.price}} x {{orderData.number}}</view> -->
             </view>
             <view class="f24 price">MOP <text>{{ orderData.price || 0 }}</text></view>
         </view>
@@ -21,7 +21,7 @@
         </view>
         <view class="flex ml32 mr32 bd1 c-222222 h-100">
             <view class="flex-1 f28">总额</view>
-            <view class="f28">{{orderData.currencySymbol||'MOP$'}} {{orderData.totalPrice || 0}}</view>
+            <view class="f28">{{orderData.currencySymbol||'MOP'}} {{orderData.totalPrice || 0}}</view>
         </view>
         <view class="flex ml32 mr32 bd1 c-222222 h-100" wx:if="{{orderData.discount}}">
             <view class="flex-1 f28">会员专属折扣</view>
@@ -29,12 +29,12 @@
         </view>
         <view class="flex ml32 mr32 bd1 c-222222 h-100">
             <view class="flex-1 f28">会员红包</view>
-            <view class="f28">- {{orderData.currencySymbol||'MOP$'}} 20</view>
+            <view class="f28">- {{orderData.currencySymbol||'MOP'}} 20</view>
         </view>
         <view class="flex ml32 mr32 c-222222 h-100">
             <view class="flex-1 f30 fw5">合计</view>
             <view class="c-00A653 fw5">
-                <text class="f30">{{orderData.currencySymbol||'MOP$'}} </text>
+                <text class="f30">{{orderData.currencySymbol||'MOP'}} </text>
                 <text class="f36">{{orderData.totalPrice || 0}}</text>
             </view>
         </view> -->

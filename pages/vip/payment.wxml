@@ -1,7 +1,7 @@
 <!--pages/vip/payment.wxml-->
 <view class="container">
     <view class="c-222222 fw5 pt100 t-c">
-        <text class="f36">MOP$ </text>
+        <text class="f36">MOP </text>
         <text class="f60">{{money || 0}}</text>
     </view>
     <view class="f30 pt32 mt16 c-999999 t-c">

@@ -1,7 +1,7 @@
 <!--pages/route/pay-order.wxml-->
 <view class="container">
     <view class="title c-222222 fw5">
-        <text class="f36">MOP$</text>
+        <text class="f36">MOP</text>
         <text class="f60">20.00</text>
     </view>
     <view class="t-c f30 mt32 pt5">

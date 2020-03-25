@@ -31,7 +31,7 @@
                 <view class=" c-222222 l-h32 mt16 flex">
                     <view class="f28 fw5 flex-1">{{params.title}}</view>
                     <view class="f24">
-                        <text >{{params.symbol||'MOP$'}} </text>
+                        <text >{{params.symbol||'MOP'}} </text>
                         <text class="f28">{{params.price}}</text>
                     </view>
                 </view>
@@ -55,7 +55,7 @@
         </view>
         <!-- <view class="flex h-100 bd1 f30 fw6">
             <view class="flex-1">原价</view>
-            <view class="">{{options.symbol||'MOP$'}} {{sPrice}}</view>
+            <view class="">{{options.symbol||'MOP'}} {{sPrice}}</view>
         </view> -->
         <!-- <view class="flex h-100 bd1 f30 fw6">
             <view class="flex-1">会员专属折扣</view>
@@ -63,12 +63,12 @@
         </view> -->
         <!-- <view class="flex h-100 bd1 f30 fw6">
             <view class="flex-1">会员红包</view>
-            <view class="c-00A653 fw4">减 {{options.symbol||'MOP$'}} 20</view>
+            <view class="c-00A653 fw4">减 {{options.symbol||'MOP'}} 20</view>
         </view> -->
          <view class="flex h-100 f30">
             <view class="flex-1">合计</view>
             <view class="c-00A653">
-                <text class="">{{params.symbol||'MOP$' }} </text>
+                <text class="">{{params.symbol||'MOP' }} </text>
                 <text class="f36 fw5">{{params.price * orderCount}}</text>
             </view>
         </view>
@@ -146,7 +146,7 @@
         <view class="flex pl32 pr32">
             <view class="flex-1">
                 <view class="c-00A653 f24">
-                    <text class="f24">{{params.symbol||'MOP$'}} </text>
+                    <text class="f24">{{params.symbol||'MOP'}} </text>
                     <!-- 折扣券 -->
                     <text class="f36 fw5" wx:if="{{typeId == 1}}">{{params.price * orderCount * discount}}</text>
                     <!-- 满减券 -->
@@ -157,7 +157,7 @@
                     <text class="f36 fw5" wx:else>{{params.price * orderCount}}</text>
                 </view>
                 <!-- <view class="c-222222 f24">
-                    <text class="">到店支付剩余 {{options.symbol||'MOP$'}} </text>
+                    <text class="">到店支付剩余 {{options.symbol||'MOP'}} </text>
                     <text class="f36 fw6">{{ePrice}}</text>
                 </view> -->
             </view>

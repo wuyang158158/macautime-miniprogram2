@@ -25,7 +25,7 @@
             <!-- <view class="discounts flex mt16">
                 <view class="discounts-left f24 discounts-items c-00A653 discounts-flex">
                     <view class="">
-                        <text class="f24">MOP$</text>
+                        <text class="f24">MOP</text>
                         <text class="f44">50</text>
                     </view>
                     <view >满减券</view>

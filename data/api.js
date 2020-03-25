@@ -1010,6 +1010,18 @@ export default {
       )
     })
   },
+  // 钱包支付
+  WalletPay(query) {
+    return new Promise((resolve, reject) => {
+      execute(
+        `/WalletPay/1.0/`,
+        'POST',
+        query,
+        resolve,
+        reject
+      )
+    })
+  },
   // e支付
   ghPay(query) {
     return new Promise((resolve, reject) => {

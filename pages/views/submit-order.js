@@ -274,9 +274,10 @@ Page({
   // 下单
   submitOrderNew(){
     var choseData = this.data.params
+    var payAmount = choseData.price * this.data.orderCount //支付金额
     const query = {
       userId: this.data.userInfo.userId,  // 用户账户
-      payAmount: choseData.price * this.data.orderCount, //支付金额
+      payAmount: payAmount, //支付金额
       contentTypeId: choseData.contentTypeId ,//商品内容类别Id
       contentInfoId: choseData.id, // 内容详情Id
       price: choseData.price, // 商品单价
@@ -291,7 +292,7 @@ Page({
     api.poInsertGoodsOrderAddDiscount(query).then(res=>{
       console.log(res)
       wx.navigateTo({
-        url: '/pages/vip/payment?id=' + res.orderNumber + '&money=' + choseData.price + '&reciprocal=' + res.reciprocal + '&source=meal'
+        url: '/pages/vip/payment?id=' + res.orderNumber + '&money=' + payAmount + '&reciprocal=' + res.reciprocal + '&source=meal' + '&msId=' + choseData.msId
       })
     }).catch(err=>{
       NT.showModal(err.message||'请求失败！')

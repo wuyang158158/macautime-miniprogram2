@@ -25,7 +25,7 @@
                 </view>
             </view>
             <view class="c-00A653 pt16">
-                <text class="f24 mr5">MOP$</text>
+                <text class="f24 mr5">MOP</text>
                 <text class="f36">580</text>
             </view>
             <view class="flex">
@@ -109,7 +109,7 @@
                         </view>
                         
                         <view class="f24 c-999999">渔人码头</view>
-                        <view class="f24 c-666666">MOP$ 100-200</view>
+                        <view class="f24 c-666666">MOP 100-200</view>
                     </view>
                 </view>
             </view>
@@ -130,7 +130,7 @@
                         </view>
                         
                         <view class="f24 c-999999">渔人码头</view>
-                        <view class="f24 c-666666">MOP$ 100-200</view>
+                        <view class="f24 c-666666">MOP 100-200</view>
                     </view>
                 </view>
             </view>
@@ -159,7 +159,7 @@
                         </view>
                         
                         <view class="f24 c-999999">渔人码头</view>
-                        <view class="f24 c-666666">MOP$ 100-200</view>
+                        <view class="f24 c-666666">MOP 100-200</view>
                     </view>
                 </view>
             </view>
@@ -180,7 +180,7 @@
                         </view>
                         
                         <view class="f24 c-999999">渔人码头</view>
-                        <view class="f24 c-666666">MOP$ 100-200</view>
+                        <view class="f24 c-666666">MOP 100-200</view>
                     </view>
                 </view>
             </view>

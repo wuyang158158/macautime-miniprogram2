@@ -16,7 +16,7 @@
                             <text class="tag f24 c-00A653">美食</text>
                         </view>
                         <view class="f24 c-999999">氹仔</view>
-                        <view class="c-222222 f24">MOP$ 500-1000</view>
+                        <view class="c-222222 f24">MOP 500-1000</view>
                     </view>
                 </view>
                 <image class="right-icon" src="/images/route/icon_icon1.png" mode="aspectFill"/>
@@ -31,7 +31,7 @@
                             <text class="tag f24 c-00A653">美食</text>
                         </view>
                         <view class="f24 c-999999">氹仔</view>
-                        <view class="c-222222 f24">MOP$ 500-1000</view>
+                        <view class="c-222222 f24">MOP 500-1000</view>
                     </view>
                 </view>
                 <image class="right-icon" src="/images/route/icon_icon1.png" mode="aspectFill"/>
