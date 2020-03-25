@@ -11,6 +11,10 @@ Component({
       type: 'Boolean',
       value: false
     },
+    source: {
+      type: 'String',
+      value: 'common'
+    }
   },
 
   /**
@@ -27,8 +31,9 @@ Component({
     tapToDetail(e) {
       const ID = e.currentTarget.dataset.id
       const TITLE = e.currentTarget.dataset.title
+      var url = this.data.source === 'common' ? '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE + '&recommend=true' : '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE 
       wx.navigateTo({
-        url: '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE
+        url: url
       })
       this.triggerEvent('toDetail')
     }

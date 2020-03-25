@@ -65,7 +65,7 @@
                         <image class="merchant-star-icon" src="/images/index/icon_star3@2x.png" wx:elif="{{acData.msBaseInfo.averageScore >= index && acData.msBaseInfo.averageScore%1 !=0 }}"></image>
                         <image class="merchant-star-icon" src="/images/index/icon_star2@2x.png" wx:else></image>
                     </view>
-                    <view class="f24 c-222222 ml5">{{ acData.msBaseInfo.averageScore}}</view>
+                    <view class="f24 c-222222 ml5">{{ acData.msBaseInfo.averageScore || ' 未评分'}}</view>
                 </view>
                 <view class="c-222222 l-h32 f24">{{acData.msBaseInfo.address || ''}}</view>
             </view>
@@ -138,11 +138,11 @@
                     <view class="flex-1 discounts-items flex ml32 mr32">
                         <view class="flex-1">
                             <view >
-                                <text class="f28 c-222222 fw6">{{item.discountsName}}</text>
+                                <text class="f28 c-222222 fw6">{{item.discountsName || item.conditionName}}</text>
                                 <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">限时</text>
                                 <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{item.payType == 1 ? '线上':'线下'}}</text>
                             </view>
-                            <view class="f24 c-999999 mt8">有效期至 {{endTime || ''}}</view>
+                            <view class="f24 c-999999 mt8">有效期至 {{item.endTimeStr || ''}}</view>
                         </view>
                         <view >
                             <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" type="primary" data-amount="{{item.money}}" data-id="{{item.id}}" data-endTime="{{item.endTime}}" catchtap="tapGetDiscounts">领取</button>
@@ -252,7 +252,7 @@
             <view class="f28 c-222222 l-h55">{{ acData.msBaseInfo.openDate }} {{ acData.msBaseInfo.openTime }}</view>
         </view>
         <!-- 体验评论 -->
-        <view class="review bd1 pb45" wx:if="{{acData.evaluateScore.length>0}}">
+        <view class="review bd1 pb45" wx:if="{{evaluateScore.length>0}}">
             <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32">用户评论</view>
             <!-- <view class="review-tag flex f28 c-00A653 fw5">
                 <view class="tag-i flex mb16">浪漫美好(25)</view>
@@ -262,7 +262,7 @@
                 <view class="tag-i-low flex mb16">排队太久(13)</view>
                 <view class="tag-i flex mb16">很喜欢(12)</view>
             </view> -->
-            <view class="handpick flex" wx:for="{{acData.evaluateScore}}" wx:key="index">
+            <view class="handpick flex" wx:for="{{evaluateScore}}" wx:key="index">
                 <view class="relative photo">
                     <image class="pic-default-new" src="/images/default/avatar.png" mode="aspectFill"/>
                     <image class="pic-default-new z-index5" src="{{item.headImageUrl}}" mode="aspectFill"/>
@@ -287,7 +287,7 @@
                     <view class="user-activity f24 c-666666" wx:if="{{item.title}}">{{item.title}}</view>
                 </view>
             </view>
-            <view class="handpick-more f28 c-00A653" bindtap="tapToAllExpComment">查看全部 {{acData.evaluateScore[0].count}} 条评论</view>
+            <view class="handpick-more f28 c-00A653" bindtap="tapToAllExpComment">查看全部 {{evaluateScore[0].count}} 条评论</view>
         </view>
         <!-- 预定须知 -->
         <!-- <view class="bd1 pb45">
@@ -312,7 +312,7 @@
         <!-- 猜你喜欢 -->
         <view class="pl16 pr16" wx:if="{{vImgUrls.length}}">
             <view class="f32 c-222222 fw6 l-h55 pt32 pb32 pl16 pr16">猜你喜欢</view>
-            <gh-hmList merchantList="{{vImgUrls}}" bd></gh-hmList>
+            <gh-hmList merchantList="{{vImgUrls}}" source="detail" bd></gh-hmList>
             <!-- <view class="recommend f28 c-222222">
                 <swiper class="re-swiper" autoplay interval="5000" previous-margin="24rpx" next-margin="24rpx">
                 <block wx:for="{{vImgUrls}}" wx:key="index">

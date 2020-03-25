@@ -19,7 +19,7 @@
             <view class="flex-1 discounts-items flex ml32 mr32">
                 <view class="flex-1">
                     <view >
-                        <text class="f28 c-222222 fw6">{{item.conditionName || item.discountsName}}</text>
+                        <text class="f28 c-222222 fw6">{{item.discountsName || item.conditionName}}</text>
                         <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">限时</text>
                         <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{item.payType == 1 ? '线上':'线下'}}</text>
                     </view>

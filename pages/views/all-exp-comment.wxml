@@ -11,7 +11,10 @@
             <view class="tag-i flex mb16">很喜欢(12)</view>
         </view> -->
         <view class="handpick flex" wx:for="{{expComment}}" wx:key="orderId">
-            <image class="photo" src="{{item.BackgroundPicture}}" mode="aspectFill"/>
+            <view class="relative photo">
+                <image class="pic-default-new" src="/images/default/avatar.png" mode="aspectFill"/>
+                <image class="pic-default-new z-index5" src="{{item.BackgroundPicture || item.headImageUrl}}" mode="aspectFill"/>
+            </view>
             <view class="flex-1 c-222222 mb32">
                 <view class="user-name f30 l-h30">{{item.title || ''}}</view>
                 <view class="user-time f24 l-h30 c-999999">评价时间： {{item.createTime || ''}}</view>
@@ -24,11 +27,12 @@
                 <!-- <view class="user-activity f24 c-666666" wx:if="{{item.mealTitle}}">{{item.mealTitle}}</view> -->
                 <view class="weui-uploader__bd mt8" wx:if="{{ item.imageUrl }}">
                     <view class="weui-uploader__files" id="uploaderFiles">
-                        <!-- <block wx:for="{{item.imgUrl}}" wx:key="*this" wx:for-item="imgItem"> -->
-                            <view class="weui-uploader__file" bindtap="previewImage" data-url="{{item.imageUrl}}">
-                                <image class="weui-uploader__img bd" src="{{item.imageUrl}}" mode="aspectFill" />
+                        <view class="weui-uploader__file" bindtap="previewImage" data-url="{{item.imageUrl}}">
+                            <view class="relative weui-uploader__img bd">
+                                <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
+                                <image class="pic-default-new z-index5" src="{{item.imageUrl}}" mode="aspectFill"/>
                             </view>
-                        <!-- </block> -->
+                        </view>
                     </view>
                 </view>
             </view>
