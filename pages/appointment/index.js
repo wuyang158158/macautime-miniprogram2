@@ -18,11 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    api.ctGetKolId().then(res => {
-      const kolId = res && res.id || ''
-      this.setData({ kolId: kolId })
-      this.fnGetAccount(kolId)
-    })
+      this.fnGetAccount()
   },
 
   /**
@@ -39,11 +35,10 @@ Page({
 
   },
   // 获取预约数据
-  fnGetAccount(kolId) {
+  fnGetAccount() {
     NT.showToast('加载中..')
     api.ctPoAgentByUs({
       status: this.data.active,
-      kolId: kolId,
       userId: wx.getStorageSync('userInfo').userId
     }).then(res => {
       // res = [
@@ -82,7 +77,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.fnGetAccount(this.data.kolId)
+    this.fnGetAccount()
   },
 
   /**
