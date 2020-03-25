@@ -29,7 +29,7 @@
 </view>
 
 <view class="modal-menu" wx:if="{{ showModal }}">
-  <view class="content g_transition3s {{ showIn? 'g_scale1': 'g_scale0'}}" wx:if="{{ code === 0 }}">
+  <view class="content" wx:if="{{ code === 0 }}">
     <view class="mid-cont">
           <view class="c-title">
             <view>每周日凌晨0点进行注册量结算</view>
@@ -48,21 +48,21 @@
     </view>
     <view class="c-btn flex" data-flag="" bindtap="closeModal">我知道了</view>
   </view>
-  <view class="content g_transition3s {{ showIn? 'g_scale1': 'g_scale0'}} h350" wx:if="{{ code === 1 }}">
+  <view class="content h350" wx:if="{{ code === 1 }}">
       <view class="mid-cont">
         <view class="test">你当前的注册量为 <text>{{ rewardData.count }}</text></view>
         <view class="test">可领取奖励为 <text>MOP {{ rewardData.reward }}</text></view>
       </view>
       <view class="c-btn flex" bindtap="fnGetMoney">确定领取</view>
   </view>
-  <view class="content g_transition3s {{ showIn? 'g_scale1': 'g_scale0'}} h350" wx:if="{{ code === 2 }}">
+  <view class="content h350" wx:if="{{ code === 2 }}">
       <view class="mid-cont">
         <view class="test">目前不在奖励领取时</view>
         <view class="test">请查看领取条件相关规定</view>
       </view>
       <view class="c-btn flex" data-flag="" bindtap="closeModal">我知道了</view>
   </view>
-  <!-- <view class="content g_transition3s {{ showIn? 'g_scale1': 'g_scale0'}} h350" wx:if="{{ code === 3 }}">
+  <!-- <view class="contenth350" wx:if="{{ code === 3 }}">
       <view class="mid-cont">
         <view class="test">您本周的注册用户数量未达到</view>
         <view class="test">最低领取标准，无法领取奖励</view>

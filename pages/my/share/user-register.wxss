@@ -155,16 +155,3 @@ button {
 .h350 .mid-cont {
   padding-top: 60rpx;
 }
-.g_transition3s {
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-.g_scale0 {
-  -webkit-transform: scale(0.5);
-  transform: scale(0.5);
-}
-
-.g_scale1 {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}

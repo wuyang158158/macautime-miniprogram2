@@ -115,9 +115,9 @@
 				},
 				{
 					"id": 8,
-					"name": "pages/address/address-list",
-					"pathName": "pages/address/address-list",
-					"query": "",
+					"name": "pages/views/about-us",
+					"pathName": "pages/views/about-us",
+					"query": "id=1",
 					"scene": null
 				},
 				{

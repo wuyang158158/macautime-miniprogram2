@@ -11,7 +11,6 @@ Page({
     showModal: false,
     code: '',
     noData: false,
-    showIn: false, //过渡
     accountList: [], //已注册用户
     limitData: [], //领取条件
     rewardData: {} //奖励数据
@@ -49,15 +48,12 @@ Page({
   },
   // 领取奖励
   receiveT() {
+    NT.showToast('查询中..')
     api.shareReward().then(res => {
-      this.setData({ rewardData: res, code: res.reward? 1: 2 })
+      this.setData({ showModal: true, rewardData: res, code: res.reward? 1: 2 })
     }).catch(err => {
       NT.showModal(err.codeMsg || err.message || '请求失败！')
     })
-    this.setData({ showModal: true })
-    // setTimeout(() => {
-      this.setData({ showIn: true })
-    // }, 10)
   },
   // 关闭弹窗
   closeModal() {
@@ -73,16 +69,15 @@ Page({
   controlModal(e) {
     let flag = e.currentTarget.dataset.flag
      if(flag) {
+      NT.showToast('查询中..')
       api.shareGetLimit().then(res =>{ 
-        this.setData({ limitData: res })
+        this.setData({ limitData: res, code: 0, showModal: e.currentTarget.dataset.flag})
       }).catch(err => {
         NT.showModal(err.codeMsg || err.message || '请求失败！')
       })
+    } else {
+      this.setData({ code: 0, showModal: e.currentTarget.dataset.flag })
     }
-    this.setData({ code: 0, showModal: e.currentTarget.dataset.flag })
-    // setTimeout(()=>{
-      this.setData({ showIn: e.currentTarget.dataset.flag})
-    // },10)
 
   },
   /**

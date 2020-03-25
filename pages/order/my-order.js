@@ -407,11 +407,11 @@ Page({
         })
         this.setData({ timer:timer })
       }
-      console.log(res)
       this.setData({
         ticketData: res,
         noData: !res.length
       })
+      this.fnIsNoOrderData()
       if(!res.length && !this.data.getGuessLike){ //大于0
         this.getGuessLike()
       }
