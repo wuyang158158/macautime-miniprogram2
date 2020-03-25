@@ -271,9 +271,9 @@
                     <view class="user-name f30 l-h30">{{item.nickName || ''}}</view>
                     <view class="user-time f24 l-h30 c-999999">{{item.createTimeStr || ''}}</view>
                     <view class="user-content clamp2 f28 l-h40">{{item.content || ''}}</view>
-                    <view class="weui-uploader__bd mt8">
+                    <view class="weui-uploader__bd mt8" wx:if="{{item.imEvaluationImage.imageUrl}}">
                         <view class="weui-uploader__files" id="uploaderFiles">
-                            <view class="weui-uploader__file" bindtap="previewImage" data-comment="{{item.imEvaluationImage.id}}" id="{{item.imEvaluationImage.imageUrl}}">
+                            <view class="weui-uploader__file" bindtap="previewImage" data-url="{{item.imEvaluationImage.imageUrl}}">
                                 <view class="relative weui-uploader__img bd">
                                     <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
                                     <image class="pic-default-new z-index5" src="{{item.imEvaluationImage.imageUrl}}" mode="aspectFill"/>
@@ -287,7 +287,7 @@
                     <view class="user-activity f24 c-666666" wx:if="{{item.title}}">{{item.title}}</view>
                 </view>
             </view>
-            <view class="handpick-more f28 c-00A653" bindtap="tapToAllExpComment">查看全部 {{evaluateScore[0].count}} 条评论</view>
+            <view class="handpick-more f28 c-00A653" bindtap="tapToAllExpComment">查看全部 {{total}} 条评论</view>
         </view>
         <!-- 预定须知 -->
         <!-- <view class="bd1 pb45">

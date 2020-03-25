@@ -451,22 +451,10 @@ Page({
   },
   // 预览图片
   previewImage: function(e){
-    // console.log(e)
-    const comment = e.currentTarget.dataset.comment
-    const expComment = this.data.expComment
-    let urls = []
-    expComment.map(item => {
-      if(item.id === comment){
-        item.imgUrl.map(element=>{
-          urls.push(element.imgUrl)
-        })
-      }
-    });
-    // console.log(urls)
-    // debugger
+    const url = e.currentTarget.dataset.url
     wx.previewImage({
-        current: e.currentTarget.id, // 当前显示图片的http链接
-        urls: urls // 需要预览的图片http链接列表
+        current: url, // 当前显示图片的http链接
+        urls: [url] // 需要预览的图片http链接列表
     })
   }, 
   // 领券中心
@@ -558,7 +546,8 @@ Page({
         })
       }
       this.setData({
-        evaluateScore: evaluateScore
+        evaluateScore: evaluateScore,
+        total: res.total
       })
     })
     .catch(err=>{

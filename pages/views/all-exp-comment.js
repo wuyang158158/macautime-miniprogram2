@@ -114,7 +114,7 @@ Page({
   },
   imSelectOrderToEvaluateByOrderId(source) { // 请求评论列表
     var apiCommon = this.data.params.msId ? api.selectMsEvaluateScoreList : api.imSelectOrderToEvaluateByOrderId;
-    apiCommon(params)
+    apiCommon(this.data.params)
     .then(res=>{
       var res = this.data.params.msId ? res.data : res
       if(source === 'onReachBottom' && !res.length > 0){
@@ -136,8 +136,10 @@ Page({
       })
       const data = source === 'onPullDownRefresh' ? res : this.data.expComment.concat(res||[])
 
-      if(this.data.params.msId){
-        data.imageUrl = data.imEvaluationImage.imageUrl
+      if(this.data.params.msId && data.length){
+        data.map(item=>{
+          item.imageUrl = item.imEvaluationImage.imageUrl
+        })
       }
 
       this.setData({
