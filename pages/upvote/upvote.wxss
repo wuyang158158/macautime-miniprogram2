@@ -18,13 +18,25 @@ width: 100%;
 border-bottom: 16rpx solid #EFEFF4;
 box-sizing: border-box
 }
-.coupon-tab view {
-height: 88rpx;
-font-size: 30rpx;
-font-weight: 600;
-color: #666;
-box-sizing: border-box
+.limit1 {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
+.limit2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 33rpx;
+}
+.coupon-tab view {
+  height: 88rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #666;
+  box-sizing: border-box
+  }
 .coupon-tab view.bd2 {
 color: #222;
 position: relative
@@ -43,11 +55,15 @@ display: inline-block;
   justify-content: center;
   width: 120rpx;
 }
+.w500 {
+  width: 500rpx;
+}
 .container {
 padding-top: 100rpx;
 }
 .content{
   border-radius:16rpx;
+  display: flex;
 }
 .i-img{
   width: 160rpx;

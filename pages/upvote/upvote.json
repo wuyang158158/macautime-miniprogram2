@@ -3,5 +3,6 @@
     "cp-video": "/components/video/video",
     "gh-empty": "/components/empty/empty"
     },
+  "enablePullDownRefresh": true,
   "navigationBarTitleText": "我的点赞"
 }
