@@ -57,7 +57,7 @@
     <view class="btn bt1 bg-white">
         <view class="pl32 pr32 flex flex-d">
             <view class="w-default c-00A653 flex">
-                <text class="f24 mr5">MOP$</text>
+                <text class="f24 mr5">MOP</text>
                 <text class="f36">340</text>
             </view>
             <view class="flex-1 flex flex-f">

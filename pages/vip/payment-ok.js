@@ -76,7 +76,7 @@ Page({
   seeVip() {
     // wx.setStorageSync('payVip', true)
     wx.navigateBack({
-      delta: 2
+      delta: 1
     })
   },
   // 更新用户信息

@@ -201,7 +201,7 @@ Page({
       console.log(err)
       this.setData({
         noData: {
-          text: err.codeMsg ||'请求失败！',
+          text: err.message ||'请求失败！',
           type: err.code === '00'? 'no-network' : 'no-data'
         }
       })

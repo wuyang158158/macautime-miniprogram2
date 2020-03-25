@@ -30,11 +30,11 @@
         <view class="flex w-100 pl32 pr32">
             <view class="flex-1">
                 <view class="c-00AF66 mr16">
-                    <text class="f24">{{choseData.symbol||'MOP$'}}</text>
+                    <text class="f24">{{choseData.symbol||'MOP'}}</text>
                     <text class="f36 fw5 ml8">{{choseData.price}}</text>
                 </view>
                 <view class="f20 c-222222">
-                    <text class="f20">门市价 {{choseData.symbol||'MOP$'}}</text>
+                    <text class="f20">门市价 {{choseData.symbol||'MOP'}}</text>
                     <text class="f22 fw5"> {{choseData.oldAmount || 420}}</text>
                 </view>
             </view>

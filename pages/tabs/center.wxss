@@ -171,8 +171,14 @@ button[type=contact]{
     height: 26rpx;
 }
 .kol-tag{
-    background: #6D69CC;
+    /* background: #6D69CC; */
     margin-right: 10rpx;
+}
+.blue{
+    background:rgba(89,191,255,1);
+}
+.red{
+    background:rgba(255,89,103,1);
 }
 .c-F9D8A5{
     color: #F9D8A5;

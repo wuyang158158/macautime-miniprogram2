@@ -8,16 +8,18 @@
             <view class="userinfo mt140 flex {{userInfo.level?'userinfo-vip':''}}">
                 <view class="relative avatar m32 mr32" bindtap="{{userInfo?'tapToCenterDetail':''}}">
                     <image class="avatar-url" src="{{userInfo?userInfo.headIco || userInfo.url:'/images/center/avater.png'}}" mode="aspectFill"/>
-                    <image class="avatar-vip" wx:if="{{ userInfo.level }}" src="/images/center/avatar_vip.png" mode="aspectFill"/>
+                    <image class="avatar-vip" wx:if="{{ userInfo.level && userInfo.kolType === 1 }}" src="/images/center/avatar_vip-1.png" mode="aspectFill"/>
+                    <image class="avatar-vip" wx:if="{{ userInfo.level && userInfo.kolType === 2 }}" src="/images/center/avatar_vip-2.png" mode="aspectFill"/>
+                    <image class="avatar-vip" wx:if="{{ userInfo.level && !userInfo.kolType }}" src="/images/center/avatar_vip.png" mode="aspectFill"/>
                 </view>
                 
                 <button class="weui-btn username flex-1 f36 l-h40 c-222222 fw6 ell" type="contact" open-type="getUserInfo" bindtap="{{userInfo?'':'tapToLogin'}}">
                     <view>{{userInfo?userInfo.nickName || userInfo.nick || userInfo.userName :'登录/注册'}}</view>
                     <view class="f24 fw4" wx:if="{{userInfo.id}}">ID：{{ userInfo.id }}</view>
                     <view class="flex f24 mt16" wx:if="{{ userInfo.kolType }}">
-                        <view class="c-tag kol-tag">
+                        <view class="c-tag kol-tag {{userInfo.kolType === 1 ? 'red':''}} {{userInfo.kolType === 2 ? 'blue':''}}">
                             <image class="c-tag-icon" src="/images/center/icon_kol.png" mode="aspectFill"/>
-                            <text class="c-FFFFFF">{{ userInfo.kolType === 1?'KOL': '认证KOL'}}</text>
+                            <text class="c-FFFFFF"> KOL</text>
                         </view>
                         <view class="c-tag" wx:if="{{ userInfo.sellerState }}">
                             <image class="c-tag-icon" src="/images/center/icon_sale.png" mode="aspectFill"/>

@@ -13,6 +13,11 @@ const payArray = [
     name: 'e支付',
     checked: false
   },
+  {
+    icon: '/images/vip/icon_pay_wallet.png',
+    name: '钱包支付',
+    checked: false
+  },
   // {
   //   icon: '/images/vip/icon_pay_alipay.png',
   //   name: '支付宝支付'
@@ -48,6 +53,7 @@ Page({
     this.setData({
       source: source,
       id: options.id,
+      msId: options.msId,
       money: options.money,
       reciprocal: reciprocal,
       h: Math.floor(differTime / 1000 / 60 / 60),
@@ -150,7 +156,9 @@ Page({
     if(payType === 'e支付') {
       this.ghPay()
       // const data = res
-      
+    }
+    if(payType === '钱包支付') {
+      this.walletPay()
     }
   },
   // 微信支付
@@ -205,6 +213,28 @@ Page({
           // 通过eventChannel向被打开页面传送数据
           res.eventChannel.emit('copyUrl', { data: data })
         }
+      })
+    })
+    .catch(err=>{
+      NT.showModal(err.codeMsg||err.message||'请求失败！')
+    })
+  },
+  // 钱包支付
+  walletPay(e) {
+    var that = this
+    NT.showToast('处理中...')
+    const walletPayQuery = {
+      orderNumber: this.data.id, //订单id
+      payAmount: this.data.money, //支付金额
+      payId: 0, // 支付ID
+      payName: '钱包支付', // 支付名称
+      msId: this.data.msId || '', //商家id
+      tradeType: '', // 交易类型
+    }
+    api.WalletPay(walletPayQuery)
+    .then(res=>{
+      wx.redirectTo({
+        url: '/pages/vip/payment-ok?source=' + that.data.source + '&orderNumber=' + that.data.id
       })
     })
     .catch(err=>{
