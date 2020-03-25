@@ -18,7 +18,8 @@ Page({
       county: '',
       addr: '',
       isDefault: false
-    }
+    },
+    canSubmit: true
   },
 
   /**
@@ -73,6 +74,7 @@ Page({
   },
   // 保存地址
   fnFormSubmit(e) {
+    let that = this
     let params = e.detail.value
     let data = Object.assign(this.data.submitParam, params)
     if (this.data.id) {
@@ -94,10 +96,17 @@ Page({
       NT.showModal('请输入详细地址！')
       return
     }
+    if(this.data.canSubmit) {
+      this.setData({ canSubmit: false })
+    } else {
+      return false
+    }
+    NT.showToast('请稍后..')
     api.ctAddressUpdata(data).then(res => {
       wx.showToast({
         title: '保存成功',
         success(res) {
+          that.setData({ canSubmit: true })
           setTimeout(res => {
             wx.navigateBack({
               delta: 1
@@ -106,6 +115,7 @@ Page({
         }
       })
     }).catch( err => {
+      that.setData({ canSubmit: true })
       NT.showModal(err.codeMsg || err.message || '请求失败！')
     })
     

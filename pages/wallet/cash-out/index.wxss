@@ -28,7 +28,7 @@
 input {
   height: 95rpx;
   border-bottom: 1rpx solid #E8E8E8;
-  font-size: 45rpx;
+  font-size: 40rpx;
   margin-top: 10rpx;
   padding-left: 35rpx
 }

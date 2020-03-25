@@ -1,5 +1,5 @@
 <view class="container">
-  <navigator wx:if="bankList.length > 0" url="/pages/wallet/bank/bank-list?s=1" class="choose-bank flex bg-white">
+  <navigator wx:if="{{ bankList.length }}" url="/pages/wallet/bank/bank-list?s=1" class="choose-bank flex bg-white">
     <image src="/images/center/icon_edict.png" class="icon-bank" mode="aspectFill"></image>
     <text>{{ bankJson.bankName }} {{ bankJson.cardType }} ( {{ bankJson.lastFourNum }} )</text>
     <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
