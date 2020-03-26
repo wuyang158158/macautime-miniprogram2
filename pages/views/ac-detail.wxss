@@ -259,6 +259,9 @@ rich-text .rich-img {
     overflow: hidden;
     margin-right: 20rpx;
 }
+.set-meal-icon image{
+    border-radius:8rpx;
+}
 .weui-uploader__file{
     margin-right: 14rpx;
     margin-bottom: 14rpx;
