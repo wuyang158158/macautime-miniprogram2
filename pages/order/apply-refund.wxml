@@ -24,7 +24,7 @@
         <view class="text-cont ml16 mr16">
           <view class="f26">退款原因</view>
           <view class="area-text">
-            <textarea bindinput="fnSetReason" placeholder="请输入退款原因" value="{{ reason }}"></textarea>
+            <textarea bindinput="fnSetReason" placeholder="请输入退款原因.." value="{{ reason }}"></textarea>
           </view>
         </view>
 

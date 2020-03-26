@@ -254,7 +254,7 @@ Page({
           NT.showToast('处理中...')
           api.MyOrderDeleteDetail({orderNumber:orderCode})
           .then(res=>{
-            NT.showToastNone('订单取消成功')
+            NT.showToast('订单取消成功')
             that.poSelectDiscountList()
             // that.refreshData(orderCode)
           })

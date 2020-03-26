@@ -32,10 +32,12 @@ Page({
     NT.showToast('处理中...')
     api.MyOrderRefund({orderNumber: this.data.data.orderNumber, reason: this.data.reason })
     .then(res=>{
-      NT.showToastNone('已申请')
-      wx.navigateBack({
-        delta: 1
-      })
+      NT.showToastNone('已申请!')
+      setTimeout(()=> {
+        wx.navigateBack({
+          delta: 1
+        })
+      },1000)
     })
     .catch(err=>{
       NT.showModal(err.codeMsg||err.message||'请求失败！')

@@ -128,8 +128,7 @@ Page({
   },
   // 取消订单
   tapCancelOrder() {
-    const that = this
-    const orderCode = this.data.orderData.ordernumber
+    const orderCode = this.data.orderData.orderNumber
     wx.showModal({
       title: '提示',
       content: '您确定要取消该订单吗？取消将不可撤回',
@@ -138,7 +137,7 @@ Page({
           NT.showToast('处理中...')
           api.MyOrderDeleteDetail({orderNumber:orderCode})
           .then(res=>{
-            NT.showToastNone('订单取消成功')
+            NT.showToast('订单取消成功')
             setTimeout(()=> {
               wx.navigateBack({
                 delta: 1
