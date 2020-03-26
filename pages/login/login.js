@@ -211,6 +211,15 @@ Page({
       NT.showToast('登录中...')
       app.login({ spreadCode: this.data.spreadCode })
       .then(res=>{
+        if(!res.code){
+          this.setData({
+            noData: {
+              text: res.message || '登录失败' + '，下拉刷新重新登录～～',
+              type: 'no-data'
+            },
+          })
+          return false
+        }
         if(res.status === 2) { //已经封号了
           this.setData({
             noData: {
