@@ -8,7 +8,7 @@
             <image class="avatar-vip z-index5" wx:if="{{ userInfo.level }}" src="/images/center/avatar_vip.png" mode="aspectFill"/>
         </view>
         <view class="flex-1 c-FFFFFF pl32">
-            <view class="">
+            <view class="flex">
                 <text class="sp f36">{{ userInfo.nickName || userInfo.nick || userInfo.userName }}</text>
                 <button 
                     class="weui-btn open-vip sp ml32" 

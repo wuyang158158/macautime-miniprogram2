@@ -19,8 +19,6 @@ page{
     line-height: 48rpx;
     font-size: 24rpx;
     border-radius: 24rpx;
-    vertical-align: -10rpx;
-    margin-top: 10rpx;
     padding: 0;
 }
 .list{

@@ -15,20 +15,21 @@
     <view class="vip" wx:else>
       <image class="header-bg header-bg-h" src="/images/index/index-bgv.png" mode="aspectFill"/>
       <view class="header-ct">
-        <view class="title f44 c-222222 pb16">Macau Time体验，享受美好旅行时光</view>
-        <view class="location f24 flex" bindtap="tapToMapActivity">
+        <view class="title f44 c-222222 pb16">澳门时光，享受美好旅行体验</view>
+        <view class="f24 c-222222">享受澳门时光所有门店内部所有优惠券</view>
+        <!-- <view class="location f24 flex" bindtap="tapToMapActivity">
           <image class="location-icon" src="/images/index/index_icon_location.png" mode="aspectFill"/>
           <view class="">{{rgcData.business}} · {{rgcData.distance}}</view>
           <view class="i">|</view>
           <view class="c-00A653">附近体验</view>
-        </view>
-        <view class="flex c-222222">
+        </view> -->
+        <view class="flex c-222222 mt32">
           <view class="flex-1">
             <!-- <view class="h-80">
               <text class="f64">6</text>
               <text class="f34">/6</text>
             </view> -->
-            <view class="f24 fw5">尊贵特权 ∙ 专享优惠 ∙ 超值礼包</view>
+            <view class="f24 fw5">尊贵特权 ∙ 专享优惠</view>
           </view>
           <button class="weui-btn w-186" type="primary" bindtap="tapToVipCenter">查看会员</button>
         </view>
