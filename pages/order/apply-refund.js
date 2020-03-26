@@ -27,7 +27,6 @@ Page({
     this.setData({ reason: e.detail.value })
   },
   fnApplyRefund() {
-    return console.log({orderNumber: this.data.data.orderNumber, reason: this.data.reason })
     NT.showToast('处理中...')
     api.MyOrderRefund({orderNumber: this.data.data.orderNumber, reason: this.data.reason })
     .then(res=>{
