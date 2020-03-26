@@ -116,6 +116,6 @@ canvas {
     margin: 0 auto;
 }
 .min-canvas{
-    width: 68rpx;
-    height: 68rpx;
+    width: 40px;
+    height: 40px;
 }

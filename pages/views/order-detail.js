@@ -87,9 +87,8 @@ Page({
     api.getOrderDetails({ orderNumber: options.orderNumber  })
     .then(res=>{
       const data = res;
-      // data.chargeOffCode = res.chargeOffCode ? res.chargeOffCode.replace(/(.{4})/g, "$1 ") : ''
-      // data.orderTimeStamp = res.orderTimeStamp ? util.formatTimeTwo(data.orderTimeStamp,'Y/M/D') : ''
       this.createQrCode(data.checkCode, "mycanvas", 200, 200);
+      this.createQrCode('56565656', "mincanvas", 40, 40)
       // 生成二维码
       this.setData({
         orderData: Object.assign(options, data)
