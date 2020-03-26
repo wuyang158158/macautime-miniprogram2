@@ -19,7 +19,7 @@ Component({
     lifetimes: {
         // 生命周期函数，组件生命周期函数-在组件实例进入页面节点树时执行)
         attached: function () {
-            console.log(this.data.propType)
+            // console.log(this.data.propType)
          },
     },
     /**
