@@ -20,7 +20,7 @@
             <view class="flex flex-1 code f32 fw6 ">
                 <text class="flex-1">核销码  {{ orderData.checkCode }}</text>
                 <!-- <image src="{{ imagePath || '/images/default/bg_img.png' }}" mode="aspectFill" data-type="1" bindtap="fnShowQrcode"></image> -->
-                <canvas class="min-canvas" canvas-id="mincanvas"/>
+                <canvas hidden="{{ showQrcode }}" class="min-canvas" canvas-id="mincanvas"/>
             </view>
         </view>
     </view>
