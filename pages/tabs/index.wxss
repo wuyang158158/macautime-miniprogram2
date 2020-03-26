@@ -28,6 +28,7 @@
 .header-ct .title{
   font-weight:600;
   line-height: 54rpx;
+  margin-top: 40rpx;
 }
 .location{
   height: 50rpx;

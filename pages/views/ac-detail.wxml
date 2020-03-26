@@ -16,7 +16,7 @@
     <!-- bannar大图展示
         object-fit="{{direction!=='horizontal'?'cover':'contain'}}" 
     -->
-    <view class="relative">
+    <view class="relative" wx:if="{{acData.msMyVideoVo.videoUrl || acData.msPhotoVoList}}">
         <swiper class="bannar" bindchange="swiperHandle" current="{{current}}">
             <swiper-item wx:if="{{acData.msMyVideoVo.videoUrl}}">
                 <video 
