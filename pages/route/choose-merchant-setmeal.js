@@ -75,7 +75,7 @@ Page({
   // 下一步
   submitNext() {
     wx.navigateTo({
-      url: '/pages/route/pay-order'
+      url: '/pages/vip/payment'
     })
   }
 })

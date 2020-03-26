@@ -213,26 +213,6 @@ Page({
       }
     })
   },
-  // 跳转到体验日历
-  tapToActivityCalendar() {
-    wx.navigateTo({
-      url: '/pages/views/calendar-activity'
-    })
-  },
-  // 跳转到人气体验
-  tapToHotActivity() {
-    wx.navigateTo({
-      url: '/pages/views/hot-activity'
-    })
-  },
-  // 跳转到web-view页面
-  tapToWebView(e) {
-    const url = e.currentTarget.dataset.url
-    const TITLE = e.currentTarget.dataset.title
-    wx.navigateTo({
-      url: '/pages/web-view/web-view?url=' + url + '&title=' + TITLE
-    })
-  },
   // 跳转到kol入驻
   tapToKolEnter() {
     wx.navigateTo({
@@ -319,12 +299,6 @@ Page({
         this.setData({ noData: true })
         NT.showModal(err.codeMsg || err.message || '请求失败！')
       })
-  },
-  // 如何入驻
-  tapToEnter() {
-    wx.navigateTo({
-      url: '/pages/help/merchant-enter'
-    })
   },
   // 根据type进行对应查询
   fnComputeH() {

@@ -60,24 +60,6 @@
           <gh-empty prop-type="no-data" prop-text="暂无周边数据" prop-mt="50" wx:if="{{ noData }}"></gh-empty>
       </view>
 
-
-    <!-- <view class="nav flex">
-      <view class="flex-1 br1 flex flex-jc" bindtap="tapToHotActivity">
-        <image class="nav-popular mr32" src="/images/index/home_icon_menu_popular.png" mode="aspectFill"/>
-        <view class="popular">
-          <view class="popular-t f30 c-222222 fw5">人气体验</view>
-          <view class="popular-t f20 c-666666">最热榜单，最潮体验</view>
-        </view>
-      </view>
-      <view class="flex-1 flex flex-jc" bindtap="tapToActivityCalendar">
-        <view class="popular">
-          <view class="popular-t f30 c-222222 fw5">体验日历</view>
-          <view class="popular-t f20 c-666666">随时规划，自主体验</view>
-        </view>
-        <image class="nav-popular ml32" src="/images/index/home_icon_menu_calendar.png" mode="aspectFill"/>
-      </view>
-    </view> -->
-
     <!-- 消息通知 -->
     <!-- <view class="message mt40 flex pl32 pr32">
       <image class="message-close-icon mr32" src="/images/index/home_icon_close20.png" mode="aspectFill"/>
@@ -139,10 +121,6 @@
 
     <!-- 精选商家 -->
     <view wx:if="{{ activeMenu === 2 }}" class="recommend-h-auto">
-      <!-- <view class="rec-title flex pt32 pb32 mt32 fw6 l-h32">
-        <view class="flex-1 f32  c-222222">精选商家</view>
-        <view class="f30 c-00A653" bindtap="tapToEnter">如何入驻?</view>
-      </view>-->
 
       <view class="handpick-merchant mb16" data-id="{{item.id}}" data-title="{{item.name}}" bindtap="tapToDetail" wx:for="{{ selecMerchants }}" wx:key="index">
         <image class="handpick-merchant-pic-default" src="/images/index/bg@2x.png" mode="aspectFill"/>

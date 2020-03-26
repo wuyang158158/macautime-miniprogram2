@@ -318,12 +318,6 @@ Page({
       }
     })
   },
-  // 跳转到体验日历
-  tapToActivityCalendar() {
-    wx.navigateTo({
-      url: '/pages/views/calendar-activity'
-    })
-  },
   // 点击喜欢
   tapLike() {
     const type = this.data.acData.isMarK
