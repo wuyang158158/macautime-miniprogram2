@@ -65,14 +65,13 @@
                         <image class="merchant-star-icon" src="/images/index/icon_star3@2x.png" wx:elif="{{acData.msBaseInfo.averageScore >= index && acData.msBaseInfo.averageScore%1 !=0 }}"></image>
                         <image class="merchant-star-icon" src="/images/index/icon_star2@2x.png" wx:else></image>
                     </view>
-                    <view class="f24 c-222222 ml5">{{ acData.msBaseInfo.averageScore || ' 未评分'}}</view>
+                    <view class="f24 c-222222 ml16">{{ acData.msBaseInfo.averageScore || ' 未评分'}}</view>
                 </view>
-                <view class="c-222222 l-h32 f24">{{acData.msBaseInfo.address || ''}}</view>
+                <view class="c-222222 l-h32 f24 ml16">营业时间：{{ acData.msBaseInfo.openDate }} {{ acData.msBaseInfo.openTime }}</view>
             </view>
             <view class="flex f24">
-                <view class="flex-1 flex flex-wrap" wx:if="{{acData.msBaseInfo.labelRemark}}">
-                    <!-- <view wx:for="{{acData.msBaseInfo.labelRemark}}" wx:key="index" class="tag tag-ac c-00A653 mr10">{{item}}</view> -->
-                    <view class="tag tag-ac c-00A653 mr10">{{acData.msBaseInfo.labelRemark}}</view>
+                <view class="flex-1 flex flex-wrap" wx:if="{{acData.msSysLabelList}}">
+                    <view wx:for="{{acData.msSysLabelList}}" wx:key="index" class="tag tag-ac c-00A653 mr10">{{item.labelRemark}}</view>
                 </view>
                 <!-- <view class="f26 c-222222">{{acData.merchantName || ''}}</view> -->
                 <view class="flex flex-end">
@@ -247,10 +246,10 @@
             </view>
         </view>
         <!-- 营业时间 -->
-        <view class="ac-time h-156 bd1 flex" wx:if="{{acData.msBaseInfo.openTime}}">
+        <!-- <view class="ac-time h-156 bd1 flex" wx:if="{{acData.msBaseInfo.openTime}}">
             <view class="f32 c-222222 fw6 l-h55">营业时间</view>
             <view class="f28 c-222222 l-h55">{{ acData.msBaseInfo.openDate }} {{ acData.msBaseInfo.openTime }}</view>
-        </view>
+        </view> -->
         <!-- 体验评论 -->
         <view class="review bd1 pb45" wx:if="{{evaluateScore.length>0}}">
             <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32">用户评论</view>

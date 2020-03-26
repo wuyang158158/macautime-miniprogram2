@@ -1,5 +1,5 @@
 <!--pages/integral/time-coin-store.wxml-->
-<view class="container">
+<view class="container" wx:if="{{ !noData }}">
     <view class="relative title c-FFFFFF">
         <image class="pic-default-new" src="/images/center/bg-3.png" mode="aspectFill"/>
         <view class="pic-default-new z-index5">
@@ -150,3 +150,4 @@
         </view>
     </view>
 </view>
+<gh-empty prop-type="developing" prop-text="正在努力研发中~~" prop-mt="200" wx:if="{{ noData }}"></gh-empty>

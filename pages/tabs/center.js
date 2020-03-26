@@ -376,5 +376,11 @@ Page({
     } else {
       this.tapToLogin()
     }
+  },
+  // 跳转我的收藏页面
+  tapToMyLike() {
+    wx.navigateTo({
+      url: '/pages/views/my-like'
+    })
   }
 })
