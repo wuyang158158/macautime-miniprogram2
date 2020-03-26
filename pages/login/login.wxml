@@ -11,4 +11,4 @@
         <text class="c-00A653" bindtap="tapToAgreement">《Macau Time用户协议》</text>
     </view>
 </view>
-<gh-empty prop-type="no-data" prop-text="登录错误" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+<gh-empty prop-type="{{noData.type}}" prop-text="{{noData.text}}" prop-mt="200" wx:if="{{noData}}"></gh-empty>

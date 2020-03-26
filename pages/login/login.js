@@ -173,6 +173,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(query) {
+    this.setData({
+      query: query
+    })
     console.log('小程序分享', query)
     // 储存邀请码
     if(query.scene) {
@@ -208,6 +211,15 @@ Page({
       NT.showToast('登录中...')
       app.login({ spreadCode: this.data.spreadCode })
       .then(res=>{
+        if(res.status === 2) { //已经封号了
+          this.setData({
+            noData: {
+              text: '糟糕，你已被封号了~~',
+              type: 'no_logging'
+            },
+          })
+          return false
+        }
         this.setData({
           noData: false,
         })
@@ -217,39 +229,13 @@ Page({
       })
       .catch(err=>{
         this.setData({
-          noData: true,
+          noData: {
+            text: err.message || '登录失败～～',
+            type: 'no-data'
+          },
         })
       })
     }
-
-    /*
-    if(JSON.stringify(query) === "{}"){
-      NT.showToast('登录中...')
-      app.login()
-      .then(res=>{
-        wx.switchTab({
-          url: '/pages/tabs/index'
-        })
-      })
-      
-    }else if(query.shareType === 'acDetail'){ //分享详情
-      wx.navigateTo({
-        url: '/pages/views/ac-detail?id=' + query.id + '&title=' + query.title
-      })
-      // home = true
-      acDetail = true
-    }else{
-      const optionsObj = {
-        wxUnionid: query.unionid,
-        openid: query.openid
-      }
-      this.data.registerForm = optionsObj
-      this.setData({
-        container: true,
-        ticket: query.ticket
-      })
-    }
-    */
     
   },
   /**
@@ -338,7 +324,7 @@ Page({
     })
   },
   onPullDownRefresh: function () {
-    this.onLoad()
+    this.onLoad(this.data.query)
   },
   tapToAgreement() { //跳转到Macau Time协议
     wx.navigateTo({

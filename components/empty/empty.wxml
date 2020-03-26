@@ -17,6 +17,8 @@
         <image class="gh-empty-logo" src="/images/default/no_video.png" mode="aspectFit" wx:elif="{{ propType === 'no-video'}}" />
         <!-- 缺省页-研发中 -->
         <image class="gh-empty-logo" src="/images/default/developing.png" mode="aspectFit" wx:elif="{{ propType === 'developing'}}" />
+        <!-- 缺省页-封号了 -->
+        <image class="gh-empty-logo" src="/images/default/no_logging.png" mode="aspectFit" wx:elif="{{ propType === 'no_logging'}}" />
         <!-- 缺省页-新增 -->
         <image class="gh-empty-logo" src="{{ propSrc }}" mode="aspectFit" wx:else/>
         <text class="gh-empty-tips">{{ propText || '暂无数据' }}</text>
