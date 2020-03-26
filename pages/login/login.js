@@ -209,18 +209,12 @@ Page({
       })
     }else{
       NT.showToast('登录中...')
-      app.login({ spreadCode: this.data.spreadCode })
-      .then(res=>{
-        if(!res.code){
-          this.setData({
-            noData: {
-              text: res.message || '登录失败' + '，下拉刷新重新登录～～',
-              type: 'no-data'
-            },
-          })
-          return false
-        }
-        if(res.status === 2) { //已经封号了
+      // 获取用户信息
+      api.login({ spreadCode: this.data.spreadCode })
+      .then((res) => {
+        //已经封号了
+        if(res.status === 2) { 
+          wx.removeStorageSync('userInfo')
           this.setData({
             noData: {
               text: '糟糕，你已被封号了~~',
@@ -229,6 +223,11 @@ Page({
           })
           return false
         }
+        // 正常登录
+        wx.setStorage({
+          key:"userInfo",
+          data:res
+        })
         this.setData({
           noData: false,
         })
@@ -236,10 +235,10 @@ Page({
           url: '/pages/tabs/index'
         })
       })
-      .catch(err=>{
+      .catch((err)=>{
         this.setData({
           noData: {
-            text: err.message || '登录失败～～',
+            text: err.message + '下拉刷新～' || '登录失败，下拉刷新重新登录～～',
             type: 'no-data'
           },
         })

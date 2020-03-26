@@ -1,10 +1,4 @@
 //app.js
-import utils from "/utils/util.js";
-import apiCfg from "/data/api_config.js";
-import api from "/data/api.js"
-
-const baseUrl = apiCfg.env[apiCfg.curEnv].baseUrl;
-
 App({
   /**
    * 生命周期-初始化
@@ -39,26 +33,6 @@ App({
     //     }
     //   }
     // })
-    //获取登录信息
-    // this.login()
-  },
-  login(options) {
-    return new Promise((resolve) => {
-      // 获取用户信息
-      api.login({ spreadCode: options.spreadCode })
-      .then((res) => {
-        wx.setStorage({
-          key:"userInfo",
-          data:res
-        })
-        // console.log(wx.getStorageSync("userInfo"))
-        resolve(res)
-      })
-      .catch((err)=>{
-        resolve(err)
-      })
-    })
-    
   },
   globalData: {
     isIphoneX: false,
