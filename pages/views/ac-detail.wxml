@@ -23,7 +23,8 @@
                     class="bannar" 
                     id="video" 
                     src="{{acData.msMyVideoVo.videoUrl}}" 
-                    controls 
+                    controls
+                    loop
                     autoplay
                     enable-play-gesture 
                     poster="{{acData.msMyVideoVo.imageUrl}}"
