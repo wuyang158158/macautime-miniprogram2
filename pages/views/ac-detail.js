@@ -245,9 +245,14 @@ Page({
   //预览图片
   tapPreviewImage(e){
     const item = e.currentTarget.dataset.item
+    var msPhotoVoList = this.data.acData.msPhotoVoList
+    var urls = []
+    msPhotoVoList.map(item=>{
+      urls.push(item.imageUrl)
+    })
     wx.previewImage({
       current: item, // 当前显示图片的http链接
-      urls: this.data.acData.bannarUrls // 需要预览的图片http链接列表
+      urls: urls // 需要预览的图片http链接列表
     })
   },
   tapToLogin(e) {
