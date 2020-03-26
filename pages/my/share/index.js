@@ -20,16 +20,16 @@ Page({
       userInfo: userInfo,
       imageUrl: userInfo.filePath || ''
     })
-    if(!userInfo.filePath){
-      NT.showToast('加载中..')
-      api.shareIusGetQRCode().then( res => {
-        this.setData({
-          imageUrl: res.imageUrl
-        })
-      }).catch(err => {
-        NT.showModal(err.codeMsg || err.message || '请求失败！')
-      })
-    }
+    // if(!userInfo.filePath){
+    //   NT.showToast('加载中..')
+    //   api.shareIusGetQRCode().then( res => {
+    //     this.setData({
+    //       imageUrl: res.imageUrl
+    //     })
+    //   }).catch(err => {
+    //     NT.showModal(err.codeMsg || err.message || '请求失败！')
+    //   })
+    // }
   },
 
   /**
