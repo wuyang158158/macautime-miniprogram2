@@ -355,6 +355,9 @@ rich-text .rich-img {
     border-radius:12rpx;
     overflow: hidden;
 }
+.mer-type-icon image{
+    border-radius:12rpx;
+}
 .w148{
     width: 148rpx;
 }
