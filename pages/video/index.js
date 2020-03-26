@@ -40,6 +40,7 @@ Page({
       })
       this.setData({ videoList: res.vobaseInfo, noData:!res.vobaseInfo.length })
     }).catch( err => {
+      this.setData({ videoList: [], noData: true })
       NT.showModal(err.codeMsg || err.message || '请求失败！')
     })
   },

@@ -7,6 +7,7 @@ Component({
         propType: String,
         propText: String,
         propSrc: String,
+        propUrl: String,
         propMt: Number,
         propMb: Number
     },

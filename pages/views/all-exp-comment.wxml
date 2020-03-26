@@ -46,5 +46,5 @@
         </view>
         <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">已经到底了！</view>
     </view>
-    <gh-empty prop-type="no-order" prop-text="{{emptytext?emptytext:'暂无数据'}}" prop-mt="100" wx:if="{{noData}}"></gh-empty>
+    <gh-empty prop-src="/images/default/no_evaluation.png" prop-text="{{emptytext?emptytext:'还没有任何评价哦~~'}}" prop-mt="100" wx:if="{{noData}}"></gh-empty>
 </view>

@@ -16,7 +16,22 @@
     height: 400rpx;
     border-radius: 50%;
 }
-
+.btns {
+    width:180rpx;
+    height:56rpx;
+    background:rgba(0,166,83,1);
+    border-radius:28rpx;
+    margin: 0 auto;
+    font-size: 28rpx;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 480rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}
 .gh-empty-logo {
     position: absolute;
     left: 50%;

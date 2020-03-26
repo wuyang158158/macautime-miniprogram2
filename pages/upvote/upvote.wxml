@@ -14,10 +14,10 @@
                 </view>
             </view>
         </view>
-      <gh-empty prop-type="no-data" prop-text="暂无数据" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+      <gh-empty prop-src="/images/default/no_like.png" prop-text="还没有任何点赞哦~~" prop-mt="200" wx:if="{{noData}}"></gh-empty>
     </view>
     <view class="cont" wx:if="{{ active === 1 }}">
       <cp-video result="{{ videoList }}"></cp-video>
-      <gh-empty prop-type="no-data" prop-text="暂无数据" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+      <gh-empty prop-src="/images/default/no_like.png" prop-text="还没有任何点赞哦~~" prop-mt="200" wx:if="{{noData}}"></gh-empty>
     </view>
 </view>

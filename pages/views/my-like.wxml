@@ -9,5 +9,5 @@
         </view>
         <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">已经到底了！</view>
     </view>
-    <gh-empty prop-type="no-order" prop-text="{{emptytext?emptytext:'暂无数据'}}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+    <gh-empty prop-url="/pages/tabs/experience" prop-src="/images/default/no_collection.png" prop-text="{{emptytext?emptytext:'哎，都不收藏点什么吗？'}}" prop-mt="150" wx:if="{{noData}}"></gh-empty>
 </view>

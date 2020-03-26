@@ -44,5 +44,5 @@
             </view> -->
         </view>
     </view>
-    <gh-empty prop-type="no-data" prop-text="暂无更多卡券" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+    <gh-empty prop-src="/images/default/no_preferential.png" prop-text="还没有领到优惠券~~" prop-mt="200" wx:if="{{noData}}"></gh-empty>
 </view>

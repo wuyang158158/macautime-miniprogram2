@@ -69,7 +69,7 @@
 
     <!-- 缺省页面，暂无数据 -->
     <view class="no-data pl16 pr16" wx:if="{{noData}}">
-        <gh-empty prop-type="no-order" prop-text="{{emptytext?emptytext:'暂无订单'}}" prop-mt="200"></gh-empty>
+        <gh-empty prop-type="no-order" prop-text="{{emptytext?emptytext:'还没有任何内容哦~~'}}" prop-mt="200"></gh-empty>
         <!-- 推荐体验 -->
         <view class="recommend mt200" wx:if="{{recommend.length}}">
             <view class="rec-title flex pt32 pb32 mt32 fw6 l-h32">

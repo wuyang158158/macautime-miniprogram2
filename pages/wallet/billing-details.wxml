@@ -19,6 +19,6 @@
                 <view class="c-999999 f26">{{item.ctime}}</view>
             </view>
         </view>
-        <gh-empty prop-type="no-order" prop-text="暂无账单明细" prop-mt="200" wx:if="{{ result.length === 0 }}"></gh-empty>
+        <gh-empty prop-type="no-order" prop-text="还没有任何内容哦~~" prop-mt="200" wx:if="{{ result.length === 0 }}"></gh-empty>
     </view>
 </view>
