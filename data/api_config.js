@@ -1,10 +1,10 @@
 export default {
   "env": {
     "dev": {
-      // "baseUrl": "http://120.24.150.182:8055",
+      "baseUrl": "http://120.24.150.182:8055",
       // "baseUrl": "http://abcde.vaiwan.com",
       // "baseUrl": "https://test.guoh.com.cn:8443",
-      "baseUrl": "http://bixin.vipgz1.idcfengye.com",
+      // "baseUrl": "http://bixin.vipgz1.idcfengye.com",
       // "baseUrl": "http://192.168.31.146:8055",
     },
     "prod": {
