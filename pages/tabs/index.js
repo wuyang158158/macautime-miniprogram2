@@ -34,23 +34,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let activeMenu = wx.getStorageSync('activeMenu')
-    if(activeMenu) {
-        this.setData({
-          activeMenu: Number(activeMenu)
-        })
-        wx.removeStorageSync('activeMenu')
-    }
-    // wx.navigateTo({
-    //   url: '/pages/views/all-exp-comment',
-    // })
-    // wx.navigateTo({
-    //   url: '/pages/vip/pay-e?source=' + '&orderNumber=200320175813010500000',
-    //   success: function(res) {
-    //     // 通过eventChannel向被打开页面传送数据
-    //     res.eventChannel.emit('copyUrl', { data: 'http:slkmsaksmalkmals.com' })
-    //   }
-    // })
     this.fnComputeH()
     this.getLocationCity()  
   },
@@ -67,6 +50,16 @@ Page({
     this.setData({
       userInfo: wx.getStorageSync("userInfo"), //用户信息
     })
+
+    // 點擊使用卡券 跳轉到首頁精選商家
+    let activeMenu = wx.getStorageSync('activeMenu')
+    if(activeMenu) {
+        this.setData({
+          activeMenu: Number(activeMenu)
+        })
+        wx.removeStorageSync('activeMenu')
+        this.onLoad()
+    }
   },
   // 切换菜单
   changeTab(e) {

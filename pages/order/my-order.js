@@ -218,28 +218,6 @@ Page({
     const orderCode = e.currentTarget.dataset.id
     const status = e.currentTarget.dataset.status
     const coverImgUrl = e.currentTarget.dataset.coverimgurl
-    // 状态
-    // var statusStr = '';
-    // switch (status) {
-    //   case 'A':
-    //     statusStr = '待参加';
-    //     break;
-    //   case 'B':
-    //     statusStr = '已验票';
-    //     break;
-    //   case 'C':
-    //     statusStr = '已完成';
-    //     break;
-    //   case 'D':
-    //     statusStr = '已退票';
-    //     break;
-    //   case 'E':
-    //     statusStr = '已过期';
-    //     break;
-    //   default:
-    //     statusStr = '其它';
-    //     break;
-    // }
     wx.navigateTo({
       // url: '/pages/views/order-detail?orderNumber=' + orderCode + '&userName=' + wx.getStorageSync("userInfo").userName + '&status=' + status + '&coverImgUrl=' + coverImgUrl + '&statusStr=' + statusStr
       url: '/pages/views/order-detail?orderNumber=' + orderCode
@@ -252,30 +230,17 @@ Page({
       url: '/pages/views/ticket-detail?orderCode=' + orderCode + '&userName=' + wx.getStorageSync("userInfo").userName
     })
   },
+  // 跳转到申请退款页面
   tapToRefund(e) {
-    const that = this
-    const orderCode = e.currentTarget.dataset.id
-    wx.showModal({
-      title: '提示',
-      content: '您确定申请退款吗?',
-      success (res) {
-        if (res.confirm) {
-          NT.showToast('处理中...')
-          api.MyOrderRefund({orderNumber:orderCode})
-          .then(res=>{
-            NT.showToastNone('成功')
-            that.poSelectDiscountList()
-            // that.refreshData(orderCode)
-          })
-          .catch(err=>{
-            NT.showModal(err.codeMsg||err.message||'请求失败！')
-          })
-        }
+    const index = e.currentTarget.dataset.index
+    const orderData = this.data.ticketData[index]
+    wx.navigateTo({
+      url: '/pages/order/apply-refund',
+      success: function(result) {
+        // 通过eventChannel向被打开页面传送数据
+        result.eventChannel.emit('params', orderData)
       }
     })
-    // wx.navigateTo({
-    //   url: `/pages/order/apply-refund`
-    // })
   },
   // 取消订单
   tapCancelOrder(e) {

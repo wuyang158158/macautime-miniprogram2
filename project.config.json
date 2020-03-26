@@ -115,8 +115,8 @@
 				},
 				{
 					"id": 8,
-					"name": "pages/coupon/my-coupon",
-					"pathName": "pages/coupon/my-coupon",
+					"name": "pages/views/order-detail",
+					"pathName": "pages/views/order-detail",
 					"query": "",
 					"scene": null
 				},

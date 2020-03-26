@@ -22,7 +22,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    NT.showToast('加载中...')
     this.getOrderDetails(options)
   },
 
@@ -84,6 +83,7 @@ Page({
   // },
   //请求详情
   getOrderDetails(options) {
+    NT.showToast('加载中...')
     api.getOrderDetails({ orderNumber: options.orderNumber  })
     .then(res=>{
       const data = res;
@@ -116,29 +116,14 @@ Page({
       }
     })
   },
-  // 申请退款
-  tapToRefund(e) {
-    const that = this
-    const orderCode = this.data.orderData.orderNumber
-    wx.showModal({
-      title: '提示',
-      content: '您确定申请退款吗?',
-      success (res) {
-        if (res.confirm) {
-          NT.showToast('处理中...')
-          api.MyOrderRefund({orderNumber:orderCode})
-          .then(res=>{
-            NT.showToastNone('成功')
-            setTimeout(()=> {
-              wx.navigateBack({
-                delta: 1
-              })
-            },1000)
-          })
-          .catch(err=>{
-            NT.showModal(err.codeMsg||err.message||'请求失败！')
-          })
-        }
+  // 跳转到申请退款页面
+  tapToRefund() {
+    const orderData = this.data.orderData
+    wx.navigateTo({
+      url: '/pages/order/apply-refund',
+      success: function(result) {
+        // 通过eventChannel向被打开页面传送数据
+        result.eventChannel.emit('params', orderData)
       }
     })
   },

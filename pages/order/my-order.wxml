@@ -49,7 +49,7 @@
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" data-price="{{item.moneny}}" data-reciprocal="{{item.reciprocal}}" catchtap="tapToPay">付款</button>
                         <!-- <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 'D' || item.status === 'E'}}" data-id="{{item.orderNumber}}" catchtap="deleteOrder">删除</button> -->
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" data-index="{{ index }}" wx:if="{{item.status === 3}}" catchtap="tapToExpComment">评价</button>
-                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="default-ticket" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}" catchtap="tapToRefund">退款</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="default-ticket" data-index="{{ index }}" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}" catchtap="tapToRefund">退款</button>
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}">使用</button>
                     </view>
                 </view>
