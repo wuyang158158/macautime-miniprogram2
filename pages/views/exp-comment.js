@@ -110,6 +110,7 @@ Page({
             delta: 1
           })
         },1000)
+      })
       //   return
       // }
       // NT.showToast('处理中...')
@@ -131,12 +132,8 @@ Page({
       //     })
       //   },1000)
       // })
-      .catch(err=>{
-        NT.showModal(err.codeMsg||err.message||'请求失败！')
-      })
-    })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||'请求失败！')
     })
     // console.log(textarea)
     // console.log(phone)

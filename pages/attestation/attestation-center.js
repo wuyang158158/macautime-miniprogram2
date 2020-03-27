@@ -1,20 +1,20 @@
 // pages/attestation/attestation-center.js
 var base = require('../../i18n/base.js');  //路径可能做相应调整
-const _ = base._; //翻译函数
+const _t = base._t().attestation; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    _t: base._t().attestation,
+    _t: _t,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
