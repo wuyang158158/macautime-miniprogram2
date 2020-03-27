@@ -64,6 +64,9 @@ Page({
   // 切换菜单
   changeTab(e) {
     const index = e.currentTarget.dataset.index
+    if(index === this.data.activeMenu) {
+      return 
+    }
     this.setData({ noData: false,activeMenu: index, 'params.start': PAGE.start })
     this.fnComputeH()
   },

@@ -176,7 +176,6 @@ Page({
     this.setData({
       query: query
     })
-    console.log('小程序分享', query)
     // 储存邀请码
     if(query.scene) {
       let scene = decodeURIComponent(query.scene)
