@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    _t: base._t(),
+    _t: base._t().address,
     region: [],
     area: '',
     id: '',
