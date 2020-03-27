@@ -149,7 +149,11 @@ Page({
     let data = {}
     let type = this.data.editType
     // 没有改动则不能保存修改
-    if(this.data.nickName === this.data.userInfo.nickName){
+    if(
+      (this.data.nickName === this.data.userInfo.nickName) || 
+      (this.data.sex === this.data.userInfo.sex) ||
+      (this.data.birthday === this.data.userInfo.birthday)
+      ){
       return NT.showModal('您好像没有改动哦～～')
     }
     // 修改昵称
