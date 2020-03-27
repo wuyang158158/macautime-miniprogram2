@@ -24,9 +24,13 @@
                     <view class="t-status f26 fw5 c-666666">
                         <text wx:if="{{item.status === 1 }}">待付款</text>
                         <text wx:if="{{item.status === 2 }}">待使用</text>
-                        <text wx:if="{{item.status === 3 }}">已完成</text>
-                        <text wx:if="{{item.status === 4 }}">退款售后</text>
-                        <text wx:if="{{item.status === 5 }}">已取消</text>
+                        <text wx:if="{{item.status === 3 }}">支付失败</text>
+                        <text wx:if="{{item.status === 4 }}">失效</text>
+                        <text wx:if="{{item.status === 5 }}">取消支付</text>
+                        <text wx:if="{{item.status === 6 }}">退订</text>
+                        <text wx:if="{{item.status === 7 }}">已完成</text>
+                        <text wx:if="{{item.status === 8 }}">已退订</text>
+                        <text wx:if="{{item.status === 9 }}">退订失败</text>
                     </view>
                 </view>
                 <view class="t-bottom ml16 mr16">
@@ -48,7 +52,7 @@
                         <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" catchtap="tapCancelOrder">取消</button>
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" data-price="{{item.moneny}}" data-reciprocal="{{item.reciprocal}}" catchtap="tapToPay">付款</button>
                         <!-- <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 'D' || item.status === 'E'}}" data-id="{{item.orderNumber}}" catchtap="deleteOrder">删除</button> -->
-                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" data-index="{{ index }}" wx:if="{{item.status === 3}}" catchtap="tapToExpComment">评价</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" data-index="{{ index }}" wx:if="{{item.status === 7}}" catchtap="tapToExpComment">评价</button>
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="default-ticket" data-index="{{ index }}" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}" catchtap="tapToRefund">退款</button>
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}">使用</button>
                     </view>

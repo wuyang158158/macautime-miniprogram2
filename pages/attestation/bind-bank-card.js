@@ -1,12 +1,15 @@
 // pages/attestation/bind-bank-card.js
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().attestation; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     array: ['中国银行', '工商银行', '招商银行', '建设银行', '农业银行', '平安银行'],
     cardTypeArray: ['储蓄卡', '银联信用卡', 'VISA信用卡'],
 
