@@ -1,19 +1,19 @@
 <!--pages/coupon/my-coupon.wxml-->
 <view class="container mb16">
     <view class="coupon-tab bt1 flex bg-white">
-      <view class="flex {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">探店预约</view>
-      <view class="flex {{ active === 2?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 2 }}">已完成探店</view>
+      <view class="flex {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">{{ _t['探店预约'] }}</view>
+      <view class="flex {{ active === 2?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 2 }}">{{ _t['已完成探店'] }}</view>
     </view>
     <!-- 内容 -->
     <view class="cont">
       <view wx:for="{{ accountList }}" wx:key="index" class="bg-white pl40 pr40 act">
         <view class="c-item bd1">
           <view class="c-title">{{ item.msName }}</view>
-          <view class="c-font">探店时间：{{ item.discoveryTime }}</view>
-          <view class="c-font">探店收益： {{ item.profitRatio }}元</view>
-          <view class="c-font limit">探店地址：{{ item.address }}<image src="/images/center/home_icon_location1.png" mode="aspectFill"></image></view>
+          <view class="c-font">{{ _t['探店时间'] }}：{{ item.discoveryTime }}</view>
+          <view class="c-font">{{ _t['探店收益'] }}： {{ item.profitRatio }}元</view>
+          <view class="c-font limit">{{ _t['探店地址'] }}：{{ item.address }}<image src="/images/center/home_icon_location1.png" mode="aspectFill"></image></view>
         </view>
       </view>
     </view>
-    <gh-empty prop-type="no-data" prop-text="暂无预约" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+    <gh-empty prop-type="no-data" prop-text="{{ _t['暂无预约'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
 </view>
