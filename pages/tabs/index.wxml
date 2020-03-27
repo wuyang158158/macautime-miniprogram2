@@ -58,7 +58,7 @@
               </view>
             </navigator>
           </view>
-          <gh-empty prop-type="no-data" prop-text="还没有任何内容哦~~" prop-mt="30" wx:if="{{ noData }}"></gh-empty>
+          <gh-empty prop-type="no-data" prop-text="还没有任何内容哦~~" prop-mt="20" wx:if="{{ noData }}"></gh-empty>
       </view>
 
     <!-- 消息通知 -->
@@ -116,7 +116,7 @@
       </view> -->
 
       <gh-kolList kolList="{{kolList}}" wx:if="{{kolList.length}}"></gh-kolList>
-      <gh-empty prop-type="no-data" prop-text="还没有任何内容哦~~" prop-mt="30"  wx:if="{{ noData }}"></gh-empty>
+      <gh-empty prop-type="no-data" prop-text="还没有任何内容哦~~" prop-mt="20"  wx:if="{{ noData }}"></gh-empty>
 
     </view>
 
@@ -160,7 +160,7 @@
           
         </view>
       </view>
-      <gh-empty prop-type="no-data" prop-text="还没有任何内容哦~~" prop-mt="30" wx:if="{{ noData }}"></gh-empty>
+      <gh-empty prop-type="no-data" prop-text="还没有任何内容哦~~" prop-mt="20" wx:if="{{ noData }}"></gh-empty>
 
     </view>
     <!-- 专访栏目 -->
@@ -186,7 +186,7 @@
           </view>
         </view>
       </view>
-      <gh-empty prop-type="no-data" prop-text="还没有任何内容哦~~" prop-mt="30" wx:if="{{ noData }}"></gh-empty>
+      <gh-empty prop-type="no-data" prop-text="还没有任何内容哦~~" prop-mt="20" wx:if="{{ noData }}"></gh-empty>
     </view>
     <!-- 推荐体验 1.0 -->
     <!-- <view class="recommend" wx:if="{{recommend.length}}">
