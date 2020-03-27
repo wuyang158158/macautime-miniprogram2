@@ -57,26 +57,32 @@ Page({
     })
   },
   downloadImg(e) {//触发函数
-    wx.saveImageToPhotosAlbum({
-      filePath: e.currentTarget.dataset.url,
-      success(res) {
-        NT.toastFn('已保存', 1200)
-      },
-      fail(res) {
-        
-      },
-      complete(res) {
-        console.log(res)
-        if (res.errMsg === 'saveImageToPhotosAlbum:fail auth deny') {
-          console.log(res)
-          wx.openSetting({
-            success(res) {
-              console.log(res.authSetting)
+    wx.getImageInfo({
+      src: e.currentTarget.dataset.url,
+      success (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success(res) {
+            NT.toastFn('已保存', 1200)
+          },
+          fail(res) {
+            
+          },
+          complete(res) {
+            console.log(res)
+            if (res.errMsg === 'saveImageToPhotosAlbum:fail auth deny') {
+              console.log(res)
+              wx.openSetting({
+                success(res) {
+                  console.log(res.authSetting)
+                }
+              })
             }
-          })
-        }
+          }
+        })
       }
     })
+    
   },
   /**
    * 生命周期函数--监听页面卸载
