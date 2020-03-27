@@ -21,10 +21,12 @@ const languageMap = {
         '搜索地点': '搜索地点'
     },
     'attestation': {
-        'BIND_BANK_CARD': {
+        'ATTESTATION_CENTER': {
             '认证中心': '认证中心',
             'KOL认证': 'KOL认证',
             '实名认证': '实名认证',
+        },
+        'BIND_BANK_CARD': {
             '绑定银行卡': '绑定银行卡',
             '持卡人': '持卡人',
             '请输入持卡人姓名': '请输入持卡人姓名',

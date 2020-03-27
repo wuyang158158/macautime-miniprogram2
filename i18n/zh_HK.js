@@ -22,10 +22,12 @@ const languageMap = {
     },
     
     'attestation': {
-        'attestation': {
+        'ATTESTATION_CENTER': {
             '认证中心': '認證中心',
             'KOL认证': 'KOL認證',
             '实名认证': '實名認證',
+        },
+        'BIND_BANK_CARD': {
             '绑定银行卡': '綁定銀行卡',
             '持卡人': '持卡人',
             '请输入持卡人姓名': '請輸入持卡人姓名',

@@ -1,6 +1,6 @@
 // pages/attestation/attestation-center.js
 var base = require('../../i18n/base.js');  //路径可能做相应调整
-const _t = base._t().attestation; //翻译函数
+const _t = base._t().attestation.ATTESTATION_CENTER; //翻译函数
 Page({
 
   /**
