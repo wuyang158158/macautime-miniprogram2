@@ -236,6 +236,15 @@ Page({
         })
       })
       .catch((err)=>{
+        if(err.code === '10019'){
+          this.setData({
+            noData: false,
+          })
+          wx.switchTab({
+            url: '/pages/tabs/index'
+          })
+          return false
+        }
         this.setData({
           noData: {
             text: err.message + '下拉刷新～' || '登录失败，下拉刷新重新登录～～',
