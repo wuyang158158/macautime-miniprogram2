@@ -2,12 +2,15 @@
 import PAGE from "../../utils/config.js"
 // 引用百度地图微信小程序JSAPI模块 
 import bmap from "../../utils/bmap-wx.min.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().components
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     sugData: '' 
   },
 

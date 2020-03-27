@@ -2,6 +2,8 @@
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
 import FormValidator from "../../utils/validator.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().login
 
 const app = getApp();
 var home = false;
@@ -9,18 +11,18 @@ var acDetail = false;
 
 const loginInputFields = [{
     "name": "username",
-    "desc": "手机号码",
+    "desc": _t['手机号码'],
     "pattern": /^(([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+)|(1[0-9]{10})$/,
     "isNull": false,
-    "placeholder": "请输入手机号码",
+    "placeholder": _t['请输入'] + _t['手机号码'],
     "maxlength": 30
   },
   {
     "name": "password",
-    "desc": "密码",
+    "desc": _t['密码'],
     "type": "password",
     "isNull": false,
-    "placeholder": "请输入密码",
+    "placeholder":  _t['请输入'] + _t['密码'],
     "maxlength": 20
   }
 ]
@@ -32,6 +34,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     inputFields: loginInputFields,
     prompt: "",
     inputData: {},
@@ -135,11 +138,11 @@ Page({
                           register: true
                         })
                       }else{
-                        NT.showModal(err.codeMsg||'登录失败！')
+                        NT.showModal(err.codeMsg||_t['登录失败！'])
                       }
                     })
                   } else {
-                    console.log('登录失败！' + res.errMsg)
+                    // console.log('登录失败！' + res.errMsg)
                   }
                 }
               })
@@ -173,6 +176,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(query) {
+    wx.setNavigationBarTitle({
+      title: _t['登录']
+    });
     this.setData({
       query: query
     })
@@ -207,7 +213,7 @@ Page({
         ticket: query.ticket
       })
     }else{
-      NT.showToast('登录中...')
+      NT.showToast(_t['登录中...'])
       // 获取用户信息
       api.login({ spreadCode: this.data.spreadCode })
       .then((res) => {
@@ -216,7 +222,7 @@ Page({
           wx.removeStorageSync('userInfo')
           this.setData({
             noData: {
-              text: '糟糕，你已被封号了~~',
+              text: _t['糟糕，你已被封号了~~'],
               type: 'no_logging'
             },
           })
@@ -246,7 +252,7 @@ Page({
         }
         this.setData({
           noData: {
-            text: err.message || '登录失败，下拉刷新重新登录～～',
+            text: err.message || _t['登录失败，下拉刷新重新登录~~'],
             type: 'no-data'
           },
         })
@@ -309,7 +315,7 @@ Page({
             key:"userInfo",
             data:res
           })
-          NT.toastFn('登录成功！',1000)
+          NT.toastFn(_t['登录成功！'],1000)
           if(that.data.ticket){ //通知票劵页面需要刷新
             app.globalData.ticket = true
           }
@@ -331,7 +337,7 @@ Page({
         })
         .catch((err)=>{
           console.log(err)
-          NT.showModal(err.message||'登录失败！')
+          NT.showModal(err.message||_t['登录失败！'])
         })
       },
       fail : function(err) {

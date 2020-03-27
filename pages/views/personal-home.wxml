@@ -6,7 +6,9 @@
         <view class="pic-default-new z-index5 rgba40">
             <view class="p-avatar relative">
                 <image class="pic-default-new p-avatar-icon" src="{{ userInfo.headIco || '/images/default/avatar.png' }}" mode="aspectFill" />
-                <image class="p-avatar-ac" src="/images/center/avatar_vip1.png" wx:if="{{ userInfo.level }}" />
+                    <image class="p-avatar-ac" wx:if="{{ userInfo.level && userInfo.kolType === 2 }}" src="/images/center/avatar_vip-1.png" mode="aspectFill"/>
+                    <image class="p-avatar-ac" wx:if="{{ userInfo.level && (userInfo.kolType === 1 || userInfo.kolType === 3) }}" src="/images/center/avatar_vip-2.png" mode="aspectFill"/>
+                    <image class="p-avatar-ac" wx:if="{{ userInfo.level && !userInfo.kolType }}" src="/images/center/avatar_vip.png" mode="aspectFill"/>
             </view>
             <view class="f32 c-FFFFFF fw5 mt32">{{ userInfo.nickName }}</view>
             <view class="flex c-center">

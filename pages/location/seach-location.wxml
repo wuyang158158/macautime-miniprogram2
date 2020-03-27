@@ -1,7 +1,7 @@
 <!--pages/location/seach-location.wxml-->
 <view class="container">
   <!-- 搜索组件 -->
-  <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="seach" source="location" input-val="{{inputVal}}" inputShowed searchPlaceholder="搜索地点"></gh-searchbar>
+  <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="seach" source="location" input-val="{{inputVal}}" inputShowed searchPlaceholder="{{ _t['搜索地点'] }}"></gh-searchbar>
   
 
   <view class="content pl32 pr32">
@@ -10,6 +10,6 @@
         <view class="f24 c-999999">{{item.province+item.city+item.district}}</view>
     </view>
 
-    <gh-empty prop-type="no-order" prop-text="搜索地点" prop-mt="250" wx:if="{{!sugData.length}}"></gh-empty>
+    <gh-empty prop-type="no-order" prop-text="{{ _t['搜索地点'] }}" prop-mt="250" wx:if="{{!sugData.length}}"></gh-empty>
   </view>
 </view>
