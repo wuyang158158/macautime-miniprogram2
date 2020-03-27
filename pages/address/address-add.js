@@ -1,12 +1,15 @@
 // pages/address/address-add.js
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
+var base = require('../../i18n/base.js');
+const _ = base._; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: base._t(),
     region: [],
     area: '',
     id: '',
@@ -27,7 +30,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: options.addressId?'编辑地址':'添加新地址'
+      title: options.addressId?_('编辑地址'):_('添加新地址')
     })
     // 地址回显
     if(options.addressId) {
@@ -81,19 +84,19 @@ Page({
       data.id = this.data.id
     }
     if (!data.realname) {
-      NT.showModal('请输入收货人姓名！')
+      NT.showModal(_('请输入收货人姓名！'))
       return
     }
     if (!data.phone) {
-      NT.showModal('请输入联系电话！')
+      NT.showModal(_('请输入联系电话！'))
       return
     }
     if (!data.province) {
-      NT.showModal('请选择所在地区！')
+      NT.showModal(_('请选择所在地区！'))
       return
     }
     if (!data.addr) {
-      NT.showModal('请输入详细地址！')
+      NT.showModal(_('请输入详细地址！'))
       return
     }
     if(this.data.canSubmit) {
@@ -101,10 +104,10 @@ Page({
     } else {
       return false
     }
-    NT.showToast('请稍后..')
+    NT.showToast(_('请稍后..'))
     api.ctAddressUpdata(data).then(res => {
       wx.showToast({
-        title: '保存成功',
+        title: _('保存成功'),
         success(res) {
           that.setData({ canSubmit: true })
           setTimeout(res => {
@@ -116,13 +119,13 @@ Page({
       })
     }).catch( err => {
       that.setData({ canSubmit: true })
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _('请求失败！'))
     })
     
   },
   // 地址回显
   fnGetAddress(id) {
-    NT.showToast('加载中...')
+    NT.showToast(`${_('加载中')}...`)
     api.ctAddressDetail({ id : id}).then(res => {
       this.setData({
         submitParam: {
@@ -138,7 +141,7 @@ Page({
         region: [res.province, res.city, res.county]
       })
     }).catch(err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _('请求失败！'))
     })
   },
   /**

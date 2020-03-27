@@ -117,8 +117,8 @@
 				},
 				{
 					"id": 8,
-					"name": "pages/views/order-detail",
-					"pathName": "pages/views/order-detail",
+					"name": "pages/address/address-list",
+					"pathName": "pages/address/address-list",
 					"query": "",
 					"scene": null
 				},
