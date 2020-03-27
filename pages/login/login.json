@@ -2,7 +2,7 @@
   "usingComponents": {
     "gh-empty": "/components/empty/empty"
   },
-  "navigationBarTitleText": "登录",
+  "navigationBarTitleText": "",
   "backgroundTextStyle": "dark",
   "enablePullDownRefresh": true,
   "navigationStyle": "default",
