@@ -46,7 +46,8 @@ Page({
     usSysLabel: [],
     userId: '',
     isMine: false,
-    isFocus: false
+    isFocus: false,
+    options: {}
   },
 
   /**
@@ -54,7 +55,7 @@ Page({
    */
   onLoad: function (options) {
     if(options && options.id) {
-      this.setData({userId: options.id,isMine: options.id === wx.getStorageSync('userInfo').userId})
+      this.setData({ options: options, userId: options.id,isMine: options.id === wx.getStorageSync('userInfo').userId})
     } else {
       this.setData({isMine: true })
     }
@@ -77,11 +78,10 @@ Page({
   fnGetMyVideoInfo() {
     NT.showToast('加载中...')
     api.ctMyVideoc({ userId: this.data.userId }).then(res => {
-      console.log(res)
       res.vobaseInfo.forEach(ele => {
         ele.contentUrl = encodeURIComponent(ele.contentUrl)
       })
-      this.setData({ usSysLabel: res.usSysLabel,userInfo: res.usBaseInfo,videoList: res.vobaseInfo, noData2:!res.vobaseInfo.length })
+      this.setData({ isFocus: res.isfocus,usSysLabel: res.usSysLabel,userInfo: res.usBaseInfo,videoList: res.vobaseInfo, noData2:!res.vobaseInfo.length })
     }).catch( err => {
       this.setData({ noData2: true, noData1: true })
       NT.showModal(err.codeMsg || err.message || '请求失败！')
@@ -132,7 +132,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.onLoad()
+    this.onLoad(this.data.options)
     // NT.showToast('刷新中...')
     // this.setData({
     //   params: { //请求首页推荐列表
@@ -233,7 +233,6 @@ Page({
       }
     })
     .catch(err=>{
-      console.log(err)
       NT.showModal(err.codeMsg||err.message||'请求失败！')
       this.setData({
         loadmore: false,
