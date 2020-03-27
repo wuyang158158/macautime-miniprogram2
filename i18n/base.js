@@ -1,6 +1,6 @@
 function getLanguage() {
     //返回缓存中的language属性 (en / zh_CN) 	
-    return wx.getStorageSync('Language') || 'zh_CN'
+    return wx.getStorageSync('Language') || 'zh'
 };
   
 function translate(){
@@ -27,15 +27,14 @@ let tabBarLangs = {
 };
 // 设置 TabBar 语言
 function setTabBarLang() {
-    // var L = getLanguage()
-    // let tabBarLang = tabBarLangs.L;
-    
-    // tabBarLang.forEach((element, index) => {
-    //   wx.setTabBarItem({
-    //     'index': index,
-    //     'text': element
-    //   });
-    // });
+    var L = getLanguage()
+    let tabBarLang = tabBarLangs[L];
+    tabBarLang.forEach((element, index) => {
+      wx.setTabBarItem({
+        'index': index,
+        'text': element
+      });
+    });
 };
   
 module.exports = {

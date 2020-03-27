@@ -27,6 +27,7 @@ const global = {
   deviceMode: 3, //deviceMode   1-IOS 2-Android 3-小程序
   sellerId: '', 
   userId: wx.getStorageSync('userInfo').userId || ''
+  // , langType: 1 //1为简体，2为繁体
 }
 
 /**
@@ -45,6 +46,12 @@ const execute = (url, method, params, resolve, reject) => {
   //   "password":"123456","account":"18168723160","verCode":"1"
   // }
   global.userId = wx.getStorageSync('userInfo').userId || ''
+  var langType = 1 //简体
+  var L = wx.getStorageSync('Language')
+  if(L === 'zh_HK' || L === 'zh_MO' || L === 'zh_TW'){
+    langType = 2 //繁体
+  }
+  // global.langType = langType
   const body = params || {}
   wx.request({
     url: baseUrl + url,

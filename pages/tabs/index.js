@@ -8,7 +8,6 @@ import bmap from "../../utils/bmap-wx.min.js"
 
 var base = require('../../i18n/base.js');  //路径可能做相应调整
 const _ = base._; //翻译函数
-const setTabBarLang = base.setTabBarLang; //翻译函数
 
 Page({
   /**
@@ -54,7 +53,8 @@ Page({
     this.setData({
       _t: base._t(), //翻译
     });
-    setTabBarLang()
+
+    base.setTabBarLang()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
