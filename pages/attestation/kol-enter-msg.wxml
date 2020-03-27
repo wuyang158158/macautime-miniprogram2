@@ -47,7 +47,7 @@
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
-                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapToBack">确定</button>
+                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapResubmit">重新提交审核</button>
             </view>
         </view>
     </view>

@@ -77,5 +77,10 @@ Page({
     wx.navigateBack({
       delta: 2
     })
+  },
+  tapResubmit() {
+    wx.redirectTo({
+      url: '/pages/attestation/kol-enter'
+    })
   }
 })
