@@ -21,7 +21,7 @@
   </view>
 
   <!-- 底部 -->
-  <view class="bot-section flex">
+  <view class="bot-section flex {{isIphoneX ?'fix-iphonex-button':''}}">
     <view class="flex">总注册量 <text>{{ accountList.length || 0  }}</text></view>
     <button class="green-btn grey" data-flag="true" data-bind="1" bindtap="controlModal">领取条件</button>
     <button class="green-btn" bindtap="receiveT">领取奖励</button>
