@@ -4,14 +4,13 @@ import PAGE from "../../utils/config.js"
 import util from "../../utils/util.js"
 
 // pages/views/ac-detail.js
-const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isIphoneX: app.globalData.isIphoneX, //iphonex适配
+    isIphoneX: getApp().globalData.isIphoneX, //iphonex适配
     roleFrom: { //评论请求参数
       // msId: 
     }, 

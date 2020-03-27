@@ -9,7 +9,7 @@ page{
     text-align: center;
     display: inline-block;
     color: #00A653;
-    border: 1rpx solid #00A653;
+    border: 2rpx solid #00A653;
     border-radius: 40rpx;
     margin-right: 20rpx;
     margin-right: 20rpx;

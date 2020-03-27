@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isIphoneX: getApp().globalData.isIphoneX, //iphonex适配
     showModal: false,
     code: '',
     noData: false,

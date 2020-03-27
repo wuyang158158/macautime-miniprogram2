@@ -19,7 +19,7 @@ page{
     text-align: center;
     display: inline-block;
     color: #00A653;
-    border: 1rpx solid #00A653;
+    border: 2rpx solid #00A653;
     border-radius: 40rpx;
     margin-right: 20rpx;
     margin-right: 20rpx;
@@ -27,6 +27,10 @@ page{
 .item-ac{
     background: #00A653;
     color: #fff;
+}
+.item-custom{
+    margin: 0 auto;
+    background: #fff;
 }
 .btn{
     position: fixed;
