@@ -13,7 +13,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    _t: base._t(), //翻译
+    _t: base._t().components, //翻译
   },
 
   /**
