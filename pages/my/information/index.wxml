@@ -71,5 +71,5 @@
       </view>
       <view class="end-lint f24 c-666666 flex">* 100字以内，不得违反法律法规及<text bindtap="tapToAboutUs">澳门时光平台信息规范</text></view>
     </view>
-    <view class="footer-btn" bindtap="fnUpdataInfo">确定</view>
+    <view class="footer-btn {{isIphoneX ?'fix-iphonex-button1':''}}" bindtap="fnUpdataInfo">确定</view>
 </view>

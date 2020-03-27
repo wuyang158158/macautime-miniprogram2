@@ -23,6 +23,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isIphoneX: getApp().globalData.isIphoneX, //iphonex适配
     editType: 0, //类型
     Len: 0, //文字长度
     LenT: 0, //简介长度
@@ -147,6 +148,10 @@ Page({
   fnUpdataInfo() {
     let data = {}
     let type = this.data.editType
+    // 没有改动则不能保存修改
+    if(this.data.nickName === this.data.userInfo.nickName){
+      return NT.showModal('您好像没有改动哦～～')
+    }
     // 修改昵称
     if (type === 2 && this.data.nickName.length < 2) {
       return NT.showModal('请输入2-15个字')

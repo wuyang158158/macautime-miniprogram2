@@ -5,7 +5,7 @@
             <view class="c-B3">编辑</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
-        <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.headBackIco || '' }}" data-type="1" bindtap="fnLinkToEdit">
+        <view class="flex pt32 pb32" data-cont="{{ userInfo.headBackIco || '' }}" data-type="1" bindtap="fnLinkToEdit">
             <view class="flex-1">主题背景</view>
             <view class="c-B3">更改</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
@@ -17,7 +17,7 @@
             <view class="c-B3">{{ kolClass? kolClass: '请选择' }}</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
-        <view class="flex bd1 pt32 pb32" data-url="/pages/attestation/kol-tag?source=class" bindtap="fnLinkToClass">
+        <view class="flex pt32 pb32" data-url="/pages/attestation/kol-tag?source=class" bindtap="fnLinkToClass">
             <view class="flex-1">申请类别</view>
             <view class="c-B3">{{ choseTagClass? choseTagClass: '请选择' }}</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>

@@ -880,6 +880,18 @@ page {
     width: 100%;
     background: #fff;
 }
+.fix-iphonex-button1 {
+    bottom:28rpx!important;
+}
+.fix-iphonex-button1::after {
+    content: ' ';
+    position: fixed;
+    bottom: 0!important;
+    left: 0;
+    height: 28rpx!important;
+    width: 100%;
+    background: rgba(0,166,83,1);
+}
 /* 下单按钮 */
 .orders{
     width: 100%;
