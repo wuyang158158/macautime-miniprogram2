@@ -193,19 +193,6 @@ Page({
       NT.showModal('请至少填写一个其它平台信息！')
       return
     }
-
-    // 平台信息数据非空校验 start
-    let count = 0
-    query.kolOtherPlatformList.forEach(ele => {
-      if(ele.nickName) {
-        count++
-      }
-    })
-    if(query.kolOtherPlatformList.length !== count) {
-      NT.showModal('请填写完整添加的平台信息！')
-      return 
-    }
-    // 平台信息数据非空校验 end
     NT.showToast('处理中...')
     api.usInsertKol(query)
     .then(res=>{
