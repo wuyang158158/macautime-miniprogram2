@@ -4,7 +4,11 @@ import PAGE from "../../utils/config.js"
 import api from "../../data/api.js"
 import util from "../../utils/util.js"
 import bmap from "../../utils/bmap-wx.min.js"
-const app = getApp()
+
+
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _ = base._; //翻译函数
+const setTabBarLang = base.setTabBarLang; //翻译函数
 
 Page({
   /**
@@ -35,7 +39,22 @@ Page({
    */
   onLoad: function(options) {
     this.fnComputeH()
-    this.getLocationCity()  
+    this.getLocationCity()
+
+    // 登录页面切换中英文需要
+    if (base.getLanguage() == 'zh_CN') {
+      this.setData({
+        language: 'English',
+      })
+    } else {
+      this.setData({
+        language: '中文',
+      })
+    };
+    this.setData({
+      _t: base._t(), //翻译
+    });
+    setTabBarLang()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

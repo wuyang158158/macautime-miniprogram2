@@ -15,7 +15,7 @@
     <view class="vip" wx:else>
       <image class="header-bg header-bg-h" src="/images/index/index-bgv.png" mode="aspectFill"/>
       <view class="header-ct">
-        <view class="title f44 c-222222 pb16">澳门时光，享受美好旅行体验</view>
+        <view class="title f44 c-222222 pb16">{{ _t['澳门时光，享受美好旅行体验'] }}</view>
         <view class="f24 c-222222">享受澳门时光所有门店内部所有优惠券</view>
         <!-- <view class="location f24 flex" bindtap="tapToMapActivity">
           <image class="location-icon" src="/images/index/index_icon_location.png" mode="aspectFill"/>

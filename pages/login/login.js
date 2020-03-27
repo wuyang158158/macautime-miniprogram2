@@ -246,7 +246,7 @@ Page({
         }
         this.setData({
           noData: {
-            text: err.message + '下拉刷新～' || '登录失败，下拉刷新重新登录～～',
+            text: err.message || '登录失败，下拉刷新重新登录～～',
             type: 'no-data'
           },
         })
