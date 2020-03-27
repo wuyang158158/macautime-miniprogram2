@@ -1,15 +1,18 @@
 import api from "../../data/api"
 import NT from "../../utils/native.js"
 // pages/attestation/kol-class.js
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().attestation.KOL_CLASS; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     tagArray: [
       {
-        remark: '领域KOL',
+        remark: _t['领域KOL'],
         selected: false
       },
       {
@@ -23,6 +26,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['KOL类别']
+    });
     var kolClass = wx.getStorageSync('kolClass')
     var tagArray = this.data.tagArray
     tagArray.forEach(element => {
@@ -118,7 +124,7 @@ Page({
         delta: 1
       })
     }else{
-      NT.showToastNone('请选择您的KOL类别标签！')
+      NT.showToastNone(_t['请选择您的KOL类别标签']+'！')
     }
     
   }

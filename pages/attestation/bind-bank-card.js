@@ -2,7 +2,7 @@
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
 var base = require('../../i18n/base.js');  //路径可能做相应调整
-const _t = base._t().attestation; //翻译函数
+const _t = base._t().attestation.BIND_BANK_CARD; //翻译函数
 Page({
 
   /**
@@ -29,7 +29,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.setNavigationBarTitle({
+      title: _t['绑定银行卡']
+    });
   },
 
   /**
@@ -101,30 +103,30 @@ Page({
     let data = Object.assign(this.data.backQuery, params)
     console.log(data)
     if(!data.realName){
-      NT.showModal('请输入持卡人姓名！')
+      NT.showModal( _t['请输入持卡人姓名'] + '！' )
       return
     }
     if(!data.bankCode){
-      NT.showModal('请输入银行卡号！')
+      NT.showModal( _t['请输入银行卡号'] + '！' )
       return
     }
     if(!data.bankName){
-      NT.showModal('请选择银行名称！')
+      NT.showModal( _t['请选择银行名称！'] )
       return
     }
     if(!data.cardType){
-      NT.showModal('请选择卡类型！')
+      NT.showModal( _t['请选择卡类型'] + '！' )
       return
     }
     if(!data.reservedPhone){
-      NT.showModal('请输入预留手机号！')
+      NT.showModal( _t['请输入手机号码'] + '！' )
       return
     }
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     api.usInsertCard(data)
     .then(res=>{
       console.log(res)
-      NT.toastFn('处理成功',1000)
+      NT.toastFn(_t['处理成功'],1000)
       setTimeout(()=>{
         wx.navigateBack({
           delta: 1
@@ -132,7 +134,7 @@ Page({
       },1000)
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   }
 })

@@ -3,34 +3,34 @@
     <form bindsubmit="formSubmit">
     <view class="list bg-white mt16">
         <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
-            <view class="">持卡人</view>
-            <input class="flex-1 weui-input t-right" name="realName" placeholder="请输入持卡人姓名" value=""/>
+            <view class="">{{_t['持卡人']}}</view>
+            <input class="flex-1 weui-input t-right" name="realName" placeholder="{{_t['请输入持卡人姓名']}}" value=""/>
         </view>
         <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
-            <view class="">银行卡号</view>
-            <input class="flex-1 weui-input t-right" name="bankCode" placeholder="请输入银行卡号" value=""/>
+            <view class="">{{_t['银行卡号']}}</view>
+            <input class="flex-1 weui-input t-right" name="bankCode" placeholder="{{_t['请输入银行卡号']}}" value=""/>
         </view>
         <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
-            <view class="">银行名称</view>
+            <view class="">{{_t['银行名称']}}</view>
             <picker class="t-right flex-1" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
                 <view class="picker flex">
-                    <input class="flex-1 weui-input t-right" disabled name="bankName" placeholder="银行名称" disabled value="{{array[index]}}"/>
+                    <input class="flex-1 weui-input t-right" disabled name="bankName" placeholder="{{_t['银行名称']}}" disabled value="{{array[index]}}"/>
                     <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
                 </view>
             </picker>
         </view>
         <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
-            <view class="">卡类型</view>
+            <view class="">{{_t['卡类型']}}</view>
             <picker class="t-right flex-1" bindchange="bindPickerChangeCardType" value="{{cardTypeIndex}}" range="{{cardTypeArray}}">
                 <view class="picker flex">
-                    <input class="flex-1 weui-input t-right" disabled placeholder="请选择卡类型" name="cardType" value="{{cardTypeArray[cardTypeIndex]}}"/>
+                    <input class="flex-1 weui-input t-right" disabled placeholder="{{_t['请选择卡类型']}}" name="cardType" value="{{cardTypeArray[cardTypeIndex]}}"/>
                     <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
                 </view>
             </picker>
         </view>
         <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
-            <view class="">手机号码</view>
-            <input class="flex-1 weui-input t-right" name="reservedPhone" placeholder="请输入手机号码" type="number" maxlength="11" value=""/>
+            <view class="">{{_t['手机号码']}}</view>
+            <input class="flex-1 weui-input t-right" name="reservedPhone" placeholder="{{_t['请输入手机号码']}}" type="number" maxlength="11" value=""/>
         </view>
         <!-- <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
             <view class="">验证码</view>
@@ -39,6 +39,6 @@
         </view> -->
     </view>
 
-    <button class="weui-btn ml16 mr16" type="primary" formType="submit">提交</button>
+    <button class="weui-btn ml16 mr16" type="primary" formType="submit">{{_t['提交']}}</button>
     </form>
 </view>

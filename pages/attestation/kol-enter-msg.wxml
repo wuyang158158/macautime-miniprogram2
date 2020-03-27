@@ -6,8 +6,8 @@
         </view>
         <view class="weui-msg__text-area pl32 pr32">
             <view class="weui-msg__title f36">提交完成</view>
-            <view class="f28 c-333333 mt32">审核编号：201910150001</view>
-            <view class="weui-msg__desc f28 c-999999">请使用主平台账号复制如下内容：“KOL认证，注册手机号：138***，审核编号：201910150001”私信给澳门时光官方账户：微博：@果核-澳门时光，抖音：@果核-澳门时光，小红书：@果核-澳门时光。以确认身份，我们会于 7 个工作日发送审核结果。</view>
+            <view class="f28 c-333333 mt32">{{_t['审核编号']}}：201910150001</view>
+            <view class="weui-msg__desc f28 c-999999">{{_t['请使用主平台账号复制如下内容：“KOL认证，注册手机号：138***，审核编号：201910150001”私信给澳门时光官方账户：微博：@果核-澳门时光，抖音：@果核-澳门时光，小红书：@果核-澳门时光。以确认身份，我们会于 7 个工作日发送审核结果。']}}</view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
@@ -23,13 +23,13 @@
         <view class="weui-msg__text-area pl32 pr32">
             <view class="weui-msg__title f36">耐心等待</view>
             <view class="weui-msg__desc f28 c-999999">
-                <view class="t-c">您的申请还在审核中请耐心等待</view>
-                <view class="t-c">审核通过会发送短信进行通知</view>
+                <view class="t-c">{{_t['您的申请还在审核中请耐心等待']}}</view>
+                <view class="t-c">{{_t['审核通过会发送短信进行通知']}}</view>
             </view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
-                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapToBack">确定</button>
+                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapToBack">{{_t['确定']}}</button>
             </view>
         </view>
     </view>
@@ -39,15 +39,15 @@
             <icon type="warn" size="100"></icon>
         </view>
         <view class="weui-msg__text-area pl32 pr32">
-            <view class="weui-msg__title f36">审核失败</view>
+            <view class="weui-msg__title f36">{{_t['审核失败']}}</view>
             <view class="weui-msg__desc f28 c-999999 t-c">
-                <view class="t-c">您的申请审核失败！</view>
+                <view class="t-c">{{_t['您的申请审核失败！']}}</view>
                 <!-- <view >审核通过会发送短信进行通知</view> -->
             </view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
-                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapResubmit">重新提交审核</button>
+                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapResubmit">{{_t['重新提交审核']}}</button>
             </view>
         </view>
     </view>

@@ -51,7 +51,7 @@ const execute = (url, method, params, resolve, reject) => {
   if(L === 'zh_HK' || L === 'zh_MO' || L === 'zh_TW'){
     langType = 2 //繁体
   }
-  // global.langType = langType
+  global.langType = langType
   const body = params || {}
   wx.request({
     url: baseUrl + url,

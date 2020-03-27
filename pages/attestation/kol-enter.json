@@ -2,7 +2,7 @@
   "usingComponents": {
     "gh-empty": "/components/empty/empty"
   },
-  "navigationBarTitleText": "KOL 入驻",
+  "navigationBarTitleText": "",
   "backgroundTextStyle": "dark",
   "navigationStyle": "default"
 }

@@ -2,16 +2,19 @@
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
 import config from "../../data/api_config.js"
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().attestation.KOL_ENTER; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     baseImageHost: config.baseImageHost,
     userAgreement: true,
     accordingImage: '',
-    array: ['微博', '抖音', '快手', '微视'],
+    array: ['微博', '抖音', '快手', _t['微视']],
     platformList: [
       {
         platformName: '微博',
@@ -27,6 +30,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['KOL 入驻']
+    });
     this.usKolInfoById()
   },
 
@@ -121,7 +127,7 @@ Page({
   // 点击下一波
   tapNext() {
     if(!this.data.userAgreement){
-      NT.showToastNone('需要同意服务协议才能继续提交',2000)
+      NT.showToastNone(_t['需要同意服务协议才能继续提交'],2000)
       return
     }
     
@@ -178,22 +184,22 @@ Page({
       // sysLabelList: this.data.choseTag
     }
     if(!this.data.choseTag.length){
-      NT.showModal('请选择优势特长！')
+      NT.showModal(_t['请选择优势特长！'])
       return
     }
     if(!this.data.kolClass){
-      NT.showModal('请选择KOL类别！')
+      NT.showModal(_t['请选择KOL类别！'])
       return
     }
     if(!query.accordingImage){
-      NT.showModal('请上传个人形象照！')
+      NT.showModal(_t['请上传个人形象照！'])
       return
     }
     if(!query.kolOtherPlatformList.length){
-      NT.showModal('请至少填写一个其它平台信息！')
+      NT.showModal(_t['请至少填写一个其它平台信息！'])
       return
     }
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     api.usInsertKol(query)
     .then(res=>{
       wx.navigateTo({
@@ -201,7 +207,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message|| _t['请求失败！'])
     })
   },
   // 获取kol用户信息
@@ -220,7 +226,7 @@ Page({
       var choseTagClass = res.usSysLabelTyle ? res.usSysLabelTyle.labelRemark : ''
       wx.setStorage({key:"choseTagClass",data: choseTagClass})
       //kol类别
-      var kolClass = res.tyle == '1' ? '普通KOL' : '领域KOL'
+      var kolClass = res.tyle == '1' ? '普通KOL' : _t['领域KOL']
       wx.setStorage({key:"kolClass",data: kolClass})
       //用户标签
       var choseTag = res.usSysLabel || []
@@ -252,7 +258,7 @@ Page({
     .catch(err=>{
       this.setData({
         noData: {
-          text: err.message ||'请求失败！',
+          text: err.message || _t['请求失败！'],
           type: err.code === '00'? 'no-network' : 'no-data'
         }
       })

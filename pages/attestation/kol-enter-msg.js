@@ -1,10 +1,13 @@
 // pages/attestation/kol-enter-msg.js
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().attestation.KOL_ENTER_MSG; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     isAudit: false, //是否是审核中状态
   },
 
@@ -16,7 +19,7 @@ Page({
       isCertificationKol: options.isCertificationKol || ''
     })
     wx.setNavigationBarTitle({
-      title: options.isCertificationKol ? '审核通知' : '提交完成'
+      title: options.isCertificationKol ? _t['审核通知'] : '提交完成'
     })
   },
 
