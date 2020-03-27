@@ -1,8 +1,8 @@
 <!--pages/coupon/my-coupon.wxml-->
 <view class="container mb16">
     <view class="coupon-tab bt1 flex bg-white">
-      <view class="flex {{ active === 0?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 0 }}">平台卡券</view>
-      <view class="flex {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">商家卡券</view>
+      <view class="flex {{ active === 0?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 0 }}">{{ _t['平台卡券'] }}</view>
+      <view class="flex {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">{{ _t['商家卡券'] }}</view>
     </view>
     <view wx:for="{{ accountList }}" wx:key="index" class="coupon m16 bg-white pb16 mb0">
         <view class="ml16 mr16 {{ item.labelName?'':'pt1' }}">
@@ -14,10 +14,10 @@
                             <text class="f28 c-00A653 mr10 fw6" wx:if="{{ iData.dicountType }}">{{ iData.dicountType }}</text>
                             <text class="f28 c-222222 fw6">{{ iData.dicountContent }}</text>
                         </view>
-                        <view class="f24 c-999999 mt8">有效期至 {{ iData.validityTime }}</view>
+                        <view class="f24 c-999999 mt8">{{ _t['有效期至'] }} {{ iData.validityTime }}</view>
                     </view>
                     <view >
-                        <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" type="primary" data-id="{{ iData.discountId }}" catchtap="tapGetDiscounts">使用</button>
+                        <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" type="primary" data-id="{{ iData.discountId }}" catchtap="tapGetDiscounts">{{ _t['使用'] }}</button>
                     </view>
                 </view>
             </view>
@@ -44,5 +44,5 @@
             </view> -->
         </view>
     </view>
-    <gh-empty prop-src="/images/default/no_preferential.png" prop-text="还没有领到优惠券~~" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+    <gh-empty prop-src="/images/default/no_preferential.png" prop-text="{{ _t['还没有领到优惠券~~'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
 </view>

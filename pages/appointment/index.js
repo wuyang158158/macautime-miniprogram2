@@ -3,14 +3,14 @@ import NT from "../../utils/native.js"
 import api from "../../data/api.js"
 import util from "../../utils/util.js"
 var base = require('../../i18n/base.js');
-const _ = base._; //翻译函数
+const _t = base._t().appointment
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    _t: base._t().appointment,
+    _t: _t,
     active: 1,
     kolId: '',
     noData: false,
@@ -22,7 +22,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: _('探店预约')
+      title: _t['探店预约']
     });
       this.fnGetAccount()
   },
@@ -42,7 +42,7 @@ Page({
   },
   // 获取预约数据
   fnGetAccount() {
-    NT.showToast(_('加载中..'))
+    NT.showToast(_t['加载中..'])
     api.ctPoAgentByUs({
       status: this.data.active,
       userId: wx.getStorageSync('userInfo').userId
@@ -56,7 +56,7 @@ Page({
       this.setData({ accountList: res, noData: !res.length })
     }).catch(err => {
       this.setData({ accountList: [], noData: true })
-      NT.showModal(err.codeMsg || err.message || _('请求失败！'))
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   // 切换tab

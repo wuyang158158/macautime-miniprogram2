@@ -2,14 +2,14 @@
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
 var base = require('../../i18n/base.js');
-const _ = base._; //翻译函数
+const _t = base._t().address
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    _t: base._t().address,
+    _t: _t,
     addressList: [],
     noData: false
   },
@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: _('收货地址')
+      title: _t['收货地址']
     });
   },
 
@@ -45,17 +45,17 @@ Page({
   },
   // 获取收货地址列表
   fnGetAddress(type) {
-    if(type) NT.showToast(`${_('加载中')}...`)
+    if(type) NT.showToast(_t['加载中..'])
     api.ctAddressList().then(res => {
       this.setData({ addressList: res, noData: !res.length })
     }).catch(err => {
       this.setData({ noData: true, addressList: [] })
-      NT.showModal(err.codeMsg || err.message || _('请求失败！') )
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'] )
     })
   },
   //选择默认收货地址
   fnDefaultAddress(e) {
-    NT.showToast(`${_('加载中')}...`)
+    NT.showToast(_t['加载中'])
     const index = e.currentTarget.dataset.index
     let params = this.data.addressList[index]
     let data = this.data.addressList
@@ -86,10 +86,10 @@ Page({
           addressList: data
         })
       }
-      NT.toastFn(_('成功'), 1000)
+      NT.toastFn(_t['成功'], 1000)
       // this.fnGetAddress(false)
     }).catch(err => {
-      NT.showModal(err.codeMsg || err.message || `${_('请求失败')}！`)
+      NT.showModal(err.codeMsg || err.message ||_t['请求失败'])
     })
   },
   // 删除收货地址
@@ -99,16 +99,16 @@ Page({
     let addList = this.data.addressList
     let that = this
     wx.showModal({
-      content: `${_('确认删除该地址')}?`,
+      content: `${_t['确认删除该地址']}?`,
       confirmColor: '#00A653',
       success: function (res) {
         if (res.confirm) {
           api.ctAddressDelete({ id: id }).then(res => {
-            NT.toastFn(_('已删除'), 1000)
+            NT.toastFn(_t['已删除'], 1000)
             addList.splice(index, 1)
             that.setData({ addressList: addList })
           }).catch( err => {
-            NT.showModal(err.codeMsg || err.message || `${_('请求失败')}！`)
+            NT.showModal(err.codeMsg || err.message || `${_t['请求失败']}！`)
           })
         }
       }

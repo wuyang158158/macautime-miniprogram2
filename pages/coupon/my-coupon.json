@@ -2,7 +2,7 @@
   "usingComponents": {
     "gh-empty": "/components/empty/empty"
     },
-  "navigationBarTitleText": "我的卡券",
+  "navigationBarTitleText": "",
   "backgroundTextStyle": "dark",
   "navigationStyle": "default"
 }

@@ -2,12 +2,15 @@
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
 import util from "../../utils/util.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().coupon
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     active: 0,
     noData: false,
     accountList: []
@@ -17,6 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['我的卡券']
+    });
     this.fnGetAccount()
   },
 
@@ -35,7 +41,7 @@ Page({
   },
   // 获取卡券数据
   fnGetAccount() {
-    NT.showToast('加载中..')
+    NT.showToast(_t['加载中..'])
     api.ctGetUserCoupon({
       isMs: this.data.active
     }).then(res => {
@@ -45,7 +51,7 @@ Page({
       this.setData({ accountList: util.dealWithData(res), noData: !res.length })
       }).catch(err => {
         this.setData({ accountList: [], noData: true })
-        NT.showModal(err.codeMsg || err.message || '请求失败！')
+        NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   // 切换tab
