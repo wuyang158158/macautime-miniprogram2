@@ -1231,7 +1231,7 @@ export default {
           appVersion: '',
           deviceMode: 3, //deviceMode   1-IOS 2-Android 3-小程序
           sellerId: '', 
-          userId: query && query.userId || wx.getStorageSync('userInfo').userId
+          userId: wx.getStorageSync('userInfo').userId || ''
         }
       },
         header: header,

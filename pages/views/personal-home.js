@@ -81,7 +81,7 @@ Page({
       res.vobaseInfo.forEach(ele => {
         ele.contentUrl = encodeURIComponent(ele.contentUrl)
       })
-      this.setData({ isFocus: res.isfocus,usSysLabel: res.usSysLabel,userInfo: res.usBaseInfo,videoList: res.vobaseInfo, noData2:!res.vobaseInfo.length })
+      this.setData({ isFocus: res.isfocus && res.isfocus.isfocus || false,usSysLabel: res.usSysLabel,userInfo: res.usBaseInfo,videoList: res.vobaseInfo, noData2:!res.vobaseInfo.length })
     }).catch( err => {
       this.setData({ noData2: true, noData1: true })
       NT.showModal(err.codeMsg || err.message || '请求失败！')
