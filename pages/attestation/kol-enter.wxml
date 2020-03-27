@@ -20,7 +20,7 @@
         <view class="list bg-white ml16 mr16 mt16">
             <view class="flex f32 c-222222 h-100 fw6 ml32 mr32 bd1">个人形象照</view>
             <view class="personage">
-                <image class="personage-icon bg-cccccc" src="{{accordingImage?baseImageHost + '/' + accordingImage:'/images/center/pic1@2x.png'}}" mode="aspectFill" bindtap="tapChooseImage"/>
+                <image class="personage-icon bg-cccccc" src="{{accordingImage?accordingImage:'/images/center/pic1@2x.png'}}" mode="aspectFill" bindtap="tapChooseImage"/>
             </view>
             <view class="f24 c-666666 mt16 pb32 text-algin-c">请选择您的个人形象照，用于封面展示</view>
         </view>

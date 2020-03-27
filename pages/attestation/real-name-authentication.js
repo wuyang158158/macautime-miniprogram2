@@ -115,7 +115,7 @@ Page({
       success (res) {
         // tempFilePath可以作为img标签的src属性显示图片
         const tempFilePaths = res.tempFilePaths[0]
-        api.userUploadImage(tempFilePaths, true)
+        api.userUploadImage(tempFilePaths)
           .then(res => {
             if (type === 'front') {
               that.setData({ 'identityQuery.cardFrontImage': res.body })

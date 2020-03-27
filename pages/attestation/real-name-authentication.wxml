@@ -38,11 +38,11 @@
         <!-- 上传身份证 -->
         <view class="id-card flex bd1 ml32 mr32 pt16 pb16">
             <view class="m16" data-type="front" bindtap="tapChooseImage">
-                <image class="id-icon" src="{{identityQuery.cardFrontImage?baseImageHost + '/' + identityQuery.cardFrontImage:'/images/center/id1@2x.png'}}" mode="aspectFill"/>
+                <image class="id-icon" src="{{identityQuery.cardFrontImage?identityQuery.cardFrontImage:'/images/center/id1@2x.png'}}" mode="aspectFill"/>
                 <view class="t-align f24 c-666666 pt8">上传身份证正面</view>
             </view>
             <view class="m16" data-type="back" bindtap="tapChooseImage">
-                <image class="id-icon" src="{{identityQuery.cardBackImage?baseImageHost + '/'  + identityQuery.cardBackImage:'/images/center/id2@2x.png'}}" mode="aspectFill"/>
+                <image class="id-icon" src="{{identityQuery.cardBackImage?identityQuery.cardBackImage:'/images/center/id2@2x.png'}}" mode="aspectFill"/>
                 <view class="t-align f24 c-666666 pt8">上传身份证正面</view>
             </view>
         </view>

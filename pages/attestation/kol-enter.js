@@ -281,7 +281,7 @@ Page({
       success (res) {
         // tempFilePath可以作为img标签的src属性显示图片
         const tempFilePaths = res.tempFilePaths
-        api.userUploadImage(tempFilePaths[0], true)
+        api.userUploadImage(tempFilePaths[0])
           .then(res => {
             that.setData({
               accordingImage: res.body
