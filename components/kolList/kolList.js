@@ -3,7 +3,7 @@ import NT from "../../utils/native.js"
 import api from "../../data/api.js"
 import config from "../../data/api_config.js"
 var base = require('../../i18n/base.js');  //路径可能做相应调整
-const _ = base._; //翻译函数
+const _t = base._t().components; //翻译函数
 Component({
   /**
    * 组件的属性列表
@@ -17,7 +17,7 @@ Component({
    */
   data: {
     baseImageHost: config.baseImageHost,
-    _t: base._t(), //翻译
+    _t: _t, //翻译
   },
 
   /**
@@ -26,12 +26,12 @@ Component({
   methods: {
     // 关注或者取消用户
     tapUsInsertFocus(e) {
-      NT.showToast(_('处理中...'))
+      NT.showToast(_t['处理中...'])
       const fAccountId = e.currentTarget.dataset.faccountid
       const isfocus = e.currentTarget.dataset.isfocus
       api.usInsertFocus({fAccountId:fAccountId, isFocus: isfocus})
       .then(res=>{
-        NT.toastFn(isfocus? '已取消' : _('关注成功！'))
+        NT.toastFn(isfocus? '已取消' : _t['关注成功！'])
         const kolList = this.data.kolList
         kolList.map(item=>{
           if(item.id === fAccountId){
@@ -43,7 +43,7 @@ Component({
         })
       })
       .catch(err=>{
-        NT.showModal(err.message||_('请求失败！'))
+        NT.showModal(err.message|| _t['请求失败！'])
       })
     },
     fnLinkTo(e) {
