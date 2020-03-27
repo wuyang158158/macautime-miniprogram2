@@ -7,8 +7,8 @@
             <view bindtap="closeDialog" class="weui-icon-btn weui-icon-btn_close">关闭</view>
         </view> -->
         <view class="flex bd1 f30 h-100 w-90">
-            <view class="c-999999 w-auto" bindtap="closeDialog">取消</view>
-            <view class="c-00A653 w-auto" bindtap="closeDialog">确定</view>
+            <view class="c-999999 w-auto" bindtap="closeDialog">{{_t['取消']}}</view>
+            <view class="c-00A653 w-auto" bindtap="closeDialog">{{_t['确定']}}</view>
         </view>
     </view>
     <view class="weui-half-screen-dialog__bd ofy-auto pl32 pr32">

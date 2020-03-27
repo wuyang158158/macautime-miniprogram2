@@ -15,8 +15,8 @@
         <view wx:for="{{item.usSysLabel}}" wx:key="index" class="mr16">{{item.labelRemark}}</view>
         </view>
         <view class="flex mt5">
-        <view class="f24 c-666666 flex-1">{{item.fans}} 粉丝</view>
-        <button class="weui-btn w-86 f24" type="{{item.isfocus?'p-delete':'primary'}}" data-fAccountId="{{item.id}}" data-isfocus="{{item.isfocus}}" catchtap="tapUsInsertFocus">{{item.isfocus?'已关注':'关注'}}</button>
+        <view class="f24 c-666666 flex-1">{{item.fans}} {{_t['粉丝']}}</view>
+        <button class="weui-btn w-86 f24" type="{{item.isfocus?'p-delete':'primary'}}" data-fAccountId="{{item.id}}" data-isfocus="{{item.isfocus}}" catchtap="tapUsInsertFocus">{{ item.isfocus ? '已' + _t['关注'] : _t['关注'] }}</button>
         </view>
     </view>
     </view>

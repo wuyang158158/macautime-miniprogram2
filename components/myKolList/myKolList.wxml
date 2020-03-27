@@ -7,6 +7,6 @@
     </view>
     <view class="flex-1 bd1 flex p32">
         <view class="flex-1 f30 fw5 c-404040">{{item.nickName}}</view>
-        <button class="weui-btn focus-ok" type="{{item.isFocus?'p-delete':'primary'}}" data-fAccountId="{{item.accountId}}" data-isFocus="{{ item.isFocus }}" catchtap="tapUsInsertFocus">{{item.isFocus? '已关注': '关注'}}</button>
+        <button class="weui-btn focus-ok" type="{{item.isFocus?'p-delete':'primary'}}" data-fAccountId="{{item.accountId}}" data-isFocus="{{ item.isFocus }}" catchtap="tapUsInsertFocus">{{ item.isfocus ? '已' + _t['关注'] : _t['关注'] }}</button>
     </view>
 </view>

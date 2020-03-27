@@ -1,6 +1,8 @@
 // components/acList.js
 import api from "../../data/api";
-import NT from "../../utils/native.js"
+import NT from "../../utils/native.js";
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _ = base._; //翻译函数
 Component({
   /**
    * 组件的属性列表
@@ -14,7 +16,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    _t: base._t(), //翻译
   },
 
   /**
@@ -30,7 +32,7 @@ Component({
     },
     // 点击喜欢
     tapLike(e) {
-      NT.showToast('处理中...')
+      NT.showToast(_('处理中...'))
       // console.log(e)
       const likeForm = {
         expId: e.currentTarget.dataset.id,
@@ -41,7 +43,7 @@ Component({
         this.properties.recommend.map(item=>{
           if(item.experienceSerial === likeForm.expId){
             item.like = !item.like
-            NT.toastFn(item.like ? '已收藏！' : '已取消！',1000)
+            NT.toastFn(item.like ? _('已收藏！') : _('已取消！'),1000)
           }
         })
         this.setData({
@@ -50,7 +52,7 @@ Component({
       })
       .catch(err=>{
         console.log(err)
-        NT.showModal(err.codeMsg||err.message||'请求失败！')
+        NT.showModal(err.message|| _('请求失败！'))
       })
     }
   }

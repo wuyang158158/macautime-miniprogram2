@@ -1,4 +1,6 @@
 // components/dialogInput/dialogInput.js
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _ = base._; //翻译函数
 Component({
   /**
    * 组件的属性列表
@@ -14,7 +16,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    _t: base._t(), //翻译
   },
 
   /**

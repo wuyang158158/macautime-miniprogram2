@@ -19,7 +19,7 @@
                         <image class="merchant-star-icon" src="/images/index/icon_star3@2x.png" wx:elif="{{item.averageScore >= index && item.averageScore%1 !=0 }}"></image>
                         <image class="merchant-star-icon" src="/images/index/icon_star2@2x.png" wx:else></image>
                     </view>
-                    <view class="f24 c-222222 ml5">{{ item.averageScore || ' 未评分'}}</view>
+                    <view class="f24 c-222222 ml16">{{ item.averageScore || _t['未评分']}}</view>
                 </view>
             </view>
             <!-- <view class="f24 mt8 mb8">{{item.name || ''}}</view> -->

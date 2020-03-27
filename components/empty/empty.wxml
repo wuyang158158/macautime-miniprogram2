@@ -21,8 +21,8 @@
         <image class="gh-empty-logo" src="/images/default/no_logging.png" mode="aspectFit" wx:elif="{{ propType === 'no_logging'}}" />
         <!-- 缺省页-新增 -->
         <image class="gh-empty-logo" src="{{ propSrc }}" mode="aspectFit" wx:else/>
-        <text class="gh-empty-tips">{{ propText || '暂无数据' }}</text>
+        <text class="gh-empty-tips">{{ propText || _t['暂无数据'] }}</text>
 
-        <navigator class="btns" open-type="switchTab" url="{{ propUrl }}" wx:if="{{ propUrl }}">去看看</navigator>
+        <navigator class="btns" open-type="switchTab" url="{{ propUrl }}" wx:if="{{ propUrl }}">{{_t['去看看']}}</navigator>
     </view>
 </view>

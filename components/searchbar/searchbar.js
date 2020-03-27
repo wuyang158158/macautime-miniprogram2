@@ -6,7 +6,7 @@ Component({
   properties: {
     searchPlaceholder: {
       type: 'string',
-      value: '搜索体验'
+      value: '搜索'
     },
     disabled: {
       type: 'Boolean',

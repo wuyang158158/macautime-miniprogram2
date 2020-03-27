@@ -9,32 +9,33 @@
             <view class="tag c-00A653 f24" wx:if="{{item.activityTag}}">{{item.activityTag}}</view>
             </view>
             <view class="flex l-h32 pt16 baseline">
-                <view class="f30 c-222222 fw6 mr16">$120</view>
-                <view class="f24 c-999999 mr16">$188</view>
-                <view class="c-FF7626 mr16" wx:if="{{item.instructions}}">{{item.instructions||'限时特惠'}}</view>
+                <view class="f30 c-222222 fw6 mr16">{{item.name}}</view>
+                <!-- <view class="f24 c-999999 mr16">$188</view> -->
+                <view class="c-FF7626 mr16" wx:if="{{item.instructions}}">{{item.instructions|| _t['限时特惠']}}</view>
             </view>
+            <!-- 评分处理 -->
             <view class="flex l-h32 pt16">
-                <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-                <view class="f24 c-999999 ml5">(35)</view>
+                <view wx:for="{{[1,2,3,4,5]}}" wx:key="index" wx:for-item="i">
+                    <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" wx:if="{{item.averageScore >= index+1 }}"></image>
+                    <image class="merchant-star-icon" src="/images/index/icon_star3@2x.png" wx:elif="{{item.averageScore >= index && item.averageScore%1 !=0 }}"></image>
+                    <image class="merchant-star-icon" src="/images/index/icon_star2@2x.png" wx:else></image>
+                </view>
+                <view class="f24 c-222222 ml16">{{ item.averageScore || _t['未评分']}}</view>
             </view>
             <view class="flex c-666666 l-h32 pt16">
-                <view class="flex-1">{{item.name}}</view>
-                <view class="c-999999">路环岛</view>
+                <view class="flex-1">{{item.province}}</view>
+                <view class="c-999999">{{item.address}}</view>
             </view>
         </view>
 
         <view class="flex mt32 f28" wx:if="{{source === 'hot-activity'}}">
             <button class="weui-btn mr16 ml32 flex flex-jc" type="hot-btn" data-id="{{item.experienceSerial}}" data-like="{{item.like}}" catchtap="tapLike">
                 <image class="hot-btn-icon" src="{{item.like?'/images/index/nav_icon_like_pre.png':'/images/index/nav_icon_like_k.png'}}" mode="aspectFill"/>
-                <text class="ml16">喜欢</text>
+                <text class="ml16">{{_t['喜欢']}}</text>
             </button>
             <button class="weui-btn mr32 flex flex-jc" type="hot-btn" data-id="{{item.experienceSerial}}" data-title="{{item.activityTitle}}" data-coverUrl="{{item.coverUrl}}" catchtap="share" open-type="share">
                 <image class="hot-btn-icon" src="/images/index/nav_icon_share_k.png" mode="aspectFill"/>
-                <text class="ml16">分享</text>
+                <text class="ml16">{{_t['分享']}}</text>
             </button>
         </view>
     </view>
