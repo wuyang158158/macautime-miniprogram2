@@ -14,7 +14,7 @@ Page({
     actionMenu: [
       { type: 1, title: _t['提现已申请'] },
       { type: 2, title: _t['提现处理中'] },
-      { type: 3, title: _['提现成功'] },
+      { type: 3, title: _t['提现成功'] },
     ]
   },
 

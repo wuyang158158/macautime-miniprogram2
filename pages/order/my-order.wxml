@@ -27,10 +27,8 @@
                         <text wx:if="{{item.status === 3 }}">{{ _t['支付失败'] }}</text>
                         <text wx:if="{{item.status === 4 }}">{{ _t['失效'] }}</text>
                         <text wx:if="{{item.status === 5 }}">{{ _t['取消支付'] }}</text>
-                        <text wx:if="{{item.status === 6 }}">{{ _t['退订'] }}</text>
                         <text wx:if="{{item.status === 7 }}">{{ _t['已完成'] }}</text>
-                        <text wx:if="{{item.status === 8 }}">{{ _t['已退订'] }}</text>
-                        <text wx:if="{{item.status === 9 }}">{{ _t['退订失败'] }}</text>
+                        <text wx:if="{{item.status === 6 ||item.status === 8 || item.status === 9 }}">{{ _t['退款售后'] }}</text>
                     </view>
                 </view>
                 <view class="t-bottom ml16 mr16">
@@ -48,6 +46,11 @@
                     <view class="t-handle flex">
                         <view class="flex-1">
                             <view wx:if="{{ item.status === 1 }}" class="f26 green"> {{ _t['付款剩余时间'] }} {{ item.curTime }} </view>
+                            <view wx:if="{{ item.status === 6 || item.status === 8 || item.status=== 9 }}">
+                                <text wx:if="{{ item.status === 6 }}" class="f24 green">退款进度：{{  _t['正在处理'] }}</text>
+                                <text wx:if="{{ item.status === 8 }}" class="f24">退款进度： {{  _t['已退款'] }}</text>
+                                <text wx:if="{{ item.status === 9 }}" class="f24">退款进度： {{ _t['退款失败'] }}</text>
+                            </view>
                         </view>
                         <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" catchtap="tapCancelOrder">{{ _t['取消'] }}</button>
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" data-price="{{item.moneny}}" data-reciprocal="{{item.reciprocal}}" catchtap="tapToPay">{{ _t['付款'] }}</button>

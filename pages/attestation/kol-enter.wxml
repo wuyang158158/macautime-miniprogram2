@@ -98,7 +98,7 @@
         </view>
 
         <view class="ml16 mr16">
-            <button class="weui-btn c-00A653 ml16 f36 next" type="primary" catchtap="tapNext">提交</button>
+            <button class="weui-btn c-00A653 ml16 f36 next" type="primary" catchtap="tapNext">{{ userInfo.kolType?_t['升级']: _t['提交'] }}</button>
         </view>
     </view>
     
