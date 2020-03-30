@@ -11,7 +11,11 @@ App({
     // 获取设备信息
     wx.getSystemInfo({
       success: res=>{
-        wx.setStorageSync('Language', 'zh');
+        var L = res.language
+        if(L === 'zh_MO' || L === 'zh_TW'){
+          L = 'zh_HK' //繁体
+        }
+        wx.setStorageSync('Language', L);
         // console.log('手机信息res'+res.model)
         let modelmes = res.model;
         if (modelmes.search('iPhone X') != -1) {
