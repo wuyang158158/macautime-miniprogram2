@@ -2,6 +2,8 @@ import api from "../../data/api";
 import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
 import util from "../../utils/util.js"
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().AC_DETAIL; //翻译函数
 
 // pages/views/ac-detail.js
 Page({
@@ -10,6 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     isIphoneX: getApp().globalData.isIphoneX, //iphonex适配
     roleFrom: { //评论请求参数
       // msId: 
@@ -45,7 +48,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     // console.log(options)
     wx.setNavigationBarTitle({
       title: options.title
@@ -100,7 +103,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     this.getExpDetails()
   },
 
@@ -197,11 +200,11 @@ Page({
       console.log(err)
       this.setData({
         noData: {
-          text: err.message ||'请求失败！',
+          text: err.message ||_t['请求失败！'],
           type: err.code === '00'? 'no-network' : 'no-data'
         }
       })
-      // NT.showModal(err.codeMsg||'请求失败！')
+      // NT.showModal(err.codeMsg||_t['请求失败！'])
     })
   },
   //获取猜你喜欢推荐数据
@@ -310,7 +313,7 @@ Page({
                     }
                   })
                 }else{
-                  NT.showModal(err.message||'登录失败！')
+                  NT.showModal(err.message||_t['登录失败！'])
                 }
               })
             },
@@ -325,7 +328,7 @@ Page({
   // 点击喜欢
   tapLike() {
     const type = this.data.acData.isMarK
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     if(type) {
       this.fnCancelCollect({
         msId: this.data.acData.msId,
@@ -349,7 +352,7 @@ Page({
     })
     .catch(err=>{
       console.log(err)
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   // 取消收藏
@@ -363,7 +366,7 @@ Page({
     })
     .catch(err=>{
       console.log(err)
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   // 关闭half-screen-dialog
@@ -390,7 +393,7 @@ Page({
         })
       }
     })
-    // NT.showToast('加载中...')
+    // NT.showToast(_t['加载中...'])
     // this.getMealDetails(mealserial)
   },
   // 跳转到套餐页面
@@ -413,7 +416,7 @@ Page({
   },
   // 领取体验
   tapGetEx() {
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     const acData = this.data.acData
     const expAllMeal = this.data.expAllMeal
     const saveDisCountOrderForm = {
@@ -427,7 +430,7 @@ Page({
       this.setData({
         acData: acData
       })
-      NT.showModalPromise('领取成功，是否查看订单详情？')
+      NT.showModalPromise(_t['领取成功，是否查看订单详情？'])
         .then(()=>{
           wx.navigateTo({
             url: '/pages/views/ticket-detail?orderCode=' + res + '&userName=' + this.data.userInfo.userName
@@ -438,7 +441,7 @@ Page({
         })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   //点击查看全部评论
@@ -460,10 +463,10 @@ Page({
     if(!this.data.userInfo.level){ //如果没有开通会员，则提示开通会员再领取
       wx.showModal({
         title: '提示',
-        content: '优惠券仅供时光卡会员用户使用，现在开通，领取优惠券，还能享受更多会员增值优惠及特权。',
+        content: _t['优惠券仅供时光卡会员用户使用，现在开通，领取优惠券，还能享受更多会员增值优惠及特权。'],
         cancelText: '再看看',
         cancelColor: '#999999',
-        confirmText: '开通会员',
+        confirmText: _t['开通会员'],
         confirmColor: '#00A653',
         success (res) {
           if (res.confirm) {
@@ -485,14 +488,14 @@ Page({
         id: id, //优惠卷ID
         endTime: e.currentTarget.dataset.endtime.toString()
       }
-      NT.showToast('处理中...')
+      NT.showToast(_t['处理中...'])
       api.poInsertDiscountOrder(query)
       .then(res=>{
         NT.toastFn('领取成功！',1000)
         setTimeout(()=>{},1000)
       })
       .catch(err=>{
-        NT.showModal(err.codeMsg||err.message||'请求失败！')
+        NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
       })
     }
   },

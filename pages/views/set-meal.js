@@ -2,18 +2,24 @@
 import api from "../../data/api"
 import NT from "../../utils/native.js"
 const app = getApp();
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().SET_MEAL; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     isIphoneX: app.globalData.isIphoneX, //iphonex适配
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['套餐详情']
+    });
     var id = options.id
     // NT.showToast('加载中...')
     // 监听expAllMeal事件，获取上一页面通过eventChannel传送到当前页面的数据
@@ -115,11 +121,11 @@ Page({
   tapToSubmitOrder() {
     var choseData = this.data.choseData
     if(choseData.status == 1) { //
-      NT.showModal('该套餐已下架！');
+      NT.showModal(_t['该套餐已下架！']);
       return false;
     }
     if(choseData.payType == 2) { //线下支付
-      NT.showModal('该套餐为线下支付！');
+      NT.showModal(_t['该套餐为线下支付！']);
       return false;
     }
     wx.navigateTo({

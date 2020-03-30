@@ -20,8 +20,8 @@
                 <view class="flex-1">
                     <view >
                         <text class="f28 c-222222 fw6">{{item.discountsName || item.conditionName}}</text>
-                        <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">限时</text>
-                        <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{item.payType == 1 ? '线上':'线下'}}</text>
+                        <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{ _t['限时'] }}</text>
+                        <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{item.payType == 1 ? _t['线上']:_t['线下']}}</text>
                     </view>
                     <view class="f24 c-999999 mt8">有效期至 {{item.endTimeStr || ''}}</view>
                 </view>
@@ -31,18 +31,18 @@
     <view class="remark bg-white mt32">
         <view class="p32">
             <view class="f26 c-222222 bd1 pb32">
-                <view class="f30">使用规则</view>
-                <view >1. 仅限时光卡会员用户领取；</view>
+                <view class="f30">{{ _t['使用规则'] }}</view>
+                <view >1. {{ _t['仅限时光卡会员用户领取；'] }}</view>
                 <view >2. 全店商品都可以使用；</view>
                 <view >3. 有效期至 {{ item.endTimeStr || '' }}；</view>
-                <view >4. 限时领取，每人仅限一张。</view>
+                <view >4. {{ _t['限时领取，每人仅限一张。'] }}</view>
             </view>
             <view class="f26 c-222222 pt32">
-                <view class="f30">注意事项</view>
-                <view >1. 提交订单时选择即可；</view>
-                <view >2. 不找零不退换。</view>
+                <view class="f30">{{ _t['注意事项'] }}</view>
+                <view >1. {{ _t['提交订单时选择即可；'] }}</view>
+                <view >2. {{ _t['不找零不退换。'] }}</view>
             </view>
         </view>
     </view>
-    <button class="weui-btn" type="primary" bindtap="tapNowGet">立即领取</button>
+    <button class="weui-btn" type="primary" bindtap="tapNowGet">{{ _t['立即领取'] }}</button>
 </view>

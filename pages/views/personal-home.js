@@ -3,22 +3,23 @@ import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
 import api from "../../data/api.js"
 import util from "../../utils/util.js"
-import bmap from "../../utils/bmap-wx.min.js"
-const app = getApp()
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().PERSONAL_HOME; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     navArray: [
       {
-        name: '相册',
+        name: _t['相册'],
         number: 0,
         selected: true
       },
       {
-        name: '视频',
+        name: _t['视频'],
         number: 12,
         selected: false
       },
@@ -54,6 +55,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['个人主页']
+    });
     if(options && options.id) {
       this.setData({ options: options, userId: options.id,isMine: options.id === wx.getStorageSync('userInfo').userId})
     } else {
@@ -63,7 +67,7 @@ Page({
   },
   // 关注或者取消用户
   tapUsInsertFocus() {
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     const isFocus = this.data.isFocus
     api.usInsertFocus({fAccountId:this.data.userId, isFocus: isFocus})
     .then(res=>{
@@ -71,12 +75,12 @@ Page({
       this.setData({ isFocus: !isFocus })
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['处理中...'])
     })
   },
   // 获取我的信息
   fnGetMyVideoInfo() {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     api.ctMyVideoc({ userId: this.data.userId }).then(res => {
       res.vobaseInfo.forEach(ele => {
         ele.contentUrl = encodeURIComponent(ele.contentUrl)
@@ -84,7 +88,7 @@ Page({
       this.setData({ isFocus: res.isfocus && res.isfocus.isfocus || false,usSysLabel: res.usSysLabel,userInfo: res.usBaseInfo,videoList: res.vobaseInfo, noData2:!res.vobaseInfo.length })
     }).catch( err => {
       this.setData({ noData2: true, noData1: true })
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.message || _t['请求失败！'])
     })
   },
   // 获取我的相册
@@ -189,7 +193,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: `${this.data.userInfo.nickName}的个人主页`,
+      title: `${this.data.userInfo.nickName}的` + _t['个人主页'],
       path: `/pages/views/personal-home?id=${this.data.userInfo.accountId}`,
       imageUrl: `${this.data.userInfo.headBackIco}`
     }
@@ -233,7 +237,7 @@ Page({
       }
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
       this.setData({
         loadmore: false,
       })

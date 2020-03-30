@@ -3,12 +3,15 @@ import api from "../../data/api";
 import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
 import util from "../../utils/util.js"
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().MY_COMMON; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     params: { //请求订单列表
       mid: '',
       pageSize: PAGE.limit
@@ -30,7 +33,7 @@ Page({
         pageSize: PAGE.limit
       },
     })
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     this.likeExpLike()
   },
 
@@ -155,7 +158,7 @@ Page({
           emptytext: err.codeMsg
         })
       }else{
-        NT.showModal(err.codeMsg||err.message||'请求失败！')
+        NT.showModal(err.message||_t['请求失败！'])
       }
       if(!this.data.result.length>0){ //暂无数据
         this.setData({

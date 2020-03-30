@@ -4,12 +4,15 @@ import NT from "../../utils/native.js"
 import util from "../../utils/util.js"
 import QR from "../../utils/qrcode.js"
 const app = getApp();
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().ORDER_DETAIL; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     showQrcode: false,
     imagePath: '',
     roleFrom: {}, //请求详情参数
@@ -22,6 +25,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['订单详情']
+    });
     this.getOrderDetails(options)
   },
 
@@ -83,7 +89,7 @@ Page({
   // },
   //请求详情
   getOrderDetails(options) {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     api.getOrderDetails({ orderNumber: options.orderNumber  })
     .then(res=>{
       const data = res;
@@ -95,7 +101,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   // 联系商家
@@ -131,13 +137,13 @@ Page({
     const orderCode = this.data.orderData.orderNumber
     wx.showModal({
       title: '提示',
-      content: '您确定要取消该订单吗？取消将不可撤回',
+      content: _t['您确定要取消该订单吗？取消将不可撤回'],
       success (res) {
         if (res.confirm) {
-          NT.showToast('处理中...')
+          NT.showToast(_t['处理中...'])
           api.MyOrderDeleteDetail({orderNumber:orderCode})
           .then(res=>{
-            NT.showToast('订单取消成功')
+            NT.showToast(_t['订单取消成功'])
             setTimeout(()=> {
               wx.navigateBack({
                 delta: 1
@@ -147,7 +153,7 @@ Page({
           })
           .catch(err=>{
             console.log(err)
-            NT.showModal(err.codeMsg||err.message||'请求失败！')
+            NT.showModal(err.message||_t['请求失败！'])
           })
         }
       }

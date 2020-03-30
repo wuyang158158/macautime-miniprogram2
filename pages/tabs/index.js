@@ -5,8 +5,6 @@ import api from "../../data/api.js"
 import util from "../../utils/util.js"
 import bmap from "../../utils/bmap-wx.min.js"
 
-
-var base = require('../../i18n/base.js');  //路径可能做相应调整
 var base = require('../../i18n/base.js');  //路径可能做相应调整
 const _t = base._t().INDEX; //翻译函数
 

@@ -1,11 +1,13 @@
 // pages/views/more-settings.js
-const app = getApp()
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().MORE_SETTINGS; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: {}, //用户信息
   },
 
@@ -13,7 +15,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.setNavigationBarTitle({
+      title: _t['更多设置']
+    });
   },
 
   /**

@@ -1,5 +1,5 @@
-import api from "../../data/api"
-import NT from "../../utils/native.js"
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().ABOUT_US; //翻译函数
 
 // pages/views/about-us.js
 Page({
@@ -9,12 +9,12 @@ Page({
    */
   data: {
     titleBar: [
-      { title: '使用协议', type: '1' },
-      { title: '订单规则', type: '2' },
-      { title: '服务协议', type: '4' },
-      { title: '服务接受协议', type: '3' },
-      { title: '会员隐私政策', type: '5' },
-      { title: '商家隐私政策', type: '6' },
+      { title: _t['使用协议'], type: '1' },
+      { title: _t['订单规则'], type: '2' },
+      { title: _t['服务协议'], type: '4' },
+      { title: _t['服务接受协议'], type: '3' },
+      { title: _t['会员隐私政策'], type: '5' },
+      { title: _t['商家隐私政策'], type: '6' },
     ],
     roleForm: { //1: 协议政策 2：Macau Time服务协议 3：关于我们 4：注册服务协议 ，5隐私策略
       type: ''
@@ -25,6 +25,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['协议政策']
+    });
     console.log(options)
     // options.id = '1'
     this.setData({
@@ -35,8 +38,6 @@ Page({
     // if(options.id == '4' || options.id == '1' || options.id == '5'|| options.id == '2'){
       // return false;
     // }
-    // NT.showToast('加载中...')
-    // this.getClerkByType()
   },
   //点击tabbbar事件
   tapTitleBar: function(e){
@@ -85,22 +86,6 @@ Page({
   onReachBottom: function () {
 
   },
-  getClerkByType() {
-    api.getClerkByType(this.data.roleForm)
-    .then(res=>{
-      wx.setNavigationBarTitle({
-        title: res.name
-      })
-      let content = res.content || ''
-      content = content ? content.replace(/\<img/gi, '<img class="rich-img"') : ''
-      this.setData({
-        content: content
-      })
-    })
-    .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
-    })
-  }
 
   /**
    * 用户点击右上角分享

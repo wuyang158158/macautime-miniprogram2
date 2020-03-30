@@ -1,4 +1,6 @@
 // pages/views/shop-video-all.js
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().SHOP_VIDEO_ALL; //翻译函数
 Page({
 
   /**
@@ -12,6 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['店铺视频']
+    });
     // 监听expAllMeal事件，获取上一页面通过eventChannel传送到当前页面的数据
     const eventChannel = this.getOpenerEventChannel()
     // 接受上一个页面传递过来的数据

@@ -2,7 +2,7 @@
   "usingComponents": {
     "gh-empty": "/components/empty/empty"
   },
-  "navigationBarTitleText": "全部评论",
+  "navigationBarTitleText": "",
   "backgroundTextStyle": "dark",
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50,

@@ -1,13 +1,15 @@
 // pages/views/center-detail.js
 import api from "../../data/api";
 import NT from "../../utils/native.js"
-const app = getApp()
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().CENTER_DETAIL; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: {}, //用户信息
   },
 
@@ -15,7 +17,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.setNavigationBarTitle({
+      title: _t['个人信息']
+    });
   },
 
   /**
@@ -33,13 +37,13 @@ Page({
   },
   // 获取个人信息
   fnGetUserInfo() {
-    NT.showToast('加载中')
+    NT.showToast(_t['加载中...'])
     api.ctGetUserInfo().then(res => {
       this.setData({ userInfo: res })
       const data = Object.assign(wx.getStorageSync('userInfo'), res)
       wx.setStorageSync('userInfo', data)
     }).catch(err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.message || _t['请求失败！'])
     })
   },
   fnLinkToEdit(e) {

@@ -1,12 +1,15 @@
 // pages/views/exp-comment.js
 import api from "../../data/api";
 import NT from "../../utils/native.js"
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().EXP_COMMENT; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     files: [],
     imageUrl: '',
     grade: 5,
@@ -17,6 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['发表评论']
+    });
     // 监听expAllMeal事件，获取上一页面通过eventChannel传送到当前页面的数据
     const eventChannel = this.getOpenerEventChannel()
     // 接受上一个页面传递过来的数据
@@ -84,10 +90,10 @@ Page({
   bindFormSubmit(e) { // 提交意见反馈
     const textarea = e.detail.value.textarea
     if(textarea===''){
-      NT.showModal('请填写评价内容，才能发表哦！')
+      NT.showModal(_t['请填写评价内容，才能发表哦！'])
       return
     }
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     const options = this.data.options
     const expCommentForm = {
       content: textarea, //评论内容 
@@ -98,7 +104,7 @@ Page({
     api.orderToEvaluate(expCommentForm)
     .then(res=>{
       // if(!this.data.files.length>0){
-        NT.toastFn('评论成功！',1000)
+        NT.toastFn(_t['评论成功！'],1000)
       //   if(this.data.mycomment === 'myexp'){
       //     wx.setStorage({
       //       key:"mycomment",
@@ -133,7 +139,7 @@ Page({
       //   },1000)
       // })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
     // console.log(textarea)
     // console.log(phone)
@@ -156,7 +162,7 @@ Page({
   },
   chooseImage: function (e) {
     if(this.data.imageUrl) {
-      return NT.showModal('限制上传一张图片')
+      return NT.showModal(_t['限制上传一张图片'])
     }
     var that = this;
     var files = this.data.files;
@@ -166,12 +172,12 @@ Page({
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) {
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-            NT.showToast('上传中...')
+            NT.showToast(_t['上传中...'])
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
             api.userUploadImage(res.tempFilePaths[0]).then(resq => {
                 that.setData({ imageUrl: resq.body })
             }).catch(err => {
-              NT.showModal(err.codeMsg || err.message || '请求失败！')
+              NT.showModal(err.message || _t['请求失败！'])
             })
         }
     })

@@ -2,7 +2,8 @@ import api from "../../data/api";
 import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
 import util from "../../utils/util.js"
-
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().MY_COMMON; //翻译函数
 // pages/views/my-seen.js
 Page({
 
@@ -10,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: wx.getStorageSync("userInfo"), //用户信息
     params: { //请求订单列表
       limit: PAGE.limit,
@@ -30,6 +32,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['我看过的']
+    });
     this.setData({
       params: { //请求列表
         limit: PAGE.limit,
@@ -40,7 +45,7 @@ Page({
       },
       userInfo: wx.getStorageSync("userInfo"), //用户信息
     })
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     this.getUserRecord()
   },
 
@@ -163,7 +168,7 @@ Page({
           emptytext: err.codeMsg
         })
       }else{
-        NT.showModal(err.codeMsg||err.message||'请求失败！')
+        NT.showModal(err.message||_t['请求失败！'])
       }
       if(!this.data.result.length>0){ //暂无数据
         this.setData({

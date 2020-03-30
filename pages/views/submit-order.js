@@ -4,12 +4,15 @@ import NT from "../../utils/native.js"
 // import PAGE from "../../utils/config.js"
 import util from "../../utils/util.js"
 const app = getApp();
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().SUBMIT_ORDER; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     isIphoneX: app.globalData.isIphoneX, //iphonex适配
     userInfo: wx.getStorageSync("userInfo"), //用户信息
     orderCount: 1, //订单计数

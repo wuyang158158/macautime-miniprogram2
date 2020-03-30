@@ -3,12 +3,15 @@ import api from "../../data/api";
 import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
 import util from "../../utils/util.js"
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().ALL_EXP_COMMENT; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: wx.getStorageSync("userInfo"), //用户信息
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
@@ -21,6 +24,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['全部评论']
+    });
     wx.hideShareMenu()
     var params = options.msId ? { //请求列表
       msId: options.msId,
@@ -31,7 +37,7 @@ Page({
       params: params,
       userInfo: wx.getStorageSync("userInfo"), //用户信息
     })
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
 
     this.imSelectOrderToEvaluateByOrderId()
   },
@@ -164,7 +170,7 @@ Page({
           emptytext: err.codeMsg
         })
       }else{
-        NT.showModal(err.codeMsg||err.message||'请求失败！')
+        NT.showModal(err.message||_t['请求失败！'])
       }
       if(!this.data.expComment.length>0){ //暂无数据
         this.setData({

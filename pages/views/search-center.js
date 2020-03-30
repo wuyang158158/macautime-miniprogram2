@@ -3,8 +3,10 @@ import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
 import api from "../../data/api.js"
 import util from "../../utils/util.js"
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().SEARCH_CENTER; //翻译函数
 var menuData = [
-  '商家','用户'
+  '商家',_t['用户']
 ];
 var titleBar = [ //顶部标题bar
   {
@@ -16,7 +18,7 @@ var seachType = {
   distance: ['1km','5km','10km','全城'],
   // tag: ['美食','娱乐','酒店','景点','购物'],
   tag: titleBar,
-  sort: ['好评优先','离我最近','最新上市','最高热度','网红聚集地']
+  sort: [_t['好评优先'],_t['离我最近'],'最新上市',_t['最高热度'],_t['网红聚集地']]
 }
 const locationCity = wx.getStorageSync("locationCity")
 const location = locationCity ? locationCity.originalData.result.location : ''
@@ -26,6 +28,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: wx.getStorageSync("userInfo"), //用户信息
     params: { //请求首页推荐列表
       limit: PAGE.limit,  //条数
@@ -332,7 +335,7 @@ Page({
   //获取推荐列表
   msSearchHome(source) {
     let that = this
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     //历史记录处理
     this.historyRecordStorage()
     api.msSearchHome(that.data.params)
@@ -357,7 +360,7 @@ Page({
     })
     .catch(err=>{
       console.log(err)
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
       this.setData({
         loadmore: false,
       })
@@ -398,7 +401,7 @@ Page({
     }
   },
   getUserByName(source) { // 请求用户记录
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     this.data.merchantParams.nickName = this.data.params.keyWord
     api.getUserByName(this.data.merchantParams)
     .then(res=>{
@@ -427,7 +430,7 @@ Page({
           emptytext: err.codeMsg
         })
       }else{
-        NT.showModal(err.codeMsg||err.message||'请求失败！')
+        NT.showModal(err.message||_t['请求失败！'])
       }
       if(!this.data.result.length>0){ //暂无数据
         this.setData({
@@ -438,12 +441,12 @@ Page({
   },
   // 关注用户
   tapUsInsertFocus(e) {
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     const fAccountId = e.currentTarget.dataset.faccountid
     const isFocus = e.currentTarget.dataset.isfocus
     api.usInsertFocus({fAccountId:fAccountId, isFocus: isFocus})
     .then(res=>{
-      NT.toastFn(isFocus?'已取消！': '关注成功！')
+      NT.toastFn(isFocus?'已取消！': _t['关注成功！'])
       const result = this.data.result
       result.map(item=>{
         if(item.accountId === fAccountId){
@@ -455,7 +458,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   // 选择点击的类型

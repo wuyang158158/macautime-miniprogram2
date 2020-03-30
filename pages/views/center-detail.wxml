@@ -2,7 +2,7 @@
 <view class="container">
     <view class="content pl32 pr32 bg-white f30 c-222222">
         <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.headIco  || userInfo.url || '' }}" data-type="0" bindtap="fnLinkToEdit">
-            <view class="flex-1">头像</view>
+            <view class="flex-1">{{ _t['头像'] }}</view>
             <image class="header-bg" src="{{userInfo.headIco || userInfo.url || '/images/default/bg_img.png'}}" mode="aspectFill"/>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
@@ -17,7 +17,7 @@
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view> -->
         <view class="flex bd1 pt32 pb32" data-cont="{{ userInfo.nickName || '' }}" data-type="2" bindtap="fnLinkToEdit">
-            <view class="flex-1">昵称</view>
+            <view class="flex-1">{{ _t['昵称'] }}</view>
             <view>{{ userInfo.nickName }}</view>
             <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>

@@ -8,7 +8,7 @@
         <view class="flex star">
             <image bindtap="fnChangeGrade" class="w42" src="{{ grade > index ?'/images/index/icon_star1@2x.png':'/images/index/icon_star2@2x.png'}}" wx:for="{{ 5 }}" data-index="{{ index }}"></image>
         </view>
-        <textarea class="weui-textarea f30" name="textarea" placeholder="分享这次体验的感受吧～" placeholder-class="c-cccccc f30" style="height: 4.3em" maxlength="200"/>
+        <textarea class="weui-textarea f30" name="textarea" placeholder="{{ _t['分享这次体验的感受吧～'] }}" placeholder-class="c-cccccc f30" style="height: 4.3em" maxlength="200"/>
         <!-- <view class="weui-textarea-counter f24 c-999999 fw3">0/200</view> -->
     </view>
     
@@ -80,7 +80,7 @@
 
 
     <view class="form-btn">
-        <button class="weui-btn  ml32 mr32" type="primary" form-type="submit"> 发表 </button>
+        <button class="weui-btn  ml32 mr32" type="primary" form-type="submit"> {{ _t['发表'] }} </button>
     </view>
   </form>
 </view>
