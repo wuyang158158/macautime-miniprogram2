@@ -1,12 +1,15 @@
 // pages/my/editInfo/index.js
 import api from "../../../data/api";
 import NT from "../../../utils/native.js"
+var base = require('../../../i18n/base.js');
+const _t = base._t().my.EDIT_INFO
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: {},
     kolClass: '',
     choseTagClass: '',
@@ -16,11 +19,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.setNavigationBarTitle({
+      title: _t['编辑资料']
+    });
   },
   // 获取个人信息
   fnGetUserInfo() {
-    NT.showToast('加载中')
+    NT.showToast(_t['加载中..'])
     api.ctGetUserInfo().then(res => {
       this.setData({ userInfo: res })
       const data = Object.assign(wx.getStorageSync('userInfo'), res)

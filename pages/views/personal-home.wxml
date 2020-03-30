@@ -42,7 +42,7 @@
     <!-- 相册 -->
     <block  wx:if="{{index===0}}">
         <cp-photo result="{{ photoList }}"></cp-photo>
-        <gh-empty prop-src="/images/default/no_card.png" prop-text="还没有任何相册哦~~" prop-mt="100" prop-mb="100" wx:if="{{ noData1 }}"></gh-empty>
+        <gh-empty prop-src="/images/default/no_photo.png" prop-text="还没有任何相册哦~~" prop-mt="100" prop-mb="100" wx:if="{{ noData1 }}"></gh-empty>
     </block>
     <!-- 视频 -->
     <block wx:if="{{index===1}}">

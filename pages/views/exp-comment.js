@@ -92,7 +92,7 @@ Page({
     const expCommentForm = {
       content: textarea, //评论内容 
       grade: this.data.grade, //评分 
-      orderId: options.orderCode || '12356464', //订单id
+      orderId: options.orderNumber || '', //订单id
       imageUrl: this.data.imageUrl || '', //封面图
     }
     api.orderToEvaluate(expCommentForm)

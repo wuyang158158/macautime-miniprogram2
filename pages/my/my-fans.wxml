@@ -16,9 +16,9 @@
     <view class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
         <view wx:if="{{loadmore}}">
         <view class="weui-loading"></view>
-        <view class="weui-loadmore__tips">正在加载</view>
+        <view class="weui-loadmore__tips">{{ _t['正在加载'] }}</view>
         </view>
-        <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">已经到底了！</view>
+        <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">{{ _t['已经到底了！'] }}</view>
     </view>
-    <gh-empty prop-src="/images/default/no_fans.png" prop-text="{{emptytext?emptytext:'还没有任何粉丝哦~~'}}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+    <gh-empty prop-src="/images/default/no_fans.png" prop-text="{{emptytext?emptytext:_t['还没有任何粉丝哦~~'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
 </view>

@@ -1,7 +1,9 @@
 // pages/my/information/index.js
 import api from "../../../data/api";
 import NT from "../../../utils/native.js"
-const infoName = ['头像', '主页背景', '昵称', '性别', '生日', '简介']
+var base = require('../../../i18n/base.js');
+const _t = base._t().my.INFORMATION
+const infoName = [_t['头像'], _t['主页背景'], _t['昵称'], _t['性别'], _t['生日'], _t['简介']]
 const date = new Date()
 const years = []
 const months = []
@@ -23,6 +25,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     isIphoneX: getApp().globalData.isIphoneX, //iphonex适配
     editType: 0, //类型
     Len: 0, //文字长度
@@ -45,6 +48,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({ editType: Number(options.type) })
+    console.log(infoName[Number(options.type)])
     wx.setNavigationBarTitle({
       title: infoName[Number(options.type)],
     })
@@ -104,7 +108,7 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        NT.showToast('上传中...')
+        NT.showToast(_t['上传中...'])
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         api.userUploadImage(res.tempFilePaths[0]).then(resq => {
           if (type === 1) {
@@ -113,7 +117,7 @@ Page({
             that.setData({ headIco: resq.body })
           }
         }).catch(err => {
-          NT.showModal(err.codeMsg || err.message || '请求失败！')
+          NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
         })
       }
     })
@@ -154,11 +158,11 @@ Page({
       (this.data.sex === this.data.userInfo.sex) ||
       (this.data.birthday === this.data.userInfo.birthday)
       ){
-      return NT.showModal('您好像没有改动哦～～')
+      return NT.showModal(_t['您好像没有改动哦~~'])
     }
     // 修改昵称
     if (type === 2 && this.data.nickName.length < 2) {
-      return NT.showModal('请输入2-15个字')
+      return NT.showModal(_t['请输入2-15个字'])
     } else if(type === 2) {
       data.nickName = this.data.nickName
     }
@@ -168,43 +172,43 @@ Page({
     }
     // 修改性别
     if (type === 3 && this.data.sex === '') {
-      return NT.showModal('请选择性别')
+      return NT.showModal(_t['请选择性别!'])
     } else if(type === 3) {
       data.sex = this.data.sex
     }
     //修改头像
     if (type === 0 && this.data.headIco === '') {
-      return NT.showModal('请选择图片上传')
+      return NT.showModal(_t['请选择图片上传!'])
     } else if (type === 0) {
       data.headIco = this.data.headIco
     }
     //修改主页背景
     if (type === 1 && this.data.headBackIco === '') {
-      return NT.showModal('请选择图片上传')
+      return NT.showModal(_t['请选择图片上传'])
     } else if (type === 1) {
       data.headBackIco = this.data.headBackIco
     }
     // 修改简介
     if (type === 5 && !this.data.remark) {
-      return NT.showModal('请输入个人简介')
+      return NT.showModal(_t['请输入个人简介!'])
     } else if (type === 5) {
       data.remark = this.data.remark
     }
     // 修改次数
     // data.modifyCount = 3
     if (this.data.userInfo.modifyCount === 0) {
-      return NT.showModal('当月可修改次数为0')
+      return NT.showModal(_t['当月可修改次数为0'])
     } else {
       data.modifyCount = --this.data.userInfo.modifyCount
     }
     
     api.ctUpdataUserInfo(data).then( res => { 
-      NT.toastFn('成功！', 1000)
+      NT.toastFn(_t['成功!'], 1000)
       setTimeout(() =>{
         wx.navigateBack()
       }, 1000)
     }).catch( err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   /**

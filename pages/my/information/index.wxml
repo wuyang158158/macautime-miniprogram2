@@ -1,41 +1,41 @@
 <!--pages/views/account-management.wxml-->
 <view class="container">
-    <view class="tips flex">一个自然月内可以修改 3 次，当前还可修改 {{ userInfo.modifyCount }} 次</view>
+    <view class="tips flex">{{ _t['一个自然月内可以修改'] }} 3 {{ _t['次'] }}，{{ _t['当前还可修改'] }} {{ userInfo.modifyCount }} {{ _t['次'] }}</view>
 
     <!-- 修改头像 -->
     <view class="content" wx:if="{{ editType === 0 }}">
       <view class="avatar bg-white">
         <image src="{{ headIco || '/images/default/avatar.png' }}" mode="aspectFill"></image>
-        <view bindtap="chooseImage" class="f26">修改</view>
+        <view bindtap="chooseImage" class="f26">{{ _t['修改'] }}</view>
       </view>
-      <view class="end-lint f24 c-666666 flex">* 图片不大于 3M，不得违反法律法规及<text bindtap="tapToAboutUs">澳门时光平台信息规范</text></view>
+      <view class="end-lint f24 c-666666 flex">* {{ _t['图片不大于 3M，不得违反法律法规及'] }}<text bindtap="tapToAboutUs">{{ _t['澳门时光平台信息规范'] }}</text></view>
     </view>
 
     <!-- 修改主页背景 -->
     <view class="content" wx:if="{{ editType === 1 }}">
       <view class="avatar h840 bg-white">
         <image src="{{ headBackIco || '/images/default/bg_img.png' }}" mode="aspectFill"></image>
-        <view bindtap="chooseImage" class="f26">修改</view>
+        <view bindtap="chooseImage" class="f26">{{ _t['修改'] }}</view>
       </view>
-      <view class="end-lint f24 c-666666 flex">* 图片不大于 3M，不得违反法律法规及<text bindtap="tapToAboutUs">澳门时光平台信息规范</text></view>
+      <view class="end-lint f24 c-666666 flex">* {{ _t['图片不大于 3M，不得违反法律法规及'] }}<text bindtap="tapToAboutUs">{{ _t['澳门时光平台信息规范'] }}</text></view>
     </view>
 
     <!-- 修改昵称 -->
     <view class="content" wx:if="{{ editType === 2 }}">
       <view class="nick bg-white">
         <view class="nick-form flex">
-          <input placeholder="请输入" bindinput="fnInputValue" maxlength="15" value="{{ nickName }}"></input>
+          <input placeholder="{{ _t['请输入'] }}" bindinput="fnInputValue" maxlength="15" value="{{ nickName }}"></input>
           <text>{{ Len }}/15</text>
         </view>
       </view>
-      <view class="end-lint f24 c-666666 flex">* 2-15 个字，不得违反法律法规及<text bindtap="tapToAboutUs">澳门时光平台信息规范</text></view>
+      <view class="end-lint f24 c-666666 flex">* {{ _t['2-15 个字，不得违反法律法规及'] }}<text bindtap="tapToAboutUs">{{ _t['澳门时光平台信息规范'] }}</text></view>
     </view>
 
     <!-- 修改性别 -->
     <view class="content" wx:if="{{ editType === 3 }}">
       <view class="sex mt25 bg-white">
-        <view class="sex-item flex bd1" data-sex="{{ 1 }}" bindtap="fnUpdataSex"><image src="{{ sex === 1 ? '/images/route/icon_tick_pre.png' : '/images/route/icon_tick_nor.png' }}" mode="aspectFill"></image>男</view>
-        <view class="sex-item flex" data-sex="{{ 2 }}" bindtap="fnUpdataSex"><image src="{{ sex === 2 ? '/images/route/icon_tick_pre.png' : '/images/route/icon_tick_nor.png' }}" mode="aspectFill"></image>女</view>
+        <view class="sex-item flex bd1" data-sex="{{ 1 }}" bindtap="fnUpdataSex"><image src="{{ sex === 1 ? '/images/route/icon_tick_pre.png' : '/images/route/icon_tick_nor.png' }}" mode="aspectFill"></image>{{ _t['男'] }}</view>
+        <view class="sex-item flex" data-sex="{{ 2 }}" bindtap="fnUpdataSex"><image src="{{ sex === 2 ? '/images/route/icon_tick_pre.png' : '/images/route/icon_tick_nor.png' }}" mode="aspectFill"></image>{{ _t['女'] }}</view>
       </view>
     </view>
 
@@ -43,7 +43,7 @@
     <view class="content" wx:if="{{ editType === 4 }}">
       <view class="birthday mt25 bg-white">
         <view class="b-title flex bd1">
-          <text>年</text><text>月</text><text>日</text>
+          <text>{{ _t['年'] }}</text><text>{{ _t['月'] }}</text><text>{{ _t['日'] }}</text>
         </view>
         <view class="b-cont flex">
            <picker-view indicator-class="active-column" indicator-style="height: 50px;color: #00A653 !important" style="width: 100%;" value="{{value}}" bindchange="fnBindChange">
@@ -69,7 +69,7 @@
           <text class="b-postion">{{ LenT }}/100</text>
         </view>
       </view>
-      <view class="end-lint f24 c-666666 flex">* 100字以内，不得违反法律法规及<text bindtap="tapToAboutUs">澳门时光平台信息规范</text></view>
+      <view class="end-lint f24 c-666666 flex">* {{ _t['100字以内，不得违反法律法规及'] }}<text bindtap="tapToAboutUs">{{ _t['澳门时光平台信息规范'] }}</text></view>
     </view>
-    <view class="footer-btn {{isIphoneX ?'fix-iphonex-button1':''}}" bindtap="fnUpdataInfo">确定</view>
+    <view class="footer-btn {{isIphoneX ?'fix-iphonex-button1':''}}" bindtap="fnUpdataInfo">{{ _t['确定'] }}</view>
 </view>
