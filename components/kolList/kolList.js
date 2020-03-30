@@ -17,6 +17,7 @@ Component({
    */
   data: {
     baseImageHost: config.baseImageHost,
+    userInfo: wx.getStorageSync('userInfo') || {},
     _t: _t, //翻译
   },
 

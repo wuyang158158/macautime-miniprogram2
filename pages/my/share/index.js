@@ -1,12 +1,15 @@
 // pages/my/share/index.js
-import api from "../../../data/api";
+// import api from "../../../data/api";
 import NT from "../../../utils/native.js"
+var base = require('../../../i18n/base.js');
+const _t = base._t().my.SHARE
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     // userInfo: wx.getStorageSync('userInfo') || {},
     // imageUrl: ''
   },
@@ -15,6 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['分享赚钱'],
+    })
     var userInfo = wx.getStorageSync('userInfo') || {}
     this.setData({
       userInfo: userInfo,

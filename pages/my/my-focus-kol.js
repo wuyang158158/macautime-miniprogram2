@@ -2,13 +2,15 @@
 import api from "../../data/api";
 import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
-import util from "../../utils/util.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().my.INFORMATION
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t:  _t,
     userInfo: wx.getStorageSync("userInfo"), //用户信息
     params: { //请求订单列表
       limit: PAGE.limit,
@@ -29,6 +31,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['关注'],
+    })
     this.setData({
       params: { //请求列表
         limit: PAGE.limit,
@@ -39,7 +44,7 @@ Page({
       },
       userInfo: wx.getStorageSync("userInfo"), //用户信息
     })
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中..'])
     this.getFocusList()
   },
 
@@ -75,7 +80,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    NT.showToast('刷新中...')
+    NT.showToast(_t['刷新中..'])
     this.setData({
       userInfo: wx.getStorageSync("userInfo"),
       params: { //请求列表

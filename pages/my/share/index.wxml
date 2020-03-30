@@ -2,11 +2,11 @@
   <view class="information">
     <image src="{{ userInfo.headIco || userInfo.url || '/images/default/avatar.png'}}" class="logo" mode="aspectFit"></image>
     <view class="f36 c-222222 mt30">{{ userInfo.nickName || userInfo.nick  }}</view>
-    <view class="f36 c-222222 mt50">邀请你使用澳门时光共度美好时光</view>
+    <view class="f36 c-222222 mt50">{{ _t['邀请你使用澳门时光共度美好时光']}}</view>
   </view>
   <view class="er-code">
     <image src="{{ imageUrl || '/images/default/avatar.png'}}" mode="aspectFill" data-url="{{ imageUrl || '/images/default/avatar.png'}}" bindtap="downloadImg"></image>
   </view>
 
-  <view bindtap="fnTocheck" class="for-register f32 flex">查看已注册用户 <image src="/images/center/icon_more-2.png"  mode="aspectFill"></image></view>
+  <view bindtap="fnTocheck" class="for-register f32 flex">{{ _t['查看已注册用户'] }} <image src="/images/center/icon_more-2.png"  mode="aspectFill"></image></view>
 </view>

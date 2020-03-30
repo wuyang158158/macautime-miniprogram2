@@ -898,7 +898,7 @@ export default {
   usIsCertificationKol(query) {
     return new Promise((resolve, reject) => {
       execute(
-        `/usIsCertificationKol/1.0/`,
+        `/usGetAllKol/1.0/`,
         'POST',
         query,
         resolve,
