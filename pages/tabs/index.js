@@ -59,16 +59,6 @@ Page({
     this.setData({
       userInfo: wx.getStorageSync("userInfo"), //用户信息
     })
-
-    // 點擊使用卡券 跳轉到首頁精選商家
-    let activeMenu = wx.getStorageSync('activeMenu')
-    if(activeMenu) {
-        this.setData({
-          activeMenu: Number(activeMenu)
-        })
-        wx.removeStorageSync('activeMenu')
-        this.onLoad()
-    }
   },
   // 切换菜单
   changeTab(e) {

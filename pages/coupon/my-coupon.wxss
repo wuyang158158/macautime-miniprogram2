@@ -16,6 +16,9 @@ page{
 .mb0{
     margin-bottom: 0;
 }
+.grey-view view{
+  color: #999 !important;
+}
 .coupon-tab {
   height: 116rpx;
   padding: 0 128rpx;

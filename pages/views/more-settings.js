@@ -8,6 +8,7 @@ Page({
    */
   data: {
     _t: _t,
+    language: wx.getStorageSync('Language'),
     userInfo: {}, //用户信息
   },
 
@@ -41,6 +42,11 @@ Page({
 
   },
 
+  changeLang() {
+    wx.navigateTo({
+      url: '/pages/language/language',
+    })
+  },
   /**
    * 生命周期函数--监听页面卸载
    */

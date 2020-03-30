@@ -1,0 +1,7 @@
+<view class="content">
+  <view class="bg-white pl32">
+    <view class="h120 flex bd1 c-222222 f30" bindtap="changeL" data-type="zh">简体中文</view>
+    <view class="h120 flex bd1 c-222222 f30" bindtap="changeL" data-type="zh_HK">繁體中文</view>
+    <!-- <view class="h120 flex c-222222 f30">English</view> -->
+  </view>
+</view>

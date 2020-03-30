@@ -5,7 +5,7 @@
       <view class="flex {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">{{ _t['商家卡券'] }}</view>
     </view>
     <view wx:for="{{ accountList }}" wx:key="index" class="coupon m16 bg-white pb16 mb0">
-        <view class="ml16 mr16 {{ item.labelName?'':'pt1' }}">
+        <view class="ml16 mr16 {{ item.isEffective?'grey-view':'' }} {{ item.labelName?'':'pt1' }}">
             <view class="title f32 fw6 bd1" wx:if="{{ item.labelName }}">{{ item.labelName }}</view>
             <view class="discounts flex mt32" wx:for="{{ item.couponData }}" wx:for-item="iData" wx:key="validityTime">
                 <view class="flex-1 discounts-items flex ml32 mr32">
@@ -17,31 +17,11 @@
                         <view class="f24 c-999999 mt8">{{ _t['有效期至'] }} {{ iData.validityTime }}</view>
                     </view>
                     <view >
-                        <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" type="primary" data-id="{{ iData.discountId }}" catchtap="tapGetDiscounts">{{ _t['使用'] }}</button>
+                        <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" type="primary" data-name="{{ iData.name }}" data-id="{{ iData.msId }}" catchtap="tapGetDiscounts">{{ _t['使用'] }}</button>
+                        <button class="weui-btn weui-btn-get  ml16 fw5" type="default" data-name="{{ iData.name }}" data-id="{{ iData.msId }}" catchtap="tapGetDiscounts">{{ _t['已失效'] }}</button>
                     </view>
                 </view>
             </view>
-            <!-- 原版 -->
-            <!-- <view class="discounts flex mt16">
-                <view class="discounts-left f24 discounts-items c-00A653 discounts-flex">
-                    <view class="">
-                        <text class="f24">MOP</text>
-                        <text class="f44">50</text>
-                    </view>
-                    <view >满减券</view>
-                </view>
-                <view class="flex-1 discounts-items flex ml32 mr32">
-                    <view class="flex-1">
-                        <view class="">
-                            <text class="f28 c-222222 fw6">指定商品满100减50 </text>
-                        </view>
-                        <view class="f24 c-999999 mt8">有效期至 2019-12-30</view>
-                    </view>
-                    <view >
-                        <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" type="primary" catchtap="tapGetDiscounts">领取</button>
-                    </view>
-                </view>
-            </view> -->
         </view>
     </view>
     <gh-empty prop-src="/images/default/no_preferential.png" prop-text="{{ _t['还没有领到优惠券~~'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>

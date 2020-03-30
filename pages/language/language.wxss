@@ -1,0 +1,8 @@
+/* pages/language/language.wxss */
+.h120 {
+  height: 120rpx;
+  font-weight: 500;
+}
+.h120:active {
+  background: #f8f8f8;
+}

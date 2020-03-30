@@ -96,14 +96,15 @@ Page({
   // },
   // 领券中心
   tapGetDiscounts(e) {
-    // const orderCode = e.currentTarget.dataset.id
-    // wx.navigateTo({
-    //   url: '/pages/views/ticket-detail?orderCode=' + orderCode + '&userName=' + wx.getStorageSync("userInfo").userName
-    // })
-    // 业务更改 - 跳转首页
-    wx.setStorageSync('activeMenu',2)
-    wx.switchTab({
-      url: '/pages/tabs/index'
+    const msId = e.currentTarget.dataset.id
+    const name = e.currentTarget.dataset.name
+    wx.navigateTo({
+      url: '/pages/views/ac-detail?id=' + msId + '&title=' + name
     })
+    // 业务更改 - 跳转首页
+    // wx.setStorageSync('activeMenu',2)
+    // wx.switchTab({
+    //   url: '/pages/tabs/index'
+    // })
   }
 })

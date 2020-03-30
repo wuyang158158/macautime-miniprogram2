@@ -13,7 +13,8 @@ Page({
     files: [],
     imageUrl: '',
     grade: 5,
-    options: {}
+    options: {},
+    canSubmit: true
   },
 
   /**
@@ -88,6 +89,7 @@ Page({
     this.setData({ grade })
   },
   bindFormSubmit(e) { // 提交意见反馈
+    const that = this
     const textarea = e.detail.value.textarea
     if(textarea===''){
       NT.showModal(_t['请填写评价内容，才能发表哦！'])
@@ -101,6 +103,11 @@ Page({
       orderId: options.orderNumber || '', //订单id
       imageUrl: this.data.imageUrl || '', //封面图
     }
+    if(this.data.canSubmit) {
+      this.setData({ canSubmit: false })
+    } else {
+      return false
+    }
     api.orderToEvaluate(expCommentForm)
     .then(res=>{
       // if(!this.data.files.length>0){
@@ -111,6 +118,8 @@ Page({
       //       data:"myexp"
       //     })
       //   }
+
+        that.setData({ canSubmit: true })
         setTimeout(()=>{
           wx.navigateBack({
             delta: 1
@@ -139,6 +148,7 @@ Page({
       //   },1000)
       // })
     .catch(err=>{
+      that.setData({ canSubmit: true })
       NT.showModal(err.message||_t['请求失败！'])
     })
     // console.log(textarea)

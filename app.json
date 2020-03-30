@@ -74,7 +74,8 @@
     "pages/upvote/upvote",
     "pages/topic/index",
     "pages/order/apply-refund",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/language/language"
   ],
   "subpackages": [],
   "preloadRule": {},
