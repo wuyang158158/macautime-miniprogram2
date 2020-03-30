@@ -1,48 +1,49 @@
 // pages/tabs/center.js
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
-const app = getApp()
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().CENTER; //翻译函数
 const record = [{
   iconPath: '/images/center/mine_icon_like.png',
-    text: '我的点赞'
+    text: _t['我的点赞']
   },
   {
     iconPath: '/images/center/mine_icon_comment.png',
-    text: '我的评价'
+    text: _t['我的评价']
   },
   // {
   //   iconPath: '/images/center/mine_icon_history.png',
-  //   text: '浏览历史'
+  //   text: _t['浏览历史']
   // },
   {
     iconPath: '/images/center/mine_icon_video.png',
-    text: '我的视频',
+    text: _t['我的视频'],
     url: '/pages/video/index'
   },
   // {
   //   iconPath: '/images/center/mine_icon_photo.png',
-  //   text: '我的相册',
+  //   text: _t['我的相册'],
   //   url: '/pages/photo/index'
   // },
   // {
   //   iconPath: '/images/center/mine_icon_line.png',
-  //   text: '我的路线'
+  //   text: _t['我的路线']
   // },
   {
     iconPath: '/images/center/mine_icon_wallet.png',
-    text: '我的钱包'
+    text: _t['我的钱包']
   },
   // {
   //   iconPath: '/images/center/mine_icon_list.png',
-  //   text: '我的发布'
+  //   text: _t['我的发布']
   // },
   // {
   //   iconPath: '/images/center/mine_icon_push.png',
-  //   text: '我要发布'
+  //   text: _t['我要发布']
   // },
   {
     iconPath: '/images/center/mine_icon_share.png',
-    text: '分享赚钱',
+    text: _t['分享赚钱'],
     url: '/pages/my/share/index'
   },
   {
@@ -52,13 +53,13 @@ const record = [{
   },
   {
     iconPath: '/images/center/mine_icon_store.png',
-    text: '预约探店',
+    text: _t['预约探店'],
     url: '/pages/appointment/index',
     isMember: true //KOL用户享有菜单
   },
   // {
   //   iconPath: '/images/center/_mine_icon_equity.png',
-  //   text: '权益KOL',
+  //   text: _t['权益KOL'],
   //   url: '/pages/legal/index',
   //   isMember: true //KOL用户享有菜单
   // }
@@ -70,15 +71,15 @@ const menu = [
   // },
   {
     iconPath: '/images/center/mine_icon_service.png',
-    text: '联系客服'
+    text: _t['联系客服']
   },
   // {
   //   iconPath: '/images/center/mine_icon_set.png',
-  //   text: '更多设置'
+  //   text: _t['更多设置']
   // },
   {
     iconPath: '/images/center/mine_icon_suggestion.png',
-    text: '意见反馈'
+    text: _t['意见反馈']
 }];
 Page({
 
@@ -86,6 +87,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: wx.getStorageSync("userInfo"), //用户信息
     record: record,
     menu: menu,
@@ -112,7 +114,7 @@ Page({
       // },
       {
         icon: '/images/center/icon_order5.png',
-        title: '退款售后',
+        title: _t['退款售后'],
         type: 4
       }
     ]
@@ -247,7 +249,7 @@ Page({
                     }
                   })
                 }else{
-                  NT.showModal(err.message||'登录失败！')
+                  NT.showModal(err.message||_t['登录失败！'])
                 }
               })
             },
@@ -293,22 +295,22 @@ Page({
         url: '/pages/message/message'
       })
     }
-    if(menu === '更多设置'){
+    if(menu === _t['更多设置']){
       wx.navigateTo({
         url: '/pages/views/more-settings'
       })
     }
-    if(menu === '浏览历史'){
+    if(menu === _t['浏览历史']){
       wx.navigateTo({
         url: '/pages/views/my-seen'
       })
     }
-    if(menu === '我的评价'){
+    if(menu === _t['我的评价']){
       wx.navigateTo({
         url: '/pages/views/all-exp-comment'
       })
     }
-    if(menu === '我的点赞'){
+    if(menu === _t['我的点赞']){
       wx.navigateTo({
         url: '/pages/upvote/upvote'
       })
@@ -318,12 +320,12 @@ Page({
         url: '/pages/coupon/my-coupon'
       })
     }
-    if(menu === '我要发布'){
+    if(menu === _t['我要发布']){
       wx.navigateTo({
         url: '/pages/route/release-route'
       })
     }
-    if(menu === '我的钱包'){
+    if(menu === _t['我的钱包']){
       wx.navigateTo({
         url: '/pages/wallet/wallet-index'
       })

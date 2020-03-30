@@ -7,13 +7,15 @@ import bmap from "../../utils/bmap-wx.min.js"
 
 
 var base = require('../../i18n/base.js');  //路径可能做相应调整
-const _ = base._; //翻译函数
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().INDEX; //翻译函数
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: wx.getStorageSync("userInfo") || {}, //用户信息
     params: { //请求首页推荐列表
       limit: PAGE.limit,
@@ -25,7 +27,7 @@ Page({
     noData: false,  //没有数据时
     activeMenu: 1,
     // menuList: [{ title: '景点周边', type: 0},{ title: '金牌KOL', type: 1},{ title: '精选商家', type: 2},{ title: '专访栏目', type: 3}],
-    menuList: [{ title: '金牌KOL', type: 1},{ title: '精选商家', type: 2},{ title: '专访栏目', type: 3}],
+    menuList: [{ title: '金牌KOL', type: 1},{ title: _t['精选商家'], type: 2},{ title: _t['专访栏目'], type: 3}],
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
     recommend: [], // 首页推荐体验列表
@@ -39,21 +41,11 @@ Page({
   onLoad: function(options) {
     this.fnComputeH()
     this.getLocationCity()
-
-    // 登录页面切换中英文需要
-    if (base.getLanguage() == 'zh_CN') {
-      this.setData({
-        language: 'English',
-      })
-    } else {
-      this.setData({
-        language: '中文',
-      })
-    };
-    this.setData({
-      _t: base._t(), //翻译
+    
+    wx.setNavigationBarTitle({
+      title: _t['首页']
     });
-
+    // 底部tab切换成繁体
     base.setTabBarLang()
   },
   /**
@@ -224,7 +216,7 @@ Page({
     })
     .catch(err=>{
       console.log(err)
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
       this.setData({
         loadmore: false,
       })
@@ -286,7 +278,7 @@ Page({
         })
       }).catch(err => {
         this.setData({ noData: true })
-        NT.showModal(err.codeMsg || err.message || '请求失败！')
+        NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
       })
   },
   // 专访栏目 - 首页
@@ -299,7 +291,7 @@ Page({
         })
     }).catch(err => {
       this.setData({ noData: true })
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   // 精选商家-首页
@@ -319,12 +311,12 @@ Page({
       })
       }).catch(err => {
         this.setData({ noData: true })
-        NT.showModal(err.codeMsg || err.message || '请求失败！')
+        NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
       })
   },
   // 根据type进行对应查询
   fnComputeH() {
-    NT.showToast('加载中..')
+    NT.showToast(_t['加载中...'])
     let type = this.data.activeMenu
     switch (type) {
       case 0:

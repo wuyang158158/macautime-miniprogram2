@@ -2,9 +2,9 @@
 import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
 import api from "../../data/api.js"
-import util from "../../utils/util.js"
 import bmap from "../../utils/bmap-wx.min.js"
-const app = getApp()
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().EXPERIENCE; //翻译函数
 const titleBar = [ //顶部标题bar
   {
     name: '全部',
@@ -18,7 +18,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navArray: ['推荐路线','精选商家'],
+    _t: _t,
+    navArray: [_t['推荐路线'],_t['精选商家']],
     idx: 1,
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
@@ -40,6 +41,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['推荐']
+    });
     this.msSelectMsLabelList()
     this.getLocationCity()
   },
@@ -273,7 +277,7 @@ Page({
   },
   // 精选商家-按标签类别获取列表
   msSearchHome(source) {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     const that = this
     api.msSearchHome(this.data.params)
     .then(res=>{
@@ -297,7 +301,7 @@ Page({
       }
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
       this.setData({
         loadmore: false,
       })
