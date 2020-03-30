@@ -3,7 +3,7 @@
     "gh-empty": "/components/empty/empty",
     "half-screen-dialog": "/components/halfScreenDialog/halfScreenDialog"
   },
-  "navigationBarTitleText": "提交订单",
+  "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#FFFFFF",
   "enablePullDownRefresh": true,
   "backgroundColor": "#FFFFFF"

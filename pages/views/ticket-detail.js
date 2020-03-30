@@ -2,12 +2,15 @@ import api from "../../data/api";
 import NT from "../../utils/native.js"
 import QR from "../../utils/qrcode.js"
 // pages/views/ticket-detail.js
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().TICKET_DETAIL; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     roleFrom: {}, //请求详情参数
     orderData: {}, //订单信息
 
@@ -20,7 +23,7 @@ Page({
       {
         type: '1',
         bgPath: '/images/vip/vip_card1.png',
-        name: 'Macau Time会员'
+        name: 'Macau Time' + _t['会员']
       },
       // {
       //   type: '2',
@@ -35,7 +38,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    NT.showToast('加载中...')
+    wx.setNavigationBarTitle({
+      title: _t['验票']
+    });
+    NT.showToast(_t['加载中...'])
     // console.log(options)
     this.data.roleFrom = options
     this.getOrderDetails()
@@ -102,7 +108,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   //跳转到会员中心重新开通
@@ -134,7 +140,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   //适配不同屏幕大小的canvas

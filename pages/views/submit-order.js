@@ -31,6 +31,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['提交订单']
+    });
     // 监听expAllMeal事件，获取上一页面通过eventChannel传送到当前页面的数据
     const eventChannel = this.getOpenerEventChannel()
     // 接受上一个页面传递过来的数据
@@ -125,7 +128,7 @@ Page({
   submitOrder() { //提交订单
     const that = this
     if(!this.data.userAgreement){
-      NT.showToastNone('需要同意Macau Time服务协议才能预定',2000)
+      NT.showToastNone(_t['需要同意Macau Time服务协议才能预定'],2000)
       return
     }
     NT.showToast('处理中...')
@@ -163,12 +166,12 @@ Page({
             },
             fail (res) {
               console.log(res)
-              NT.showModal('支付失败！')
+              NT.showModal(_t['支付失败！'])
             }
           })
         })
         .catch(err=>{
-          NT.showModal(err.codeMsg||err.message||'请求失败！')
+          NT.showModal(err.message||_t['请求失败！'])
         })
       }else{
         that.orderConfirmHandle()
@@ -176,8 +179,8 @@ Page({
             
     })
     .catch(err=>{
-      if(err.codeMsg === '该用户不是会员'){
-        NT.showModalPromise('您不是会员暂不能预定，是否立即加入会员立即享受体验优惠？')
+      if(err.codeMsg === _t['该用户不是会员']){
+        NT.showModalPromise(_t['您不是会员暂不能预定，是否立即加入会员立即享受体验优惠？'])
         .then(()=>{
           wx.navigateTo({
             url: '/pages/views/vip-center'
@@ -187,7 +190,7 @@ Page({
 
         })
       }else{
-        NT.showModal(err.codeMsg||err.message||'请求失败！')
+        NT.showModal(err.message||_t['请求失败！'])
       }
     })
   },
@@ -200,11 +203,11 @@ Page({
     app.globalData.ticket = true
     wx.showModal({
       title: '提示',
-      content: '预定成功！',
-      confirmText: '查看订单',
+      content: _t['预定成功！'],
+      confirmText: _t['查看订单'],
       confirmColor: '#00A653',
       cancelColor: '#222222',
-      cancelText: '继续浏览',
+      cancelText: _t['继续浏览'],
       success (res) {
         if (res.confirm) {
           // 
@@ -222,7 +225,7 @@ Page({
   },
   // 打开half-screen-dialog
   tapGetCard() {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     var query = {
       msId: this.data.params.msId,
       money: this.data.params.price * this.data.orderCount
@@ -230,7 +233,7 @@ Page({
     api.mkSelectStoreCardsAndUserCard(query).then(res=>{
       console.log(res)
       if(!res.length){
-        NT.showModal('抱歉，没有符合您的优惠券！')
+        NT.showModal(_t['抱歉，没有符合您的优惠券！'])
         return false;
       }
       res.map(item=>{
@@ -244,7 +247,7 @@ Page({
         istrue: true
       })
     }).catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
     
   },
@@ -302,14 +305,14 @@ Page({
       discountId: this.data.choseCardId, //优惠券id
       msId: choseData.msId
     }
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     api.poInsertGoodsOrderAddDiscount(query).then(res=>{
       console.log(res)
       wx.navigateTo({
         url: '/pages/vip/payment?id=' + res.orderNumber + '&money=' + payAmount + '&reciprocal=' + res.reciprocal + '&source=meal' + '&msId=' + choseData.msId
       })
     }).catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
     // wx.navigateTo({
     //   url: '/pages/views/spell-route-order-ok'

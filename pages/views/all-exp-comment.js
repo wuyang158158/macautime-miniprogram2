@@ -150,6 +150,7 @@ Page({
 
       this.setData({
         expComment: data,
+        total: res.total,
         loadmoreLine: false,
         loadmore: false,
         noData: false,
