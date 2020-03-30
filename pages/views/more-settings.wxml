@@ -15,7 +15,7 @@
             <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
     </view>
-    <view class="bg-white mt16">
+    <view class="bg-white mt16 none">
         <view class="flex bd1 f30 ml32 pr32" bindtap="changeLang">
             <view class="c-222222 flex-1">切换语言</view>
             <view class="c-999999 fw3">{{ language === 'zh_HK'?'繁體中文': '简体中文' }}</view>

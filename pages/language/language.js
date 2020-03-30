@@ -39,7 +39,7 @@ Page({
     const type = e.currentTarget.dataset.type
     wx.setStorageSync('Language', type);
     wx.reLaunch({
-      url: '/pages/tabs/index',
+      url: '/pages/login/login',
     })
   },
   /**
