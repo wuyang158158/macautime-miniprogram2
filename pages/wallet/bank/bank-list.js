@@ -1,12 +1,15 @@
 // pages/wallet/bank/bank-list.js
 import NT from "../../../utils/native.js"
 import api from "../../../data/api"
+var base = require('../../../i18n/base.js');
+const _t = base._t().wallet.BANK
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     bankList: [],
     isChoose: false,
     noData: false
@@ -16,6 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['银行卡'],
+    })
     if(options.s) {
       this.setData({ isChoose: true })
     }
@@ -30,11 +36,11 @@ Page({
   },
   // 获取银行卡列表
   getData() {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中..'])
     api.atsGetBankList().then(data => {
       this.setData({ bankList: data, noData: !data.length })
     }).catch(err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   /**

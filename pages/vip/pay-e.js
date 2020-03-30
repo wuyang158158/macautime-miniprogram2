@@ -1,5 +1,7 @@
 import api from "../../data/api"
 import NT from "../../utils/native.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().vip
 var ctime = null
 // pages/pay/pay-e.js
 Page({
@@ -8,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     copyTxt: ''
   },
 
@@ -15,6 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['e支付'],
+    })
     const that = this
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('copyUrl', function(res) {
@@ -110,7 +116,7 @@ Page({
       }
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
     })
   }
 })

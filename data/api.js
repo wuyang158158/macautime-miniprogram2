@@ -1216,6 +1216,12 @@ export default {
       execute(`/imSelectOrderEvaluateByOrderIdAndMsId/1.0/`, 'POST', query, resolve, reject)
     })
   },
+  // 观看视频记录次数
+  voInsertLookRecord(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/voInsertLookRecord/1.0/`, 'POST', query, resolve, reject)
+    })
+  },
   // 我的视频
   ctMyVideoc(query) {
     return new Promise((resolve, reject) => {
@@ -1351,7 +1357,7 @@ export default {
     return new Promise((resolve, reject) => {
       execute(`/usGetQRCode/1.0/`, 'POST', query, resolve, reject)
     })
-  }
+  },
   
   /*** file-end ***/
 }

@@ -1,21 +1,23 @@
 // pages/vip/payment.js
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().vip
 var ctime = null
 const payArray = [
   {
     icon: '/images/vip/icon_pay_we.png',
-    name: '微信支付',
+    name: _t['微信支付'],
     checked: true
   },
   {
     icon: '/images/vip/icon_pay_e.png',
-    name: 'e支付',
+    name: _t['e支付'],
     checked: false
   },
   {
     icon: '/images/vip/icon_pay_wallet.png',
-    name: '钱包支付',
+    name: _t['钱包支付'],
     checked: false
   },
   // {
@@ -33,8 +35,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     payArray: payArray,
-    payType: '微信支付'
+    payType: _t['微信支付']
   },
 
   /**
@@ -43,7 +46,7 @@ Page({
   onLoad: function (options) {
     var source = options.source
     wx.setNavigationBarTitle({
-      title: source === 'vip' ? '开通会员' : '购买商品'
+      title: source === 'vip' ? _t['开通会员'] : _t['购买商品']
     })
     var reciprocal = Number(options.reciprocal)
     //获取当前时间
@@ -142,7 +145,6 @@ Page({
   },
   // 单选
   radioChange(e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
     this.setData({
       payType: e.detail.value
     })
@@ -150,21 +152,21 @@ Page({
   // 支付
   chosePay() {
     const payType = this.data.payType
-    if(payType === '微信支付') {
+    if(payType === _t['微信支付']) {
       this.wxPay()
     }
-    if(payType === 'e支付') {
+    if(payType === _t['e支付']) {
       this.ghPay()
       // const data = res
     }
-    if(payType === '钱包支付') {
+    if(payType === _t['钱包支付']) {
       this.walletPay()
     }
   },
   // 微信支付
   wxPay(e) {
     var that = this
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中..'])
     const wxPayQuery = {
       tradeType: 'JSAPI', //小程序支付
       orderNumber: this.data.id, //订单id
@@ -191,14 +193,14 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
     })
     
   },
   // e支付
   ghPay(e) {
     var that = this
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中..'])
     const ePayQuery = {
       orderNumber: this.data.id, //订单id
     }
@@ -216,18 +218,18 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
     })
   },
   // 钱包支付
   walletPay(e) {
     var that = this
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中..'])
     const walletPayQuery = {
       orderNumber: this.data.id, //订单id
       payAmount: this.data.money, //支付金额
       payId: 0, // 支付ID
-      payName: '钱包支付', // 支付名称
+      payName: _t['钱包支付'], // 支付名称
       msId: this.data.msId || '', //商家id
       tradeType: '', // 交易类型
     }
@@ -238,7 +240,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
     })
   }
 })

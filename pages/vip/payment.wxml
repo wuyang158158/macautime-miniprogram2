@@ -5,13 +5,13 @@
         <text class="f60">{{money || 0}}</text>
     </view>
     <view class="f30 pt32 mt16 c-999999 t-c">
-        <text >支付剩余时间</text>
+        <text >{{ _t['支付剩余时间'] }}</text>
         <text class="c-00A653 ml16">{{timeDom}}</text>
     </view>
-    <view class="f24 c-999999 pt16 t-c">温馨提示：{{h > 0 ? h : 1}} 小时未完成支付，系统将自动取消订单</view>
+    <view class="f24 c-999999 pt16 t-c">{{ _t['温馨提示'] }}：{{h > 0 ? h : 1}} {{ _t['小时未完成支付，系统将自动取消订单'] }}</view>
 
     <view class="pt100">
-        <view class="f22 c-999999 bd1 h-85 pl32 pr32">支付方式</view>
+        <view class="f22 c-999999 bd1 h-85 pl32 pr32">{{ _t['支付方式'] }}</view>
         <view class="bd1">
             <radio-group class="radio-group" bindchange="radioChange">
             <view class="" wx:for="{{payArray}}" wx:key="index">
@@ -29,5 +29,5 @@
         </view>
     </view>
 
-    <button class="weui-btn f36 ml32 mr32 mt100" type="primary" bindtap="chosePay">确认支付</button>
+    <button class="weui-btn f36 ml32 mr32 mt100" type="primary" bindtap="chosePay">{{ _t['确认支付'] }}</button>
 </view>

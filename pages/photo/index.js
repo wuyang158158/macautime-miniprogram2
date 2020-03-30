@@ -1,10 +1,13 @@
 // pages/photo/index.js
+var base = require('../../i18n/base.js');
+const _t = base._t().video
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     photoList: [],
     noData: false
   },
@@ -13,6 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['我的相册'],
+    })
     this.fnGetMyPhoto()
   },
   // 获取我的相册

@@ -1,4 +1,7 @@
 // pages/video/video.js
+import api from "../../data/api.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().video
 Page({
 
   /**
@@ -12,13 +15,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 记录观看人数
+    this.fnvoInsertLookRecord(options.id ||'')
+
+    wx.setNavigationBarTitle({
+      title: _t['观看视频'],
+    })
     this.setData({
       src: decodeURIComponent(options.src)
     })
     this.videoContext = wx.createVideoContext('myVideo')
     this.videoContext.play()
-  },
 
+  },
+  fnvoInsertLookRecord(id) {
+    if(!id) return
+    api.voInsertLookRecord({voId: id})
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

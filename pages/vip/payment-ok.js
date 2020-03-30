@@ -1,12 +1,15 @@
 // pages/vip/payment-ok.js
 import api from "../../data/api.js"
 const app = getApp();
+var base = require('../../i18n/base.js');
+const _t = base._t().vip
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t
 
   },
 
@@ -20,7 +23,7 @@ Page({
       orderNumber: options.orderNumber
     })
     wx.setNavigationBarTitle({
-      title: source === 'vip' ? '开通成功' : '购买成功'
+      title: source === 'vip' ? _t['开通成功'] : _t['购买成功']
     })
     source === 'vip' ? this.ctGetUserInfo() : ''
   },

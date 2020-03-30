@@ -1,12 +1,15 @@
 // pages/upvote/upvote.js
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().vip
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     active: 0,
     noData: false,
     storeData: [],
@@ -17,11 +20,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['我的点赞'],
+    })
     this.fnGetMyStore()
   },
   // 获取我的视频
   fnGetMyVideo() {
-    NT.showToast('加载中..')
+    NT.showToast(_t['加载中..'])
     api.ctMyLikeVideo({ accountId: wx.getStorageSync('userInfo').userId }).then(res => {
       res.forEach(ele => {
         ele.contentUrl = encodeURIComponent(ele.contentUrl)
@@ -29,17 +35,17 @@ Page({
       this.setData({ videoList: res, noData:!res.length })
     }).catch( err => {
       this.setData({ noData: true })
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   // 获取我的商家
   fnGetMyStore() {
-    NT.showToast('加载中..')
+    NT.showToast(_t['加载中..'])
     api.ctMyLikeStore().then(res => {
       this.setData({ storeData: res, noData:!res.length })
     }).catch( err => {
       this.setData({ storeData: [], noData: true })
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   tapToDetail(e) { // 点击查看体验详情

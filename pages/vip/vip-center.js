@@ -1,6 +1,8 @@
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
 import util from "../../utils/util.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().vip
 
 // pages/vip/vip-center.js
 Page({
@@ -17,7 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    wx.setNavigationBarTitle({
+      title: _t['会员中心']
+    })
     
   },
 
@@ -134,7 +138,7 @@ Page({
                     }
                   })
                 }else{
-                  NT.showModal(err.message||'登录失败！')
+                  NT.showModal(err.message||_t['登录失败！'])
                 }
               })
             },
@@ -148,7 +152,7 @@ Page({
   },
   // 获取会员套餐
   mkGetVipPackage() {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中..'])
     api.mkGetVipPackage()
     .then(res=>{
       var list = res || []
@@ -164,7 +168,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
     })
   },
   getPass(e) { //领取卡劵
@@ -190,15 +194,15 @@ Page({
       this.setData({ memberConponData: arr})
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
     })
   },
   tapJoinVip(){
-    NT.showModal('请选择下面适合您的会员套餐开通！')
+    NT.showModal(_t['请选择下面适合您的会员套餐开通！'])
   },
   // 支付开通会员
   poVipOrder(e) {
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中..'])
     const id = e.currentTarget.dataset.id
     const money = e.currentTarget.dataset.money
     const query = {
@@ -213,7 +217,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
     })
     
   }

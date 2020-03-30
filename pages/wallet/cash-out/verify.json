@@ -1,6 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "提现",
+  "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#00A653",
   "navigationBarTextStyle": "white",
   "enablePullDownRefresh": true,

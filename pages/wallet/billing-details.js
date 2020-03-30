@@ -1,62 +1,64 @@
 import NT from "../../utils/native.js"
 import api from "../../data/api"
 import util from "../../utils/util.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().wallet.WALLET
 const tradeTypeArray = [
   {
     tradeType: 1,
-    TradeTypeText: '充值'
+    TradeTypeText: _t['充值']
   },
   {
     tradeType: 2,
-    TradeTypeText: '提现'
+    TradeTypeText: _t['提现']
   },
   {
     tradeType: 3,
-    TradeTypeText: '探店'
+    TradeTypeText: _t['探店']
   },
   {
     tradeType: 4,
-    TradeTypeText: '活动'
+    TradeTypeText: _t['活动']
   },
   {
     tradeType: 5,
-    TradeTypeText: '粉丝返点'
+    TradeTypeText: _t['粉丝返点']
   },
   {
     tradeType: 6,
-    TradeTypeText: '购劵'
+    TradeTypeText: _t['购劵']
   },
   {
     tradeType: 7,
-    TradeTypeText: '消费'
+    TradeTypeText: _t['消费']
   },
   {
     tradeType: 8,
-    TradeTypeText: '积分兑换'
+    TradeTypeText: _t['积分兑换']
   },
   {
     tradeType: 9,
-    TradeTypeText: '会员'
+    TradeTypeText: _t['会员']
   },
   {
     tradeType: 10,
-    TradeTypeText: '优惠换提成'
+    TradeTypeText: _t['优惠换提成']
   },
   {
     tradeType: 11,
-    TradeTypeText: '消费提成'
+    TradeTypeText: _t['消费提成']
   },
   {
     tradeType: 12,
-    TradeTypeText: '退回'
+    TradeTypeText: _t['退回']
   },
   {
     tradeType: 13,
-    TradeTypeText: '核销'
+    TradeTypeText: _t['核销']
   },
   {
     tradeType: 14,
-    TradeTypeText: '专访'
+    TradeTypeText: _t['专访']
   }
 ]
 // pages/wallet/billing-details.js
@@ -66,6 +68,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     tradeTypeArray: tradeTypeArray,
     date: '',
     accountType: '',
@@ -79,12 +82,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['账单明细'],
+    })
     this.setData({
       userInfo: wx.getStorageSync("userInfo"), //用户信息
       tradeType: options.tradeType || ''
     })
     if (options.tradeType) {
-      this.setData({ accountType: options.tradeType === "2"?'提现': '' })
+      this.setData({ accountType: options.tradeType === "2"?_t['提现']: '' })
     }
     this.atsSelectByList()
   },
@@ -144,7 +150,7 @@ Page({
   // 请求钱包流水
   atsSelectByList() {
     const that = this
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中..'])
     api.atsSelectByList({ tradeType: this.data.tradeType, updateTime: this.data.updateTime })
     .then(res=>{
       var result = res
@@ -155,49 +161,49 @@ Page({
         total += item.Amount
         switch (key) {
           case 1:
-            item.TradeTypeText = '充值';
+            item.TradeTypeText = _t['充值'];
             break;
           case 2:
-            item.TradeTypeText = '提现';
+            item.TradeTypeText = _t['提现'];
             break;
           case 3:
-            item.TradeTypeText = '探店';
+            item.TradeTypeText = _t['探店'];
             break;
           case 4:
-            item.TradeTypeText = '活动';
+            item.TradeTypeText = _t['活动'];
             break;
           case 5:
-            item.TradeTypeText = '粉丝返点';
+            item.TradeTypeText = _t['粉丝返点'];
             break;
           case 6:
-            item.TradeTypeText = '购劵';
+            item.TradeTypeText = _t['购劵'];
             break;
           case 7:
-            item.TradeTypeText = '消费';
+            item.TradeTypeText = _t['消费'];
             break;
           case 8:
-            item.TradeTypeText = '积分兑换';
+            item.TradeTypeText = _t['积分兑换'];
             break;
           case 9:
-            item.TradeTypeText = '会员';
+            item.TradeTypeText = _t['会员'];
             break;
           case 10:
-            item.TradeTypeText = '优惠换提成';
+            item.TradeTypeText = _t['优惠换提成'];
             break;
           case 11:
-            item.TradeTypeText = '消费提成';
+            item.TradeTypeText = _t['消费提成'];
             break;
           case 12:
-            item.TradeTypeText = '退回';
+            item.TradeTypeText = _t['退回'];
             break;
             case 13:
-              item.TradeTypeText = '核销';
+              item.TradeTypeText = _t['核销'];
               break;
             case 14:
-              item.TradeTypeText = '专访';
+              item.TradeTypeText = _t['专访'];
               break;
           default:
-            item.TradeTypeText = '未知';
+            item.TradeTypeText = _t['未知'];
             break;
         }
       });
@@ -207,7 +213,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||'请求失败！')
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
     })
   },
   // 选择交易类型

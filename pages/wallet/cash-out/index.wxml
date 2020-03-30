@@ -5,22 +5,22 @@
     <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
   </navigator>
   <navigator wx:else url="/pages/attestation/bind-bank-card" class="choose-bank flex bg-white">
-    <text>添加银行卡</text>
+    <text>{{ _t['添加银行卡'] }}</text>
     <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
   </navigator>
 
   <!-- 输入提现金额 -->
   <view class="cash-form bg-white">
-    <view class="c-title f28">提现金额</view>
+    <view class="c-title f28">{{ _t['提现金额'] }}</view>
     <view class="c-input flex">
-      <input value="{{ number }}" bindinput="setInputValue" placeholder="请输入提现金额"></input>
+      <input value="{{ number }}" bindinput="setInputValue" placeholder="{{ _t['请输入提现金额'] }}"></input>
       <text class="i f35">$</text>
     </view>
     <view class="c-desc flex mt35 f26 c-999999">
-      可提现金额￥{{ totalNum }} <text bindtap="chooseTotal">全部提现</text>
+      {{ _t['可提现金额'] }}￥{{ totalNum }} <text bindtap="chooseTotal">{{ _t['全部提现'] }}</text>
     </view>
   </view>
 
   <!-- 提交 -->
-  <view class="sub-btn flex f36" bindtap="submitRefund"> 确认提现 </view>
+  <view class="sub-btn flex f36" bindtap="submitRefund"> {{ _t['确认提现'] }} </view>
 </view>

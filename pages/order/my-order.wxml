@@ -22,15 +22,13 @@
                 <view class="t-top ml16 mr16 flex bd1">
                     <view class="flex-1 f30 c-222222 fw6 ell">{{item.msName || ''}}</view>
                     <view class="t-status f26 fw5 c-666666">
-                        <text wx:if="{{item.status === 1 }}">待付款</text>
-                        <text wx:if="{{item.status === 2 }}">待使用</text>
-                        <text wx:if="{{item.status === 3 }}">支付失败</text>
-                        <text wx:if="{{item.status === 4 }}">失效</text>
-                        <text wx:if="{{item.status === 5 }}">取消支付</text>
-                        <text wx:if="{{item.status === 6 }}">退订</text>
-                        <text wx:if="{{item.status === 7 }}">已完成</text>
-                        <text wx:if="{{item.status === 8 }}">已退订</text>
-                        <text wx:if="{{item.status === 9 }}">退订失败</text>
+                        <text wx:if="{{item.status === 1 }}">{{ _t['待付款'] }}</text>
+                        <text wx:if="{{item.status === 2 }}">{{ _t['待使用'] }}</text>
+                        <text wx:if="{{item.status === 3 }}">{{ _t['支付失败'] }}</text>
+                        <text wx:if="{{item.status === 4 }}">{{ _t['失效'] }}</text>
+                        <text wx:if="{{item.status === 5 }}">{{ _t['取消支付'] }}</text>
+                        <text wx:if="{{item.status === 7 }}">{{ _t['已完成'] }}</text>
+                        <text wx:if="{{item.status === 6 ||item.status === 8 || item.status === 9 }}">{{ _t['退款售后'] }}</text>
                     </view>
                 </view>
                 <view class="t-bottom ml16 mr16">
@@ -40,21 +38,26 @@
                             <image class="pic-default-new z-index5" src="{{item.GoodsPic}}" mode="aspectFill" />
                         </view>
                         <view class="flex-1 pt16 f26 c-666666 w-0">
-                            <view class="ell mt10">编号：{{item.orderNumber}}</view>
-                            <view class="ell mt10">内容：{{item.content}}</view>
-                            <view class="ell mt10">总价：MOP {{item.moneny || 0}}</view>
+                            <view class="ell mt10">{{ _t['编号'] }}：{{item.orderNumber}}</view>
+                            <view class="ell mt10">{{ _t['内容'] }}：{{item.content}}</view>
+                            <view class="ell mt10">{{ _t['总价'] }}：MOP {{item.moneny || 0}}</view>
                         </view>
                     </view>
                     <view class="t-handle flex">
                         <view class="flex-1">
-                            <view wx:if="{{ item.status === 1 }}" class="f26 green"> 付款剩余时间 {{ item.curTime }} </view>
+                            <view wx:if="{{ item.status === 1 }}" class="f26 green"> {{ _t['付款剩余时间'] }} {{ item.curTime }} </view>
+                            <view wx:if="{{ item.status === 6 || item.status === 8 || item.status=== 9 }}">
+                                <text wx:if="{{ item.status === 6 }}" class="f24 green">退款进度：{{  _t['正在处理'] }}</text>
+                                <text wx:if="{{ item.status === 8 }}" class="f24">退款进度： {{  _t['已退款'] }}</text>
+                                <text wx:if="{{ item.status === 9 }}" class="f24">退款进度： {{ _t['退款失败'] }}</text>
+                            </view>
                         </view>
-                        <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" catchtap="tapCancelOrder">取消</button>
-                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" data-price="{{item.moneny}}" data-reciprocal="{{item.reciprocal}}" catchtap="tapToPay">付款</button>
+                        <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" catchtap="tapCancelOrder">{{ _t['取消'] }}</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" data-price="{{item.moneny}}" data-reciprocal="{{item.reciprocal}}" catchtap="tapToPay">{{ _t['付款'] }}</button>
                         <!-- <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 'D' || item.status === 'E'}}" data-id="{{item.orderNumber}}" catchtap="deleteOrder">删除</button> -->
-                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" data-index="{{ index }}" wx:if="{{item.status === 7}}" catchtap="tapToExpComment">评价</button>
-                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="default-ticket" data-index="{{ index }}" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}" catchtap="tapToRefund">退款</button>
-                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}">使用</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" data-index="{{ index }}" wx:if="{{item.status === 7}}" catchtap="tapToExpComment">{{ _t['评价'] }}</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="default-ticket" data-index="{{ index }}" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}" catchtap="tapToRefund">{{ _t['退款'] }}</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}">{{ _t['使用'] }}</button>
                     </view>
                 </view>
             </view>
@@ -65,25 +68,25 @@
         <view class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
             <view wx:if="{{loadmore}}">
             <view class="weui-loading"></view>
-            <view class="weui-loadmore__tips">正在加载</view>
+            <view class="weui-loadmore__tips">{{ _t['正在加载'] }}</view>
             </view>
-            <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">已经到底了！</view>
+            <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">{{ _t['已经到底了！']}}</view>
         </view>
     </view>
 
     <!-- 缺省页面，暂无数据 -->
     <view class="no-data pl16 pr16" wx:if="{{noData}}">
-        <gh-empty prop-type="no-order" prop-text="{{emptytext?emptytext:'还没有任何内容哦~~'}}" prop-mt="200"></gh-empty>
+        <gh-empty prop-type="no-order" prop-text="{{emptytext?emptytext:_t['还没有任何内容哦~~']}}" prop-mt="200"></gh-empty>
         <!-- 推荐体验 -->
         <view class="recommend mt200" wx:if="{{recommend.length}}">
             <view class="rec-title flex pt32 pb32 mt32 fw6 l-h32">
-                <view class="flex-1 f32  c-222222">为您推荐</view>
+                <view class="flex-1 f32  c-222222">{{ _t['为您推荐'] }}</view>
             </view>
             <gh-aclist recommend="{{recommend}}"></gh-aclist>
             <view class="weui-loadmore">
                 <view wx:if="{{loadmore}}">
                 <view class="weui-loading"></view>
-                <view class="weui-loadmore__tips">正在加载</view>
+                <view class="weui-loadmore__tips">{{ _t['正在加载'] }}</view>
                 </view>
             </view>
         </view>
@@ -91,8 +94,8 @@
 
     <view class="no-login" wx:if="{{!userInfo}}">
         <view class="ml32 mr32 pl32 pr32 flex no-login-content">
-            <text class="flex-1 f28 c-FFFFFF">登录Macau Time立享体验</text>
-            <button class="weui-btn f30 c-00A653 w-auto" type="tologin" open-type="getUserInfo" bindtap="tapToLogin">立即登录</button>
+            <text class="flex-1 f28 c-FFFFFF">{{ _t['登录Macau Time立享体验'] }}</text>
+            <button class="weui-btn f30 c-00A653 w-auto" type="tologin" open-type="getUserInfo" bindtap="tapToLogin">{{ _t['立即登录'] }}</button>
         </view>
         
     </view>
