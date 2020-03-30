@@ -16,10 +16,10 @@
                     wx:if="{{!userInfo.level}}"
                     open-type="{{userInfo?'':'getUserInfo'}}" 
                     bindtap="{{userInfo?'tapJoinVip':'tapToLogin'}}"
-                    >未开通会员
+                    >{{ _t['未开通会员'] }}
                 </button>
             </view>
-            <view class="f30">开通会员尊享  大特权</view>
+            <view class="f30">{{ _t['开通会员尊享  大特权'] }}</view>
         </view>
 
         <!-- <button 
@@ -34,29 +34,29 @@
 
     <!-- 是否是会员用户 -->
     <view class="pl40 pr40">
-        <view class="f26 c-FFFFFF pt32 mb8 pb32">新用户只需购买任意会员即可获得抽奖大礼包百分百中奖，所有奖品价值99元以上，相当于新用户购买第一个会员不用钱！也可享受所有会员福利。</view>
+        <view class="f26 c-FFFFFF pt32 mb8 pb32">{{ _t['新用户只需购买任意会员即可获得抽奖大礼包百分百中奖，所有奖品价值99元以上，相当于新用户购买第一个会员不用钱！也可享受所有会员福利。'] }}</view>
         
-        <view class="f36 c-FFFFFF fw5">| 会员套餐</view>
+        <view class="f36 c-FFFFFF fw5">| {{ _t['会员套餐'] }}</view>
         
         <!-- 会有类型列表 -->
         <view class="list mt32">
             <view class="list-bd c-FFFFFF" wx:for="{{list}}" wx:key="{{index}}" data-id="{{item.id}}" data-money="{{item.money}}" bindtap="poVipOrder">
-                <view class="c-F5CE93 f32 fw5 w-100">{{item.money}}元</view>
+                <view class="c-F5CE93 f32 fw5 w-100">{{item.money}}{{ _t['元'] }}</view>
                 <view class="f22 pt16">{{item.description1}}</view>
                 <view class="f22">{{item.description2}}</view>
             </view>
         </view>
 
-        <view class="f36 c-FFFFFF pt32 fw5">| 会员权益</view>
+        <view class="f36 c-FFFFFF pt32 fw5">| {{ _t['会员权益'] }}</view>
         <view class="pt32 f26 l-h36 c-FFFFFF pb32">
-            <view >1.黄金会员专属标志</view>
-            <view >2.享受澳门时光所有门店内部所有优惠券</view>
-            <view >3.每周发放满50-10 满100-20满200-30 满500-50 各一张优惠券</view>
-            <view >4.购买会员即获得价值99元抽奖大礼包</view>
-            <view >5.新用户所有权益升级</view>
-            <view >6.享有出租车打车折扣</view>
-            <view >7.享有景点优惠</view>
-            <view >8.享受机票会员价</view>
+            <view >1.{{ _t['黄金会员专属标志'] }}</view>
+            <view >2.{{ _t['享受澳门时光所有门店内部所有优惠券'] }}</view>
+            <view >3.{{ _t['每周发放满50-10 满100-20满200-30 满500-50 各一张优惠券'] }}</view>
+            <view >4.{{ _t['购买会员即获得价值99元抽奖大礼包'] }}</view>
+            <view >5.{{ _t['新用户所有权益升级'] }}</view>
+            <view >6.{{ _t['享有出租车打车折扣'] }}</view>
+            <view >7.{{ _t['享有景点优惠'] }}</view>
+            <view >8.{{ _t['享受机票会员价'] }}</view>
         </view>
 
     </view>

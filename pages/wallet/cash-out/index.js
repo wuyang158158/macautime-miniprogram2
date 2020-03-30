@@ -1,12 +1,15 @@
 // pages/wallet/cash-out/index.js
 import NT from "../../../utils/native.js"
 import api from "../../../data/api"
+var base = require('../../../i18n/base.js');
+const _t = base._t().wallet.BANK
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     totalNum: '',
     number: '',
     bankList: [],
@@ -20,6 +23,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['提现'],
+    })
     console.log(options)
     if (options.bankAuthId) { this.setData({ bankAuthId: options.bankAuthId })}
   },
@@ -36,12 +42,12 @@ Page({
     api.atsSelect().then(res => {
       this.setData({ totalNum: res.balance || '0.00' })
     }).catch( err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   // 获取银行卡列表
   getData() {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中..'])
     api.atsGetBankList().then(data => {
       const arr = data
       arr.forEach((element, index) => {
@@ -54,31 +60,31 @@ Page({
       })
       this.setData({ bankList: arr })
     }).catch(err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   
   // 确认提现
   submitRefund() {
     if (!this.data.bankJson.bankCode) {
-      NT.showModal('请选择银行卡！')
+      NT.showModal(_t['请选择银行卡！'])
       return
     }
     if (!this.data.number) {
-      NT.showModal('请输入提现金额！')
+      NT.showModal(_t['请输入提现金额！'])
       return
     }
     if (this.data.number === '0.00' || this.data.number === '0' || this.data.number === '0.0') {
-      NT.showModal('提现金额不能为0')
+      NT.showModal(_t['提现金额不能为0'])
       return
     }
-    NT.showToast('加载中...')
+    NT.showToast(_t['处理中..'])
     api.atsCashMoney({ payAmount: this.data.number, bankAuthId: this.data.bankJson.bankCode }).then(res => {
       wx.navigateTo({
-        url:`/pages/wallet/cash-out/verify?payAmount=${res.payAmount}`,
+        url:`/pages/wallet/cash-out/verify?payAmount=${res.payAmount}&bankName=${this.data.bankJson.bankName}`,
       })
     }).catch(err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   /**

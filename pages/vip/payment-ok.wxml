@@ -1,18 +1,18 @@
 <!--pages/vip/payment-ok.wxml-->
 <view class="container t-c" wx:if="{{source === 'vip'}}">
     <icon class="mt60" type="success" size="100" color="#00A653"/>
-    <view class="f36 c-333333 fw6 mt60">恭喜您，您已成功开通会员</view>
+    <view class="f36 c-333333 fw6 mt60">{{ _t['恭喜您，您已成功开通会员'] }}</view>
     <view class="flex">
-        <button class="weui-btn btn-see-vip f34 ml32 mr32 mt150" type="primary" bindtap="seeVip">查看会员</button>
+        <button class="weui-btn btn-see-vip f34 ml32 mr32 mt150" type="primary" bindtap="seeVip">{{ _t['查看会员'] }}</button>
     </view>
     
 </view>
 
 <view class="container t-c" wx:else>
     <icon class="mt60" type="success" size="100" color="#00A653"/>
-    <view class="f36 c-333333 fw6 mt60">恭喜您，购买商品成功！</view>
+    <view class="f36 c-333333 fw6 mt60">{{ _t['恭喜您，购买商品成功！'] }}</view>
     <view class="flex">
-        <button class="weui-btn btn-see-vip f34 ml32 mr32 mt150" type="primary" bindtap="seeOrder">查看订单</button>
+        <button class="weui-btn btn-see-vip f34 ml32 mr32 mt150" type="primary" bindtap="seeOrder">{{ _t['查看订单'] }}</button>
     </view>
     
 </view>

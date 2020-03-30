@@ -1,6 +1,8 @@
 // pages/topic/index.js
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().vip
 Page({
 
   /**
@@ -8,13 +10,14 @@ Page({
    */
   data: {
     test: '',
+    _t: _t,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    NT.showToast("加载中..")
+    NT.showToast(_t['加载中..'])
     api.MyTopicDetail({id: options.id}).then( res => {
       wx.setNavigationBarTitle({
         title: res.title,

@@ -25,9 +25,10 @@ Component({
    */
   methods: {
     fnLinkTo(e) {
-      const src = e.currentTarget.dataset.src
+      const src = e.currentTarget.dataset.src || ''
+      const id = e.currentTarget.dataset.id || ''
       wx.navigateTo({
-        url: `/pages/video/video?src=${src}`,
+        url: `/pages/video/video?id=${id}&src=${src}`,
       })
     }
   }

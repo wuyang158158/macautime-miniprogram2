@@ -1,10 +1,10 @@
 <!--pages/wallet/billing-details.wxml-->
 <view class="container">
     <view class="flex fixed h-100 pl25 pr25">
-        <view class="flex-1 f26 c-666666">总收益：MOP {{ totalPrice }}</view>
-        <picker bindchange="bindPickerChange" value="{{ tradeType }}" mode="selector" range="{{tradeTypeArray}}" range-key="TradeTypeText" class="f26 c-666666"> {{ accountType?accountType:'账单类型' }} ▾</picker>
+        <view class="flex-1 f26 c-666666">{{ _t['总收益'] }}：MOP {{ totalPrice }}</view>
+        <picker bindchange="bindPickerChange" value="{{ tradeType }}" mode="selector" range="{{tradeTypeArray}}" range-key="TradeTypeText" class="f26 c-666666"> {{ accountType?accountType:_t['账单类型'] }} ▾</picker>
         <picker mode="date" fields="month" value="{{ date }}" start="1970-01" end="2099-12" bindchange="bindDateChange">
-          <view class="f26 c-666666 pl32">{{ date?date:'日期筛选' }} ▾</view>
+          <view class="f26 c-666666 pl32">{{ date?date:_t['日期筛选'] }} ▾</view>
         </picker>
     </view>
     <view class="content">
@@ -19,6 +19,6 @@
                 <view class="c-999999 f26">{{item.ctime}}</view>
             </view>
         </view>
-        <gh-empty prop-type="no-order" prop-text="还没有任何内容哦~~" prop-mt="200" wx:if="{{ result.length === 0 }}"></gh-empty>
+        <gh-empty prop-type="no-order" prop-text="{{ _t['还没有任何内容哦~~'] }}" prop-mt="200" wx:if="{{ result.length === 0 }}"></gh-empty>
     </view>
 </view>

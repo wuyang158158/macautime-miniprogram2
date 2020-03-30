@@ -1,7 +1,7 @@
 <view class="container mb16">
     <view class="coupon-tab bt1 flex bg-white">
-      <view class="flex w120 {{ active === 0?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 0 }}">商家</view>
-      <view class="flex w120 {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">视频</view>
+      <view class="flex w120 {{ active === 0?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 0 }}">{{ _t['商家'] }}</view>
+      <view class="flex w120 {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">{{ _t['视频'] }}</view>
     </view>
     <view class="cont" wx:if="{{ active === 0 }}">
         <view class="items ml16 mr16" wx:for="{{ storeData }}" wx:key="index">
@@ -10,14 +10,14 @@
                 <view class="w500 c-222222">
                     <view class="f32 fw6 limit1">{{item.name || ''}}</view>
                     <view class="f24 mt8 mb8 limit2">{{item.introduction || ''}}</view>
-                    <!-- <view class="f24 c-999999">参考价格：{{item.currencySymbol||'MOP'}} {{item.price || 0}}</view> -->
+                    <!-- <view class="f24 c-999999">{{ _t['参考价格'] }}：{{item.currencySymbol||'MOP'}} {{item.price || 0}}</view> -->
                 </view>
             </view>
         </view>
-      <gh-empty prop-src="/images/default/no_like.png" prop-text="还没有任何点赞哦~~" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+      <gh-empty prop-src="/images/default/no_like.png" prop-text="{{ _t['还没有任何点赞哦~~'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
     </view>
     <view class="cont" wx:if="{{ active === 1 }}">
       <cp-video result="{{ videoList }}"></cp-video>
-      <gh-empty prop-src="/images/default/no_like.png" prop-text="还没有任何点赞哦~~" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+      <gh-empty prop-src="/images/default/no_like.png" prop-text="{{ _t['还没有任何点赞哦~~'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
     </view>
 </view>

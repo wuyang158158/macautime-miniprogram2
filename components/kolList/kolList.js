@@ -30,13 +30,14 @@ Component({
       NT.showToast(_t['处理中...'])
       const fAccountId = e.currentTarget.dataset.faccountid
       const isfocus = e.currentTarget.dataset.isfocus
+      console.log(isfocus)
       api.usInsertFocus({fAccountId:fAccountId, isFocus: isfocus})
       .then(res=>{
         NT.toastFn(isfocus? '已取消' : _t['关注成功！'])
         const kolList = this.data.kolList
         kolList.map(item=>{
           if(item.id === fAccountId){
-            item.isfocus = !isfocus
+            item.isFocus = !isfocus
           }
         })
         this.setData({

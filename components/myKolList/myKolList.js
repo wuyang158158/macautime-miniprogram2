@@ -29,7 +29,7 @@ Component({
       const fAccountId = e.currentTarget.dataset.faccountid
       api.usInsertFocus({fAccountId:fAccountId, isFocus: isFocus})
       .then(res=>{
-        NT.toastFn(isfocus? '已取消' : _t['关注成功！'])
+        NT.toastFn(isFocus? '已取消' : _t['关注成功！'])
         const result = this.data.result
         result.map(item=>{
           if(item.accountId === fAccountId){

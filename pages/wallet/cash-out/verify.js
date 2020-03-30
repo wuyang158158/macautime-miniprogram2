@@ -1,16 +1,20 @@
 // pages/wallet/cash-out/verify.js
+var base = require('../../../i18n/base.js');
+const _t = base._t().wallet.BANK
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     active: 1,
     payAmount: 0,
+    bankName: '',
     actionMenu: [
-      { type: 1, title: '提现已申请' },
-      { type: 2, title: '提现处理中' },
-      { type: 3, title: '提现成功' },
+      { type: 1, title: _t['提现已申请'] },
+      { type: 2, title: _t['提现处理中'] },
+      { type: 3, title: _['提现成功'] },
     ]
   },
 
@@ -18,7 +22,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({ payAmount: options.payAmount || 0 })
+    wx.setNavigationBarTitle({
+      title: _t['提现'],
+    })
+    this.setData({ payAmount: options.payAmount || 0, bankName: options.bankName ||'' })
   },
   // 点击确认
   sureBtn() {

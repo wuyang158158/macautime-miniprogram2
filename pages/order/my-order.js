@@ -2,27 +2,28 @@
 import api from "../../data/api";
 import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
-import util from "../../utils/util.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().order
 const app = getApp();
 const titleBar = [ //顶部标题bar
   {
-    name: '全部',
+    name: _t['全部'],
     type: ''
   },
   {
-    name: '待支付',
+    name: _t['待支付'],
     type: '1'
   },
   {
-    name: '待使用',
+    name: _t['待使用'],
     type: '2'
   },
   {
-    name: '已完成',
+    name: _t['已完成'],
     type: '3'
   },
   {
-    name: '退款售后',
+    name: _t['退款售后'],
     type: '4'
   }
 ];
@@ -32,6 +33,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: wx.getStorageSync("userInfo"), //用户信息
     titleBar: titleBar, //顶部标题bar
     name: titleBar[0].name, // 选中标题bar,默认第一位
@@ -67,6 +69,9 @@ Page({
     // wx.navigateTo({
     //   url: '/pages/views/ticket-detail?id=1'
     // })
+    wx.setNavigationBarTitle({
+      title: _t['我的订单'],
+    })
     let params = { //请求列表
         limit: PAGE.limit,
         start: PAGE.start,
@@ -81,7 +86,7 @@ Page({
       userInfo: wx.getStorageSync("userInfo"), //用户信息
       name: options.name || titleBar[0].name
     })
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中..'])
     this.poSelectDiscountList()
     // this.poSelectDiscountList()
 
@@ -130,7 +135,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    NT.showToast('刷新中...')
+    NT.showToast(_t['刷新中..'])
     this.setData({
       userInfo: wx.getStorageSync("userInfo"),
       params: { //请求列表
@@ -189,7 +194,7 @@ Page({
         if(name===this.data.name){
           return
         }
-        NT.showToast('加载中...');
+        NT.showToast(_t['加载中..']);
         wx.pageScrollTo({
           scrollTop: 0,
           duration: 300
@@ -247,20 +252,20 @@ Page({
     const that = this
     const orderCode = e.currentTarget.dataset.id
     wx.showModal({
-      title: '提示',
-      content: '您确定要取消该订单吗？取消将不可撤回',
+      title: _t['提示'],
+      content: _t['您确定要取消该订单吗？取消将不可撤回'],
       success (res) {
         if (res.confirm) {
-          NT.showToast('处理中...')
+          NT.showToast(_t['处理中..'])
           api.MyOrderDeleteDetail({orderNumber:orderCode})
           .then(res=>{
-            NT.showToast('订单取消成功')
+            NT.showToast(_t['订单取消成功!'])
             that.poSelectDiscountList()
             // that.refreshData(orderCode)
           })
           .catch(err=>{
             console.log(err)
-            NT.showModal(err.codeMsg||err.message||'请求失败！')
+            NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
           })
         }
       }
@@ -304,24 +309,24 @@ Page({
     const that = this
     const orderCode = e.currentTarget.dataset.id
     wx.showModal({
-      title: '提示',
-      content: '您确定要删除该订单记录吗？删除后将永久消失在订单列表',
+      title: _t['提示'],
+      content: _t['您确定要删除该订单记录吗？删除后将永久消失在订单列表'],
       success (res) {
         if (res.confirm) {
           
-          NT.showToast('处理中...')
+          NT.showToast(_t['处理中..'])
           api.deleteOrder({orderCode:orderCode})
           .then(res=>{
-            NT.showToastNone('订单删除成功')
+            NT.showToastNone(_t['订单删除成功!'])
             // that.poSelectDiscountList()
             that.refreshData(orderCode)
           })
           .catch(err=>{
             console.log(err)
-            NT.showModal(err.codeMsg||err.message||'请求失败！')
+            NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
           })
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          // console.log('用户点击取消')
         }
       }
     })

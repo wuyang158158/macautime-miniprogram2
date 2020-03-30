@@ -1,12 +1,15 @@
 // pages/video/index.js
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
+var base = require('../../i18n/base.js');
+const _t = base._t().video
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     videoList: [],
     noData: false
   },
@@ -15,6 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['我的视频'],
+    })
     this.fnGetMyVideo()
   },
 
@@ -33,7 +39,7 @@ Page({
   },
   // 获取我的视频
   fnGetMyVideo() {
-    NT.showToast('加载中..')
+    NT.showToast(_t['加载中..'])
     api.ctMyVideoc().then(res => {
       res.vobaseInfo.forEach(ele => {
         ele.contentUrl = encodeURIComponent(ele.contentUrl)
@@ -41,7 +47,7 @@ Page({
       this.setData({ videoList: res.vobaseInfo, noData:!res.vobaseInfo.length })
     }).catch( err => {
       this.setData({ videoList: [], noData: true })
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   /**

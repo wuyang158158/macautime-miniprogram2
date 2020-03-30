@@ -5,29 +5,29 @@
                 <image class="i-img mr16 bg-EFEFF4" src="{{ data.goodsImg || data.GoodsPic || '/images/default/bg_img.png' }}" lazy-load mode="aspectFill"/>
                 <view class="flex-1 c-222222">
                     <view class="f32 fw6">{{ data.msName }}</view>
-                    <view class="f24 mt8 mb8">编号： {{ data.orderNumber }}</view>
-                    <view class="f24 c-999999">内容： {{ data.content || data.mealType || '' }}</view>
+                    <view class="f24 mt8 mb8">{{ _t['编号']}}： {{ data.orderNumber }}</view>
+                    <view class="f24 c-999999">{{ _t['内容'] }}： {{ data.content || data.mealType || '' }}</view>
                 </view>
             </view>
         </view>
 
         <view class="topic flex ml16 mr16 mb16">
-          <view class="f26 c-222222">退款金额</view>
+          <view class="f26 c-222222">{{ _t['退款金额'] }}</view>
           <view class="f26 green">MOP <text class="f36">{{ data.moneny || data.price || 0 }}</text></view>
         </view>
 
         <view class="topic flex ml16 mr16 mb16">
-          <view class="f26 c-222222">退款方式</view>
-          <view class="f26 green">原路返回</view>
+          <view class="f26 c-222222">{{ _t['退款方式'] }}</view>
+          <view class="f26 green">{{ _t['原路返回'] }}</view>
         </view>
 
         <view class="text-cont ml16 mr16">
-          <view class="f26">退款原因</view>
+          <view class="f26">{{ _t['退款原因'] }}</view>
           <view class="area-text">
-            <textarea bindinput="fnSetReason" placeholder="请输入退款原因.." value="{{ reason }}"></textarea>
+            <textarea bindinput="fnSetReason" placeholder="{{ _t['请输入退款原因..'] }}" value="{{ reason }}"></textarea>
           </view>
         </view>
 
-        <view class="green-btn" bindtap="fnApplyRefund">提交申请</view>
+        <view class="green-btn" bindtap="fnApplyRefund">{{ _t['提交申请'] }}</view>
     </view>
 </view>
