@@ -2,13 +2,15 @@
 import NT from "../../utils/native.js"
 import api from "../../data/api.js"
 import config from "../../data/api_config.js"
-const app = getApp()
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().attestation.NAME_ATTESTATION; //翻译函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     baseImageHost: config.baseImageHost,
     array: ['男', '女'],
     ageArray: [],
@@ -18,7 +20,7 @@ Page({
       sex: '',
       age: '',
       realName: '',
-      identityType: '身份证',
+      identityType: _t['身份证'],
       identityCode: ''
     }, //上传参数
   },
@@ -27,6 +29,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['实名认证']
+    })
     const that = this
 
     let ageArray = []
@@ -124,7 +129,7 @@ Page({
             }
         })
         .catch(err=>{
-          NT.showModal(err.message || '请求失败！')
+          NT.showModal(err.message || _t['请求失败！'])
         })
       }
     })
@@ -135,31 +140,31 @@ Page({
     let params = e.detail.value
     let data = Object.assign(this.data.identityQuery, params)
     if(!data.realName){
-      NT.showModal('请输入真实姓名！')
+      NT.showModal(_t['请输入真实姓名'] + '！')
       return
     }
     if(!data.sex){
-      NT.showModal('请选择年龄！')
+      NT.showModal(_t['请选择年龄'] + '！')
       return
     }
     if(!data.age){
-      NT.showModal('请选择性别！')
+      NT.showModal(_t['请选择性别'] + '！')
       return
     }
     if(!data.identityCode){
-      NT.showModal('请输入身份证！')
+      NT.showModal(_t['请输入身份证'] + '！')
       return
     }
     if(!data.cardFrontImage){
-      NT.showModal('请上传身份证正面图！')
+      NT.showModal(_t['请上传身份证正面图！'])
       return
     }
     if(!data.cardBackImage){
-      NT.showModal('请上传身份证反面图！')
+      NT.showModal(_t['请上传身份证反面图！'])
       return
     }
     data.sex === '男' ? data.sex = 0 : data.sex = 1
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     api.usInsertIdentity(data)
     .then(res=>{
       NT.toastFn('提交成功！')
@@ -170,13 +175,13 @@ Page({
       },2000)
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
     
   },
   // 获取KOL实名认证信息
   usGetAuthentication() {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     api.usGetAuthentication()
     .then(res=>{
       console.log(res)
@@ -187,7 +192,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   }
 })

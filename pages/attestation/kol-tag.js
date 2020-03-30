@@ -1,6 +1,8 @@
 // pages/attestation/kol-tag.js
 import api from "../../data/api";
 import NT from "../../utils/native.js"
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().attestation.KOL_TAG; //翻译函数
 var length = 2;
 Page({
 
@@ -8,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     userInfo: wx.getStorageSync("userInfo"), //用户信息
     tagArray: [],
     length: length,
@@ -34,7 +37,7 @@ Page({
         length: length
       })
       wx.setNavigationBarTitle({
-        title: '申请类别'
+        title: _t['申请类别']
       })
     }
     this.sysLabelInfo()
@@ -90,7 +93,6 @@ Page({
   // }
   // 新增标签
   tapToAddTag() {
-    console.log('新增标签')
     this.setData({
       isShowConfirm: true
     })
@@ -105,7 +107,7 @@ Page({
     let flag = false
     tagArray.map(item=>{
       if(item.remark===detail){
-        NT.showToastNone('该标签已存在，请勿重复添加！')
+        NT.showToastNone(_t['该标签已存在，请勿重复添加！'])
         flag = true
       }
     })
@@ -135,7 +137,7 @@ Page({
           if(tagSelectedLen>this.data.length){
             item.selected = false
             let num = this.data.source === 'class' ? '1' : '3'
-            NT.showToastNone('优势特长标签不能超过' + num + '次！')
+            NT.showToastNone(_t['优势特长标签不能超过'] + num + '次！')
             return false;
           }
         }
@@ -177,7 +179,7 @@ Page({
   },
   // 获取系统标签
   sysLabelInfo() {
-    NT.showToast('加载中...')
+    NT.showToast(_t['加载中...'])
     api.sysLabelInfo(this.data.query)
     .then(res=>{
       let data;
@@ -210,15 +212,15 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   // 新增用户系统标签
   usInsertCustomLabel(labelRemark) {
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     api.usInsertCustomLabel({labelRemark:labelRemark})
     .then(res=>{
-      NT.toastFn('处理成功！')
+      NT.toastFn(_t['处理成功！'])
       var result = res;
       result.remark = result.labelRemark
       result.selected = false
@@ -227,15 +229,15 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   // 新增标签
   usInsertLabel(obj,source) {
-    NT.showToast('处理中...')
+    NT.showToast(_t['处理中...'])
     api.usInsertLabel(obj)
     .then(res=>{
-      NT.toastFn('处理成功！')
+      NT.toastFn(_t['处理成功！'])
       setTimeout(()=>{
         const tagArray = this.data.tagArray
         let choseTag = []
@@ -254,7 +256,7 @@ Page({
       },2000)
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   // 新增用户标签
@@ -282,7 +284,7 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.message||'请求失败！')
+      NT.showModal(err.message||_t['请求失败！'])
     })
   }
 })

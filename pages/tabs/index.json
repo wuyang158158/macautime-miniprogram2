@@ -6,7 +6,7 @@
     "gh-hotRecommend": "/components/hotRecommend/hotRecommend",
     "gh-kolList": "/components/kolList/kolList"
   },
-  "navigationBarTitleText": "首页",
+  "navigationBarTitleText": "",
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50,
   "backgroundTextStyle": "dark",

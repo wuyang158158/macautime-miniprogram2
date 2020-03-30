@@ -7,7 +7,7 @@
     "gh-kolList": "/components/kolList/kolList",
     "gh-hmList": "/components/hmList/hmList"
   },
-  "navigationBarTitleText": "推荐",
+  "navigationBarTitleText": "",
   "backgroundTextStyle": "dark",
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50,

@@ -2,7 +2,7 @@
   "usingComponents": {
 
   },
-  "navigationBarTitleText": "实名认证",
+  "navigationBarTitleText": "",
   "backgroundTextStyle": "dark",
   "navigationStyle": "default"
 }
