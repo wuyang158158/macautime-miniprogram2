@@ -48,7 +48,6 @@ Page({
    */
   onLoad: function (options) {
     this.setData({ editType: Number(options.type) })
-    console.log(infoName[Number(options.type)])
     wx.setNavigationBarTitle({
       title: infoName[Number(options.type)],
     })

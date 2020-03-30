@@ -2,12 +2,15 @@
 import NT from "../../../utils/native.js"
 import api from "../../../data/api.js"
 import util from "../../../utils/util.js"
+var base = require('../../../i18n/base.js');
+const _t = base._t().my.SHARE
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     isIphoneX: getApp().globalData.isIphoneX, //iphonex适配
     showModal: false,
     code: '',
@@ -21,6 +24,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['已注册用户'],
+    })
     // api.shareInsertMoney({ payAmount: '10' }).then( res => {
     //   this.setData({ showModal: false, code: '' })
     //   NT.showModal('成功！')
@@ -36,7 +42,7 @@ Page({
   },
   // 获取已注册用户数据
   fnGetResiger() {
-    NT.showToast('加载中..')
+    NT.showToast(_t['加载中..'])
     api.shareRegisterUser().then(res => {
       res.map(item => {
         item.createTime = item.createTime? util.formatTimeTwo(item.createTime, 'Y.M.D') : item.createTime
@@ -44,16 +50,16 @@ Page({
       this.setData({ accountList: res, noData: !res.length })
     }).catch(err => {
       this.setData({ accountList: [], noData: true })
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   // 领取奖励
   receiveT() {
-    NT.showToast('查询中..')
+    NT.showToast(_t['查询中..'])
     api.shareReward().then(res => {
       this.setData({ showModal: true, rewardData: res, code: res.reward? 1: 2 })
     }).catch(err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   // 关闭弹窗
@@ -64,19 +70,19 @@ Page({
   fnGetMoney() {
     api.shareInsertMoney({ payAmount: this.data.rewardData }).then( res => {
       this.setData({ showModal: false, code: '' })
-      NT.showModal('成功！')
+      NT.showModal(_t['成功！'])
     }).catch(err => {
-      NT.showModal(err.codeMsg || err.message || '请求失败！')
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   controlModal(e) {
     let flag = e.currentTarget.dataset.flag
      if(flag) {
-      NT.showToast('查询中..')
+      NT.showToast(_t['查询中..'])
       api.shareGetLimit().then(res =>{ 
         this.setData({ limitData: res, code: 0, showModal: e.currentTarget.dataset.flag})
       }).catch(err => {
-        NT.showModal(err.codeMsg || err.message || '请求失败！')
+        NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
       })
     } else {
       this.setData({ code: 0, showModal: e.currentTarget.dataset.flag })
