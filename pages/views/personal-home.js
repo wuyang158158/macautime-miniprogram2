@@ -48,6 +48,7 @@ Page({
     userId: '',
     isMine: false,
     isFocus: false,
+    isLogin: wx.getStorageSync('userInfo'),
     options: {}
   },
 
@@ -76,6 +77,76 @@ Page({
     })
     .catch(err=>{
       NT.showModal(err.message||_t['处理中...'])
+    })
+  },
+  tapToLogin: function(e) {
+    let that = this;
+    wx.getSetting({
+      success(res) {
+        console.log(res)
+        if (!res.authSetting['scope.userInfo']) {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success (res) {
+              // 用户已经同意 后续调用 wx.getUserInfo 接口不会弹窗询问
+              // 必须是在用户已经授权的情况下调用
+              wx.getUserInfo()
+            },
+            fail () { //用户拒绝授权 则提示用户去授权
+              wx.openSetting({
+                success (res) {
+                  console.log(res.authSetting)
+                  res.authSetting = {
+                    "scope.userInfo": true,
+                    "scope.userLocation": true
+                  }
+                }
+              })
+            }
+          })
+        }else{
+          // 必须是在用户已经授权的情况下调用
+          wx.getUserInfo({
+            success: function(res) {
+              console.log(res)
+              var userInfo = res.userInfo
+              var nickName = userInfo.nickName
+              var avatarUrl = userInfo.avatarUrl
+              var gender = userInfo.gender //性别 0：未知、1：男、2：女
+              var province = userInfo.province
+              var city = userInfo.city
+              var country = userInfo.country
+              api.login()
+              .then((res) => {
+                that.setData({
+                  userInfo: res
+                })
+                wx.setStorage({
+                  key:"userInfo",
+                  data:res
+                })
+              })
+              .catch((err)=>{
+                console.log(err)
+                if(err.code==='10019'){ //用户未注册
+                  wx.navigateTo({
+                    url: '/pages/login/login?openId='+err.data.openId + '&sessionKey=' + err.data.sessionKey,
+                    success: function(res) {
+                      // 通过eventChannel向被打开页面传送数据
+                      res.eventChannel.emit('acceptDataFromOpenerPage', err.data)
+                    }
+                  })
+                }else{
+                  NT.showModal(err.message||_t['登录失败！'])
+                }
+              })
+            },
+            fail : function(err) {
+              console.log(err)
+            }
+          })
+        }
+      }
     })
   },
   // 获取我的信息

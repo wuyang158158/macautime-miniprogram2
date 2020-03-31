@@ -89,6 +89,9 @@ Page({
   // onShareAppMessage: function () {
 
   // }
+  tapLast() {
+    wx.navigateBack()
+  },
   radioChange(e) { //用户协议
     this.setData({
       userAgreement: e.detail.value.length > 0 ? true : false
@@ -267,9 +270,13 @@ Page({
   },
   // 上传图片
   tapChooseImage() {
-    wx.navigateTo({
-      url : '/pages/cropper/cropper'
-    })
+    if(this.data.userInfo.kolType === 0) {
+      wx.navigateTo({
+        url : '/pages/cropper/cropper'
+      })
+    } else {
+      NT.showModal('此项不能修改！')
+    }
     // const that = this
     // wx.chooseImage({
     //   count: 1,
@@ -292,15 +299,23 @@ Page({
   },
   // 跳转到优势特长选择
   tapToSpeciality(e) {
-    const source = e.currentTarget.dataset.source
-    wx.navigateTo({
-      url : '/pages/attestation/kol-tag?source=' + source
-    })
+    if(this.data.userInfo.kolType === 0) {
+      const source = e.currentTarget.dataset.source
+      wx.navigateTo({
+        url : '/pages/attestation/kol-tag?source=' + source
+      })
+    } else {
+      NT.showModal('此项不能修改！')
+    }
   },
   // 跳转到kol 类别认证
   tapToKolClass() {
-    wx.navigateTo({
-      url : '/pages/attestation/kol-class'
-    })
+    if(this.data.userInfo.kolType === 0) {
+      wx.navigateTo({
+        url : '/pages/attestation/kol-class'
+      })
+    } else {
+      NT.showModal('此项不能修改！')
+    }
   }
 })
