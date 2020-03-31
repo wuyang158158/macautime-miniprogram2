@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    _t: _t,
     isUserVip: false,
     memberConponData: []
   },
