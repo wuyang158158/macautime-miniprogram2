@@ -104,11 +104,22 @@ const showToastNone = (msg,time) => {
     })  
 }
 
+/**
+ * 返回上一页
+ * @param {*} count  层级
+ */
+const navigateBackDelta = (count) => {
+    wx.navigateBack({
+        delta: count
+    })
+}
+
 module.exports = {
     showModal: showModal,
     showModalPromise: showModalPromise,
     showToast: showToast,
     hideToast: hideToast,
     toastFn: toastFn,
-    showToastNone: showToastNone
+    showToastNone: showToastNone,
+    navigateBackDelta: navigateBackDelta
 };

@@ -1,0 +1,27 @@
+<!--pages/cropper/cropper.wxml-->
+<import src="/components/cropper/cropper.wxml" />
+
+<view class="cropper-wrapper">
+    <template is="wx-cropper" data="{{...cropperOpt}}"/>
+
+    <view class="cropper-handle {{isIphoneX ?'fix-iphonex-button1':''}}">
+        <view class="cropper-buttons">
+            <view
+                    class="upload"
+                    bindtap="toBackTap">
+                取消
+            </view>
+            <view
+                    class="getCropperImage"
+                    bindtap="returnTap">
+                {{ _t['还原'] }}
+            </view>
+            <view
+                    class="getCropperImage"
+                    bindtap="getCropperImage">
+                完成
+            </view>
+        </view>
+    </view>
+
+</view>

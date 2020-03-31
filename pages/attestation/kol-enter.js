@@ -48,6 +48,7 @@ Page({
    */
   onShow: function () {
     this.setData({
+      accordingImage: wx.getStorageSync('accordingImage'),
       choseTag: wx.getStorageSync('choseTag'),
       kolClass: wx.getStorageSync('kolClass'),
       choseTagClass: wx.getStorageSync('choseTagClass')
@@ -266,25 +267,28 @@ Page({
   },
   // 上传图片
   tapChooseImage() {
-    const that = this
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success (res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
-        api.userUploadImage(tempFilePaths[0])
-          .then(res => {
-            that.setData({
-              accordingImage: res.body
-            })
-        })
-        .catch(err=>{
-          console.log(err)
-        })
-      }
+    wx.navigateTo({
+      url : '/pages/cropper/cropper'
     })
+    // const that = this
+    // wx.chooseImage({
+    //   count: 1,
+    //   sizeType: ['original', 'compressed'],
+    //   sourceType: ['album', 'camera'],
+    //   success (res) {
+    //     // tempFilePath可以作为img标签的src属性显示图片
+    //     const tempFilePaths = res.tempFilePaths
+    //     api.userUploadImage(tempFilePaths[0])
+    //       .then(res => {
+    //         that.setData({
+    //           accordingImage: res.body
+    //         })
+    //     })
+    //     .catch(err=>{
+    //       console.log(err)
+    //     })
+    //   }
+    // })
   },
   // 跳转到优势特长选择
   tapToSpeciality(e) {

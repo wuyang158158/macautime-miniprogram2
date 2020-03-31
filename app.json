@@ -75,7 +75,8 @@
     "pages/topic/index",
     "pages/order/apply-refund",
     "pages/message/message",
-    "pages/language/language"
+    "pages/language/language",
+    "pages/cropper/cropper"
   ],
   "subpackages": [],
   "preloadRule": {},

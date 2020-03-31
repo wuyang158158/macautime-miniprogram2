@@ -11,6 +11,7 @@ App({
     // 获取设备信息
     wx.getSystemInfo({
       success: res=>{
+        wx.setStorageSync('systemInfo', res);
         var L = res.language
         if(L === 'zh_HK' || L === 'zh_MO' || L === 'zh_TW'){
           L = 'zh_HK' //繁体
