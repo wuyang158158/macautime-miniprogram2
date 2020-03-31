@@ -161,7 +161,7 @@ Page({
     }
     // 修改昵称
     if (type === 2 && this.data.nickName.length < 2) {
-      return NT.showModal(_t['请输入2-15个字'])
+      return NT.showModal(_t['请输入2-15个字!'])
     } else if(type === 2) {
       data.nickName = this.data.nickName
     }
@@ -183,7 +183,7 @@ Page({
     }
     //修改主页背景
     if (type === 1 && this.data.headBackIco === '') {
-      return NT.showModal(_t['请选择图片上传'])
+      return NT.showModal(_t['请选择图片上传!'])
     } else if (type === 1) {
       data.headBackIco = this.data.headBackIco
     }
@@ -196,7 +196,7 @@ Page({
     // 修改次数
     // data.modifyCount = 3
     if (this.data.userInfo.modifyCount === 0) {
-      return NT.showModal(_t['当月可修改次数为0'])
+      return NT.showModal(_t['当月可修改次数为0!'])
     } else {
       data.modifyCount = --this.data.userInfo.modifyCount
     }
