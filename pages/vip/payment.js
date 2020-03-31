@@ -12,7 +12,7 @@ const payArray = [
   },
   {
     icon: '/images/vip/icon_pay_e.png',
-    name: _t['e支付'],
+    name: _t['工银e支付(银联、信用卡、VISA)'],
     checked: false
   },
   {

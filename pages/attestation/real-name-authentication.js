@@ -32,7 +32,6 @@ Page({
     wx.setNavigationBarTitle({
       title: _t['实名认证']
     })
-    const that = this
 
     let ageArray = []
     for (let index = 0; index < 100; index++) {
@@ -41,7 +40,6 @@ Page({
     this.setData({
       ageArray: ageArray
     })
-    this.usGetAuthentication()
   },
 
   /**
@@ -55,7 +53,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.usGetAuthentication()
   },
 
   /**
