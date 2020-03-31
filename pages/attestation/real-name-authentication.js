@@ -105,9 +105,15 @@ Page({
   },
   // 跳转去绑定银行卡页面
   tapToBindBankCard() {
-    wx.navigateTo({
-      url: '/pages/attestation/bind-bank-card'
-    })
+    if(this.data.isUsBankAuth) {
+      wx.navigateTo({
+        url: '/pages/wallet/bank/bank-list'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/attestation/bind-bank-card'
+      })
+    }
   },
   // 上传身份证正反面
   tapChooseImage(e) {
