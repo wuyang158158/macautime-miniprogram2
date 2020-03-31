@@ -16,8 +16,16 @@ page{
 .mb0{
     margin-bottom: 0;
 }
-.grey-view view{
+.grey-view text{
   color: #999 !important;
+}
+.grey-view {
+  border-color: #999 !important;
+}
+.grey-view .grey {
+  background: #fff;
+  border: 1rpx solid #999;
+  color: #999;
 }
 .coupon-tab {
   height: 116rpx;

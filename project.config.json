@@ -117,8 +117,8 @@
 				},
 				{
 					"id": 8,
-					"name": "pages/address/address-list",
-					"pathName": "pages/address/address-list",
+					"name": "pages/coupon/my-coupon",
+					"pathName": "pages/coupon/my-coupon",
 					"query": "",
 					"scene": null
 				},
