@@ -5,6 +5,10 @@ var base = require('../../i18n/base.js');
 const _t = base._t().wallet.WALLET
 const tradeTypeArray = [
   {
+    tradeType: '',
+    TradeTypeText: '全部'
+  },
+  {
     tradeType: 1,
     TradeTypeText: _t['充值']
   },

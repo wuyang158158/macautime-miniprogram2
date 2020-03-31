@@ -37,7 +37,7 @@ Component({
         const kolList = this.data.kolList
         kolList.map(item=>{
           if(item.id === fAccountId){
-            item.isFocus = !isfocus
+            item.isfocus = !isfocus
           }
         })
         this.setData({
