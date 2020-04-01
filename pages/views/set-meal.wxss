@@ -30,6 +30,46 @@ page{
     padding-left: 0;
     height: 335rpx;
 }
+.limit {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    max-width: 300rpx;
+}
 .pl32{
     padding-left: 32rpx;
+}
+.scroll-view_H{
+    width: 100%;
+    white-space: nowrap;
+}
+.scroll-view-item{
+    height: 100%;
+}
+.scroll-view-item_H{
+    display: inline-block;
+    width: auto;
+    height: 56rpx;
+    line-height: 56rpx;
+    padding: 0 35rpx;
+    text-align: center;
+    position: relative;
+    border-radius: 28rpx;
+    margin-left: 16rpx;
+}
+.demo-text-1{
+    color: #ffffff;
+    font-weight: 500;
+}
+.item-bd{
+    position: absolute;
+    width: 100%;
+    height: 4rpx;
+    bottom: 0;
+    background: #00A653;
+    display: block;
+    left: 0%;
+}
+.demo-text-1{
+    font-weight: normal;
 }

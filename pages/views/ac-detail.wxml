@@ -109,7 +109,7 @@
                 <image class="merchant-ei-icon ml16" src="/images/detail/logo@2x.png" mode="aspectFill"/>
             </view>
             <view class="relative myVideo">
-                <image class="pic-default-new z-index5" src="{{acData.msInterviewVideoVoList[0].imageUrl}}" mode="aspectFill" />
+                <image class="pic-default-new z-index5" src="{{acData.msInterviewVideoVoList[0].videoThumbUrl}}" mode="aspectFill" />
                 <image class="icon_video86" src="/images/detail/icon_video86.png" mode="aspectFill" />
             </view>
             <view class="f30 c-222222 fw6 pt32">{{acData.msInterviewVideoVoList[0].title}}</view>

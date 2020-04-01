@@ -3,10 +3,12 @@
     <!-- 顶部操作 -->
     <view class="title">
         <view class="view_H">
-        <view wx:for="{{result}}" class="view-item_H {{item.id==id?'demo-text-1':''}}" data-id="{{item.id}}" data-type="{{item.type}}" wx:key="index" bindtap="tapTitleBar">
-            <text>{{item.title}}</text>
-            <text class="item-bd" wx:if="{{item.id==id}}"></text>
-        </view>
+            <scroll-view class="scroll-view_H" scroll-x="true">
+                <view wx:for="{{result}}" class="scroll-view-item_H limit" data-id="{{item.id}}" data-type="{{item.type}}" wx:key="index" bindtap="tapTitleBar">
+                    <text>{{item.title}}</text>
+                    <text class="item-bd" wx:if="{{item.id==id}}"></text>
+                </view>
+            </scroll-view>
         </view>
     </view>
 
