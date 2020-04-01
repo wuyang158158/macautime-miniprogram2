@@ -27,8 +27,17 @@ Component({
   methods: {
     // 关注或者取消用户
     tapUsInsertFocus(e) {
-      if(!wx.getStorageSync('userInfo')) {
-        return NT.showModal('您没有登录！')
+      if(!this.data.userInfo){
+        NT.showModalPromise(_t['您还未注册，请去个人中心点击「登录/注册」，再来关注KOL！'])
+        .then(()=>{
+          wx.switchTab({
+            url: '/pages/tabs/center'
+          })
+        })
+        .catch(()=>{
+
+        })
+        return false;
       }
       NT.showToast(_t['处理中...'])
       const fAccountId = e.currentTarget.dataset.faccountid
