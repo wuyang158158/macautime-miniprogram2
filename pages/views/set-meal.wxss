@@ -68,12 +68,13 @@ page{
 }
 .item-bd{
     position: absolute;
-    width: 80%;
+    width: 60%;
     height: 4rpx;
     bottom: 0;
     background: #00A653;
     display: block;
-    left: 10%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .demo-text-1{
     font-weight: normal;
