@@ -43,14 +43,19 @@ page{
     width: 100%;
     white-space: nowrap;
 }
+.h70 {
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.h350 {
+    height: 350rpx;
+}
 .scroll-view-item{
     height: 100%;
 }
 .scroll-view-item_H{
     display: inline-block;
     width: auto;
-    height: 56rpx;
-    line-height: 56rpx;
     padding: 0 35rpx;
     text-align: center;
     position: relative;
@@ -63,13 +68,17 @@ page{
 }
 .item-bd{
     position: absolute;
-    width: 100%;
+    width: 80%;
     height: 4rpx;
     bottom: 0;
     background: #00A653;
     display: block;
-    left: 0%;
+    left: 10%;
 }
 .demo-text-1{
     font-weight: normal;
+}
+image.w335 {
+    width: 335rpx;
+    height: 335rpx;
 }
