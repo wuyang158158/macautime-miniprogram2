@@ -42,6 +42,7 @@ Page({
     current: 0,
     direction: 'vertical', // 视频播放默认垂直
     expAllMeal: [], //套餐列表
+    seeVideoData: []
   },
 
   /**
@@ -139,6 +140,12 @@ Page({
       this.videoContext.pause()
     }
   },
+  fnChangeVideo(e) {
+    // const index = e.detail.current
+    this.data.seeVideoData.forEach(ele => {
+      ele.stop()
+    })
+  },
   // 视频进入和退出全屏时触发
   bindfullscreenchange(e) {
     const direction = e.detail.direction
@@ -191,7 +198,7 @@ Page({
         acData: data
       })
       this.selectMsEvaluateScoreList() //评论列表
-      this.msSelectedMsVideoByMsId() //相关视频
+      // this.msSelectedMsVideoByMsId() //相关视频 - 暂时没有
       if(this.data.recommend){
         this.getGuessLike() //获取推荐喜欢数据
       }
@@ -524,7 +531,6 @@ Page({
     api.msSelectedMsVideoByMsId()
     .then(res=>{
       const data = res
-      console.log(data)
       this.setData({
         videoList: data||[]
       })

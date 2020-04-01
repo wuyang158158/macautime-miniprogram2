@@ -751,6 +751,12 @@ page {
     white-space: nowrap;
     overflow: hidden;
 }
+.ell2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
 /* 推荐与专项滑动图 */
 .recommend{
     width: 100%;
