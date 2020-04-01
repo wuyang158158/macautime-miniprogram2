@@ -140,11 +140,11 @@ Page({
       this.videoContext.pause()
     }
   },
-  fnChangeVideo(e) {
-    // const index = e.detail.current
-    this.data.seeVideoData.forEach(ele => {
-      ele.stop()
-    })
+  fnChangeVideoPlay(e) {
+    this.videoContext.pause()
+  },
+  fnChangeVideoPause(e) {
+    this.videoContext.play()
   },
   // 视频进入和退出全屏时触发
   bindfullscreenchange(e) {

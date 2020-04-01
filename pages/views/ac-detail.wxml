@@ -111,9 +111,9 @@
             <view class="relative myVideo">
                 <!-- <image class="pic-default-new z-index5" src="{{acData.msInterviewVideoVoList[0].videoThumbUrl}}" mode="aspectFill" />
                 <image class="icon_video86" src="/images/detail/icon_video86.png" mode="aspectFill" /> -->
-                <swiper style="width:100%;height:100%" bindchange="fnChangeVideo">
+                <swiper style="width:100%;height:100%">
                     <swiper-item wx:for="{{ acData.msInterviewVideoVoList }}" wx:key="index">
-                        <video style="width:100%;height:100%" poster="{{ item.videoThumbUrl }}" controls src="{{ item.videoUrl }}"></video>
+                        <video bindpause="fnChangeVideoPause" bindplay="fnChangeVideoPlay" style="width:100%;height:100%" controls src="{{ item.videoUrl }}"></video>
                     </swiper-item>
                 </swiper>
             </view>
