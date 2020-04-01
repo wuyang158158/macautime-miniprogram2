@@ -11,6 +11,8 @@ Page({
   data: {
     test: '',
     _t: _t,
+    noData: false,
+    message: 'error'
   },
 
   /**
@@ -24,9 +26,13 @@ Page({
       })
       // res.imageUrl = '/images/default/no-data.png'
       this.setData({
-        data: res
+        data: res,
+        noData: false
       })
-    })
+    }).catch(err => {
+      this.setData({ noData: true, message: err.codeMsg || err.message || 'error' })
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
+  })
     this.fnAddCount(options.id)
   },
   // 增加阅读数量

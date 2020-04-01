@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "",
   "usingComponents": {
-    "Parser":"/components/Parser/index"
+    "Parser":"/components/Parser/index",
+    "gh-empty": "/components/empty/empty"
   }
 }

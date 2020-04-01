@@ -1,4 +1,4 @@
-<view class="content">
+<view class="content" wx:if="{{ !noData }}">
   <view class="test">
    <Parser html="{{ data.text }}" />
   </view>
@@ -7,3 +7,5 @@
   </view>
   <video src="{{ data.videoUrl }}" wx:if="{{ data.videoUrl }}" controls="true"></video>
 </view>
+
+    <gh-empty prop-src="/images/default/no_logging.png" prop-text="{{ message }}" prop-mt="200" wx:else></gh-empty>
