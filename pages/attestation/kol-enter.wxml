@@ -59,7 +59,7 @@
         <view class="list bg-white ml16 mr16 mt16" wx:for="{{platformList}}" wx:key="index">
             <view class="flex f32 c-222222 h-100 fw6 ml32 mr32 bd1">
                 <view class="flex-1">{{_t['其他平台信息']}}</view>
-                <view class="delete f28 fw4 c-F24949" data-index="{{index}}" bindtap="tapDeletePlatformMsg" wx:if="{{index!==0}}">{{_t['删除']}}</view>
+                <view class="delete f28 fw4 c-F24949" data-index="{{index}}" bindtap="{{ userInfo.kolType === 2?'':'tapDeletePlatformMsg' }}" wx:if="{{index!==0}}">{{_t['删除']}}</view>
             </view>
             <view class="f30 c-222222 ml32 mr32 bd1">
                 <picker class="t-right" data-index="{{index}}" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
@@ -84,7 +84,7 @@
         </view>
 
         <view class="flex" wx:if="{{platformList.length<4}}">
-            <button class="weui-btn c-00A653 ml16 f30 add" type="primary-kol" catchtap="tapAddPlatformMsg">添加平台信息</button>
+            <button class="weui-btn c-00A653 ml16 f30 add" type="primary-kol" catchtap="{{ userInfo.kolType === 2?'':'tapAddPlatformMsg' }}">添加平台信息</button>
         </view>
 
         <view class="ml16 mr16 mt32 mb32">

@@ -90,7 +90,7 @@ Page({
 
   // }
   tapLast() {
-    wx.navigateBack()
+    NT.showModal('您已认证成功！')
   },
   radioChange(e) { //用户协议
     this.setData({

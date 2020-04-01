@@ -168,7 +168,7 @@
       <!-- <view class="rec-title flex pt32 pb32 mt32 fw6 l-h32">
         <view class="flex-1 f32  c-222222">澳门时光官方专访栏目</view>
       </view>-->
-      <view wx:for="{{ specialData }}" wx:key="id" data-id="{{ item.id }}" bindtap="fnLinkTo" class="exclusive-interview mb16">
+      <view wx:for="{{ specialData }}" wx:key="id" data-index="{{ index }}" data-id="{{ item.id }}" bindtap="fnLinkTo" class="exclusive-interview mb16">
         <view class="exclusive-interview-list flex bg-white">
           <view class="interview-list-pics">
             <image class="pic-default" src="/images/default/mg_placeholder5.png" mode="aspectFill"/>
@@ -205,6 +205,9 @@
       </view>
     </view> -->
   </view>
+  <view class="weui-loadmore" wx:if="{{ showEndLine }}">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">{{_t['已经到底了！']}}</view>
+</view>
 </view>
  <!-- 缺省页面，暂无数据 -->
 <!-- <gh-empty prop-type="no-data" prop-text="暂无数据"></gh-empty> -->

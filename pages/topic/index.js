@@ -19,6 +19,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 监听expAllMeal事件，获取上一页面通过eventChannel传送到当前页面的数据
+    const eventChannel = this.getOpenerEventChannel()
+    // 接受上一个页面传递过来的数据
+    eventChannel.on('params', data => {
+      this.setData({
+        data:data
+      })
+    })
+    this.fnAddCount(options.id)
+    return
     NT.showToast(_t['加载中..'])
     api.MyTopicDetail({id: options.id}).then( res => {
       wx.setNavigationBarTitle({
@@ -33,7 +43,6 @@ Page({
       this.setData({ noData: true, message: err.codeMsg || err.message || 'error' })
       NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
   })
-    this.fnAddCount(options.id)
   },
   // 增加阅读数量
   fnAddCount(id) {

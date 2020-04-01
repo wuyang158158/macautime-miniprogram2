@@ -16,6 +16,10 @@
   left: 0;
   z-index: 2;
 }
+.weui-loadmore{
+  border-top: 1px solid rgba(0,0,0,.1);
+  margin: .6em auto;
+}
 .header-bg-h{
   height: 400rpx;
 }

@@ -13,6 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showEndLine: false,
     _t: _t,
     userInfo: wx.getStorageSync("userInfo") || {}, //用户信息
     params: { //请求首页推荐列表
@@ -66,7 +67,7 @@ Page({
     if(index === this.data.activeMenu) {
       return 
     }
-    this.setData({ noData: false,activeMenu: index, 'params.start': PAGE.start })
+    this.setData({ noData: false, showEndLine: false, activeMenu: index, 'params.start': PAGE.start })
     this.fnComputeH()
   },
   /**
@@ -90,7 +91,8 @@ Page({
       params: { //请求首页推荐列表
         limit: PAGE.limit,
         start: PAGE.start
-      }
+      },
+      showEndLine: false
     })
     this.getLocationCity()
     this.fnComputeH()
@@ -262,7 +264,8 @@ Page({
       .then(res => {
         this.setData({
           kolList: res,
-          noData: !res.length
+          noData: !res.length,
+          showEndLine: res.length
         })
       }).catch(err => {
         this.setData({ noData: true })
@@ -275,7 +278,8 @@ Page({
         this.setData({
           specialData: this.data.params.start === 1? res.data: this.data.specialData.concat(res.data),
           total: res.total,
-          noData: !res.total
+          noData: !res.total,
+          showEndLine: res.total && (this.data.params.start * this.data.params.limit >= res.total)
         })
     }).catch(err => {
       this.setData({ noData: true })
@@ -295,7 +299,8 @@ Page({
       this.setData({
         selecMerchants: this.data.params.start === 1 ? data : this.data.selecMerchants.concat(data),
         total: res.total,
-        noData: !res.total
+        noData: !res.total,
+        showEndLine: res.total && (this.data.params.start * this.data.params.limit >= res.total)
       })
       }).catch(err => {
         this.setData({ noData: true })
@@ -324,8 +329,14 @@ Page({
   // 跳转专访详情
   fnLinkTo(e) {
     const id = e.currentTarget.dataset.id
+    const index = e.currentTarget.dataset.index
+    const data = this.data.specialData[index]
     wx.navigateTo({
       url: `/pages/topic/index?id=${id}`,
+      success: function(result) {
+        // 通过eventChannel向被打开页面传送数据
+        result.eventChannel.emit('params', data)
+      }
     })
   }
 })
