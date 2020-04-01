@@ -26,13 +26,14 @@ page{
     z-index: 2;
 }
 .media{
-    width: 100%;
+    width: 80%;
     height: 44rpx;
     position: absolute;
-    left: 0;
+    left: 20%;
     z-index: 5;
     bottom: 28rpx;
-    justify-content: center;
+    box-sizing: border-box;
+    padding-left: 145rpx;
 }
 .media .item{
     width: 96rpx;
