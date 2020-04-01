@@ -10,7 +10,7 @@
                     id="video" 
                     src="{{item.videoUrl}}" 
                     controls
-                    poster="{{item.imageUrl}}">
+                    poster="{{item.videoThumbUrl}}">
                 </video>
             </view>
             <view class="f24 c-404040 mt16">
@@ -19,7 +19,7 @@
                     <image class="avatar" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFill"/>
                     <view class="flex-1 ml12 fw5">{{item.updateUserName}}</view>
                     <image class="like" src="/images/detail/icon_like28.png" mode="aspectFill"/>
-                    <view class="c-999999 ml5 mr16">962</view>
+                    <view class="c-999999 ml5 mr16">{{item.readNumber}}</view>
                 </view>
             </view>
         </view>

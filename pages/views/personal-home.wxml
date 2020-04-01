@@ -25,8 +25,8 @@
                 </view>
             </view>
             <view class="flex c-FFFFFF ml32 mr32 pl32 pr32 mt32 pt32">
-                <button class="t-btn" type="primary1" bindtap="{{ isLogin?'fnLinkInfos':'tapToLogin' }}" wx:if="{{ isMine }}">{{ _t['编辑资料'] }}</button>
-                <button class="t-btn" type="primary1" bindtap="{{ isLogin?'tapUsInsertFocus':'tapToLogin' }}" wx:else>{{ isFocus? _t['取消关注']: _t['关注']}}</button>
+                <button class="t-btn" type="primary1" bindtap="fnLinkInfos" wx:if="{{ isMine }}">{{ _t['编辑资料'] }}</button>
+                <button class="t-btn" type="contact" open-type="{{isLogin?'':'getUserInfo'}}"  bindtap="{{ isLogin?'tapUsInsertFocus':'tapToLogin' }}" wx:else>{{ isFocus? _t['取消关注']: _t['关注']}}</button>
                 <button class="t-btn" open-type="share" type="primary1">{{ _t['分享主页'] }}</button>
             </view>
         </view>

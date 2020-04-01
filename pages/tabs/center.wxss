@@ -14,6 +14,23 @@
     background:linear-gradient(90deg,rgba(252,222,178,1),rgba(245,206,147,1));
     border-radius:16rpx;
 }
+.activeNone:active {
+    background: #fff;
+}
+button {
+    background: #fff;
+    line-height: normal;
+    padding: 0;
+}
+.p0 {
+    padding: 0;
+}
+.t-l {
+    text-align: left;
+}
+button::after {
+    border: 0;
+}
 .join-vip-icon{
     width: 32rpx;
     height: 40rpx;
