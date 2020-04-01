@@ -293,9 +293,11 @@ Page({
       var data = res.data || []
       if(data.length) {
         data.map(item=>{
+          item.averageScore = parseInt(item.averageScore) || 0
           item.imageUrls =  item.imageUrls ? item.imageUrls.split(',') : ''
         })
       }
+      console.log(data)
       this.setData({
         selecMerchants: this.data.params.start === 1 ? data : this.data.selecMerchants.concat(data),
         total: res.total,

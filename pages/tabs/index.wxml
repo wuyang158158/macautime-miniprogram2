@@ -133,13 +133,9 @@
               <image class="merchant-discount-tag" src="/images/index/bg_tag@2x.png" mode="aspectFill"/>
               <view class="merchant-discount-text f22 c-FFFFFF fw5">{{item.discount}}折</view>
             </view>
-            <!-- <view class="merchant-star">
-              <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-              <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-              <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-              <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-              <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" mode="aspectFill"/>
-            </view> -->
+            <view class="merchant-star">
+              <image wx:for="{{ 5 }}" wx:key="index" wx:for-index="imgIndex" wx:for-item="imgData" class="merchant-star-icon" src="{{ item.averageScore>imgIndex?'/images/index/icon_star1.png':'/images/index/icon_star2.png' }}" mode="aspectFill"/>
+            </view>
             <view class="merchant-name f24 c-FFFFFF">{{item.address}}</view>
           </view>
         </view>

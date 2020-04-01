@@ -113,7 +113,7 @@
                 <image class="icon_video86" src="/images/detail/icon_video86.png" mode="aspectFill" /> -->
                 <swiper style="width:100%;height:100%">
                     <swiper-item wx:for="{{ acData.msInterviewVideoVoList }}" wx:key="index">
-                        <video bindpause="fnChangeVideoPause" bindplay="fnChangeVideoPlay" style="width:100%;height:100%" controls src="{{ item.videoUrl }}"></video>
+                        <video bindplay="fnChangeVideoPlay" style="width:100%;height:100%" controls src="{{ item.videoUrl }}"></video>
                     </swiper-item>
                 </swiper>
             </view>

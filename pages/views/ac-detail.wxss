@@ -33,7 +33,7 @@ page{
     z-index: 5;
     bottom: 28rpx;
     box-sizing: border-box;
-    padding-left: 145rpx;
+    padding-left: 120rpx;
 }
 .media .item{
     width: 96rpx;

@@ -162,7 +162,11 @@ Page({
       result.forEach(item => {
         item.ctime = util.formatTimeTwo(item.UpdateTime,'Y/M/D h:m:s')
         let key = item.TradeType
-        total += item.Amount
+        if(item.recordType === 1) {
+          total += item.Amount
+        } else if(item.recordType === 2) {
+          total -= item.Amount
+        }
         switch (key) {
           case 1:
             item.TradeTypeText = _t['充值'];

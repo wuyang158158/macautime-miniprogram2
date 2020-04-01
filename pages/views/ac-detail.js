@@ -143,9 +143,6 @@ Page({
   fnChangeVideoPlay(e) {
     this.videoContext.pause()
   },
-  fnChangeVideoPause(e) {
-    this.videoContext.play()
-  },
   // 视频进入和退出全屏时触发
   bindfullscreenchange(e) {
     const direction = e.detail.direction
