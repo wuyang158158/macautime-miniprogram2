@@ -27,6 +27,9 @@ Component({
   methods: {
     // 关注或者取消用户
     tapUsInsertFocus(e) {
+      if(!wx.getStorageSync('userInfo')) {
+        return NT.showModal('您没有登录！')
+      }
       NT.showToast(_t['处理中...'])
       const fAccountId = e.currentTarget.dataset.faccountid
       const isfocus = e.currentTarget.dataset.isfocus

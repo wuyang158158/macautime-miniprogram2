@@ -13,7 +13,7 @@
                     <image class="avatar-vip" wx:if="{{ userInfo.level && !userInfo.kolType }}" src="/images/center/avatar_vip.png" mode="aspectFill"/>
                 </view>
                 
-                <button class="weui-btn username flex-1 f36 l-h40 c-222222 fw6 ell" type="contact" open-type="{{userInfo?'getUserInfo':''}}" bindtap="{{userInfo?'':'tapToLogin'}}">
+                <button class="weui-btn username flex-1 f36 l-h40 c-222222 fw6 ell" type="contact" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{userInfo?'':'tapToLogin'}}">
                     <view>{{userInfo?userInfo.nickName || userInfo.nick || userInfo.userName :_t['登录/注册']}}</view>
                     <view class="f24 fw4" wx:if="{{userInfo.id}}">ID：{{ userInfo.id }}</view>
                     <view class="flex f24 mt16" wx:if="{{ userInfo.kolType }}">
@@ -59,31 +59,31 @@
     <!-- 开通菜单栏 -->
     <view class="ml16 mr16">
         <view class="c-nav flex bg-white">
-            <view class="flex-1 flex br1" bindtap="{{ userInfo? 'tapToVip': 'tapToLogin' }}">
+            <button class="flex-1 bg-white flex br1" type="contact" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{ userInfo? 'tapToVip': 'tapToLogin' }}">
                 <image class="open-vip-icon" src="/images/center/icon_vip42.png" mode="aspectFill"/>
                 <view class="open-vip-text f30 c-222222 fw6 ml16">{{ userInfo.level? _t['会员中心']: _t['开通会员']}}</view>
-            </view>
-            <view class="flex-1 flex" bindtap="{{ userInfo? 'tapAttestation': 'tapToLogin' }}">
+            </button>
+            <button class="flex-1 bg-white flex" type="contact" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{ userInfo? 'tapAttestation': 'tapToLogin' }}">
                 <image class="open-vip-icon" src="/images/center/icon_attest.png" mode="aspectFill"/>
                 <view class="open-vip-text f30 c-222222 fw6 ml16">{{_t['认证中心']}}</view>
-            </view>
+            </button>
         </view>
     </view>
     <!-- 我的订单 -->
     <view class="ml16 mr16 mt16 bg-white my-order">
-        <view class="c-nav c-nav-ac" bindtap="tapToMyOrder">
+        <button class="c-nav c-nav-ac" type="contact" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{ userInfo?'tapToMyOrder':'tapToLogin' }}">
             <view class="flex my-order-title ml32 mr32 bd1">
-                <view class="flex-1 f30 c-222222">{{_t['我的订单']}}</view>
+                <view class="flex-1 t-l f30 c-222222">{{_t['我的订单']}}</view>
                 <view class="f24 c-999999">查看全部</view>
                 <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
             </view>
-        </view>
+        </button>
 
         <view class="flex t-c">
-            <view class="flex-1" wx:for="{{ orderMenu }}" data-title="{{ item.title }}" data-type="{{ item.type }}" wx:key="index" bindtap="tapToMyOrder">
+            <button class="flex-1 activeNone" wx:for="{{ orderMenu }}" data-title="{{ item.title }}" data-type="{{ item.type }}" wx:key="index"  type="contact" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{ userInfo?'tapToMyOrder':'tapToLogin' }}">
                 <image class="my-order-icon" src="{{ item.icon }}" mode="aspectFill"/>
                 <view class="f24 c-222222 mb16">{{ item.title }}</view>
-            </view>
+            </button>
         </view>
     </view>
 
@@ -94,14 +94,14 @@
                   <image class="my-order-icon" src="{{item.iconPath}}" mode="aspectFill"/>
                   <view class="f24 c-222222 mb16">{{item.text}}</view>
               </view> -->
-              <view wx:if="{{ !item.isMember }}" class="flex-1" data-url="{{item.url || ''}}" data-menu="{{item.text}}" bindtap="tapMenu">
+              <button type="contact" open-type="{{userInfo?'':'getUserInfo'}}" wx:if="{{ !item.isMember }}" class="flex-1" data-url="{{item.url || ''}}" data-menu="{{item.text}}" bindtap="{{ userInfo?'tapMenu': 'tapToLogin' }}">
                   <image class="my-order-icon" src="{{item.iconPath}}" mode="aspectFill"/>
                   <view class="f24 c-222222 mb16">{{item.text}}</view>
-              </view>
-              <view wx:if="{{ item.isMember && userInfo.kolType}}" class="flex-1" data-url="{{item.url || ''}}" data-menu="{{item.text}}" bindtap="tapMenu">
+              </button>
+              <button type="contact" open-type="{{userInfo?'':'getUserInfo'}}" wx:if="{{ item.isMember && userInfo.kolType}}" class="flex-1" data-url="{{item.url || ''}}" data-menu="{{item.text}}" bindtap="{{ userInfo?'tapMenu': 'tapToLogin' }}">
                   <image class="my-order-icon" src="{{item.iconPath}}" mode="aspectFill"/>
                   <view class="f24 c-222222 mb16">{{item.text}}</view>
-              </view>
+              </button>
             </block>
         </view>
     </view>
@@ -126,14 +126,14 @@
            
             <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view> -->
-        <view class="flex h-120" data-menu="{{_t['更多设置']}}" bindtap="tapMenu">
+        <button class="flex p0 t-l bg-white h-120" type="contact" open-type="{{userInfo?'':'getUserInfo'}}" data-menu="{{_t['更多设置']}}" bindtap="{{ userInfo?'tapMenu': 'tapToLogin' }}">
             <image class="menu-icon mr32" src="/images/center/mine_icon_set.png" mode="aspectFill"/>
             <view class="flex-1 f32 c-222222">
                 <text>{{_t['更多设置']}}</text>
             </view>
            
             <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
-        </view>
+        </button>
     </view>
 
     <view class="h16"></view>

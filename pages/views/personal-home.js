@@ -72,7 +72,6 @@ Page({
     const isFocus = this.data.isFocus
     api.usInsertFocus({fAccountId:this.data.userId, isFocus: isFocus})
     .then(res=>{
-      // NT.toastFn(isFocus?'已取消！': '关注成功！')
       this.setData({ isFocus: !isFocus })
     })
     .catch(err=>{
@@ -83,7 +82,6 @@ Page({
     let that = this;
     wx.getSetting({
       success(res) {
-        console.log(res)
         if (!res.authSetting['scope.userInfo']) {
           wx.authorize({
             scope: 'scope.userInfo',
@@ -119,15 +117,15 @@ Page({
               api.login()
               .then((res) => {
                 that.setData({
-                  userInfo: res
+                  isLogin: true
                 })
                 wx.setStorage({
                   key:"userInfo",
                   data:res
                 })
+                that.tapUsInsertFocus()
               })
               .catch((err)=>{
-                console.log(err)
                 if(err.code==='10019'){ //用户未注册
                   wx.navigateTo({
                     url: '/pages/login/login?openId='+err.data.openId + '&sessionKey=' + err.data.sessionKey,
