@@ -27,7 +27,7 @@ page{
 }
 .list-bd{
     width: 139rpx;
-    height: 140rpx;
+    min-height: 140rpx;
     display: inline-block;
     border: 1rpx solid rgba(245,206,147,1);
     border-radius:6rpx;
@@ -39,6 +39,9 @@ page{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+.break {
+    word-break: break-all;
 }
 .c-F5CE93{
     color: #F5CE93;
