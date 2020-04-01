@@ -42,8 +42,8 @@
         <view class="list mt32">
             <view class="list-bd c-FFFFFF" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" data-money="{{item.money}}" bindtap="poVipOrder">
                 <view class="c-F5CE93 f32 fw5 w-100">{{item.money}}{{ _t['元'] }}</view>
-                <view class="f22 pt16 break">{{item.description}}</view>
-                <!-- <view class="f22">{{item.description2 || ''}}</view> -->
+                <view class="f22 pt16">{{item.description1 || ''}}</view>
+                <view class="f22">{{item.description2 || ''}}</view>
             </view>
         </view>
 
