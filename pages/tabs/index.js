@@ -297,7 +297,6 @@ Page({
           item.imageUrls =  item.imageUrls ? item.imageUrls.split(',') : ''
         })
       }
-      console.log(data)
       this.setData({
         selecMerchants: this.data.params.start === 1 ? data : this.data.selecMerchants.concat(data),
         total: res.total,

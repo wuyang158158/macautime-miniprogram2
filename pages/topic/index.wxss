@@ -3,12 +3,10 @@ page {
   background: #fff !important;
 }
 .content {
-  padding: 16rpx 32rpx;
   box-sizing: border-box;
 }
 video {
   width: 100%;
-  margin: 16rpx 0;
 }
 image {
   width: 100%;
@@ -20,5 +18,30 @@ image {
   text-align: center;
 }
 .test {
-  padding: 16rpx 0;
+  padding: 32rpx;
+}
+.ms-info {
+  padding: 0 32rpx;
+}
+.ms-info image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.ms-info navigator {
+  width:140rpx;
+  height:56rpx;
+  /* background:rgba(0,166,83,1);
+  border-radius:28px; */
+}
+.ms-desc {
+  width: 460rpx;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+}
+.ms-title {
+  padding: 32rpx;
+}
+.green-btn.f24 {
+  font-size: 24rpx;
 }

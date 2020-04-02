@@ -1,11 +1,18 @@
 <view class="content" wx:if="{{ !noData }}">
-  <view class="test">
-   <Parser html="{{ data.text }}" />
-  </view>
-  <view class="center">
-   <image src="{{ data.imageUrl }}" wx:if="{{ data.imageUrl }}" mode="widthFix"></image>
-  </view>
   <video src="{{ data.videoUrl }}" wx:if="{{ data.videoUrl }}" controls="true"></video>
+    <view class="ms-title f32 c-222222">{{ data.title }}</view>
+    <view class="ms-info flex">
+      <image src="/images/default/avatar.png" mode="aspectFill"></image>
+      <view class="ms-desc">
+        <view class="p1 f28 c-222222">什么商家啊</view>
+        <view class="p2 c-999999 f24">{{ data.readNumber }} 阅读数量</view>
+      </view>
+      <navigator url="{{ '/pages/views/ac-detail?id=' + data.msId + '&title=' + data.title }}" class="green-btn f24">进入商家</navigator>
+    </view>
+
+    <view class="test">
+    <Parser html="{{ data.text }}" />
+    </view>
 </view>
 
-    <gh-empty prop-src="/images/default/no_logging.png" prop-text="{{ message }}" prop-mt="200" wx:else></gh-empty>
+<gh-empty prop-src="/images/default/no_logging.png" prop-text="{{ message }}" prop-mt="200" wx:else></gh-empty>

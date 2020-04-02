@@ -23,6 +23,7 @@ Page({
     const eventChannel = this.getOpenerEventChannel()
     // 接受上一个页面传递过来的数据
     eventChannel.on('params', data => {
+      console.log(data)
       this.setData({
         data:data
       })

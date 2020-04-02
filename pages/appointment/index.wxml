@@ -10,7 +10,7 @@
         <view class="c-item bd1">
           <view class="c-title">{{ item.msName }}</view>
           <view class="c-font">{{ _t['探店时间'] }}：{{ item.discoveryTime }}</view>
-          <view class="c-font">{{ _t['探店收益'] }}： {{ item.profitRatio }}元</view>
+          <view class="c-font">{{ _t['探店收益'] }}：{{ item.profitRatio }}元</view>
           <view class="c-font limit">{{ _t['探店地址'] }}：{{ item.address }}<image src="/images/center/home_icon_location1.png" mode="aspectFill"></image></view>
         </view>
       </view>

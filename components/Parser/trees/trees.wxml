@@ -1,6 +1,6 @@
 <!--Parser/trees/trees.wxml-->
 <wxs module="cssHandler" src="./cssHandler.wxs" />
-<block wx:for='{{nodes}}' wx:key>
+<block wx:for='{{nodes}}' wx:key="index">
   <block wx:if="{{!item.continue}}">
     <!--图片-->
     <rich-text wx:if="{{item.name=='img'}}" style="{{cssHandler.getStyle(item.attrs.style,'inline-block')}}" nodes='{{cssHandler.setImgStyle(item,controls.imgMode)}}' data-ignore='{{item.attrs.ignore}}' data-src='{{item.attrs.src}}' bindtap='previewEvent' />
