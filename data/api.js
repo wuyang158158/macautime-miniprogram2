@@ -1262,12 +1262,6 @@ export default {
       })
     })
   },
-  // 我的专访详情
-  MyTopicDetail(query) {
-    return new Promise((resolve, reject) => {
-      execute(`/gdSelectInfoById/1.0/`, 'POST', query, resolve, reject)
-    })
-  },
   // 我的订单 取消订单
   MyOrderDeleteDetail(query) {
     return new Promise((resolve, reject) => {

@@ -31,21 +31,6 @@ Page({
       })
     })
     this.fnAddCount(options.id)
-    return
-    NT.showToast(_t['加载中..'])
-    api.MyTopicDetail({id: options.id}).then( res => {
-      wx.setNavigationBarTitle({
-        title: res.title,
-      })
-      // res.imageUrl = '/images/default/no-data.png'
-      this.setData({
-        data: res,
-        noData: false
-      })
-    }).catch(err => {
-      this.setData({ noData: true, message: err.codeMsg || err.message || 'error' })
-      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
-  })
   },
   // 增加阅读数量
   fnAddCount(id) {
