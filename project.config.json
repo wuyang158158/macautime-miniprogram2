@@ -8,6 +8,7 @@
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
+		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
@@ -112,7 +113,7 @@
 					"id": 7,
 					"name": "pages/views/personal-home",
 					"pathName": "pages/views/personal-home",
-					"query": "",
+					"query": "id=530994159167734848",
 					"scene": null
 				},
 				{

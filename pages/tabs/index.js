@@ -293,8 +293,12 @@ Page({
       var data = res.data || []
       if(data.length) {
         data.map(item=>{
+          let imgArr = item.imageUrls ?item.imageUrls.split(','): []
+          if(imgArr.length) {
+            imgArr.splice(0, 1)
+          }
           item.averageScore = parseInt(item.averageScore) || 0
-          item.imageUrls =  item.imageUrls ? item.imageUrls.split(',') : ''
+          item.imageUrls =   imgArr
         })
       }
       this.setData({

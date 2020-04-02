@@ -82,8 +82,11 @@ Page({
     })
   },
   tapResubmit() {
-    wx.redirectTo({
-      url: '/pages/attestation/kol-enter'
+    // wx.redirectTo({
+    //   url: '/pages/attestation/kol-enter'
+    // })
+    wx.navigateBack({
+      delta: 1
     })
   }
 })

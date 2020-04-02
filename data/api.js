@@ -799,7 +799,7 @@ export default {
   // 专访栏目 - 首页
   msSpecialColumn(query) {
     return new Promise((resolve, reject) => {
-      execute(`/selectInterviewVideoListHome/1.0/`,'POST',query,resolve,reject
+      execute(`/gdMsInterviewVideoList/1.0/`,'POST',query,resolve,reject
       )
     })
   },

@@ -16,7 +16,7 @@
         </view>
     </view>
 
-    <view class="weui-msg" wx:if="{{isCertificationKol == '0' || isCertificationKol == 'false'}}">
+    <view class="weui-msg" wx:if="{{isCertificationKol == '1'}}">
         <view class="weui-msg__icon-area">
             <image class="img" src="/images/attestation/icon_done.png" mode="aspectFill"/>
         </view>
@@ -34,7 +34,7 @@
         </view>
     </view>
 
-    <view class="weui-msg" wx:if="{{isCertificationKol == '2'}}">
+    <view class="weui-msg" wx:if="{{isCertificationKol == '3'}}">
         <view class="weui-msg__icon-area">
             <icon type="warn" size="100"></icon>
         </view>
