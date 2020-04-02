@@ -124,7 +124,7 @@
         <view class="merchant-discounts bd1 pb45" wx:if="{{acData.discountsCardList.length}}">
             <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32 flex">{{ _t['商家优惠'] }}</view>
             <view class="">
-                <view wx:for="{{acData.discountsCardList}}" wx:key="{{item.id}}" class="discounts flex {{index===0?'':'mt16'}}" data-id="{{item.id}}" bindtap="tapTopagesGetTicketDetail">
+                <view wx:for="{{acData.discountsCardList}}" wx:key="id" class="discounts flex {{index===0?'':'mt16'}}" data-id="{{item.id}}" bindtap="tapTopagesGetTicketDetail">
                     <view class="discounts-left f24 discounts-items c-00A653 discounts-flex">
                         <view class="" wx:if="{{item.typeId == 1}}">
                             <text class="f44">{{item.discount * 100}}</text>

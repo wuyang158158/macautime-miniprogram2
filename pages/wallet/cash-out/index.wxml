@@ -14,10 +14,10 @@
     <view class="c-title f28">{{ _t['提现金额'] }}</view>
     <view class="c-input flex">
       <input value="{{ number }}" bindinput="setInputValue" placeholder="{{ _t['请输入提现金额'] }}"></input>
-      <text class="i f35">$</text>
+      <text class="i f35">MOP</text>
     </view>
     <view class="c-desc flex mt35 f26 c-999999">
-      {{ _t['可提现金额'] }}￥{{ totalNum }} <text bindtap="chooseTotal">{{ _t['全部提现'] }}</text>
+      {{ _t['可提现金额'] }}MOP{{ totalNum }} <text bindtap="chooseTotal">{{ _t['全部提现'] }}</text>
     </view>
   </view>
 

@@ -219,12 +219,12 @@ Page({
     NT.showToast('加载中...')
     api.usKolInfoById({id:wx.getStorageSync("userInfo").userId})
     .then(res=>{
-      // 是否认证KOL(0： 待审核 1：审核通过 2：审核失败)进入相应提示
-      if(res.isCertificationKol == 0 || res.isCertificationKol == 2){
-        wx.redirectTo({
-          url: '/pages/attestation/kol-enter-msg?isCertificationKol=' + res.isCertificationKol
+      // 是否认证KOL(1-待审核，2-审核通过，3-审核失败)进入相应提示
+      if(res.auditStatus == 1 || res.auditStatus == 3){
+        wx.navigateTo({
+          url: '/pages/attestation/kol-enter-msg?isCertificationKol=' + res.auditStatus
         })
-        return false;
+        // return false;
       }
       //用户类别
       var choseTagClass = res.usSysLabelTyle ? res.usSysLabelTyle.labelRemark : ''
