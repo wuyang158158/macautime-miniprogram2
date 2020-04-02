@@ -319,6 +319,9 @@ rich-text .rich-img {
     overflow: hidden;
     background: #ccc;
 }
+.item-video{
+    margin: 0 10rpx;
+}
 .icon_video86{
     position: absolute;
     width: 86rpx;

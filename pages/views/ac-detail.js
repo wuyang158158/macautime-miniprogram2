@@ -199,6 +199,10 @@ Page({
       if(this.data.recommend){
         this.getGuessLike() //获取推荐喜欢数据
       }
+      //获取视频轮播高度
+      if(data.msInterviewVideoVoList.length){
+        this.getViewHeight('item-video-0')
+      }
     })
     .catch(err=>{
       console.log(err)
@@ -557,5 +561,22 @@ Page({
     .catch(err=>{
       console.log(err)
     })
+  },
+  // 获取view高度
+  getViewHeight(id) {
+    var that = this;
+    var query = wx.createSelectorQuery();
+    query.select('#' + id).boundingClientRect(function (rect) {
+      console.log(rect.height)
+      that.setData({
+        height: rect.height
+      })
+    }).exec();
+  },
+  // 视频轮播
+  bindChangeVideo(e) {
+    const current = e.detail.current
+    const id = 'item-video-' + current
+    this.getViewHeight(id)
   }
 })
