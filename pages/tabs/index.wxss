@@ -309,7 +309,7 @@
   width: 207rpx;
   height: 207rpx;
   position: relative;
-  border-radius: 4rpx;
+  border-radius: 8rpx;
   overflow: hidden;
 }
 .exclusive-interview-list{

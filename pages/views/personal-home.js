@@ -19,7 +19,7 @@ Page({
         selected: true
       },
       {
-        name: _t['视频'],
+        name: _t['作品'],
         number: 12,
         selected: false
       },
@@ -39,7 +39,7 @@ Page({
     loadmore: false, //加载更多
     loadmoreLine: true, //暂无更多信息
     noData1: true,  //没有相册数据时
-    noData2: false,  //没有视频数据时
+    noData2: false,  //没有作品数据时
     recommend: [], // 首页推荐体验列表
     userInfo: {},
     photoList: [],

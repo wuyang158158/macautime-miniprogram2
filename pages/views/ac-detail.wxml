@@ -46,7 +46,7 @@
             <view class="f20 item mr22 {{!current?'item-ac':''}}" data-current="0" bindtap="tapMedia" wx:if="{{acData.msMyVideoVo.videoUrl}}">
                 <image class="video-img" src="/images/detail/icon_video_w.png" mode="aspectFill" wx:if="{{!current}}"/>
                 <image class="video-img" src="/images/detail/icon_video_k.png" mode="aspectFill" wx:else/>
-                <text>{{ _t['视频'] }}</text>
+                <text>{{ _t['作品'] }}</text>
             </view>
             <view class="f20 item {{current?'item-ac':''}}" data-current="1" bindtap="tapMedia" wx:if="{{acData.msMyVideoVo.videoUrl}}">{{ _t['图片'] }}</view>
             <view class="swiper-index f20 c-FFFFFF mr32" wx:if="{{current||!acData.msMyVideoVo.videoUrl}}">{{ acData.msMyVideoVo.videoUrl ?current || 1 : current + 1}}/{{acData.msPhotoVoList.length || 0}}</view>
@@ -166,7 +166,7 @@
                 <view wx:for="{{acData.msGoodsVoList}}" class="scroll-view-item_H" wx:key="index" bindtap="tapTitleBar">
                     <view class="relative mer-type-icon">
                         <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
-                        <image class="pic-default-new z-index5" src="{{item.imageUrl}}" mode="aspectFill"/>
+                        <image class="pic-default-new z-index5" src="{{item.imageUrl}}" data-url="{{item.imageUrl}}" bindtap="previewImage" mode="aspectFill"/>
                     </view>
                     <view class="f26 c-222222 mt16 ell w148">{{item.title}}</view>
                 </view>
@@ -193,9 +193,9 @@
                 <image class="more" src="/images/index/icon_more-2.png" mode="aspectFill"/>
             </button>
         </view>
-        <!-- 相关视频 -->
+        <!-- 相关作品 -->
         <!-- <view class="pb45" wx:if="{{videoList.length}}">
-            <view class="f32 c-222222 fw6 l-h55 pt32 p32">{{ _t['相关视频'] }}</view>
+            <view class="f32 c-222222 fw6 l-h55 pt32 p32">{{ _t['相关作品'] }}</view>
             <view class="recommend f28 c-222222">
                 <swiper class="re-swiper" autoplay interval="5000" previous-margin="24rpx" next-margin="24rpx">
                 <block wx:for="{{videoList}}" wx:key="index">

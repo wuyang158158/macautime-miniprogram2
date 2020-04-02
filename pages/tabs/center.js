@@ -17,7 +17,7 @@ const record = [{
   // },
   {
     iconPath: '/images/center/mine_icon_video.png',
-    text: _t['我的视频'],
+    text: _t['我的作品'],
     url: '/pages/video/index'
   },
   // {

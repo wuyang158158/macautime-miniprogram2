@@ -68,10 +68,10 @@
             <image class="i-icon" src="/images/center/icon_video.png" mode="aspectFill"/>
             <view class="flex-1 t-l">
                 <view class="f30">
-                    <text class="c-222222">上传视频</text>
+                    <text class="c-222222">上传作品</text>
                     <text class="c-FF7626 ml10">+100</text>
                 </view>
-                <view class="f24 c-666666">成功发布视频</view>
+                <view class="f24 c-666666">成功发布作品</view>
             </view>
             <button class="weui-btn i-btn" type="primary">去完成</button>
         </view>
