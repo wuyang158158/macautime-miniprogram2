@@ -4,6 +4,8 @@
   height:330rpx;
   margin: 2rpx;
   position: relative;
+  border-radius: 12rpx;
+  overflow: hidden;
 }
 .video-text{
   position: absolute;
