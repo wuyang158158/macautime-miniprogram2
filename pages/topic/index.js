@@ -26,6 +26,9 @@ Page({
       this.setData({
         data:data
       })
+      wx.setNavigationBarTitle({
+        title: data.title,
+      })
     })
     this.fnAddCount(options.id)
     return
