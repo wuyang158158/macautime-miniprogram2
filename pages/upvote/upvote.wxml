@@ -1,7 +1,7 @@
 <view class="container mb16">
     <view class="coupon-tab bt1 flex bg-white">
       <view class="flex w120 {{ active === 0?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 0 }}">{{ _t['商家'] }}</view>
-      <view class="flex w120 {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">{{ _t['视频'] }}</view>
+      <view class="flex w120 {{ active === 1?'bd2': '' }}" bindtap="fnChangeTab" data-type="{{ 1 }}">{{ _t['作品'] }}</view>
     </view>
     <view class="cont" wx:if="{{ active === 0 }}">
         <view class="items ml16 mr16" wx:for="{{ storeData }}" wx:key="index">

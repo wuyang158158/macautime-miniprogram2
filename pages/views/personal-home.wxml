@@ -44,10 +44,10 @@
         <cp-photo result="{{ photoList }}"></cp-photo>
         <gh-empty prop-src="/images/default/no_photo.png" prop-text="{{ _t['还没有任何相册哦'] }}~~" prop-mt="100" prop-mb="100" wx:if="{{ noData1 }}"></gh-empty>
     </block>
-    <!-- 视频 -->
+    <!-- 作品 -->
     <block wx:if="{{index===1}}">
         <cp-video result="{{ videoList }}"></cp-video>
-        <gh-empty prop-type="no-video" prop-text="{{ _t['还没有任何视频哦'] }}~~"  prop-mt="100" prop-mb="100" wx:if="{{ noData2 }}"></gh-empty>
+        <gh-empty prop-type="no-video" prop-text="{{ _t['还没有任何作品哦'] }}~~"  prop-mt="100" prop-mb="100" wx:if="{{ noData2 }}"></gh-empty>
     </block>
 
     <!-- 推荐体验 -->

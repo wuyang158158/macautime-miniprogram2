@@ -9,7 +9,7 @@
                         <text class="ml16">水舞间</text>
                     </radio>    
                 </radio-group>
-                <view class="c-00A653 f28">关联视频</view>
+                <view class="c-00A653 f28">关联作品</view>
             </view>
             <view class="bd1">
                 <view class="mt32 pb32">
@@ -33,7 +33,7 @@
                         <text class="ml16">水舞间</text>
                     </radio>    
                 </radio-group>
-                <view class="c-00A653 f28">关联视频</view>
+                <view class="c-00A653 f28">关联作品</view>
             </view>
             <view class="bd1">
                 <view class="mt32 pb32">

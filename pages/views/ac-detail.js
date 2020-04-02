@@ -38,9 +38,9 @@ Page({
     vImgUrls: [], // 会员限时礼体验列表
     recommend: false, //是否有喜欢推荐
     noData: false, //缺省页面
-    type: 'video', //媒体展示默认视频
+    type: 'video', //媒体展示默认作品
     current: 0,
-    direction: 'vertical', // 视频播放默认垂直
+    direction: 'vertical', // 作品播放默认垂直
     expAllMeal: [], //套餐列表
     seeVideoData: []
   },
@@ -143,7 +143,7 @@ Page({
   fnChangeVideoPlay(e) {
     this.videoContext.pause()
   },
-  // 视频进入和退出全屏时触发
+  // 作品进入和退出全屏时触发
   bindfullscreenchange(e) {
     const direction = e.detail.direction
     console.log(e)
@@ -195,7 +195,7 @@ Page({
         acData: data
       })
       this.selectMsEvaluateScoreList() //评论列表
-      // this.msSelectedMsVideoByMsId() //相关视频 - 暂时没有
+      // this.msSelectedMsVideoByMsId() //相关作品 - 暂时没有
       if(this.data.recommend){
         this.getGuessLike() //获取推荐喜欢数据
       }
@@ -504,7 +504,7 @@ Page({
     }
   },
 
-  // 跳转到商户全部视频页面
+  // 跳转到商户全部作品页面
   tapToShopVideoAll() {
     const that = this
     wx.navigateTo({
@@ -523,7 +523,7 @@ Page({
       url: '/pages/views/get-ticket-detail?id=' + id
     })
   },
-  // 相关视频
+  // 相关作品
   msSelectedMsVideoByMsId() {
     api.msSelectedMsVideoByMsId()
     .then(res=>{

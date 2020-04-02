@@ -19,7 +19,7 @@ Page({
     this.fnvoInsertLookRecord(options.id ||'')
 
     wx.setNavigationBarTitle({
-      title: _t['观看视频'],
+      title: _t['观看作品'],
     })
     this.setData({
       src: decodeURIComponent(options.src)

@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: _t['店铺视频']
+      title: _t['店铺作品']
     });
     // 监听expAllMeal事件，获取上一页面通过eventChannel传送到当前页面的数据
     const eventChannel = this.getOpenerEventChannel()

@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: _t['我的视频'],
+      title: _t['我的作品'],
     })
     this.fnGetMyVideo()
   },
@@ -37,7 +37,7 @@ Page({
   onShow: function () {
 
   },
-  // 获取我的视频
+  // 获取我的作品
   fnGetMyVideo() {
     NT.showToast(_t['加载中..'])
     api.ctMyVideoc().then(res => {
