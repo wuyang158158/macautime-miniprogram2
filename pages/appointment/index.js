@@ -47,9 +47,9 @@ Page({
       status: this.data.active,
       userId: wx.getStorageSync('userInfo').userId
     }).then(res => {
-      res = [
-        {"address":"比心科技","msName":"1","discoveryTime":1584606936000,"profitRatio":100.000}
-        ]
+      // res = [
+      //   {"address":"比心科技","msName":"1","discoveryTime":1584606936000,"profitRatio":100.000}
+      //   ]
       res.map(item => {
         item.discoveryTime = util.formatTimeTwo(item.discoveryTime, 'Y年M月D日')
       })
