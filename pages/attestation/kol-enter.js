@@ -220,7 +220,7 @@ Page({
     api.usKolInfoById({id:wx.getStorageSync("userInfo").userId})
     .then(res=>{
       // 是否认证KOL(0： 待审核 1：审核通过 2：审核失败)进入相应提示
-      if(res.isCertificationKol == '0' || res.isCertificationKol == '2'){
+      if(res.isCertificationKol == 0 || res.isCertificationKol == 2){
         wx.redirectTo({
           url: '/pages/attestation/kol-enter-msg?isCertificationKol=' + res.isCertificationKol
         })
