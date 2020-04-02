@@ -7,6 +7,7 @@
         <view class="b-type f26 white mt5">{{ item.cardType }}</view>
         <view class="b-num f36 white mt20">{{ item.bankCode }}</view>
       </view>
+      <!-- <image src="/images/default/bg_img.png" class="bg-img" mode="aspectFill"></image> -->
     </view>
     <gh-empty prop-src="/images/default/no_card.png" prop-text="{{ _t['还没有关联银行卡哦~~'] }}" prop-mt="200" wx:if="{{ noData }}"></gh-empty>
   </view>
