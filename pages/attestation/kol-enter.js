@@ -249,6 +249,7 @@ Page({
       }else{
         usKolOtherPlatform = this.data.platformList
       }
+      wx.setStorageSync('accordingImage',res.accordingImage)
       this.setData({
         userInfo: res.kolBaseInfo, //用户信息
         accordingImage: res.accordingImage, //个人形象照
