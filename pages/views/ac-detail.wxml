@@ -166,7 +166,7 @@
                 <view wx:for="{{acData.msGoodsVoList}}" class="scroll-view-item_H" wx:key="index" bindtap="tapTitleBar">
                     <view class="relative mer-type-icon">
                         <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
-                        <image class="pic-default-new z-index5" src="{{item.imageUrl}}" mode="aspectFill"/>
+                        <image class="pic-default-new z-index5" src="{{item.imageUrl}}" data-url="{{item.imageUrl}}" bindtap="previewImage" mode="aspectFill"/>
                     </view>
                     <view class="f26 c-222222 mt16 ell w148">{{item.title}}</view>
                 </view>
