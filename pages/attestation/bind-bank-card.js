@@ -11,7 +11,7 @@ Page({
   data: {
     _t: _t,
     array: [],
-    cardTypeArray: ['储蓄卡', '信用卡', 'VISA'],
+    cardTypeArray: [_t['储蓄卡'], '信用卡', 'VISA'],
 
     backQuery: {  // 表单提交信息
       bankId: '',
