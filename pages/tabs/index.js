@@ -262,6 +262,9 @@ Page({
   usIsCertificationKol() {
     api.usIsCertificationKol()
       .then(res => {
+        res.forEach(ele => {
+          ele.hidden = ele.id !== wx.getStorageSync('userInfo').userId
+        })
         this.setData({
           kolList: res,
           noData: !res.length,

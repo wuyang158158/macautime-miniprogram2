@@ -17,7 +17,7 @@ Component({
    */
   data: {
     baseImageHost: config.baseImageHost,
-    userInfo: wx.getStorageSync('userInfo') || {},
+    userInfo: wx.getStorageSync('userInfo'),
     _t: _t, //翻译
   },
 
@@ -42,7 +42,6 @@ Component({
       NT.showToast(_t['处理中...'])
       const fAccountId = e.currentTarget.dataset.faccountid
       const isfocus = e.currentTarget.dataset.isfocus
-      console.log(isfocus)
       api.usInsertFocus({fAccountId:fAccountId, isFocus: isfocus})
       .then(res=>{
         NT.toastFn(isfocus? '已取消' : _t['关注成功！'])
