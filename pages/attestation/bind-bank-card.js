@@ -10,16 +10,14 @@ Page({
    */
   data: {
     _t: _t,
-    array: ['中国银行', '工商银行', '招商银行', '建设银行', '农业银行', '平安银行'],
-    cardTypeArray: ['储蓄卡', '银联信用卡', 'VISA信用卡'],
+    array: [],
+    cardTypeArray: ['储蓄卡', '信用卡', 'VISA'],
 
     backQuery: {  // 表单提交信息
       bankId: '',
       realName: '',
       bankCode: '',
       bankName: '',
-      branchBankInfo: '',
-      bankAddr: '',
       cardType: '',
       reservedPhone: ''
     }
@@ -32,6 +30,7 @@ Page({
     wx.setNavigationBarTitle({
       title: _t['绑定银行卡']
     });
+    this.sysGetBankConf()
   },
 
   /**
@@ -84,10 +83,18 @@ Page({
   // }
   // 单列选择器
   bindPickerChange: function(e) {
-    const index = e.currentTarget.dataset.index
+    const index = e.detail.value
+    const array = this.data.array
+    var backObj = ''
+    array.map((item,i)=>{
+      if(i==index){
+        backObj = item
+      }
+    })
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      index: e.detail.value
+      index: index,
+      backObj: backObj
     })
   },
   // 卡类型
@@ -99,9 +106,12 @@ Page({
   // 提交表单
   formSubmit(e) {
     const that = this
+    var backObj = this.data.backObj
     let params = e.detail.value
     let data = Object.assign(this.data.backQuery, params)
-    console.log(data)
+    // console.log(data)
+    data.bankId = backObj.id;
+    data.bankName = backObj.bankName;
     if(!data.realName){
       NT.showModal( _t['请输入持卡人姓名'] + '！' )
       return
@@ -132,6 +142,19 @@ Page({
           delta: 1
         })
       },1000)
+    })
+    .catch(err=>{
+      NT.showModal(err.message||_t['请求失败！'])
+    })
+  },
+  // 获取银行卡
+  sysGetBankConf() {
+    api.sysGetBankConf()
+    .then(res=>{
+      console.log(res)
+      this.setData({
+        array: res || []
+      })
     })
     .catch(err=>{
       NT.showModal(err.message||_t['请求失败！'])
