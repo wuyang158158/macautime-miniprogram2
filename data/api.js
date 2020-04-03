@@ -9,18 +9,6 @@ const app = getApp()
 const env = config.env[config.curEnv]
 const baseUrl = env.baseUrl
 
-const header = {
-  'content-type': 'text/DM-', // 默认值
-  // Authorization: 'Basic Yml4aW46Qml4aW5AMjAxOA==',
-  auth: wx.getStorageSync('userInfo').auth || '' 
-  // token: token,
-  // loginType: 1
-}
-const upImgHeader = {
-  'content-type': 'multipart/form-data',
-  auth: wx.getStorageSync('userInfo').auth || '' ,
-}
-
 const global = {
   appType: 1,  // appType  1-用户 2-商户
   appVersion: '',
@@ -40,6 +28,14 @@ const global = {
 const execute = (url, method, params, resolve, reject) => {
   const token = wx.getStorageSync('userInfo').token || ''
   const obj = { userName: wx.getStorageSync('userInfo').userName || '' }
+
+  const header = {
+    'content-type': 'text/DM-', // 默认值
+    // Authorization: 'Basic Yml4aW46Qml4aW5AMjAxOA==',
+    auth: wx.getStorageSync('userInfo').auth || '' 
+    // token: token,
+    // loginType: 1
+  }
   // const data = Object.assign(params || {}, obj)
 
   // const body = {
@@ -174,6 +170,10 @@ export default {
    */
   uploadImage(filePath,params) {
     // console.log(filePath)
+    const upImgHeader = {
+      'content-type': 'multipart/form-data',
+      auth: wx.getStorageSync('userInfo').auth || '' ,
+    }
     let uploads=[];
     const url = config.env[config.curEnv].baseUrl + `/experience/expCMNT/expCommentUploadImg`
     const obj = { userName: wx.getStorageSync('userInfo').userName || '' }
