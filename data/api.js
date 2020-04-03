@@ -1224,6 +1224,10 @@ export default {
   },
   // 我的视频
   ctMyVideoc(query) {
+    const header = {
+      'content-type': 'text/DM-', // 默认值
+      auth: wx.getStorageSync('userInfo').auth || ''
+    }
     return new Promise((resolve, reject) => {
       wx.request({
         url: `${baseUrl}/voSelectByUserId/1.0/`,
