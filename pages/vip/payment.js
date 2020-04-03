@@ -155,7 +155,7 @@ Page({
     if(payType === _t['微信支付']) {
       this.wxPay()
     }
-    if(payType === _t['e支付']) {
+    if(payType === _t['工银e支付(银联、信用卡、VISA)']) {
       this.ghPay()
       // const data = res
     }
