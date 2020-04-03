@@ -191,6 +191,8 @@ Page({
           item.endTimeStr = util.formatTimeTwo(item.endTime,'Y-M-D')
         })
       }
+      data.msInterviewVideoVoList = this.data.userInfo.isVideo ? data.msInterviewVideoVoList : ''
+      data.msMyVideoVo = this.data.userInfo.isVideo ? data.msMyVideoVo : ''
       this.setData({
         acData: data
       })
