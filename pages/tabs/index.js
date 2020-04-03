@@ -60,6 +60,11 @@ Page({
     this.setData({
       userInfo: wx.getStorageSync("userInfo"), //用户信息
     })
+    if(wx.getStorageSync('activeMenu')) {
+      this.setData({ activeMenu: wx.getStorageSync('activeMenu') })
+      wx.removeStorageSync('activeMenu')
+      this.onLoad()
+    }
   },
   // 切换菜单
   changeTab(e) {

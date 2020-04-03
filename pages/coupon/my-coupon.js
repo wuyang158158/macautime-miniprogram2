@@ -98,13 +98,15 @@ Page({
   tapGetDiscounts(e) {
     const msId = e.currentTarget.dataset.id
     const name = e.currentTarget.dataset.name
-    wx.navigateTo({
-      url: '/pages/views/ac-detail?id=' + msId + '&title=' + name
-    })
-    // 业务更改 - 跳转首页
-    // wx.setStorageSync('activeMenu',2)
-    // wx.switchTab({
-    //   url: '/pages/tabs/index'
-    // })
+    if(this.data.active === 1) {
+      wx.navigateTo({
+        url: '/pages/views/ac-detail?id=' + msId + '&title=' + name
+      })
+    } else {
+      wx.setStorageSync('activeMenu',2)
+      wx.switchTab({
+        url: '/pages/tabs/index'
+      })
+    }
   }
 })
