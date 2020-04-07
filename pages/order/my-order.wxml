@@ -55,7 +55,7 @@
                         <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" catchtap="tapCancelOrder">{{ _t['取消'] }}</button>
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 1 }}" data-id="{{item.orderNumber}}" data-price="{{item.moneny}}" data-reciprocal="{{item.reciprocal}}" catchtap="tapToPay">{{ _t['付款'] }}</button>
                         <!-- <button class="weui-btn w-132 c-00A653 fw5" type="default-ticket" wx:if="{{item.status === 'D' || item.status === 'E'}}" data-id="{{item.orderNumber}}" catchtap="deleteOrder">删除</button> -->
-                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" data-index="{{ index }}" wx:if="{{item.status === 7}}" catchtap="tapToExpComment">{{ _t['评价'] }}</button>
+                        <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" data-index="{{ index }}" wx:if="{{item.status === 7 && !item.isRemark}}" catchtap="tapToExpComment">{{ _t['评价'] }}</button>
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="default-ticket" data-index="{{ index }}" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}" catchtap="tapToRefund">{{ _t['退款'] }}</button>
                         <button class="weui-btn w-132 c-00A653 ml16 fw5" type="primary-ticket" wx:if="{{item.status === 2}}" data-id="{{item.orderNumber}}">{{ _t['使用'] }}</button>
                     </view>
