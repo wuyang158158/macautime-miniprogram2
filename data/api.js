@@ -1356,6 +1356,12 @@ export default {
       execute(`/usGetQRCode/1.0/`, 'POST', query, resolve, reject)
     })
   },
+  // 获取所有银行卡
+  sysGetBankConf(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/sysGetBankConf/1.0/`, 'POST', query, resolve, reject)
+    })
+  }
   
   /*** file-end ***/
 }
