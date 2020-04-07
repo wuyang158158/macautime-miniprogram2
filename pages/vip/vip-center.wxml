@@ -41,7 +41,7 @@
         <!-- 会有类型列表 -->
         <view class="list mt32">
             <view class="list-bd c-FFFFFF" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" data-money="{{item.money}}" bindtap="poVipOrder">
-                <view class="c-F5CE93 f32 fw5 w-100">{{item.money}}{{ _t['元'] }}</view>
+                <view class="c-F5CE93 f32 fw5 w-100">{{item.money}} MOP</view>
                 <view class="f22 pt16">{{item.description1 || ''}}</view>
                 <view class="f22">{{item.description2 || ''}}</view>
             </view>
@@ -52,7 +52,7 @@
             <view >1.{{ _t['黄金会员专属标志'] }}</view>
             <view >2.{{ _t['享受澳门时光所有门店内部所有优惠券'] }}</view>
             <view >3.{{ _t['每周发放满50-10 满100-20满200-30 满500-50 各一张优惠券'] }}</view>
-            <view >4.{{ _t['购买会员即获得价值99元抽奖大礼包'] }}</view>
+            <view >4.{{ _t['购买会员即获得价值99MOP抽奖大礼包'] }}</view>
             <view >5.{{ _t['新用户所有权益升级'] }}</view>
             <view >6.{{ _t['享有出租车打车折扣'] }}</view>
             <view >7.{{ _t['享有景点优惠'] }}</view>

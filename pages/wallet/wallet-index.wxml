@@ -2,7 +2,7 @@
 <view class="container">
     <view class="header c-FFFFFF bg-00A653">
         <view class="pt60 f60 fw6">{{result.balance || '0.00'}}</view>
-        <view class="f26">{{ _t['可提现金额 (元)'] }}</view>
+        <view class="f26">{{ _t['可提现金额 (MOP)'] }}</view>
     </view>
     <view class="content ml32 mr32 pl32 pr32 bg-white flex mt-d" bindtap="fnToRecash">
         <view class="flex-1 c-333333 f30">{{ _t['我要提现'] }}</view>

@@ -1,10 +1,10 @@
 <view>
   <view class="c-top">
     <view class="bank-title flex">
-      <image src="/images/center/icon_edict.png" mode=""></image>
+      <image src="{{ bankLogo || '/images/default/avatar.png' }}" mode=""></image>
       <text class="f30">{{ bankName }}</text>
     </view>
-    <view class="cash-num f30 flex">{{ _t['提现金额'] }}： <text class="c-00A653">{{ payAmount }}元</text></view>
+    <view class="cash-num f30 flex">{{ _t['提现金额'] }}： <text class="c-00A653">{{ payAmount }} MOP</text></view>
   </view>
 
   <!-- 提现流程 -->

@@ -1,6 +1,6 @@
 <view class="container">
   <navigator wx:if="{{ bankList.length }}" url="/pages/wallet/bank/bank-list?s=1" class="choose-bank flex bg-white">
-    <image src="/images/default/avatar.png" class="icon-bank" mode="aspectFill"></image>
+    <image src="{{ bankJson.branchBankInfo || '/images/default/avatar.png' }}" class="icon-bank" mode="aspectFill"></image>
     <text>{{ bankJson.bankName }} {{ bankJson.cardType }} ( {{ bankJson.lastFourNum }} )</text>
     <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
   </navigator>
@@ -17,7 +17,7 @@
       <text class="i f35">MOP</text>
     </view>
     <view class="c-desc flex mt35 f26 c-999999">
-      {{ _t['可提现金额'] }}MOP{{ totalNum }} <text bindtap="chooseTotal">{{ _t['全部提现'] }}</text>
+      {{ _t['可提现金额'] }}MOP {{ totalNum }} <text bindtap="chooseTotal">{{ _t['全部提现'] }}</text>
     </view>
   </view>
 

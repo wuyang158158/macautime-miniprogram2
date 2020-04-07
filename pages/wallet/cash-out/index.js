@@ -81,7 +81,7 @@ Page({
     NT.showToast(_t['处理中..'])
     api.atsCashMoney({ payAmount: this.data.number, bankAuthId: this.data.bankJson.bankCode }).then(res => {
       wx.navigateTo({
-        url:`/pages/wallet/cash-out/verify?payAmount=${res.payAmount}&bankName=${this.data.bankJson.bankName}`,
+        url:`/pages/wallet/cash-out/verify?payAmount=${res.payAmount}&bankName=${this.data.bankJson.bankName}&branchBankInfo=${this.data.bankJson.branchBankInfo}`,
       })
     }).catch(err => {
       NT.showModal(err.codeMsg || err.message || _t['请求失败！'])

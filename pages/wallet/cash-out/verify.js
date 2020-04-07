@@ -11,6 +11,7 @@ Page({
     active: 1,
     payAmount: 0,
     bankName: '',
+    bankLogo: '',
     actionMenu: [
       { type: 1, title: _t['提现已申请'] },
       { type: 2, title: _t['提现处理中'] },
@@ -25,7 +26,7 @@ Page({
     wx.setNavigationBarTitle({
       title: _t['提现'],
     })
-    this.setData({ payAmount: options.payAmount || 0, bankName: options.bankName ||'' })
+    this.setData({ payAmount: options.payAmount || 0, bankName: options.bankName ||'', bankLogo: options.branchBankInfo || '' })
   },
   // 点击确认
   sureBtn() {
