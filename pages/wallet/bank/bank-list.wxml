@@ -1,10 +1,13 @@
 <view>
   <view class="bank-form">
     <view class="bank-list" wx:for="{{ bankList }}" wx:key="index" data-id="{{ item.bankCode }}" bindtap="chooseBank">
-      <view class="b-logo"><image src="{{item.branchBankInfo || '/images/default/avatar.png'}}" mode="aspectFill"></image></view>
+      <view class="b-logo"><image src="{{item.logo || '/images/default/avatar.png'}}" mode="aspectFill"></image></view>
       <view class="b-desc">
         <view class="b-name f32 white">{{ item.bankName }}</view>
-        <view class="b-type f26 white mt5">{{ item.cardType }}</view>
+        <!-- 1  Visa  2 储蓄卡  3 信用卡 -->
+        <view class="b-type f26 white mt5" wx:if="{{ item.cardType === 1 }}">VISA</view>
+        <view class="b-type f26 white mt5" wx:if="{{ item.cardType === 2 }}">{{ _t['储蓄卡'] }}</view>
+        <view class="b-type f26 white mt5" wx:if="{{ item.cardType === 3 }}">{{ _t['信用卡'] }}</view>
         <view class="b-num f36 white mt20">{{ item.bankCode }}</view>
       </view>
       <!-- <image src="/images/default/bg_img.png" class="bg-img" mode="aspectFill"></image> -->

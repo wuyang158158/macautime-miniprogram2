@@ -52,6 +52,7 @@
     "pages/vip/pay-e",
     "pages/wallet/cash-out/index",
     "pages/wallet/cash-out/verify",
+    "pages/wallet/cash-out/cash-list",
     "pages/wallet/bank/bank-list",
     "pages/my/share/index",
     "pages/my/share/user-register",

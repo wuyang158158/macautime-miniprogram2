@@ -1,7 +1,10 @@
 <view class="container">
   <navigator wx:if="{{ bankList.length }}" url="/pages/wallet/bank/bank-list?s=1" class="choose-bank flex bg-white">
-    <image src="{{ bankJson.branchBankInfo || '/images/default/avatar.png' }}" class="icon-bank" mode="aspectFill"></image>
-    <text>{{ bankJson.bankName }} {{ bankJson.cardType }} ( {{ bankJson.lastFourNum }} )</text>
+    <image src="{{ bankJson.logo || '/images/default/avatar.png' }}" class="icon-bank" mode="aspectFill"></image>
+    <!-- 1  Visa  2 储蓄卡  3 信用卡 -->
+    <text wx:if="{{ bankJson.cardType === 1 }}">{{ bankJson.bankName }} VISA ( {{ bankJson.lastFourNum }} )</text>
+    <text wx:if="{{ bankJson.cardType === 2 }}">{{ bankJson.bankName }} {{ _t['储蓄卡'] }} ( {{ bankJson.lastFourNum }} )</text>
+    <text wx:if="{{ bankJson.cardType === 3 }}">{{ bankJson.bankName }} {{ _t['信用卡'] }} ( {{ bankJson.lastFourNum }} )</text>
     <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
   </navigator>
   <navigator wx:else url="/pages/attestation/bind-bank-card" class="choose-bank flex bg-white">

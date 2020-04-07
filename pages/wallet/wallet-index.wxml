@@ -14,7 +14,7 @@
             <view class="c-333333 f30">{{result.freezeAmount || '0.00'}}</view>
             <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
         </view>
-        <view class="flex h-108" data-url="/pages/wallet/billing-details?tradeType=2" bindtap="tapToDetail">
+        <view class="flex h-108" data-url="/pages/wallet/cash-out/cash-list" bindtap="tapToDetail">
             <view class="flex-1 c-333333 f30">{{ _t['已提现'] }}</view>
             <view class="c-333333 f30">{{result.earningsAmount || '0.00'}}</view>
             <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>

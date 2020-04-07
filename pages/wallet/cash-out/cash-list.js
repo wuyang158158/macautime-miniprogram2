@@ -1,4 +1,7 @@
-// pages/wallet/cash-out/verify.js
+// pages/wallet/cash-out/cash-list.js
+import NT from "../../../utils/native.js"
+import api from "../../../data/api"
+import util from "../../../utils/util.js"
 var base = require('../../../i18n/base.js');
 const _t = base._t().wallet.BANK
 Page({
@@ -8,13 +11,8 @@ Page({
    */
   data: {
     _t: _t,
-    active: 1,
-    actionMenu: [
-      { type: 1, title: _t['提现已申请'] },
-      { type: 2, title: _t['提现处理中'] },
-      { type: 3, title: _t['提现成功'] },
-    ],
-    data: {}
+    cashData: [],
+    noData: false
   },
 
   /**
@@ -22,21 +20,26 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: _t['提现'],
+      title: _t['提现账单'],
     })
-    const eventChannel = this.getOpenerEventChannel()
-    // 接受上一个页面传递过来的数据
-    eventChannel.on('params', data => {
-      console.log(data)
-      this.setData({
-        data:data
+    this.fnGetDatas()
+  },
+  fnGetDatas() {
+    NT.showToast(_t['加载中..'])
+    api.sysGetCashList().then(res => {
+      // res = []
+      res.map(item => {
+        item.withdrawDate = item.withdrawDate? util.formatTimeTwo(item.withdrawDate, 'Y年M月D日') : item.withdrawDate
       })
+      this.setData({ cashData: res, noData: !res.length })
+    }).catch(err => {
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
-  // 点击确认
-  sureBtn() {
-    wx.reLaunch({
-      url: '/pages/tabs/center',
+  fnLinkTo(e) {
+    const orderNumber = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/wallet/cash-out/verify?orderNumber=${orderNumber}`,
     })
   },
   /**
@@ -71,7 +74,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.fnGetDatas()
   },
 
   /**

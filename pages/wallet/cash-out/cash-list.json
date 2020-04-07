@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "gh-empty": "/components/empty/empty"
+  },
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": true
+}
