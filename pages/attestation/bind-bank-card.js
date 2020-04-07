@@ -110,7 +110,7 @@ Page({
     let params = e.detail.value
     let data = Object.assign(this.data.backQuery, params)
     // console.log(data)
-    data.bankId = backObj.id;
+    data.bankId = backObj.bankCode;
     data.bankName = backObj.bankName;
     if(!data.realName){
       NT.showModal( _t['请输入持卡人姓名'] + '！' )
@@ -131,6 +131,9 @@ Page({
     if(!data.reservedPhone){
       NT.showModal( _t['请输入手机号码'] + '！' )
       return
+    }
+    if(data.cardType === 'VISA') {
+      data.cardType = 'Visa'
     }
     NT.showToast(_t['处理中...'])
     api.usInsertCard(data)

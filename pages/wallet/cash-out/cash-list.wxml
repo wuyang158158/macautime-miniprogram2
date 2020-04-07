@@ -1,0 +1,13 @@
+<view class="content mt16 ml16 mr16">
+  <view class="lists bg-white mb16" wx:for="{{ cashData }}" wx:key="index" data-id="{{ item.orderNumber }}" bindtap="fnLinkTo">
+    <view class="f24 c-999999 mb32">{{ item.withdrawDate }}</view>
+    <view class="f30 c-333333 mb16">{{ _t['订单编号'] }}：{{ item.orderNumber }}</view>
+    <view class="f30 c-333333 mb16">{{ _t['提现金额'] }}：MOP {{ item.withdrawMoney }}</view>
+    <!-- 1-待审批，2-审批通过，3-拒绝 -->
+    <view class="f30 c-333333 mb16" wx:if="{{ item.withdrawStatus === 1 }}">{{ _t['提现进度：待审批'] }}</view>
+    <view class="f30 c-333333 mb16" wx:if="{{ item.withdrawStatus === 2 }}">{{ _t['提现进度：审批通过'] }}</view>
+    <view class="f30 c-333333 mb16" wx:if="{{ item.withdrawStatus === 3 }}">{{ _t['提现进度：拒绝'] }}</view>
+  </view>
+
+   <gh-empty prop-src="/images/default/no_preferential.png" prop-text="{{ _t['还没有任何内容哦~~'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+</view>

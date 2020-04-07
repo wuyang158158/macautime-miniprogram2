@@ -1,0 +1,5 @@
+/* pages/wallet/cash-out/cash-list.wxss */
+.lists {
+  padding: 40rpx 30rpx;
+  border-radius:16rpx;
+}
