@@ -13,7 +13,7 @@ export default {
     },
   },
   "baseImageHost": "https://bixintech.oss-cn-shenzhen.aliyuncs.com", //上传图片的域名
-  "curEnv": "dev",
+  "curEnv": "prod",
   //接口请求返回码
   //TODO 了解当前后台系统所有返回code并添加进错误码枚举对象里面
   "messageCode": {

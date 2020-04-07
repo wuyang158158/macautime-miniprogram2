@@ -7,7 +7,7 @@
     <text wx:if="{{ data.cardType === 2 }}">{{ data.bankName }} {{ _t['储蓄卡'] }} ( {{ data.lastFourNum }} )</text>
     <text wx:if="{{ data.cardType === 3 }}">{{ data.bankName }} {{ _t['信用卡'] }} ( {{ data.lastFourNum }} )</text>
     </view>
-    <view class="cash-num f30 flex">{{ _t['提现金额'] }}： <text class="c-00A653">{{ data.applyMoney }} MOP</text></view>
+    <view class="cash-num f30 flex">{{ _t['提现金额'] }}： <text class="c-00A653">MOP {{ data.applyMoney }}</text></view>
   </view>
 
   <!-- 提现流程 -->
