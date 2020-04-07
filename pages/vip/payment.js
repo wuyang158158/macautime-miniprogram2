@@ -4,31 +4,6 @@ import api from "../../data/api.js"
 var base = require('../../i18n/base.js');
 const _t = base._t().vip
 var ctime = null
-const payArray = [
-  {
-    icon: '/images/vip/icon_pay_we.png',
-    name: _t['微信支付'],
-    checked: true
-  },
-  {
-    icon: '/images/vip/icon_pay_e.png',
-    name: _t['工银e支付(银联、信用卡、VISA)'],
-    checked: false
-  },
-  {
-    icon: '/images/vip/icon_pay_wallet.png',
-    name: _t['钱包支付'],
-    checked: false
-  },
-  // {
-  //   icon: '/images/vip/icon_pay_alipay.png',
-  //   name: '支付宝支付'
-  // },
-  // {
-  //   icon: '/images/vip/icon_pay_union.png',
-  //   name: '银联支付'
-  // }
-]
 Page({
 
   /**
@@ -36,14 +11,59 @@ Page({
    */
   data: {
     _t: _t,
-    payArray: payArray,
-    payType: _t['微信支付']
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const userInfo = wx.getStorageSync("userInfo") || {};
+    const phone = userInfo.phone;
+    var payArray = [
+      {
+        icon: '/images/vip/icon_pay_we.png',
+        name: _t['微信支付'],
+        checked: true
+      },
+      {
+        icon: '/images/vip/icon_pay_e.png',
+        name: _t['工银e支付(银联、信用卡、VISA)'],
+        checked: false
+      },
+      {
+        icon: '/images/vip/icon_pay_wallet.png',
+        name: _t['钱包支付'],
+        checked: false
+      },
+      // {
+      //   icon: '/images/vip/icon_pay_alipay.png',
+      //   name: '支付宝支付'
+      // },
+      // {
+      //   icon: '/images/vip/icon_pay_union.png',
+      //   name: '银联支付'
+      // }
+    ]
+    // 是否是内地手机号11位，不是则隐藏微信支付
+    if(phone.length !== 11){
+      payArray = [
+        {
+          icon: '/images/vip/icon_pay_e.png',
+          name: _t['工银e支付(银联、信用卡、VISA)'],
+          checked: true
+        },
+        {
+          icon: '/images/vip/icon_pay_wallet.png',
+          name: _t['钱包支付'],
+          checked: false
+        },
+      ]
+    }
+    this.setData({
+      payArray: payArray,
+      payType: payArray[0].name
+    })
+
     var source = options.source
     wx.setNavigationBarTitle({
       title: source === 'vip' ? _t['开通会员'] : _t['购买商品']
