@@ -9,5 +9,5 @@
     <view class="f30 c-333333 mb16" wx:if="{{ item.withdrawStatus === 3 }}">{{ _t['提现进度：拒绝'] }}</view>
   </view>
 
-   <gh-empty prop-src="/images/default/no_preferential.png" prop-text="{{ _t['还没有任何内容哦~~'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
+   <gh-empty prop-type="no-data" prop-text="{{ _t['还没有任何内容哦~~'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
 </view>
