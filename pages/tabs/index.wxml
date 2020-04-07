@@ -142,7 +142,7 @@
         <view class="merchant-info">
           <view class="ml16 mr16 mb16 text-align bg-white">
             <view class="f41 c-000000 fw6 pt16">{{item.name}}</view>
-            <view class="f22 c-000000 fw3">{{item.remark}}</view>
+            <view class="f22 c-000000 fw3">{{item.remark || ''}}</view>
             <view class="flex flex-jc mt16">
                <view class="tag c-00A653 f24 mr16" wx:for="{{ item.labelRemark }}" wx:for-item="itLabel" wx:for-index="idx" wx:key="idx">{{itLabel.labelRemark}}</view>
             </view>

@@ -144,7 +144,7 @@ Page({
     const ID = e.currentTarget.dataset.id
     const TITLE = e.currentTarget.dataset.title
     wx.navigateTo({
-      url: '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE
+      url: '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE + '&recommend=true'
     })
   },
   tapToVipCenter() { // 点击进入会员介绍中心
