@@ -1367,6 +1367,12 @@ export default {
     return new Promise((resolve, reject) => {
       execute(`/atsWithdrawList/1.0/`, 'POST', query, resolve, reject)
     })
+  },
+  // 获取钱包已提现 - 详情
+  sysGetCashDetail(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/atsRecordInfo/1.0/`, 'POST', query, resolve, reject)
+    })
   }
   
   /*** file-end ***/

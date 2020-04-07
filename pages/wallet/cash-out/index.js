@@ -82,13 +82,7 @@ Page({
     NT.showToast(_t['处理中..'])
     api.atsCashMoney({ payAmount: this.data.number, bankAuthId: this.data.bankJson.bankCode }).then(res => {
       wx.navigateTo({
-        url:`/pages/wallet/cash-out/verify`,
-        success: function(result) {
-          // 通过eventChannel向被打开页面传送数据
-          let params = that.data.bankJson
-          params['payAmount'] = that.data.number
-          result.eventChannel.emit('params', params)
-        }
+        url:`/pages/wallet/cash-out/verify?orderNumber=${res.orderNumber}`
       })
     }).catch(err => {
       NT.showModal(err.codeMsg || err.message || _t['请求失败！'])

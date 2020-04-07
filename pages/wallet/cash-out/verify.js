@@ -1,4 +1,6 @@
 // pages/wallet/cash-out/verify.js
+import NT from "../../../utils/native.js"
+import api from "../../../data/api"
 var base = require('../../../i18n/base.js');
 const _t = base._t().wallet.BANK
 Page({
@@ -8,11 +10,11 @@ Page({
    */
   data: {
     _t: _t,
-    active: 1,
+    active: 0,
     actionMenu: [
-      { type: 1, title: _t['提现已申请'] },
-      { type: 2, title: _t['提现处理中'] },
-      { type: 3, title: _t['提现成功'] },
+      { type: 0, title: _t['提现已申请'] },
+      { type: 1, title: _t['提现处理中'] },
+      { type: 2, title: _t['提现成功'] },
     ],
     data: {}
   },
@@ -24,13 +26,19 @@ Page({
     wx.setNavigationBarTitle({
       title: _t['提现'],
     })
-    const eventChannel = this.getOpenerEventChannel()
-    // 接受上一个页面传递过来的数据
-    eventChannel.on('params', data => {
-      console.log(data)
+    this.fnsysGetCashDetail(options.orderNumber)
+  },
+  fnsysGetCashDetail(orderNumber) {
+    NT.showToast(_t['加载中..'])
+    api.sysGetCashDetail({orderNumber}).then(res => {
+      res.lastFourNum = res.bankCode.substring(res.bankCode.length - 4)
       this.setData({
-        data:data
+        active: res.status,
+        data: res
       })
+      if(res.status === 3) {
+        this.setData({'actionMenu[2].title': _t['提现失败']})
+      }
     })
   },
   // 点击确认
