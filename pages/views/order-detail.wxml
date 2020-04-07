@@ -39,7 +39,7 @@
         <button class="weui-btn w-auto c-00A653 ml16 fw5 ml16" type="default-ticket" wx:if="{{ orderData.status  ===  1 ||orderData.status  ===  '1' }}" catchtap="tapCancelOrder">取消</button>
         <button class="weui-btn w-auto c-00A653 ml16 fw5 ml16" type="primary-ticket" wx:if="{{ orderData.status  ===  1 ||orderData.status  ===  '1' }}" data-id="{{orderData.orderNumber}}" data-price="{{orderData.price}}" data-reciprocal="{{orderData.reciprocal}}" bindtap="tapToPay">付款</button>
         <button class="weui-btn w-auto c-00A653 ml16 fw5 ml16" type="default-ticket" wx:if="{{ orderData.status  ===  2 ||orderData.status  ===  '2' }}" catchtap="tapToRefund">退款</button>
-        <button class="weui-btn w-auto c-00A653 ml16 fw5 ml16" type="primary-ticket" wx:if="{{ orderData.status  ===  3 ||orderData.status  ===  '3' }}" bindtap="tapToExpComment">{{ _t['评价'] }}</button>
+        <button class="weui-btn w-auto c-00A653 ml16 fw5 ml16" type="primary-ticket" wx:if="{{ orderData.status  ===  7 ||orderData.status  ===  '7' }}" bindtap="tapToExpComment">{{ _t['评价'] }}</button>
         <button class="weui-btn w-auto c-00A653 ml16 mr32 fw5 ml16" type="primary-ticket" wx:if="{{ orderData.status  ===  2 ||orderData.status  ===  '2' }}" data-type="1" bindtap="fnShowQrcode">{{ _t['扫码验券'] }}</button>
     </view>
 </view>
