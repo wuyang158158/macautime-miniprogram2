@@ -111,20 +111,16 @@ Page({
     api.orderToEvaluate(expCommentForm)
     .then(res=>{
       // if(!this.data.files.length>0){
-        NT.toastFn(_t['评论成功！'],1000)
       //   if(this.data.mycomment === 'myexp'){
       //     wx.setStorage({
       //       key:"mycomment",
       //       data:"myexp"
       //     })
       //   }
-
+        wx.navigateTo({
+          url: '/pages/views/exp-comment-success',
+        })
         that.setData({ canSubmit: true })
-        setTimeout(()=>{
-          wx.navigateBack({
-            delta: 1
-          })
-        },1000)
       })
       //   return
       // }

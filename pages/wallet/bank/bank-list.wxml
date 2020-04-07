@@ -1,5 +1,5 @@
 <view>
-  <view class="bank-form">
+  <view class="bank-form pb180">
     <view class="bank-list" wx:for="{{ bankList }}" wx:key="index" data-id="{{ item.bankCode }}" bindtap="chooseBank">
       <view class="b-logo"><image src="{{item.logo || '/images/default/avatar.png'}}" mode="aspectFill"></image></view>
       <view class="b-desc">

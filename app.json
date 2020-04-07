@@ -77,7 +77,8 @@
     "pages/order/apply-refund",
     "pages/message/message",
     "pages/language/language",
-    "pages/cropper/cropper"
+    "pages/cropper/cropper",
+    "pages/views/exp-comment-success"
   ],
   "subpackages": [],
   "preloadRule": {},

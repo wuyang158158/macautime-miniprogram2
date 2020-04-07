@@ -1,0 +1,7 @@
+<view class="content">
+  <view class="logo">
+    <image src="/images/default/icon_done.png" mode="aspectFill"></image>
+    <view class="f36 c-333333 mb160">{{ _t['发表成功'] }}</view>
+    <view class="green-btn" bindtap="fnBack">{{ _t['返回'] }}</view>
+  </view>
+</view>

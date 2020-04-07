@@ -1,7 +1,6 @@
 /* pages/wallet/bank/bank-list.wxss */
 page {
   padding-top: 30rpx;
-  padding-bottom: 180rpx;
 }
 .bank-list {
   width:686rpx;
@@ -13,6 +12,9 @@ page {
   display: flex;
   box-sizing: border-box;
   position: relative;
+}
+.pb180 {
+  padding-bottom: 180rpx;
 }
 .b-logo {
   width: 110rpx;

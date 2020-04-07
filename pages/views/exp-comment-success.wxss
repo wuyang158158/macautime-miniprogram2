@@ -1,0 +1,19 @@
+/* pages/views/exp-comment-success.wxss */
+.logo image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 55rpx;
+}
+.logo {
+  margin-top: 100rpx;
+  text-align: center;
+}
+.mb160 {
+  margin-bottom: 160rpx;
+}
+.green-btn {
+  width: 360rpx;
+}
+page {
+  background: #fff;
+}
