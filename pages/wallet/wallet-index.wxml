@@ -9,7 +9,7 @@
         <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
     </view>
     <view class="content c-h ml32 mr32 mt32 pl32 pr32 bg-white">
-        <view class="flex bd1 h-108" data-num="{{ result.freezeAmount || '0.00' }}" bindtap="fnShowToast">
+        <view class="flex bd1 h-108" data-num="{{ result.freezeAmount || '0.00' }}" data-url="/pages/wallet/billing-details?source=djs" bindtap="tapToDetail">
             <view class="flex-1 c-333333 f30">{{ _t['待结算'] }}</view>
             <view class="c-333333 f30">{{result.freezeAmount || '0.00'}}</view>
             <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>

@@ -3,7 +3,7 @@ import api from "../../data/api"
 import util from "../../utils/util.js"
 var base = require('../../i18n/base.js');
 const _t = base._t().wallet.WALLET
-const tradeTypeArray = [
+var tradeTypeArray = [
   {
     tradeType: '',
     TradeTypeText: '全部'
@@ -73,7 +73,6 @@ Page({
    */
   data: {
     _t: _t,
-    tradeTypeArray: tradeTypeArray,
     date: '',
     accountType: '',
     updateTime: '',
@@ -86,17 +85,37 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var title = options.source === 'djs' ? _t['待结算'] : _t['账单明细']
     wx.setNavigationBarTitle({
-      title: _t['账单明细'],
+      title: title,
     })
+    // 待结算
+    if(options.source === 'djs'){
+      tradeTypeArray = [
+        {
+          tradeType: '3',
+          TradeTypeText: '全部'
+        },
+        {
+          tradeType: '1',
+          TradeTypeText: _t['冻结']
+        },
+        {
+          tradeType: '2',
+          TradeTypeText: _t['解冻']
+        }
+      ]
+    }
     this.setData({
       userInfo: wx.getStorageSync("userInfo"), //用户信息
-      tradeType: options.tradeType || ''
+      tradeTypeArray: tradeTypeArray,
+      tradeType: options.tradeType || tradeTypeArray[0].tradeType,
+      source: options.source,
     })
     if (options.tradeType) {
       this.setData({ accountType: options.tradeType === "2"?_t['提现']: '' })
     }
-    this.atsSelectByList()
+    this.data.source === 'djs'? this.atsUnfreezingAndFreezing() : this.atsSelectByList()
   },
 
   /**
@@ -115,7 +134,8 @@ Page({
   // 触发时间选择器
   bindDateChange(result) {
     this.setData({ date: result.detail.value, updateTime: result.detail.value })
-    this.atsSelectByList()
+    this.data.source === 'djs'? this.atsUnfreezingAndFreezing() : this.atsSelectByList()
+    
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -221,12 +241,51 @@ Page({
       })
     })
     .catch(err=>{
-      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   // 选择交易类型
   bindPickerChange(e) {
     this.setData({ tradeType: tradeTypeArray[e.detail.value].tradeType, accountType: tradeTypeArray[e.detail.value].TradeTypeText })
-    this.atsSelectByList()
+    this.data.source === 'djs'? this.atsUnfreezingAndFreezing() : this.atsSelectByList()
+  },
+  // 请求待结算列表
+  atsUnfreezingAndFreezing() {
+    const that = this
+    NT.showToast(_t['加载中..'])
+    api.atsUnfreezingAndFreezing({ recordType: this.data.tradeType, updateTime: this.data.updateTime })
+    .then(res=>{
+      var result = res
+      let total = 0
+      result.forEach(item => {
+        item.ctime = util.formatTimeTwo(item.updateTime,'Y/M/D h:m:s')
+        item.Amount = item.amount
+        if(item.recordType === 4){
+          item.recordType = 2
+        }
+        if(item.recordType === 3) {
+          total += item.Amount
+        }
+        let key = item.recordType
+        switch (key) {
+          case 3:
+            item.TradeTypeText = _t['冻结'];
+            break;
+          case 2:
+            item.TradeTypeText = _t['解冻'];
+            break;
+          default:
+            item.TradeTypeText = _t['未知'];
+            break;
+        }
+      });
+      that.setData({
+        result: result,
+        totalPrice: total
+      })
+    })
+    .catch(err=>{
+      NT.showModal(err.message||_t['请求失败！'])
+    })
   }
 })
