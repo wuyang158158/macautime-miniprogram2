@@ -11,10 +11,10 @@
   <!-- 中部滚动 -->
   <view class="mid-section">
     <view class="mid-cont">
-      <view class="item flex" wx:for="{{ accountList }}" wx:key="index">
-        <text>{{ item.nickName || _t['无'] }}</text>
+      <view class="item flex f26" wx:for="{{ accountList }}" wx:key="index">
+        <text class="w160">{{ item.nickName || _t['无'] }}</text>
         <text>{{ item.accountId ||_t['无'] }}</text>
-        <text>{{ item.createTime || _t['无'] }}</text>
+        <text>{{ item.registerTime || _t['无'] }}</text>
       </view>
     </view>
     <gh-empty prop-type="no-data" prop-text="{{ _t['暂无已注册用户'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>

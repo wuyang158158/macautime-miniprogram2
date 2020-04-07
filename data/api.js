@@ -1347,7 +1347,7 @@ export default {
   // 分享赚钱 确认领取
   shareInsertMoney(query) {
     return new Promise((resolve, reject) => {
-      execute(`/atsUpdateAmountToAdd/1.0/`, 'POST', query, resolve, reject)
+      execute(`/usGetSpreadAmount/1.0/`, 'POST', query, resolve, reject)
     })
   },
   // 分享赚钱 获取邀请码二维码

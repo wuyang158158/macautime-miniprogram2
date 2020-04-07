@@ -58,10 +58,13 @@
   overflow-y: scroll
 }
 .item {
-  height: 84rpx;
+  /* height: 84rpx; */
   justify-content: space-between;
-  padding: 0 32rpx;
+  padding: 32rpx;
   box-sizing: border-box;
+}
+.w160 {
+  width: 160rpx;
 }
 .item:not(:last-child) {
   border-bottom: 1rpx solid #e6e6e6

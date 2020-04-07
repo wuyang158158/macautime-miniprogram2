@@ -45,7 +45,7 @@ Page({
     NT.showToast(_t['加载中..'])
     api.shareRegisterUser().then(res => {
       res.map(item => {
-        item.createTime = item.createTime? util.formatTimeTwo(item.createTime, 'Y.M.D') : item.createTime
+        item.registerTime = item.registerTime? util.formatTimeTwo(item.registerTime, 'Y.M.D') : item.registerTime
       })
       this.setData({ accountList: res, noData: !res.length })
     }).catch(err => {
@@ -68,9 +68,9 @@ Page({
   },
   // 钱包入账
   fnGetMoney() {
-    api.shareInsertMoney({ payAmount: this.data.rewardData }).then( res => {
+    api.shareInsertMoney({ payAmount: this.data.rewardData.reward || ''}).then( res => {
       this.setData({ showModal: false, code: '' })
-      NT.showModal(_t['成功！'])
+      NT.showModal(res.result)
     }).catch(err => {
       NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
