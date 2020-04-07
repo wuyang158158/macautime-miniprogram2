@@ -1361,6 +1361,12 @@ export default {
     return new Promise((resolve, reject) => {
       execute(`/sysGetBankConf/1.0/`, 'POST', query, resolve, reject)
     })
+  },
+  // 待提现
+  atsUnfreezingAndFreezing(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/atsUnfreezingAndFreezing/1.0/`, 'POST', query, resolve, reject)
+    })
   }
   
   /*** file-end ***/

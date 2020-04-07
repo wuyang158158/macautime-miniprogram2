@@ -1,7 +1,7 @@
 <!--pages/wallet/billing-details.wxml-->
 <view class="container">
     <view class="flex fixed h-100 pl25 pr25">
-        <view class="flex-1 f26 c-666666">{{ _t['总收益'] }}：MOP {{ totalPrice }}</view>
+        <view class="flex-1 f26 c-666666">{{ source === 'djs' ? _t['金额'] : _t['总收益'] }}：MOP {{ totalPrice }}</view>
         <picker bindchange="bindPickerChange" value="{{ tradeType }}" mode="selector" range="{{tradeTypeArray}}" range-key="TradeTypeText" class="f26 c-666666"> {{ accountType?accountType:_t['账单类型'] }} ▾</picker>
         <picker mode="date" fields="month" value="{{ date }}" start="1970-01" end="2099-12" bindchange="bindDateChange">
           <view class="f26 c-666666 pl32">{{ date?date:_t['日期筛选'] }} ▾</view>
@@ -9,7 +9,7 @@
     </view>
     <view class="content">
         <view class="items bg-white" wx:for="{{result}}" wx:key="index">
-            <view class="ml25 bd1 h-150 flex">
+            <view class="ml25 h-150 flex {{index+1!=result.length?'bd1':''}}">
                 <view class="flex">
                     <view class="flex-1 c-333333 f30">{{item.TradeTypeText}}</view>
                     <view class="c-00A653 f32" wx:if="{{item.recordType === 1}}">+{{item.Amount}}</view>
