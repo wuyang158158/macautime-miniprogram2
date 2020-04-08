@@ -40,8 +40,7 @@ Page({
     eventChannel.on('params', data => {
       console.log(data)
       this.setData({
-        params: data,
-        userInfo: wx.getStorageSync("userInfo"), //用户信息
+        params: data
       })
     })
   },
@@ -57,7 +56,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      userInfo: wx.getStorageSync("userInfo"), //用户信息
+    })
   },
 
   /**
@@ -180,14 +181,23 @@ Page({
     })
     .catch(err=>{
       if(err.codeMsg === _t['该用户不是会员']){
-        NT.showModalPromise(_t['您不是会员暂不能预定，是否立即加入会员立即享受体验优惠？'])
-        .then(()=>{
-          wx.navigateTo({
-            url: '/pages/views/vip-center'
-          })
-        })
-        .catch(()=>{
-
+        wx.showModal({
+          title: '提示',
+          content: _t['您不是会员暂不能预定，是否立即加入会员立即享受体验优惠？'],
+          cancelText: '再看看',
+          cancelColor: '#999999',
+          confirmText: _t['开通会员'],
+          confirmColor: '#00A653',
+          success (res) {
+            if (res.confirm) {
+              
+              wx.navigateTo({
+                url: '/pages/vip/vip-center'
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
         })
       }else{
         NT.showModal(err.message||_t['请求失败！'])
@@ -318,4 +328,25 @@ Page({
     //   url: '/pages/views/spell-route-order-ok'
     // })
   },
+  // 不是会员下单则点击提示跳转到去开通会员
+  tapModalToVip() {
+    wx.showModal({
+      title: '提示',
+      content: _t['您不是会员暂不能预定，是否立即加入会员立即享受体验优惠？'],
+      cancelText: '再看看',
+      cancelColor: '#999999',
+      confirmText: _t['开通会员'],
+      confirmColor: '#00A653',
+      success (res) {
+        if (res.confirm) {
+          
+          wx.navigateTo({
+            url: '/pages/vip/vip-center'
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
 })

@@ -135,7 +135,6 @@ Page({
         result.eventChannel.emit('params', choseData)
       }
     })
-    return false;
   },
   //预览图片
   tapPreviewImage(e){
