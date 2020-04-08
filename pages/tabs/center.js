@@ -190,6 +190,9 @@ Page({
       const data = Object.assign(wx.getStorageSync('userInfo') || {}, res)
       wx.setStorageSync('userInfo', data)
       this.setData({ userInfo: data })
+    }).catch(err => {
+      this.setData({ userInfo: '' })
+      wx.removeStorageSync('userInfo')
     })
   },
   tapToLogin: function(e) {
