@@ -1,5 +1,6 @@
 <!--pages/tabs/center.wxml-->
 <view class="">
+    <!-- <view class="">我的</view> -->
     <view class="relative c-title">
         <image class="pic-default-new" src="{{userInfo.level?'/images/center/bg_vip.png':'/images/center/bg-2.png'}}" mode="aspectFill"/>
         <view class="pic-default-new z-index5">

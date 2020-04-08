@@ -1,7 +1,8 @@
 <!--pages/tabs/index.wxml-->
+<image class="header-bg header-bg-h" src="/images/index/index-bgv.png" mode="aspectFill" wx:if="{{userInfo.level}}"/>
 <view class="container">
   <!-- 搜索组件 -->
-  <gh-searchbar bind:search="search" bind:tapSearch="tapSearch" searchPlaceholder="{{ _t['搜索体验'] }}" source="index" disabled></gh-searchbar>
+  <gh-searchbar bind:search="search" bind:tapSearch="tapSearch" searchPlaceholder="{{ _t['搜索体验/用户'] }}" source="index" navigationStyle="custom" disabled></gh-searchbar>
   <view class="header">
     <view class="common" wx:if="{{!userInfo.level}}">
       <image class="header-bg" src="/images/index/index-bg.jpg" mode="aspectFill"/>
@@ -13,7 +14,6 @@
       </view>
     </view>
     <view class="vip" wx:else>
-      <image class="header-bg header-bg-h" src="/images/index/index-bgv.png" mode="aspectFill"/>
       <view class="header-ct">
         <view class="title f44 c-222222 pb16">{{ _t['澳门时光，享受美好旅行体验'] }}</view>
         <view class="f24 c-222222">{{ _t['享受澳门时光所有门店内部所有优惠券'] }}</view>

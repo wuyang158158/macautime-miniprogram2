@@ -3,12 +3,25 @@
 page{
     background: #fff!important;
 }
-.nav{
-    width: 100%;
-    position: absolute;
-    top: 0;
+.back-to{
+    width: 16rpx;
+    height: 32rpx;
+    padding: 32rpx;
+    position: fixed;
+    top: 36px;
     left: 0;
     z-index: 10;
+}
+.back-to image{
+    width: 100%;
+    height: 100%;
+}
+.nav{
+    position: absolute;
+    top: 500rpx;
+    right: 0;
+    z-index: 10;
+    flex-direction: column;
 }
 .nav .nav-icon{
     width: 36rpx;

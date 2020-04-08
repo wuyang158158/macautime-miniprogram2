@@ -55,6 +55,7 @@ Page({
       title: options.title
     })
     this.setData({
+      statusBarHeight: wx.getStorageSync('systemInfo').statusBarHeight - 5,
       options: options,
       msId: options.id,
       recommend: options.recommend,
@@ -580,5 +581,9 @@ Page({
     const current = e.detail.current
     const id = 'item-video-' + current
     this.getViewHeight(id)
+  },
+  // 返回上一页
+  tapToBack() {
+    NT.navigateBackDelta(1)
   }
 })

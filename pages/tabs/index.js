@@ -46,6 +46,7 @@ Page({
     });
     // 底部tab切换成繁体
     base.setTabBarLang()
+    // this.initClientRect()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -65,7 +66,6 @@ Page({
       wx.removeStorageSync('activeMenu')
       this.onLoad()
     }
-    this.initClientRect()
   },
   // 初始化高度
   initClientRect() {
@@ -80,11 +80,11 @@ Page({
   },
   // 2.监听页面滚动距离scrollTop
   onPageScroll: function (scroll) {
-    if(wx.getStorageSync('systemInfo').system.indexOf('iOS')!==-1){
-      this.setData({
-        menuFixed: (scroll.scrollTop > this.data.menuTop)
-      })
-    }
+    // if(wx.getStorageSync('systemInfo').system.indexOf('iOS')!==-1){
+    //   this.setData({
+    //     menuFixed: (scroll.scrollTop > this.data.menuTop)
+    //   })
+    // }
     
   },
   // 切换菜单

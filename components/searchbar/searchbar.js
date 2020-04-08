@@ -27,6 +27,10 @@ Component({
     position: {
       type: 'string',
       value: ''
+    },
+    navigationStyle: {
+      type: 'string',
+      value: ''
     }
   },
   /**
@@ -34,6 +38,7 @@ Component({
    */
   data: {
     inputVal: "",
+    statusBarHeight: wx.getStorageSync('systemInfo').statusBarHeight - 5
   },
   /**
    * 组件的方法列表

@@ -1,5 +1,8 @@
 <!--pages/views/ac-detail.wxml-->
 <view class="container {{acData.isSigned?'pb220':''}}" wx:if="{{acData}}">
+    <view class="back-to" style="top:{{statusBarHeight}}px;" bindtap="tapToBack">
+        <image src="/images/detail/nav_icon_back_w.png" mode="aspectFill"/>
+    </view>
     <!-- 操作 -->
     <view class="nav flex">
         <view class="flex-1"></view>

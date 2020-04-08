@@ -1,16 +1,16 @@
 <!--components/searchbar/searchbar.wxml-->
-<view class="page {{source==='index'?'absolute':'fixed'}} {{position==='static'?'static':''}} {{source==='location'?'weui-search-bar-bg':''}}" style="z-index: 999;">
+<view class="page {{source==='index'?'absolute':'fixed'}} {{position==='static'?'static':''}} {{source==='location'?'weui-search-bar-bg':''}} {{navigationStyle==='custom'?'custom':''}}" style="z-index: 999;top:{{navigationStyle==='custom'?statusBarHeight:0}}px;">
   <view class="page__bd">
     <view class="weui-search-bar {{source==='index'?'':'weui-search-bar-bg'}}" bindtap="tapToSearch">
-      <view class="weui-search-bar__form">
+      <view class="weui-search-bar__form {{navigationStyle==='custom'?'weui-search-bar__form-rgba':''}}">
         <view class="weui-search-bar__box {{source==='index'?'':'weui-search-bar_box-bg'}}">
-          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text" class="weui-search-bar__input" placeholder="{{searchPlaceholder}}" value="{{inputVal}}" disabled="{{disabled}}" focus="{{inputShowed}}" confirm-type="搜索" bindinput="inputTyping" bindconfirm="onParentEvent"/>
+          <icon class="weui-icon-search_in-box" type="search" color="{{navigationStyle==='custom'?'#222':''}}" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="{{searchPlaceholder}}" placeholder-class="{{navigationStyle==='custom'?'placeholder-class':''}}" value="{{inputVal}}" disabled="{{disabled}}" focus="{{inputShowed}}" confirm-type="搜索" bindinput="inputTyping" bindconfirm="onParentEvent"/>
           <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
             <icon type="clear" size="14"></icon>
           </view>
         </view>
-        <label class="weui-search-bar__label" wx:if="{{source==='index'}}">
+        <label class="weui-search-bar__label" wx:if="{{source==='index'&&navigationStyle!=='custom'}}">
             <icon class="weui-icon-search" type="search" size="14"></icon>
             <view class="weui-search-bar__text">{{searchPlaceholder}}</view>
         </label>
