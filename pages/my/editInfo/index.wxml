@@ -12,15 +12,15 @@
         </view>
   </view>
   <view class="bg-white item mt16">
-        <view class="flex bd1 pt32 pb32" data-url="/pages/attestation/kol-class" bindtap="fnLinkToClass">
+        <view class="flex bd1 pt32 pb32" data-url="/pages/attestation/kol-class">
             <view class="flex-1">{{ _t['KOL类别'] }}</view>
             <view class="c-B3">{{ kolClass? kolClass:  _t['请选择'] }}</view>
-            <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
+            <!-- <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/> -->
         </view>
-        <view class="flex pt32 pb32" data-url="/pages/attestation/kol-tag?source=class" bindtap="fnLinkToClass">
+        <view class="flex pt32 pb32" data-url="/pages/attestation/kol-tag?source=class">
             <view class="flex-1">{{ _t['申请类别'] }}</view>
             <view class="c-B3">{{ choseTagClass? choseTagClass: _t['请选择'] }}</view>
-            <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/>
+            <!-- <image class="arrow" src="/images/center/icon_more-2.png" mode="aspectFill"/> -->
         </view>
   </view>
 </view>
