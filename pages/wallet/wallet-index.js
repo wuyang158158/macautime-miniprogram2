@@ -107,7 +107,6 @@ Page({
         NT.showModal(_t['实名认证审核中, 审核通过后才可提现！'])
       } else {
         wx.showModal({
-          title: ' ',
           content: _t['提现需要实名认证'],
           confirmText: _t['前往认证'],
           confirmColor: '#00A653',
