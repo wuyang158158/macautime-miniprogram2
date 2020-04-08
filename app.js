@@ -1,9 +1,16 @@
 //app.js
+import api from "./data/api.js"
 App({
   /**
    * 生命周期-初始化
    */
   onLaunch(options) {
+    api.sysGetGlobalConf({key:'isVideo'})
+    .then(res=>{
+      // debugger
+      wx.setStorageSync('isVideo', res.isVideo);
+    })
+    
     // 打开调试
     // wx.setEnableDebug({
     //   enableDebug: true

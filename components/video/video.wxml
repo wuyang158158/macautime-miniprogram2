@@ -1,7 +1,7 @@
 
 
 <view class="photo-flex mb32">
-  <view bindtap="{{userInfo.isVideo?'fnLinkTo':''}}" class="video relative" wx:for="{{ result }}" wx:key="index" data-id="{{ item.id || '' }}" data-src="{{ item.contentUrl }}">
+  <view bindtap="{{isVideo?'fnLinkTo':''}}" class="video relative" wx:for="{{ result }}" wx:key="index" data-id="{{ item.id || '' }}" data-src="{{ item.contentUrl }}">
       <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
       <image class="pic-default-new z-index5" src="{{ item.videoThumbUrl }}" mode="aspectFill"/>
       <view class="video-text c-FFFFFF flex ml16 mr16 mb16">

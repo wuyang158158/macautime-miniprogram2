@@ -192,8 +192,9 @@ Page({
           item.endTimeStr = util.formatTimeTwo(item.endTime,'Y-M-D')
         })
       }
-      data.msInterviewVideoVoList = this.data.userInfo.isVideo ? data.msInterviewVideoVoList : ''
-      data.msMyVideoVo = this.data.userInfo.isVideo ? data.msMyVideoVo : ''
+      var isVideo = wx.getStorageSync('isVideo')
+      data.msInterviewVideoVoList = isVideo ? data.msInterviewVideoVoList : ''
+      data.msMyVideoVo = isVideo ? data.msMyVideoVo : ''
       this.setData({
         acData: data
       })

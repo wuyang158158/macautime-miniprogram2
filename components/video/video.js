@@ -15,6 +15,7 @@ Component({
    */
   data: {
     userInfo: wx.getStorageSync("userInfo"), //用户信息
+    isVideo: wx.getStorageSync('isVideo')
   },
   attached() {
     

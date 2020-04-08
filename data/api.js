@@ -1379,6 +1379,12 @@ export default {
     return new Promise((resolve, reject) => {
       execute(`/atsRecordInfo/1.0/`, 'POST', query, resolve, reject)
     })
+  },
+  // 请求视频权限
+  sysGetGlobalConf(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/sysGetGlobalConf/1.0/`, 'POST', query, resolve, reject)
+    })
   }
   
   /*** file-end ***/

@@ -1,5 +1,5 @@
 <view class="content" wx:if="{{ !noData }}">
-  <video src="{{ data.videoUrl }}" wx:if="{{ userInfo.isVideo && data.videoUrl }}" controls="true"></video>
+  <video src="{{ data.videoUrl }}" wx:if="{{ isVideo && data.videoUrl }}" controls="true"></video>
     <view class="ms-title f32 c-222222">{{ data.title }}</view>
     <view class="ms-info flex">
       <image src="{{ data.msHeadPhotoUrl || '/images/default/avatar.png' }}" mode="aspectFill"></image>
