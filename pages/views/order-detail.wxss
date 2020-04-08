@@ -14,6 +14,7 @@
     width: 160rpx;
     height: 160rpx;
     border-radius:12rpx;
+    overflow: hidden;
 }
 .code {
     justify-content: space-between;
