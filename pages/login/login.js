@@ -186,6 +186,7 @@ Page({
     if(query.scene) {
       let scene = decodeURIComponent(query.scene)
       this.setData({ spreadCode: scene })
+      wx.setStorageSync('spreadCode', scene);
     }
 
     const that = this
@@ -297,17 +298,20 @@ Page({
         var province = userInfo.province
         var city = userInfo.city
         var country = userInfo.country
+        var spreadCode = wx.getStorageSync('spreadCode') || ''
         var obj = {
           encryptedData: encryptedData,
           iv: iv,
           nickName: nickName,
           headUrl: avatarUrl,
           sex: gender === 2 ? '1' : '0',  //0-男 1-女"
-          source: '1'  //1-微信小程序  2-微信公众号"
+          source: '1',  //1-微信小程序  2-微信公众号"
+          spreadCode: spreadCode
         }
         var registerForm = Object.assign({},that.data.registerForm, obj)
         api.usLogin(registerForm)
         .then((res) => {
+          wx.removeStorageSync('spreadCode')
           that.setData({
             userInfo: res
           })
@@ -324,16 +328,6 @@ Page({
               delta: 1
             })
           },1000)
-          // const loginForm = {
-          //   phone: res.phone
-          // }
-          // api.usLogin(loginForm)
-          // .then((res) => {
-            
-          // })
-          // .catch((err) => {
-            
-          // })
         })
         .catch((err)=>{
           console.log(err)
