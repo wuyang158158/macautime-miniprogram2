@@ -119,23 +119,43 @@ Page({
   },
   // 选择套餐购买商品
   tapToSubmitOrder() {
-    var choseData = this.data.choseData
-    if(choseData.status == 1) { //
-      NT.showModal(_t['该套餐已下架！']);
-      return false;
-    }
-    if(choseData.payType == 2) { //线下支付
-      NT.showModal(_t['该套餐为线下支付！']);
-      return false;
-    }
-    wx.navigateTo({
-      url: '/pages/views/submit-order',
-      success: function(result) {
-        // 通过eventChannel向被打开页面传送数据
-        result.eventChannel.emit('params', choseData)
+    if(!this.data.userInfo.level){ //如果没有开通会员，则提示开通会员再领取
+      wx.showModal({
+        title: '提示',
+        content: _t['套餐仅供时光卡会员用户使用，现在开通，领取优惠券，还能享受更多会员增值优惠及特权。'],
+        cancelText: '再看看',
+        cancelColor: '#999999',
+        confirmText: _t['开通会员'],
+        confirmColor: '#00A653',
+        success (res) {
+          if (res.confirm) {
+            
+            wx.navigateTo({
+              url: '/pages/vip/vip-center'
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }else{
+      var choseData = this.data.choseData
+      if(choseData.status == 1) { //
+        NT.showModal(_t['该套餐已下架！']);
+        return false;
       }
-    })
-    return false;
+      if(choseData.payType == 2) { //线下支付
+        NT.showModal(_t['该套餐为线下支付！']);
+        return false;
+      }
+      wx.navigateTo({
+        url: '/pages/views/submit-order',
+        success: function(result) {
+          // 通过eventChannel向被打开页面传送数据
+          result.eventChannel.emit('params', choseData)
+        }
+      })
+    }
   },
   //预览图片
   tapPreviewImage(e){
