@@ -11,7 +11,7 @@
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
-                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapToConfirm">完成</button>
+                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapToBack">完成</button>
             </view>
         </view>
     </view>
