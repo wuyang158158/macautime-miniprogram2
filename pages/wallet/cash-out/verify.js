@@ -39,6 +39,8 @@ Page({
       if(res.status === 3) {
         this.setData({'actionMenu[2].title': _t['提现失败']})
       }
+    }).catch(err => {
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
   },
   // 点击确认

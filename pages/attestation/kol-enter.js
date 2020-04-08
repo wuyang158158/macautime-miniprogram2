@@ -24,6 +24,7 @@ Page({
       }
     ],
     container: false,
+    canSubmit: true
   },
 
   /**
@@ -203,14 +204,21 @@ Page({
       NT.showModal(_t['请至少填写一个其它平台信息！'])
       return
     }
+    if(this.data.canSubmit) {
+      this.setData({ canSubmit: false })
+    } else {
+      return false
+    }
     NT.showToast(_t['处理中...'])
     api.usInsertKol(query)
     .then(res=>{
+      this.setData({ canSubmit: true })
       wx.navigateTo({
         url: '/pages/attestation/kol-enter-msg'
       })
     })
     .catch(err=>{
+      this.setData({ canSubmit: true })
       NT.showModal(err.message|| _t['请求失败！'])
     })
   },

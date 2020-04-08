@@ -20,7 +20,8 @@ Page({
       bankName: '',
       cardType: '',
       reservedPhone: ''
-    }
+    },
+    canSubmit: true
   },
 
   /**
@@ -135,10 +136,15 @@ Page({
     if(data.cardType === 'VISA') {
       data.cardType = 'Visa'
     }
+    if(this.data.canSubmit) {
+      this.setData({ canSubmit: false })
+    } else {
+      return false
+    }
     NT.showToast(_t['处理中...'])
     api.usInsertCard(data)
     .then(res=>{
-      console.log(res)
+      that.setData({ canSubmit: true })
       NT.toastFn(_t['处理成功'],1000)
       setTimeout(()=>{
         wx.navigateBack({
@@ -147,6 +153,7 @@ Page({
       },1000)
     })
     .catch(err=>{
+      that.setData({ canSubmit: true })
       NT.showModal(err.message||_t['请求失败！'])
     })
   },
