@@ -65,6 +65,25 @@ Page({
       wx.removeStorageSync('activeMenu')
       this.onLoad()
     }
+    this.initClientRect()
+  },
+  // 初始化高度
+  initClientRect() {
+    var that = this;
+    var query = wx.createSelectorQuery()
+    query.select('#fixed').boundingClientRect()
+    query.exec(function (res) {
+      console.log(res[0].top)
+      that.setData({
+        menuTop: res[0].top
+      })
+    })
+  },
+  // 2.监听页面滚动距离scrollTop
+  onPageScroll: function (scroll) {
+    this.setData({
+        menuFixed: (scroll.scrollTop > this.data.menuTop)
+      })
   },
   // 切换菜单
   changeTab(e) {

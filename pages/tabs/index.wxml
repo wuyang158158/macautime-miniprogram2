@@ -37,7 +37,7 @@
     </view>
   </view>
   <!-- tab菜单栏切换 -->
-  <view class="tab-menu flex">
+  <view class="tab-menu flex {{menuFixed ? 'fixed': ''}}" id="fixed">
     <view bindtap="changeTab" data-index="{{ item.type }}" wx:key="index" wx:for="{{ menuList }}" class="{{ activeMenu === item.type ?'t-item active': 't-item'}}">{{ item.title }}</view>
   </view>
   <view class="i-page ml16 mr16 pb32">

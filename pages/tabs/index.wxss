@@ -245,6 +245,8 @@
   z-index: 8;
   width: 100%;
   height: 100%;
+  background: rgba(0,0,0,.3);
+
 }
 .merchant-discount{
   width: 80rpx;
@@ -287,6 +289,17 @@
   /* height: 414rpx; */
   position: relative;
   bottom: 0;
+}
+.tab-menu.fixed {
+  position: fixed;
+  top: -1rpx;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 10;
+  box-shadow: 0 2rpx 20rpx #888888;
+  margin-top: 0;
+  border-top: 0;
 }
 .flex-jc{
   padding-bottom: 20rpx;
