@@ -73,7 +73,6 @@ Page({
     var query = wx.createSelectorQuery()
     query.select('#fixed').boundingClientRect()
     query.exec(function (res) {
-      console.log(res[0].top)
       that.setData({
         menuTop: res[0].top
       })

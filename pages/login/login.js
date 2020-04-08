@@ -304,7 +304,7 @@ Page({
           iv: iv,
           nickName: nickName,
           headUrl: avatarUrl,
-          sex: gender === 2 ? '1' : '0',  //0-男 1-女"
+          sex: gender === 2 ? '2' : '1',  //1-男 2-女"
           source: '1',  //1-微信小程序  2-微信公众号"
           spreadCode: spreadCode
         }
