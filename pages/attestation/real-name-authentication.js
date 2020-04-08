@@ -23,6 +23,7 @@ Page({
       identityType: _t['身份证'],
       identityCode: ''
     }, //上传参数
+    canSubmit: true
   },
 
   /**
@@ -40,6 +41,8 @@ Page({
     this.setData({
       ageArray: ageArray
     })
+    
+    this.usGetAuthentication()
   },
 
   /**
@@ -53,7 +56,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.usGetAuthentication()
+
   },
 
   /**
@@ -168,9 +171,15 @@ Page({
       return
     }
     data.sex === '男' ? data.sex = 0 : data.sex = 1
+    if(this.data.canSubmit) {
+      this.setData({ canSubmit: false })
+    } else {
+      return false
+    }
     NT.showToast(_t['处理中...'])
     api.usInsertIdentity(data)
     .then(res=>{
+      that.setData({ canSubmit: true })
       NT.toastFn('提交成功！')
       setTimeout(()=>{
         wx.navigateBack({
@@ -179,6 +188,7 @@ Page({
       },2000)
     })
     .catch(err=>{
+      that.setData({ canSubmit: true })
       NT.showModal(err.message||_t['请求失败！'])
     })
     
