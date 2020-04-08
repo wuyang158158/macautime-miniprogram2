@@ -81,7 +81,7 @@ page{
     margin-right: 22rpx;
 }
 .media .item-ac{
-    background: #FF7626;
+    background: #00A653;
     color: #fff;
 }
 .bannar-img{

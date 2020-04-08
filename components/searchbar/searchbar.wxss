@@ -61,7 +61,7 @@
 }
 .custom{
     position: fixed;
-    width: 75%;
+    width: 530rpx;
 }
 .placeholder-class{
     color: #222;

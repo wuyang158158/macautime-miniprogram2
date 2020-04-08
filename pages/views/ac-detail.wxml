@@ -42,7 +42,7 @@
             </swiper-item>
             <block wx:for="{{acData.msPhotoVoList}}" wx:key="index">
             <swiper-item data-item="{{item.imageUrl}}" bindtap="tapPreviewImage">
-                <image src="{{item.imageUrl}}" class="bannar-img" mode="aspectFill"/>
+                <image src="{{item.imageUrl}}" class="bannar-img" mode="scaleToFill"/>
             </swiper-item>
             </block>
         </swiper>

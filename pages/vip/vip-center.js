@@ -156,7 +156,7 @@ Page({
     NT.showToast(_t['加载中..'])
     api.mkGetVipPackage()
     .then(res=>{
-      var list = res || []
+      var list = res.MkVipPackageConfig || res || []
       list.forEach(item=>{
         if(item.description){
           var text = item.description.split('(')
@@ -165,7 +165,8 @@ Page({
         }
       })
       this.setData({
-        list: list
+        list: list,
+        validityTime: res.validityTime ? util.formatTimeTwo(Number(res.validityTime),'Y-M-D') : '1'
       })
     })
     .catch(err=>{

@@ -19,7 +19,7 @@
                     >{{ _t['未开通会员'] }}
                 </button>
             </view>
-            <view class="f30">{{ _t['开通会员尊享  大特权'] }}</view>
+            <view class="f30" wx:if="{{validityTime}}">{{validityTime!='1'? '有效期至' + validityTime : _t['开通会员尊享  大特权']}}</view>
         </view>
 
         <!-- <button 
