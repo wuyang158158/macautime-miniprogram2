@@ -23,7 +23,7 @@ Page({
     choseVip: false, // 默认不选中会员优惠
     userAgreement: true, //购买协议需要用户手动确认
     discountPrice: 0, //已优惠
-    sPrice: 0, //总价
+    // payAmount: 0, //总价
     ePrice: 0, //最终价格
   },
 
@@ -40,7 +40,8 @@ Page({
     eventChannel.on('params', data => {
       console.log(data)
       this.setData({
-        params: data
+        params: data,
+        payAmount: data.price, //总价
       })
     })
   },
@@ -108,16 +109,18 @@ Page({
   // 数量减少
   tapReduce() {
     if(this.data.orderCount > 1){
-      var orderCount = this.data.orderCount
+      var orderCount = this.data.orderCount -=1
+      this.amountComputed(orderCount,this.data.money,this.data.discount,this.data.typeId)
       this.setData({
-        orderCount: orderCount-=1
+        orderCount: orderCount
       })
     }
   },
   tapAdd() {
-    var orderCount = this.data.orderCount
+    var orderCount = this.data.orderCount +=1
+    this.amountComputed(orderCount,this.data.money,this.data.discount,this.data.typeId)
     this.setData({
-      orderCount: orderCount+=1
+      orderCount: orderCount
     })
   },
   // 跳转到会员中心
@@ -274,12 +277,16 @@ Page({
     var cardResult = this.data.cardResult;
     cardResult.map(item=>{
       if(item.id === id) {
+        var money = item.money;
+        var discount = item.discount;
+        var typeId = item.typeId;
+        this.amountComputed(this.data.orderCount,money,discount,typeId)
         this.setData({
           choseCardId: id,
           discountsName: item.discountsName,
-          typeId: item.typeId,
-          discount: item.discount,
-          money: item.money
+          typeId: typeId,
+          discount: discount,
+          money: money
         })
       }
     })
@@ -287,24 +294,11 @@ Page({
   // 下单
   submitOrderNew(){
     var choseData = this.data.params
-
     var orderCount = this.data.orderCount;
-    var discount = this.data.discount;
     var price = choseData.price;
-    var money = this.data.money;
-    var payAmount;
-    if(this.data.typeId == 1) {
-      payAmount = price * orderCount * discount
-    }else if(this.data.typeId == 2) {
-      payAmount = price * orderCount - money < 0 ? 0 : price * orderCount - money
-    }else if(this.data.typeId == 3) {
-      payAmount = price * orderCount - money < 0 ? 0 : price * orderCount - money
-    }else{
-      payAmount = price * orderCount
-    }
     const query = {
       userId: this.data.userInfo.userId,  // 用户账户
-      payAmount: payAmount, //支付金额
+      payAmount: this.data.payAmount, //支付金额
       contentTypeId: choseData.contentTypeId ,//商品内容类别Id
       contentInfoId: choseData.id, // 内容详情Id
       price: price, // 商品单价
@@ -319,7 +313,7 @@ Page({
     api.poInsertGoodsOrderAddDiscount(query).then(res=>{
       console.log(res)
       wx.navigateTo({
-        url: '/pages/vip/payment?id=' + res.orderNumber + '&money=' + payAmount + '&reciprocal=' + res.reciprocal + '&source=meal' + '&msId=' + choseData.msId
+        url: '/pages/vip/payment?id=' + res.orderNumber + '&money=' + this.data.payAmount + '&reciprocal=' + res.reciprocal + '&source=meal' + '&msId=' + choseData.msId
       })
     }).catch(err=>{
       NT.showModal(err.message||_t['请求失败！'])
@@ -348,5 +342,46 @@ Page({
         }
       }
     })
+  },
+  /**
+   * 计算总价
+   * @param {*} orderCount  数量
+   * @param {*} money  单价
+   * @param {*} discount  折扣卷
+   * @param {*} typeId 折扣类型
+   */
+  amountComputed(orderCount,money,discount,typeId) {
+    var price = this.data.params.price;
+    var payAmount;
+    if(typeId == 1) { //折扣券
+      payAmount = this.computed(price * orderCount * discount)
+    }else if(typeId == 2) { //满减券
+      payAmount = this.computed(price * orderCount - money < 0 ? 0 : price * orderCount - money)
+    }else if(typeId == 3) { // 抵扣券
+      payAmount = this.computed(price * orderCount - money < 0 ? 0 : price * orderCount - money)
+    }else{ // 没有选中券
+      payAmount = this.computed(price * orderCount)
+    }
+    this.setData({
+      payAmount: payAmount,
+    })
+  },
+  // 计算价格，保留2位小数，第二位小数后面只要有数字就进1，例如123.0000001为123.01，123.201999为123.21
+  computed(num) {
+    var str = num.toString().split('.');
+    if(str.length>1){
+      var fStr = str[1]
+      if(fStr.length > 2) {
+        var float =  '0.' + fStr.substring(0,2)
+        var newFloat = Number(float) + 0.01
+        return Number(str[0]) + newFloat
+      }else{
+        var float =  fStr.substring(0,2)
+        var rStr = str[0] + '.' + float
+        return Number(rStr)
+      }
+    }else{
+      return Number(str)
+    }
   }
 })

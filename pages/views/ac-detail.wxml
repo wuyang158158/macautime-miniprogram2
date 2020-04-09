@@ -34,7 +34,7 @@
                     poster="{{acData.msMyVideoVo.imageUrl}}"
                     object-fit="{{direction!=='horizontal'?'cover':'contain'}}" 
                     play-btn-position="bottom"
-                    show-fullscreen-btn="{{ false }}"
+                    show-fullscreen-btn
                     enable-progress-gesture
                     bindplay="bindplay" 
                     bindfullscreenchange="bindfullscreenchange">
@@ -46,7 +46,7 @@
             </swiper-item>
             </block>
         </swiper>
-        <view class="media flex c-222222">
+        <view class="media flex c-222222" style="width:{{current||!acData.msMyVideoVo.videoUrl ? 80 : 50}}%;">
             <view class="f20 item mr22 {{!current?'item-ac':''}}" data-current="0" bindtap="tapMedia" wx:if="{{acData.msMyVideoVo.videoUrl}}">
                 <image class="video-img" src="/images/detail/icon_video_w.png" mode="aspectFill" wx:if="{{!current}}"/>
                 <image class="video-img" src="/images/detail/icon_video_k.png" mode="aspectFill" wx:else/>
