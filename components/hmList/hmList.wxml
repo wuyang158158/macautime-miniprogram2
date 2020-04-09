@@ -22,8 +22,8 @@
             </view>
             <view class="flex f24 c-999999">
                 <view class="flex-1 ell">{{item.address||item.city||''}}</view>
-                <!-- <view>12.2km</view> -->
-                <view class="tag mb5 c-00A653" wx:if="{{item.labelRemark}}">{{item.labelRemark}}</view>
+                <view wx:if="{{source==='experience'}}">{{item.distince}}</view>
+                <view class="tag mb5 c-00A653" wx:if="{{item.labelRemark&&source!=='experience'}}">{{item.labelRemark}}</view>
             </view>
         </view>
     </view>

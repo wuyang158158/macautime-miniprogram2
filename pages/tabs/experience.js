@@ -288,9 +288,13 @@ Page({
           swiperData: data.slice(0,3)
         })
       }
+      var merchantList = source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data)
+      merchantList.map(item=>{
+        item.distince = item.distince && item.distince > 1000 ? (item.distince / 1000).toFixed(2) + 'km' : item.distince || '0' + 'm'
+      })
       that.setData({
         noData: false,
-        merchantList: source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data),
+        merchantList: merchantList,
         total: res.total,
         loadmore: false
       })
