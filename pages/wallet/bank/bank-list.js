@@ -30,9 +30,11 @@ Page({
   chooseBank(e) {
     if(!this.data.isChoose) return
     const bankAuthId = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: `/pages/wallet/cash-out/index?bankAuthId=${bankAuthId}`,
-    })
+    wx.setStorageSync('bankAuthId', bankAuthId)
+    wx.navigateBack()
+    // wx.redirectTo({
+    //   url: `/pages/wallet/cash-out/index?bankAuthId=${bankAuthId}`,
+    // })
   },
   // 获取银行卡列表
   getData() {

@@ -26,8 +26,6 @@ Page({
     wx.setNavigationBarTitle({
       title: _t['提现'],
     })
-    console.log(options)
-    if (options.bankAuthId) { this.setData({ bankAuthId: options.bankAuthId })}
   },
   setInputValue(e){
     this.setData({
@@ -40,7 +38,7 @@ Page({
   // 获取可提现金额
   getAllMoney() {
     api.atsSelect().then(res => {
-      this.setData({ totalNum: res.balance || '0.00' })
+      this.setData({ number: '', totalNum: res.balance || '0.00' })
     }).catch( err => {
       NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
@@ -99,6 +97,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const bankAuthId = wx.getStorageSync('bankAuthId') || ''
+    if (bankAuthId) {
+       this.setData({ bankAuthId })
+       wx.removeStorageSync('bankAuthId')
+      }
     this.getData()
     this.getAllMoney()
   },
