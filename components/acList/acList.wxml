@@ -24,7 +24,7 @@
             </view>
             <view class="flex c-666666 l-h32 pt16">
                 <view class="flex-1">{{item.province}}</view>
-                <view class="c-999999">{{item.address}}</view>
+                <view class="c-999999 ell flex-3">{{item.address}}</view>
             </view>
         </view>
 

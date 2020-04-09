@@ -4,7 +4,7 @@
     <view class="content bg-white flex p16 mb16" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
         <view class="relative i-img mr16">
             <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
-            <image class="pic-default-new z-index5" src="{{item.coverUrl}}" mode="aspectFill"/>
+            <image class="pic-default-new z-index5" src="{{item.coverUrl}}" lazy-load mode="aspectFill"/>
         </view>
         <view class="flex-1 c-222222 flex flex-custom">
             <view class="flex-1">

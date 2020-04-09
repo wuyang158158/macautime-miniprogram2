@@ -3,3 +3,7 @@
 .baseline{
     align-items: baseline;
 }
+.flex-3{
+    flex: 3;
+    text-align: right;
+}
