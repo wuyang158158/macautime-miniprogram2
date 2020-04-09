@@ -235,10 +235,11 @@ Page({
   //打开地图
   openLocation() {
     const markers = this.data.acData.markers[0]
+    console.log(markers)
     wx.openLocation({
       latitude: markers.latitude,
       longitude: markers.longitude,
-      name: markers.addr,
+      name: markers.addr ||this.data.acData.msBaseInfo.address || '',
       scale: 15
     })
   },

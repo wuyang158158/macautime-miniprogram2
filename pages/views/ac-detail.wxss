@@ -43,7 +43,7 @@ page{
     position: absolute;
 }
 .media{
-    width: 80%;
+    width: 60%;
     height: 44rpx;
     position: absolute;
     left: 20%;
