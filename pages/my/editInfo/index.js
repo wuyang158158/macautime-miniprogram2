@@ -22,6 +22,15 @@ Page({
     wx.setNavigationBarTitle({
       title: _t['编辑资料']
     });
+    api.usKolInfoById().then(res => {
+      //用户类别
+      var choseTagClass = res.usSysLabelTyle ? res.usSysLabelTyle.labelRemark : ''
+      wx.setStorage({key:"choseTagClass",data: choseTagClass})
+      //kol类别
+      var kolClass = res.tyle == '1' ? '普通KOL' : _t['领域KOL']
+      wx.setStorage({key:"kolClass",data: kolClass})
+      this.setData({choseTagClass, kolClass})
+    })
   },
   // 获取个人信息
   fnGetUserInfo() {
@@ -43,10 +52,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      choseTagClass: wx.getStorageSync('choseTagClass') || '',
-      kolClass: wx.getStorageSync('kolClass') || '',
-    })
     this.fnGetUserInfo()
   },
 

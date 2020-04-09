@@ -9,9 +9,9 @@
         <button class="nav-icon flex" type="none" open-type="share">
             <image src="/images/detail/nav_icon_share_w.png" mode="aspectFill"/>
         </button>
-        <view class="nav-icon" bindtap="tapLike">
+        <button class="nav-icon flex" type="none" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{userInfo? 'tapLike':'tapToLogin'}}">
             <image src="{{acData.isMarK?'/images/index/nav_icon_like_pre.png':'/images/detail/nav_icon_like_w.png'}}" mode="aspectFill"/>
-        </view>
+        </button>
         <!-- <view class="nav-icon" bindtap="tapToActivityCalendar">
             <image src="/images/detail/nav_icon_calendar_w.png" mode="aspectFill"/>
         </view> -->

@@ -24,9 +24,9 @@ Page({
     sceneryData: [], //景点周边 数据
     specialData: [], //专访栏目 数据
     noData: false,  //没有数据时
-    activeMenu: 1,
+    activeMenu: 2,
     // menuList: [{ title: '景点周边', type: 0},{ title: '金牌KOL', type: 1},{ title: '精选商家', type: 2},{ title: '专访栏目', type: 3}],
-    menuList: [{ title: '金牌KOL', type: 1},{ title: _t['精选商家'], type: 2},{ title: _t['专访栏目'], type: 3}],
+    menuList: [{ title: _t['精选商家'], type: 2},{ title: '金牌KOL', type: 1},{ title: _t['专访栏目'], type: 3}],
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
     recommend: [], // 首页推荐体验列表
