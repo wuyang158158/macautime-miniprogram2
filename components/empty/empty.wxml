@@ -23,6 +23,6 @@
         <image class="gh-empty-logo" src="{{ propSrc }}" mode="aspectFit" wx:else/>
         <text class="gh-empty-tips">{{ propText || _t['暂无数据'] }}</text>
 
-        <navigator class="btns" open-type="switchTab" url="{{ propUrl }}" wx:if="{{ propUrl }}">{{_t['去看看']}}</navigator>
+        <view class="btns"  data-url="{{ propUrl }}" wx:if="{{ propUrl }}" bindtap="fnLinkTo">{{_t['去看看']}}</view>
     </view>
 </view>

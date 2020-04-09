@@ -29,6 +29,14 @@ Component({
      * 组件的方法列表
      */
     methods: {
-        
+        fnLinkTo(e) {
+            const url = e.currentTarget.dataset.url
+            if(url === '/pages/tabs/index') {
+                wx.setStorageSync('activeMenu', 1)
+            }
+            wx.switchTab({
+              url: url,
+            })
+        }
     }
 });
