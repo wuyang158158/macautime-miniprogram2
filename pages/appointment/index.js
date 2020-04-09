@@ -40,6 +40,18 @@ Page({
   onShow: function () {
 
   },
+  // 打开地图
+  fnOpenMap(e) {
+    let lat = e.currentTarget.dataset.lat
+    let lng = e.currentTarget.dataset.lng
+    let address = e.currentTarget.dataset.address
+    wx.openLocation({
+      latitude: lat,
+      longitude: lng,
+      name: address,
+      scale: 15
+    })
+  },
   // 获取预约数据
   fnGetAccount() {
     NT.showToast(_t['加载中..'])

@@ -53,12 +53,11 @@
   text-overflow:ellipsis;
   white-space: nowrap;
 }
-.limit image {
+.c-font image {
   width: 44rpx;
   height: 44rpx;
-  position: absolute;
-  right: 0;
-  top: 0
+  vertical-align: top;
+  margin-left: 10rpx;
 }
 .container {
   padding-top: 100rpx;

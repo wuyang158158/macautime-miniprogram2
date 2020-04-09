@@ -291,6 +291,7 @@ Page({
         let userId = wx.getStorageSync('userInfo') && wx.getStorageSync('userInfo').userId || ''
         res.forEach(ele => {
           ele.hidden = ele.id !== userId
+          ele.usSysLabel = ele.usSysLabel.slice(0, 2)
         })
         this.setData({
           kolList: res,

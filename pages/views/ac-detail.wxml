@@ -34,7 +34,7 @@
                     poster="{{acData.msMyVideoVo.imageUrl}}"
                     object-fit="{{direction!=='horizontal'?'cover':'contain'}}" 
                     play-btn-position="bottom"
-                    show-fullscreen-btn
+                    show-fullscreen-btn="{{ false }}"
                     enable-progress-gesture
                     bindplay="bindplay" 
                     bindfullscreenchange="bindfullscreenchange">
