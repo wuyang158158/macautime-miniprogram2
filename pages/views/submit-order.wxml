@@ -147,14 +147,7 @@
             <view class="flex-1">
                 <view class="c-00A653 f24">
                     <text class="f24">{{params.symbol||'MOP'}} </text>
-                    <!-- 折扣券 -->
-                    <text class="f36 fw5" wx:if="{{typeId == 1}}">{{params.price * orderCount * discount}}</text>
-                    <!-- 满减券 -->
-                    <text class="f36 fw5" wx:elif="{{typeId == 2}}">{{params.price * orderCount - money < 0 ? 0 : params.price * orderCount - money}}</text>
-                    <!-- 抵扣券 -->
-                    <text class="f36 fw5" wx:elif="{{typeId == 3}}">{{params.price * orderCount - money < 0 ? 0 : params.price * orderCount - money}}</text>
-                    <!-- 没有选中券 -->
-                    <text class="f36 fw5" wx:else>{{params.price * orderCount}}</text>
+                    <text class="f36 fw5">{{payAmount}}</text>
                 </view>
                 <!-- <view class="c-222222 f24">
                     <text class="">到店支付剩余 {{options.symbol||'MOP'}} </text>
