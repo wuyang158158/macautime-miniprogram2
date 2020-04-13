@@ -1385,7 +1385,12 @@ export default {
     return new Promise((resolve, reject) => {
       execute(`/sysGetGlobalConf/1.0/`, 'POST', query, resolve, reject)
     })
-  }
-  
+  },
+  // 获取手机验证码
+  usGetPhoneCode(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/usGetPhoneCode/1.0/`, 'POST', query, resolve, reject)
+    })
+  },
   /*** file-end ***/
 }

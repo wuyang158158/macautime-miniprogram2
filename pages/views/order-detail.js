@@ -94,7 +94,7 @@ Page({
     .then(res=>{
       const data = res;
       this.createQrCode(data.checkCode, "mycanvas", 200, 200);
-      this.createQrCode('56565656', "mincanvas", 40, 40)
+      this.createQrCode(data.checkCode, "mincanvas", 40, 40)
       // 生成二维码
       this.setData({
         orderData: Object.assign(options, data)
@@ -178,7 +178,6 @@ Page({
   },
   //获取临时缓存照片路径，存入data中
   canvasToTempImage:function(){
-    console.log(123)
     var that = this;
     wx.canvasToTempFilePath({
       canvasId: 'mycanvas',

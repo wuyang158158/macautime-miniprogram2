@@ -312,6 +312,7 @@
   position: absolute;
   right: 20rpx;
   bottom: 20rpx;
+  padding-left: 20rpx;
 }
 .merchant-info .text-align{
   text-align: center;

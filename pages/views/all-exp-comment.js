@@ -138,7 +138,7 @@ Page({
         return
       }
       res.forEach(ele => {
-        ele.createTime = util.formatTimeTwo(ele.createTime, 'Y-M-D')
+        ele.createTime = util.formatTimeTwo(ele.createTime, 'Y年M月D日')
       })
       const data = source === 'onPullDownRefresh' ? res : this.data.expComment.concat(res||[])
 

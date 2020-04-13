@@ -12,7 +12,8 @@ Page({
     _t: _t,
     array: [],
     cardTypeArray: [_t['储蓄卡'], '信用卡', 'VISA'],
-
+    canSend: true,
+    sendText: _t['发送验证码'],
     backQuery: {  // 表单提交信息
       bankId: '',
       realName: '',
@@ -82,6 +83,33 @@ Page({
   // onShareAppMessage: function () {
 
   // }
+  fnSetPhone(e) {
+    this.setData({ phone: e.detail.value })
+  },
+  // 发送验证码
+  fnGetCode() {
+    if(!this.data.phone) return NT.showModal( _t['请输入手机号码'] + '！' )
+    if(this.data.canSend) {
+      this.setData({ canSend: false })
+    } else {
+      return false
+    }
+    api.usGetPhoneCode({phone: this.data.phone}).then(res => {
+      let count = 60
+      let that = this
+      let timer = setInterval(() => {
+        count--
+        this.setData({sendText: count < 10?`0${count}`: count })
+        if(count === 0) {
+          that.setData({canSend: true, sendText: _t['发送验证码'] })
+          clearInterval(timer)
+        }
+      }, 1000)
+    }).catch(err=>{
+      that.setData({ canSend: true, sendText: _t['发送验证码'] })
+      NT.showModal(err.message||_t['请求失败！'])
+    })
+  },
   // 单列选择器
   bindPickerChange: function(e) {
     const index = e.detail.value
@@ -92,7 +120,6 @@ Page({
         backObj = item
       }
     })
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: index,
       backObj: backObj
@@ -110,11 +137,14 @@ Page({
     var backObj = this.data.backObj
     let params = e.detail.value
     let data = Object.assign(this.data.backQuery, params)
-    // console.log(data)
     data.bankId = backObj.bankCode;
     data.bankName = backObj.bankName;
     if(!data.realName){
       NT.showModal( _t['请输入持卡人姓名'] + '！' )
+      return
+    }
+    if(!data.verCode){
+      NT.showModal( _t['请输入验证码'] + '！' )
       return
     }
     if(!data.bankCode){
@@ -161,7 +191,6 @@ Page({
   sysGetBankConf() {
     api.sysGetBankConf()
     .then(res=>{
-      console.log(res)
       this.setData({
         array: res || []
       })
