@@ -2,10 +2,32 @@
 @import 'ac-detail.wxss';
 
 .star {
-  margin: 20rpx 0;
+  margin: 32rpx 0 16rpx;
+  /* border-top:1rpx solid rgba(237,236,236,1); */
 }
 .star  image{
     width: 18rpx;
     height: 18rpx;
     margin-right: 3rpx;
+}
+page {
+  background: #EFEFF4FF !important;
+}
+.bdr16  {
+  border-radius: 16rpx !important;
+}
+.comment .handpick .photo {
+  width: 100rpx;
+  height: 100rpx;
+}
+.user-activity{
+    padding: 5rpx 12rpx;
+    display: inline-block;
+    border:1rpx solid rgba(230, 230, 230, 1);
+    border-radius:4rpx;
+    line-height: 24rpx;
+    margin-top: 20rpx;
+}
+.comment .weui-loadmore__tips_in-line {
+  background: #EFEFF4FF;
 }

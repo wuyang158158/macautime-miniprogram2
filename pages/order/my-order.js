@@ -362,10 +362,11 @@ Page({
                 this.fnIsNoOrderData()
               } else {
                 let stateNavIdx = "ticketData[" + index + "].curTime";
+                let curHour = parseInt(curTimeCount/60/60) < 10 ? `0${parseInt(curTimeCount/60/60)}` : parseInt(curTimeCount/60/60)
                 let curMin = parseInt(curTimeCount/60) < 10 ? `0${parseInt(curTimeCount/60)}` : parseInt(curTimeCount/60)
                 let curCon = curTimeCount%60 < 10 ? `0${curTimeCount%60}` : curTimeCount%60
                 this.setData({
-                    [stateNavIdx]: `${curMin} : ${curCon}`
+                    [stateNavIdx]: `${curHour}:${curMin}:${curCon}`
                 });
               }
             }, 1000);

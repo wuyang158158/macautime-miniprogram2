@@ -178,7 +178,6 @@ Page({
   },
   //获取临时缓存照片路径，存入data中
   canvasToTempImage:function(){
-    console.log(123)
     var that = this;
     wx.canvasToTempFilePath({
       canvasId: 'mycanvas',
