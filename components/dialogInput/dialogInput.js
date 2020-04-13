@@ -37,7 +37,7 @@ Component({
     },
     confirmAcceptance:function(){
       if(!this.data.walletPsd) return wx.showToast({
-        title: '请输入标签名！',
+        title: _t['请输入标签名！'],
         icon: 'none',
         duration: 1000
       })
