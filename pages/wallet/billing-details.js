@@ -3,68 +3,7 @@ import api from "../../data/api"
 import util from "../../utils/util.js"
 var base = require('../../i18n/base.js');
 const _t = base._t().wallet.WALLET
-var tradeTypeArray = [
-  {
-    tradeType: '',
-    TradeTypeText: '全部'
-  },
-  {
-    tradeType: 1,
-    TradeTypeText: _t['充值']
-  },
-  {
-    tradeType: 2,
-    TradeTypeText: _t['提现']
-  },
-  {
-    tradeType: 3,
-    TradeTypeText: _t['探店']
-  },
-  {
-    tradeType: 4,
-    TradeTypeText: _t['活动']
-  },
-  {
-    tradeType: 5,
-    TradeTypeText: _t['粉丝返点']
-  },
-  {
-    tradeType: 6,
-    TradeTypeText: _t['购劵']
-  },
-  {
-    tradeType: 7,
-    TradeTypeText: _t['消费']
-  },
-  {
-    tradeType: 8,
-    TradeTypeText: _t['积分兑换']
-  },
-  {
-    tradeType: 9,
-    TradeTypeText: _t['会员']
-  },
-  {
-    tradeType: 10,
-    TradeTypeText: _t['优惠换提成']
-  },
-  {
-    tradeType: 11,
-    TradeTypeText: _t['消费提成']
-  },
-  {
-    tradeType: 12,
-    TradeTypeText: _t['退回']
-  },
-  {
-    tradeType: 13,
-    TradeTypeText: _t['核销']
-  },
-  {
-    tradeType: 14,
-    TradeTypeText: _t['专访']
-  }
-]
+var tradeTypeArray = []
 // pages/wallet/billing-details.js
 Page({
 
@@ -85,6 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     var title = options.source === 'djs' ? _t['待结算'] : _t['账单明细']
     wx.setNavigationBarTitle({
       title: title,
@@ -103,6 +43,69 @@ Page({
         {
           tradeType: '2',
           TradeTypeText: _t['解冻']
+        }
+      ]
+    } else {
+      tradeTypeArray = [
+        {
+          tradeType: '',
+          TradeTypeText: '全部'
+        },
+        {
+          tradeType: 1,
+          TradeTypeText: _t['充值']
+        },
+        {
+          tradeType: 2,
+          TradeTypeText: _t['提现']
+        },
+        {
+          tradeType: 3,
+          TradeTypeText: _t['探店']
+        },
+        {
+          tradeType: 4,
+          TradeTypeText: _t['活动']
+        },
+        {
+          tradeType: 5,
+          TradeTypeText: _t['粉丝返点']
+        },
+        {
+          tradeType: 6,
+          TradeTypeText: _t['购劵']
+        },
+        {
+          tradeType: 7,
+          TradeTypeText: _t['消费']
+        },
+        {
+          tradeType: 8,
+          TradeTypeText: _t['积分兑换']
+        },
+        {
+          tradeType: 9,
+          TradeTypeText: _t['会员']
+        },
+        {
+          tradeType: 10,
+          TradeTypeText: _t['优惠换提成']
+        },
+        {
+          tradeType: 11,
+          TradeTypeText: _t['消费提成']
+        },
+        {
+          tradeType: 12,
+          TradeTypeText: _t['退回']
+        },
+        {
+          tradeType: 13,
+          TradeTypeText: _t['核销']
+        },
+        {
+          tradeType: 14,
+          TradeTypeText: _t['专访']
         }
       ]
     }

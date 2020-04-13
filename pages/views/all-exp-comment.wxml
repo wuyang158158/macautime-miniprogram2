@@ -14,10 +14,10 @@
             <view class="flex bd1 pb16">
                 <view class="relative photo">
                     <image class="pic-default-new bdr16" src="/images/default/avatar.png" mode="aspectFill"/>
-                    <image class="pic-default-new z-index5 bdr16" src="{{item.BackgroundPicture || item.headImageUrl}}" mode="aspectFill"/>
+                    <image class="pic-default-new z-index5 bdr16" src="{{ msId?item.headImageUrl:userInfo.headIco}}" mode="aspectFill"/>
                 </view>
                 <view class="flex-1 c-222222">
-                    <view class="user-name f30 l-h30">{{item.nickName || ''}}</view>
+                    <view class="user-name f30 l-h30">{{ msId?item.nickName:userInfo.nickName}}</view>
                     <view class="pt16 f24 l-h30 c-999999">{{ _t['评价时间：'] }} {{item.createTime || ''}}</view>
                 </view>
             </view>

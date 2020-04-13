@@ -12,7 +12,7 @@ Page({
    */
   data: {
     _t: _t,
-    userInfo: wx.getStorageSync("userInfo"), //用户信息
+    userInfo: wx.getStorageSync("userInfo") || {}, //用户信息
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
     onReachBottom: false,
@@ -34,6 +34,7 @@ Page({
       pageNo: PAGE.start
     } : {}
     this.setData({
+      msId: options.msId || '',
       params: params,
       userInfo: wx.getStorageSync("userInfo"), //用户信息
     })
