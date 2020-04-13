@@ -40,6 +40,9 @@ Page({
   getData() {
     NT.showToast(_t['加载中..'])
     api.atsGetBankList().then(data => {
+      data.forEach(ele => {
+        ele.bankCode = `**** **** **** ${ele.bankCode.substring(ele.bankCode.length - 4)}`
+      })
       this.setData({ bankList: data, noData: !data.length })
     }).catch(err => {
       NT.showModal(err.codeMsg || err.message || _t['请求失败！'])

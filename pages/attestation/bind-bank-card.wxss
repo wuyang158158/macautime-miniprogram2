@@ -4,3 +4,7 @@
     height: 32rpx;
     line-height: 32rpx;
 }
+.w160 {
+    width: 160rpx;
+    text-align: center;
+}
