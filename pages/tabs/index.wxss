@@ -305,6 +305,9 @@
 .flex-jc{
   padding-bottom: 20rpx;
 }
+.no-warp {
+  white-space: nowrap;
+}
 .merchant-name{
   position: absolute;
   right: 20rpx;
@@ -318,8 +321,11 @@
 .merchant-info-pic-list{
   /* justify-content: space-around; */
   justify-content: center;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
 .info-pics{
+  display: inline-block;
   width: 207rpx;
   height: 207rpx;
   position: relative;
