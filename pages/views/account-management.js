@@ -8,7 +8,7 @@ Page({
    */
   data: {
     _t: _t,
-    userInfo: wx.getStorageSync("userInfo"), //用户信息
+    userInfo: wx.getStorageSync("userInfo")|| {}, //用户信息
   },
 
   /**

@@ -146,8 +146,8 @@
             <view class="flex flex-jc mt16">
                <view class="tag c-00A653 f24 mr16" wx:for="{{ item.labelRemark }}" wx:for-item="itLabel" wx:for-index="idx" wx:key="idx">{{itLabel.labelRemark}}</view>
             </view>
-            <view class="flex merchant-info-pic-list mt16 mb16" wx:if="{{item.imageUrls}}">
-              <view wx:for="{{ item.imageUrls }}" wx:key="index" class="info-pics ml16" wx:if="{{index<3}}">
+            <view class="merchant-info-pic-list mt16 mb16 ml16 no-warp" wx:if="{{item.imageUrls}}">
+              <view wx:for="{{ item.imageUrls }}" wx:key="index" wx:for-index="iden" class="info-pics mr16">
                 <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
                 <image class="pic-default z-index5" src="{{item}}" mode="aspectFill"/>
               </view>

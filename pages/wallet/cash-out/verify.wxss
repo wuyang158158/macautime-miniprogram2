@@ -9,7 +9,8 @@
 .bank-title image {
   width: 80rpx;
   height: 80rpx;
-  margin-right: 20rpx
+  margin-right: 20rpx;
+  border-radius: 50%;
 }
 .cash-num {
   margin: 60rpx auto 110rpx;
