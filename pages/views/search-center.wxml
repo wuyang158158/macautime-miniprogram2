@@ -95,7 +95,7 @@
           <gh-acmylist  result="{{recommend}}" wx:if="{{recommend.length}}"></gh-acmylist>
         </view>
         <view class="" wx:if="{{menuDataIndex===1}}">
-          <view wx:for="{{result}}" class="flex ml32 pt32 pb32 {{index+1!=result.length?'bd1':''}}">
+          <view wx:for="{{result}}" class="flex ml32 pt32 pb32 {{index+1!=result.length?'bd1':''}}" data-id="{{ item.accountId }}" bindtap="fnLinkTo">
             <view class="kol-avatar">
               <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
               <image class="pic-default-new z-index5" src="{{item.headIco}}" mode="aspectFill"/>
@@ -108,7 +108,7 @@
             </view>
             <!-- <button class="weui-btn w-120 c-00A653 ml16 mr32 fw5 f24" type="primary-ticket" disabled="{{true}}" wx:if="{{item.isFocus}}">已关注</button>
             <button class="weui-btn w-120 c-00A653 ml16 mr32 fw5 f24" type="primary" wx:else>关注</button> -->
-            <button class="weui-btn w-120 c-00A653 ml16 mr32 fw5 f24" type="{{item.isFocus?'primary-ticket':'primary'}}" data-isFocus="{{item.isFocus}}" data-fAccountId="{{item.accountId}}" bindtap="tapUsInsertFocus">{{item.isFocus?_t['已关注']:_t['关注']}}</button>
+            <button class="weui-btn w-120 c-00A653 ml16 mr32 fw5 f24" type="{{item.isFocus?'primary-ticket':'primary'}}" data-isFocus="{{item.isFocus}}" data-fAccountId="{{item.accountId}}" catchtap="tapUsInsertFocus">{{item.isFocus?_t['已关注']:_t['关注']}}</button>
           </view>
         </view>
         <view class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}" wx:if="{{!noData}}">
