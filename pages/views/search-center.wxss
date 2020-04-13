@@ -95,7 +95,7 @@ page{
     flex-direction: column;
     position: fixed;
     width: 100%;
-    min-height: 92vh;
+    min-height: 100vh;
     z-index: 6;
 }
 .w-100{
