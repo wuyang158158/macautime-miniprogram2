@@ -524,5 +524,11 @@ Page({
     .catch(err=>{
       console.log(err)
     })
+  },
+  fnLinkTo(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/views/personal-home?id=${id}`,
+    })
   }
 })

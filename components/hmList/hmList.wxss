@@ -51,3 +51,6 @@
   .bd1{
     border:1rpx solid rgba(230, 230, 230, 1);
   }
+  .bd1::before{
+    content: none;
+  }
