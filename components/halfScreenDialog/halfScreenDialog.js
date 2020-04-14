@@ -39,18 +39,35 @@ Component({
     },
     radioChange(e) {
       // console.log(e)
-      var result = this.data.result
+      // var result = this.data.result
+      // result.map(item=>{
+      //   if(item.id === e.detail.value){
+      //     item.checked = true
+      //   }else{
+      //     item.checked = false
+      //   }
+      // })
+      // this.setData({
+      //   result: result
+      // })
+      // this.triggerEvent('radioChange', e.detail.value)
+    },
+    checkedTap(e) {
+      var id = e.currentTarget.dataset.id;
+      var result = this.data.result;
+      var triggerId = '';
       result.map(item=>{
-        if(item.id === e.detail.value){
-          item.checked = true
+        if(item.id === id){
+          item.checked = !item.checked
+          item.checked ? triggerId = id : triggerId = ''
         }else{
           item.checked = false
         }
       })
       this.setData({
         result: result
-      })
-      this.triggerEvent('radioChange', e.detail.value)
+      });
+      this.triggerEvent('radioChange', triggerId)
     }
   }
 })

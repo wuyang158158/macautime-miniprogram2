@@ -274,6 +274,20 @@ Page({
   cardRadioChange(e) {
     console.log(e)
     var id = e.detail;
+    if(!id){
+      var money = '';
+      var discount = '';
+      var typeId = '';
+      this.amountComputed(this.data.orderCount,money,discount,typeId)
+      this.setData({
+        choseCardId: id,
+        discountsName: '',
+        typeId: typeId,
+        discount: discount,
+        money: money
+      })
+      return
+    }
     var cardResult = this.data.cardResult;
     cardResult.map(item=>{
       if(item.id === id) {
