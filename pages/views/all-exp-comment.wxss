@@ -11,7 +11,7 @@
     margin-right: 3rpx;
 }
 page {
-  background: #EFEFF4FF !important;
+  background: #EFEFF4 !important;
 }
 .bdr16  {
   border-radius: 16rpx !important;
