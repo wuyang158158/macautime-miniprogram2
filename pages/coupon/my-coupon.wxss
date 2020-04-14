@@ -27,6 +27,9 @@ page{
   border: 1rpx solid #999;
   color: #999;
 }
+.weui-btn-get {
+  padding: 0;
+}
 .coupon-tab {
   height: 116rpx;
   padding: 0 128rpx;
