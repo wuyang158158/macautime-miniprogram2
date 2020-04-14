@@ -12,9 +12,20 @@ page{
     left: 0;
     z-index: 10;
 }
+.center {
+    justify-content: space-between;
+}
+.mb8 {
+    margin-bottom: 8rpx;
+}
 .back-to image{
     width: 100%;
     height: 100%;
+}
+.star  image{
+    width: 18rpx;
+    height: 18rpx;
+    margin-right: 3rpx;
 }
 .nav{
     position: absolute;

@@ -19,6 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: _t['我的消息']
+    });
     this.fnctNotify()
   },
   fnctNotify() {
@@ -26,12 +29,28 @@ Page({
     api.ctNotify().then(res =>{
     res.map(item => {
       item.createTime = item.createTime?util.formatTimeTwo(item.createTime, 'Y-M-D h:m:s'): ''
+      let len = item.content.length
+      if(len > 45 ) {
+        item.subContent = item.content.substring(0, 45) + '...'
+        item.show = true
+      }
     })
       this.setData({ list: res, noData: !res.length})
     }).catch(err => {
       this.setData({ list: [], noData: true })
       NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
   })
+  },
+  fnLinkTo(e) {
+    const index = e.currentTarget.dataset.index
+    const data = this.data.list[index]
+    wx.navigateTo({
+      url: '/pages/message/detail',
+      success: function(result) {
+        // 通过eventChannel向被打开页面传送数据
+        result.eventChannel.emit('params', data)
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

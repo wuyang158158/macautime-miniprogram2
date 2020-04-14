@@ -5,9 +5,9 @@
         <view class="flex time">{{ item.createTime }}</view>
       </view>
       <view class="desc bg-white mt32">
-        <view class="f32 c-222222 fw6 mb16">{{ item.type === 2?_t['服务通知']:_t['系统通知'] }}</view>
-        <view class="f28 c-666666 lh32 mb20">{{ item.content }}</view>
-        <!-- <view class="green" wx:if="{{ item.type === 2 }}">查看更多</view> -->
+        <view class="f32 c-222222 fw6 mb16">{{ item.type === 2?_t['服务通知']:_t['系统消息'] }}</view>
+        <view class="f28 c-666666 lh32 mb20 ell2">{{ item.subContent || item.content }}</view>
+        <view class="green" bindtap="fnLinkTo" data-index="{{ index }}" wx:if="{{ item.show }}">查看更多</view>
       </view>
     </view>
   </view>

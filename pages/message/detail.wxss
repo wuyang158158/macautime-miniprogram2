@@ -1,0 +1,5 @@
+/* pages/message/detail.wxss */
+@import 'message.wxss';
+.right {
+  text-align: right;
+}

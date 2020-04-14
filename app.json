@@ -76,6 +76,7 @@
     "pages/topic/index",
     "pages/order/apply-refund",
     "pages/message/message",
+    "pages/message/detail",
     "pages/language/language",
     "pages/cropper/cropper",
     "pages/views/exp-comment-success"

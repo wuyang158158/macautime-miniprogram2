@@ -1,0 +1,7 @@
+<view class="content ml16 mr16 mt32 mb32">
+        <view class="desc bg-white mt32">
+        <view class="f32 c-222222 fw6 mb16">{{ result.type === 2?_t['服务通知']:_t['系统消息'] }}</view>
+        <view class="f28 c-666666 lh32 mb32">{{ result.content }}</view>
+        <view class="right f24 c-999999">{{ result.createTime }}</view>
+      </view>
+</view>

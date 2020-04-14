@@ -1,5 +1,5 @@
 <!--pages/views/my-seen.wxml-->
-<view class="container">
+<view class="container pt16">
     <gh-acmylist result="{{result}}" wx:if="{{result.length}}"></gh-acmylist>
     <gh-empty prop-src="/images/default/no_record.png" prop-text="{{emptytext?emptytext:_t['还没有浏览过任何商家哦~~']}}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
 </view>

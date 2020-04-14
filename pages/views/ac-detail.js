@@ -586,6 +586,13 @@ Page({
   },
   // 返回上一页
   tapToBack() {
-    NT.navigateBackDelta(1)
+    let pages = getCurrentPages()
+    if(pages.length === 1) {
+      wx.switchTab({
+        url: '/pages/tabs/index',
+      })
+    } else {
+      NT.navigateBackDelta(1)
+    }
   }
 })

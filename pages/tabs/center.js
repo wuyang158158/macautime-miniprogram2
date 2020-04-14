@@ -65,10 +65,10 @@ const record = [{
   // }
 ];
 const menu = [
-  // {
-  //   iconPath: '/images/center/mine_icon_message.png',
-  //   text: '我的消息'
-  // },
+  {
+    iconPath: '/images/center/mine_icon_message.png',
+    text: '我的消息'
+  },
   {
     iconPath: '/images/center/mine_icon_service.png',
     text: _t['联系客服']
@@ -183,7 +183,7 @@ Page({
   // },
   // 获取个人信息
   fnGetUserInfo() {
-    if(!wx.getStorageSync('userInfo')) return
+    // if(!wx.getStorageSync('userInfo')) return
     // NT.showToast('加载中')
     api.ctGetUserInfo().then(res => {
       this.setData({ userInfo: res })

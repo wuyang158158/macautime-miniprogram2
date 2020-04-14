@@ -87,9 +87,15 @@ Page({
       // res.forEach(item => {
       //   item.createTimeStr = util.formatTimeTwo(item.creatTimeStamp?item.creatTimeStamp:item.createTime || '','Y年M月D日')
       // })
+      const arr = []
+      res.forEach(ele => {
+          const objNew = ele.MsBaseInfo
+          objNew.msId = ele.msId
+          arr.push(objNew)
+      })
       this.setData({
-        result: res,
-        noData: !res.length
+        result: arr,
+        noData: !arr.length
       })
     })
     .catch(err=>{

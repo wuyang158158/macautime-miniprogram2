@@ -25,7 +25,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: _t['全部评论']
+      title:options.msId? _t['全部评论']: _t['我的评价']
     });
     wx.hideShareMenu()
     var params = options.msId ? { //请求列表
