@@ -473,7 +473,7 @@ export default {
   getUserRecord(query) {
     return new Promise((resolve, reject) => {
       execute(
-        `/experience/experience/record/getUserRecord`,
+        `/usGetBrowseHistory/1.0/`,
         'POST',
         query,
         resolve,
@@ -1392,5 +1392,12 @@ export default {
       execute(`/usGetPhoneCode/1.0/`, 'POST', query, resolve, reject)
     })
   },
+  // 获取手机验证码
+  ctNotify(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/imSelectMessageNotifyByAccountId/1.0/`, 'POST', query, resolve, reject)
+    })
+  },
+  
   /*** file-end ***/
 }

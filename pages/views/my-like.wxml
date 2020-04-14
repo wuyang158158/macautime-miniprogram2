@@ -1,13 +1,5 @@
 <!--pages/views/my-like.wxml-->
 <view class="container mt16">
     <gh-acmylist result="{{result}}" wx:if="{{result.length}}"></gh-acmylist>
-    <!-- 加载更多 -->
-    <view class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
-        <view wx:if="{{loadmore}}">
-        <view class="weui-loading"></view>
-        <view class="weui-loadmore__tips">{{ _t['正在加载'] }}</view>
-        </view>
-        <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">{{ _t['已经到底了！'] }}</view>
-    </view>
     <gh-empty prop-url="/pages/tabs/experience" prop-src="/images/default/no_collection.png" prop-text="{{emptytext?emptytext: _t['哎，都不收藏点什么吗？'] }}" prop-mt="150" wx:if="{{noData}}"></gh-empty>
 </view>

@@ -11,10 +11,10 @@ const record = [{
     iconPath: '/images/center/mine_icon_comment.png',
     text: _t['我的评价']
   },
-  // {
-  //   iconPath: '/images/center/mine_icon_history.png',
-  //   text: _t['浏览历史']
-  // },
+  {
+    iconPath: '/images/center/mine_icon_history.png',
+    text: _t['浏览历史']
+  },
   {
     iconPath: '/images/center/mine_icon_video.png',
     text: _t['我的作品'],

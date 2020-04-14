@@ -1,14 +1,15 @@
 <view class="content">
   <view class="cont ml16 mr16 mt32 mb32">
-    <view class="v-item" wx:for="{{ 6 }}" wx:key="index">
+    <view class="v-item" wx:for="{{ list }}" wx:key="index">
       <view class="flex center">
-        <view class="flex time">今天 16:32</view>
+        <view class="flex time">{{ item.createTime }}</view>
       </view>
       <view class="desc bg-white mt32">
-        <view class="f32 c-222222 fw6 mb16">服务通知</view>
-        <view class="f28 c-666666 lh32 mb20">感谢您对果核的信任，您在平台预约的「澳门塔观光体验」已经提交成功，祝您旅途愉快！</view>
-        <view class="green">查看更多</view>
+        <view class="f32 c-222222 fw6 mb16">{{ item.type === 2?_t['服务通知']:_t['系统通知'] }}</view>
+        <view class="f28 c-666666 lh32 mb20">{{ item.content }}</view>
+        <!-- <view class="green" wx:if="{{ item.type === 2 }}">查看更多</view> -->
       </view>
     </view>
   </view>
+    <gh-empty prop-type="no-data" prop-text="{{ _t['还没有任何消息哦~~'] }}" prop-mt="200" wx:if="{{noData}}"></gh-empty>
 </view>

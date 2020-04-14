@@ -13,19 +13,9 @@ Page({
   data: {
     _t: _t,
     userInfo: wx.getStorageSync("userInfo"), //用户信息
-    params: { //请求订单列表
-      limit: PAGE.limit,
-      start: PAGE.start,
-      paramEntity: {
-        userName: wx.getStorageSync("userInfo").userName
-      }
-    },
     total: 0,
-    loadmore: false, //加载更多
-    loadmoreLine: false, //暂无更多信息
-
+    noData: false,
     result: [],
-
   },
 
   /**
@@ -33,17 +23,10 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: _t['我看过的']
+      title: _t['浏览历史']
     });
     this.setData({
-      params: { //请求列表
-        limit: PAGE.limit,
-        start: PAGE.start,
-        paramEntity: {
-          userName: wx.getStorageSync("userInfo").userName
-        }
-      },
-      userInfo: wx.getStorageSync("userInfo"), //用户信息
+      userInfo: wx.getStorageSync("userInfo") || {}, //用户信息
     })
     NT.showToast(_t['加载中...'])
     this.getUserRecord()
@@ -82,47 +65,14 @@ Page({
    */
   onPullDownRefresh: function () {
     NT.showToast('刷新中...')
-    this.setData({
-      userInfo: wx.getStorageSync("userInfo"),
-      params: { //请求列表
-        limit: PAGE.limit,
-        start: PAGE.start,
-        paramEntity: {
-          userName: wx.getStorageSync("userInfo").userName
-        }
-      },
-      loadmoreLine: false,
-      loadmore: false
-    })
-    this.getUserRecord('onPullDownRefresh')
+    this.getUserRecord()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if ((this.data.params.start) * this.data.params.limit < this.data.total) {
-      wx.showNavigationBarLoading();
-      this.setData({
-        loadmoreLine: false,
-        loadmore: true
-      })
-      this.data.params.start = this.data.params.start + 1;
-      this.getUserRecord()
-    }else {
-      //暂无更多数据
-      NT.hideToast()
-      if(this.data.result.length){
-        this.setData({
-          loadmoreLine: true,
-          loadmore: false
-        })
-      }else{
-        this.setData({
-          loadmore: false
-        })
-      }
-    }
+    
   },
 
   /**
@@ -131,50 +81,24 @@ Page({
   // onShareAppMessage: function () {
 
   // }
-  getUserRecord(source) { // 请求用户记录
-    api.getUserRecord(this.data.params)
+  getUserRecord() { // 请求用户记录
+    api.getUserRecord()
     .then(res=>{
-      // console.log(res)
-      const data = source === 'onPullDownRefresh' ? res.rows : this.data.result.concat(res.rows)
-      let timeText = ''
-      data.forEach(item => {
-        item.createTimeStr = util.formatTimeTwo(item.creatTimeStamp?item.creatTimeStamp:item.createTime || '','Y年M月D日')
-        if (timeText == item.createTimeStr) {
-          item.createTimeStr = null;
-        } else {
-          timeText = item.createTimeStr;
-        }
-      })
+      // res.forEach(item => {
+      //   item.createTimeStr = util.formatTimeTwo(item.creatTimeStamp?item.creatTimeStamp:item.createTime || '','Y年M月D日')
+      // })
       this.setData({
-        result: data,
-        total: res.total,
-        loadmoreLine: false,
-        loadmore: false,
-        noData: false,
+        result: res,
+        noData: !res.length
       })
-      if(!this.data.result.length>0){ //暂无数据
-        this.setData({
-          noData: true
-        })
-      }
     })
     .catch(err=>{
-      console.log(err)
       this.setData({
-        loadmore: false,
+        result: [],
+        noData: true
       })
-      if(err.code === '401'){
-        this.setData({
-          emptytext: err.codeMsg
-        })
-      }else{
-        NT.showModal(err.message||_t['请求失败！'])
-      }
-      if(!this.data.result.length>0){ //暂无数据
-        this.setData({
-          noData: true
-        })
-      }
+      NT.showModal(err.message||_t['请求失败！'])
+      
     })
   },
 })
