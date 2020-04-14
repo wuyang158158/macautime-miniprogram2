@@ -11,7 +11,12 @@
           <view class="c-title">{{ item.msName }}</view>
           <view class="c-font">{{ _t['探店时间'] }}：{{ item.discoveryTime }}</view>
           <view class="c-font">{{ _t['探店收益'] }}：{{ item.profitRatio || '' }} MOP</view>
-          <view class="c-font">{{ _t['探店地址'] }}：{{ item.address }}<image src="/images/center/home_icon_location1.png" mode="aspectFill" bindtap="fnOpenMap" data-lat="{{ item.lat }}" data-address="{{ item.address }}" data-lng="{{ item.lng }}"></image></view>
+          <view class="c-font">
+            <view class="flex">
+              <view class="flex-1">{{ _t['探店地址'] }}：{{ item.address }}</view>
+              <image src="/images/center/home_icon_location1.png" mode="aspectFill" bindtap="fnOpenMap" data-lat="{{ item.lat }}" data-address="{{ item.address }}" data-lng="{{ item.lng }}"></image>
+            </view>
+          </view>
         </view>
       </view>
     </view>

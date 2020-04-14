@@ -60,7 +60,7 @@ Page({
       userId: wx.getStorageSync('userInfo').userId
     }).then(res => {
       // res = [
-      //   {"address":"比心科技","msName":"1","discoveryTime":1584606936000,"profitRatio":100.000}
+      //   {"address":"比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技","msName":"1","discoveryTime":1584606936000,"profitRatio":100.000}
       //   ]
       res.map(item => {
         item.discoveryTime = util.formatTimeTwo(item.discoveryTime, 'Y年M月D日')
