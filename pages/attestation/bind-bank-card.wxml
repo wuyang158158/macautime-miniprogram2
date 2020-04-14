@@ -32,7 +32,7 @@
             <view class="">{{_t['手机号码']}}</view>
             <input class="flex-1 weui-input t-right" name="reservedPhone" placeholder="{{_t['请输入手机号码']}}" type="number" maxlength="11" value="" bindinput="fnSetPhone"/>
         </view>
-        <view class="flex f30 c-222222 h-90 ml32 mr32 bd1">
+        <view class="flex f30 c-222222 h-90 ml32 mr32">
             <view class="">验证码</view>
             <input name="verCode" class="flex-1 weui-input t-right" placeholder="请输入验证码"/>
             <view class="vcode-btn f30 c-00A653 bl1 ml16 pl16 w160" bindtap="fnGetCode">{{ sendText }}</view>

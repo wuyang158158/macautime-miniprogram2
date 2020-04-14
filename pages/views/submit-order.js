@@ -60,6 +60,7 @@ Page({
     this.setData({
       userInfo: wx.getStorageSync("userInfo"), //用户信息
     })
+    this.initCard()
   },
 
   /**
@@ -275,17 +276,7 @@ Page({
     console.log(e)
     var id = e.detail;
     if(!id){
-      var money = '';
-      var discount = '';
-      var typeId = '';
-      this.amountComputed(this.data.orderCount,money,discount,typeId)
-      this.setData({
-        choseCardId: id,
-        discountsName: '',
-        typeId: typeId,
-        discount: discount,
-        money: money
-      })
+      this.initCard(id)
       return
     }
     var cardResult = this.data.cardResult;
@@ -355,6 +346,20 @@ Page({
           console.log('用户点击取消')
         }
       }
+    })
+  },
+  // 初始化卡劵
+  initCard(id) {
+    var money = '';
+    var discount = '';
+    var typeId = '';
+    this.amountComputed(this.data.orderCount,money,discount,typeId)
+    this.setData({
+      choseCardId: id || '',
+      discountsName: '',
+      typeId: typeId,
+      discount: discount,
+      money: money
     })
   },
   /**
