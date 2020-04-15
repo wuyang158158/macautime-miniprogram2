@@ -35,6 +35,7 @@ Page({
     this.setData({ reason: e.detail.value })
   },
   fnApplyRefund() {
+    if(!this.data.reason) return NT.showModal(_t['请填写退款原因！'])
     NT.showToast(_t['处理中..'])
     api.MyOrderRefund({orderNumber: this.data.data.orderNumber, reason: this.data.reason })
     .then(res=>{

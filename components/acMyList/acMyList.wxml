@@ -14,7 +14,7 @@
                 </view>
                 <!-- 评分处理 -->
                 <view class="flex l-h32">
-                    <view wx:for="{{[1,2,3,4,5]}}" wx:key="{{index}}" wx:for-item="i">
+                    <view wx:for="{{[1,2,3,4,5]}}" wx:key="index" wx:for-item="i">
                         <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" wx:if="{{item.averageScore >= index+1 }}"></image>
                         <image class="merchant-star-icon" src="/images/index/icon_star3@2x.png" wx:elif="{{item.averageScore >= index && item.averageScore%1 !=0 }}"></image>
                         <image class="merchant-star-icon" src="/images/index/icon_star2@2x.png" wx:else></image>

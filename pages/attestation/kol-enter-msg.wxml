@@ -36,18 +36,20 @@
 
     <view class="weui-msg" wx:if="{{isCertificationKol == '3'}}">
         <view class="weui-msg__icon-area">
-            <icon type="warn" size="100"></icon>
+            <image class="img" src="/images/attestation/icon_fail.png" mode="aspectFill"/>
+            <!-- <icon type="warn" size="100"></icon> -->
+
         </view>
         <view class="weui-msg__text-area pl32 pr32">
-            <view class="weui-msg__title f36">{{_t['审核失败']}}</view>
+            <view class="weui-msg__title f36">{{_t['审核未通过']}}</view>
             <view class="weui-msg__desc f28 c-999999 t-c">
-                <view class="t-c">{{_t['您的申请审核失败！']}}</view>
+                <view class="t-c">{{_t['您的申请不通过，请重新提交']}}</view>
                 <!-- <view >审核通过会发送短信进行通知</view> -->
             </view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
-                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapResubmit">{{_t['重新提交审核']}}</button>
+                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapResubmit">{{_t['重新申请']}}</button>
             </view>
         </view>
     </view>
