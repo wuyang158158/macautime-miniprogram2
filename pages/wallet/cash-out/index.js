@@ -66,7 +66,7 @@ Page({
   submitRefund() {
     let that = this
     if (!this.data.bankJson.bankCode) {
-      NT.showModal(_t['请选择银行卡！'])
+      NT.showModal(this.data.bankList.length?_t['请选择银行卡！'] : _t['请添加银行卡！'])
       return
     }
     if (!this.data.number) {

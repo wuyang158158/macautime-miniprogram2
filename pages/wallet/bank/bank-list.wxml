@@ -8,7 +8,7 @@
         <view class="b-type f26 white mt5" wx:if="{{ item.cardType === 1 }}">VISA</view>
         <view class="b-type f26 white mt5" wx:if="{{ item.cardType === 2 }}">{{ _t['储蓄卡'] }}</view>
         <view class="b-type f26 white mt5" wx:if="{{ item.cardType === 3 }}">{{ _t['信用卡'] }}</view>
-        <view class="b-num f36 white mt20">{{ item.bankCode }}</view>
+        <view class="b-num f36 white mt20">{{ item.subBankCode }}</view>
       </view>
       <!-- <image src="/images/default/bg_img.png" class="bg-img" mode="aspectFill"></image> -->
     </view>
