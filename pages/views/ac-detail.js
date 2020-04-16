@@ -42,7 +42,8 @@ Page({
     current: 0,
     direction: 'vertical', // 作品播放默认垂直
     expAllMeal: [], //套餐列表
-    seeVideoData: []
+    seeVideoData: [],
+    _index: null, //初始值
   },
 
   /**
@@ -133,7 +134,7 @@ Page({
     const that = this //使用this 下面的视频暂停会有问题
     const current = e.detail.current
     that.setData({ current })
-    if(that.data.acData.msMyVideoVo.videoUrl && current === 0 ){
+    if(that.data.acData.msMyVideoVo.videoUrl && current === 0 && this.data._index == null){
       that.videoContext.play()
     } else {
       that.videoContext.pause()
@@ -602,9 +603,9 @@ Page({
     
     // this.videoContext.pause()
     // var _index = current
-    // this.setData({
-    //     _index: _index
-    // })
+    this.setData({
+        _index: null
+    })
     // //停止正在播放的视频
     // var videoContextPrev = wx.createVideoContext(_index + "")
     // videoContextPrev.pause();
