@@ -130,15 +130,13 @@ Page({
   },
   //滑动
   swiperHandle(e) {
-    console.log(e)
+    const that = this //使用this 下面的视频暂停会有问题
     const current = e.detail.current
-    this.setData({
-      current: current
-    })
-    if(this.data.acData.videoUrl&&current===0){
-      this.videoContext.play()
-    }else{
-      this.videoContext.pause()
+    that.setData({ current })
+    if(that.data.acData.msMyVideoVo.videoUrl && current === 0 ){
+      that.videoContext.play()
+    } else {
+      that.videoContext.pause()
     }
   },
   fnChangeVideoPlay(e) {
