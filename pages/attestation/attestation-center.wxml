@@ -5,7 +5,7 @@
             <view class="f30 c-222222 flex-1">{{_t['KOL认证']}}</view>
             <image class="img" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
-        <view class="flex ml32 pr32 h-120" bindtap="tapToId">
+        <view class="flex ml32 pr32 h-120" bindtap="tapToId" wx:if="{{isVideo}}">
             <view class="f30 c-222222 flex-1">{{_t['实名认证']}}</view>
             <image class="img" src="/images/center/icon_more-2.png" mode="aspectFill"/>
         </view>
