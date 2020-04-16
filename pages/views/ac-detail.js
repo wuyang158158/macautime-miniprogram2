@@ -141,8 +141,26 @@ Page({
       this.videoContext.pause()
     }
   },
-  fnChangeVideoPlay(e) {
+  fnChangeVideoPlay(e){
     this.videoContext.pause()
+    var _index = e.currentTarget.dataset.id
+    this.setData({
+        _index: _index
+    })
+    //停止正在播放的视频
+    var videoContextPrev = wx.createVideoContext(_index + "")
+    videoContextPrev.pause();
+    setTimeout(function () {
+      //将点击视频进行播放
+      var videoContext = wx.createVideoContext(_index + "")
+      videoContext.play();
+    }, 500)
+  },
+  // 顶部视频播放时停止其他视频播放
+  bindplay() {
+    this.setData({
+      _index: null
+    })
   },
   // 作品进入和退出全屏时触发
   bindfullscreenchange(e) {
@@ -583,6 +601,20 @@ Page({
     const current = e.detail.current
     const id = 'item-video-' + current
     this.getViewHeight(id)
+    
+    // this.videoContext.pause()
+    // var _index = current
+    // this.setData({
+    //     _index: _index
+    // })
+    // //停止正在播放的视频
+    // var videoContextPrev = wx.createVideoContext(_index + "")
+    // videoContextPrev.pause();
+    // setTimeout(function () {
+    //   //将点击视频进行播放
+    //   var videoContext = wx.createVideoContext(_index + "")
+    //   videoContext.play();
+    // }, 500)
   },
   // 返回上一页
   tapToBack() {

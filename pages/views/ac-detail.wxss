@@ -347,6 +347,11 @@ rich-text .rich-img {
     overflow: hidden;
     background: #ccc;
 }
+.video{
+    width: 100%;
+    height: 100%;
+    border-radius:16rpx;
+}
 .item-video{
     margin: 0 10rpx;
 }
