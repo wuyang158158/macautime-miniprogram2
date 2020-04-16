@@ -10,7 +10,9 @@
             <view class="flex-1">
                 <view class="flex">
                     <view class="f32 fw6 flex-1">{{item.name}}</view>
-                    <view class="tag c-00A653 f24" wx:if="{{item.labelRemark}}">{{item.labelRemark}}</view>
+                    <block wx:if="{{item.labelRemark.length}}">
+                         <view class="tag c-00A653 f24" wx:for="{{ item.labelRemark }}" wx:key="index" wx:for-item="idx">{{idx.labelRemark}}</view>
+                    </block>
                 </view>
                 <!-- 评分处理 -->
                 <view class="flex l-h32">

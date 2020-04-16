@@ -20,6 +20,7 @@
 }
 .tag{
     padding: 2rpx 10rpx;
+    margin-left: 10rpx;
 }
 .flex-custom{
     height: 160rpx;
