@@ -98,6 +98,7 @@ Page({
   },
   // 我要提现
   fnToRecash() {
+    NT.showToast(_t['加载中..'])
     api.ctGetUserInfo().then(res => {
       if(res.identityState === 1) {
         wx.navigateTo({
