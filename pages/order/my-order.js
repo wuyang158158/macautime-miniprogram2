@@ -50,6 +50,7 @@ Page({
       //   userName: wx.getStorageSync("userInfo").userName
       // }
     },
+    isGetData: 1,
     total: 0,
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
@@ -106,6 +107,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(this.data.isGetData !== 1) {
+      this.poSelectDiscountList()
+    }
     if(app.globalData.ticket){
       app.globalData.ticket = false
       this.data.params.status = ''
@@ -259,7 +263,10 @@ Page({
           NT.showToast(_t['处理中..'])
           api.MyOrderDeleteDetail({orderNumber:orderCode})
           .then(res=>{
-            NT.showToast(_t['订单取消成功!'])
+            wx.showToast({
+              title: _t['订单取消成功!'],
+              duration: 1000
+            })
             that.poSelectDiscountList()
             // that.refreshData(orderCode)
           })
@@ -379,6 +386,7 @@ Page({
       }
       this.setData({
         ticketData: res,
+        isGetData: 2,
         noData: !res.length
       })
       this.fnIsNoOrderData()

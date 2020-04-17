@@ -39,7 +39,10 @@ Page({
     NT.showToast(_t['处理中..'])
     api.MyOrderRefund({orderNumber: this.data.data.orderNumber, reason: this.data.reason })
     .then(res=>{
-      NT.showToastNone(_t['已申请!'])
+      wx.showToast({
+        title: _t['已申请!'],
+        duration: 1000
+      })
       setTimeout(()=> {
         wx.navigateBack({
           delta: 1

@@ -19,6 +19,8 @@ Page({
     orderData: {}, //订单信息
     options: {}, //传递参数
     isIphoneX: app.globalData.isIphoneX, //iphonex适配
+    isGetData: 1,
+    orderNumber: ''
   },
 
   /**
@@ -28,7 +30,8 @@ Page({
     wx.setNavigationBarTitle({
       title: _t['订单详情']
     });
-    this.getOrderDetails(options)
+    this.setData({ orderNumber: options.orderNumber })
+    this.getOrderDetails()
   },
 
   /**
@@ -42,6 +45,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(this.data.isGetData !== 1) {
+      this.getOrderDetails()
+    }
     // const mycomment = wx.getStorageSync("mycomment")
     // if(mycomment==='myexp'){
     //   wx.removeStorageSync('mycomment')
@@ -88,16 +94,17 @@ Page({
 
   // },
   //请求详情
-  getOrderDetails(options) {
+  getOrderDetails() {
     NT.showToast(_t['加载中...'])
-    api.getOrderDetails({ orderNumber: options.orderNumber  })
+    api.getOrderDetails({ orderNumber: this.data.orderNumber  })
     .then(res=>{
       const data = res;
       this.createQrCode(data.checkCode, "mycanvas", 200, 200);
       this.createQrCode(data.checkCode, "mincanvas", 40, 40)
       // 生成二维码
       this.setData({
-        orderData: Object.assign(options, data)
+        isGetData: 2,
+        orderData: Object.assign({ orderNumber: this.data.orderNumber }, data)
       })
     })
     .catch(err=>{
@@ -134,6 +141,7 @@ Page({
   },
   // 取消订单
   tapCancelOrder() {
+    const that = this
     const orderCode = this.data.orderData.orderNumber
     wx.showModal({
       title: '提示',
@@ -143,12 +151,13 @@ Page({
           NT.showToast(_t['处理中...'])
           api.MyOrderDeleteDetail({orderNumber:orderCode})
           .then(res=>{
-            NT.showToast(_t['订单取消成功'])
-            setTimeout(()=> {
-              wx.navigateBack({
-                delta: 1
-              })
-            },1000)
+            wx.showToast({
+              title: _t['订单取消成功'],
+              duration: 1000
+            })
+            setTimeout(() => {
+              that.getOrderDetails()
+            }, 1000)
             // that.refreshData(orderCode)
           })
           .catch(err=>{
