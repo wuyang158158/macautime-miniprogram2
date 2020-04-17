@@ -53,6 +53,10 @@ Component({
       // this.triggerEvent('radioChange', e.detail.value)
     },
     checkedTap(e) {
+      var disabled = e.currentTarget.dataset.disabled;
+      if(!disabled){
+        return
+      }
       var id = e.currentTarget.dataset.id;
       var result = this.data.result;
       var triggerId = '';

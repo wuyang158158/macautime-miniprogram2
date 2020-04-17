@@ -15,7 +15,7 @@
        <view class="mt32">
             <radio-group class="radio-group" bindchange="radioChange">
             <view class="" wx:for="{{result}}" wx:key="index">
-                <label data-id="{{item.id}}" catchtap="checkedTap">
+                <label data-id="{{item.id}}" data-disabled="{{item.disabled}}" catchtap="checkedTap">
                     <view class="flex pr32 h80">
                         <view class="flex-1 f36 ml32 ell w-0 {{item.checked?'c-00A653':'c-222222'}} {{!item.disabled?'c-999999':'c-222222'}}">
                             <text >{{item.typeName}}</text>
