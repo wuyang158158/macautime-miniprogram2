@@ -169,9 +169,22 @@ Page({
     })
   },
   tapToVipCenter() { // 点击进入会员介绍中心
-    wx.navigateTo({
-      url: '/pages/vip/vip-center'
-    })
+    if(!wx.getStorageSync('userInfo')){
+      NT.showModalPromise(_t['您还未注册，请先去个人中心点击「登录/注册」'])
+      .then(()=>{
+        wx.switchTab({
+          url: '/pages/tabs/center'
+        })
+      })
+      .catch(()=>{
+
+      })
+      return false;
+    } else {
+      wx.navigateTo({
+        url: '/pages/vip/vip-center'
+      })
+    }
   },
   tapToMapActivity() { // 点击进入活动地图
     // wx.navigateTo({
