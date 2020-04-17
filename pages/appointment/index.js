@@ -62,6 +62,7 @@ Page({
       // res = [
       //   {"address":"比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技比心科技","msName":"1","discoveryTime":1584606936000,"profitRatio":100.000}
       //   ]
+      res.sort(this.compare("discoveryTime",false)) //倒序
       res.map(item => {
         item.discoveryTime = util.formatTimeTwo(item.discoveryTime, 'Y年M月D日')
       })
@@ -76,6 +77,20 @@ Page({
     const type = e.currentTarget.dataset.type
     this.setData({ active: type, accountList: [], noData: false })
     this.fnGetAccount()
+  },
+  // 排序
+  compare(property,desc) {
+    return function (a, b) {
+        var value1 = a[property];
+        var value2 = b[property];
+        if(desc === true) {
+            // 升序排列
+            return value1 - value2;
+        } else {
+            // 降序排列
+            return value2 - value1;
+        }
+    }
   },
   /**
    * 生命周期函数--监听页面隐藏
