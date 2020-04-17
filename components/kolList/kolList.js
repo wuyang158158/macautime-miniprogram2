@@ -17,7 +17,6 @@ Component({
    */
   data: {
     baseImageHost: config.baseImageHost,
-    userInfo: wx.getStorageSync('userInfo'),
     _t: _t, //翻译
   },
 
@@ -27,7 +26,7 @@ Component({
   methods: {
     // 关注或者取消用户
     tapUsInsertFocus(e) {
-      if(!this.data.userInfo){
+      if(!wx.getStorageSync('userInfo')){
         NT.showModalPromise(_t['您还未注册，请去个人中心点击「登录/注册」，再来关注KOL！'])
         .then(()=>{
           wx.switchTab({
@@ -41,18 +40,17 @@ Component({
       }
       NT.showToast(_t['处理中...'])
       const fAccountId = e.currentTarget.dataset.faccountid
+      const index = e.currentTarget.dataset.index
       const isfocus = e.currentTarget.dataset.isfocus
       api.usInsertFocus({fAccountId:fAccountId, isFocus: isfocus})
       .then(res=>{
         NT.toastFn(isfocus? '已取消' : _t['关注成功！'])
-        const kolList = this.data.kolList
-        kolList.map(item=>{
-          if(item.id === fAccountId){
-            item.isfocus = !isfocus
-          }
-        })
+        const kolIndex = `kolList[${index}].fans`
+        const kolFocus = `kolList[${index}].isfocus`
+        let fans = parseInt(this.data.kolList[index].fans) || 0
         this.setData({
-          kolList: kolList
+          [kolIndex]: isfocus?--fans:++fans,
+          [kolFocus]: !isfocus
         })
       })
       .catch(err=>{

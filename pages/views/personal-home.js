@@ -70,9 +70,10 @@ Page({
   tapUsInsertFocus() {
     NT.showToast(_t['处理中...'])
     const isFocus = this.data.isFocus
+    let fans = parseInt(this.data.userInfo.fans) ||0
     api.usInsertFocus({fAccountId:this.data.userId, isFocus: isFocus})
     .then(res=>{
-      this.setData({ isFocus: !isFocus })
+      this.setData({ isFocus: !isFocus, 'userInfo.fans': isFocus? --fans : ++fans })
     })
     .catch(err=>{
       NT.showModal(err.message||_t['处理中...'])
