@@ -173,35 +173,25 @@ Page({
   getExpDetails() {
     api.msSelectedMsDetailsByMsId({msId:this.data.msId})
     .then(res=>{
+      // 是否存在商家信息
+      if(!res.msBaseInfo) return this.setData({noData: {text: res.msg, type: 'no-data'}})
       const data = res
       const location = { //定位信息
         latitude: data.msBaseInfo.lat,
         longitude: data.msBaseInfo.lng,
         name: data.msBaseInfo.name
       }
-      // data.activityTag = data.activityTag ? data.activityTag.split(',') : ''
-      // data.bannarUrls = data.bannarUrls ? data.bannarUrls.split('|') : ''
-      // data.stimeStr = data.stimeStr || data.stime ? util.formatTimeTwo(Number(data.stimeStr) || data.stime,'Y/M/D') : ''
-      // data.etimeStr = data.etimeStr || data.etime ? util.formatTimeTwo(Number(data.etimeStr) || data.etime,'Y/M/D') : ''
       if(data.msIntroductionVo && data.msIntroductionVo.text){
         var text = data.msIntroductionVo.text.replace(/##/gi, '=')
         text = text.replace(/\<img/gi, '<img style="border-radius: 8px;width:100%;" ')
         data.msIntroductionVo.text =  text
-
-
-        // data.msIntroductionVo.text =  data.msIntroductionVo.text ? data.msIntroductionVo.text.replace(/\<img/gi, '<img style="border-radius: 8px;" ') : ''
       }
-      
-      // data.msBaseInfo.remark = data.msBaseInfo.remark ? data.msBaseInfo.remark.replace(/\<img/gi, '<img style="border-radius: 8px;" ') : ''
       data.markers = this.data.markers ? [Object.assign(this.data.markers[0],location)] : ''
 
       data.msMenuVoList ? data.msMenuVoList.map(item=>{
         item.imageUrlArray = item.imageUrl.split(',')
       }) : ''
-      // console.log(util.transleteDate(data.msBaseInfo.openDate))
       data.msBaseInfo.openDate = util.transleteDate(data.msBaseInfo.openDate || '')
-      // 评分
-      // data.msBaseInfo.averageScore = Number(data.msBaseInfo.averageScore)
 
       // 优惠券时间戳转换
       if(data.discountsCardList) {
@@ -226,14 +216,12 @@ Page({
       }
     })
     .catch(err=>{
-      console.log(err)
       this.setData({
         noData: {
           text: err.message ||_t['请求失败！'],
           type: err.code === '00'? 'no-network' : 'no-data'
         }
       })
-      // NT.showModal(err.codeMsg||_t['请求失败！'])
     })
   },
   //获取猜你喜欢推荐数据
@@ -244,9 +232,6 @@ Page({
       this.setData({
         vImgUrls: data
       })
-    })
-    .catch(err=>{
-      console.log(err)
     })
   },
   //打开地图
