@@ -42,7 +42,8 @@
             </swiper-item>
             <block wx:for="{{acData.msPhotoVoList}}" wx:key="index">
             <swiper-item data-item="{{item.imageUrl}}" bindtap="tapPreviewImage">
-                <image src="{{item.imageUrl}}" class="bannar-img" mode="scaleToFill"/>
+                <!-- <image src="{{item.imageUrl}}" class="bannar-img" mode="scaleToFill"/>  -->
+                <image src="{{item.imageUrl}}" class="bannar-img" mode="aspectFill"/>
             </swiper-item>
             </block>
         </swiper>
@@ -144,15 +145,11 @@
                 <view class="">
                     <view wx:for="{{acData.discountsCardList}}" wx:key="id" class="discounts flex {{index===0?'':'mt16'}}" data-id="{{item.id}}" bindtap="tapTopagesGetTicketDetail">
                         <view class="discounts-left f24 discounts-items c-00A653 discounts-flex">
-                            <view class="" wx:if="{{item.typeId == 1}}">
+                            <view class="" wx:if="{{item.discount}}">
                                 <text class="f44">{{item.discount * 100}}</text>
                                 <text class="f24">%</text>
                             </view>
-                            <view class="" wx:if="{{item.typeId == 2}}">
-                                <text class="f24">MOP</text>
-                                <text class="f24">{{item.money}}</text>
-                            </view>
-                            <view class="" wx:if="{{item.typeId == 3}}">
+                            <view class="" wx:else>
                                 <text class="f24">MOP</text>
                                 <text class="f24">{{item.money}}</text>
                             </view>
@@ -161,7 +158,8 @@
                         <view class="flex-1 discounts-items flex ml32 mr32">
                             <view class="flex-1">
                                 <view >
-                                    <text class="f28 c-222222 fw6">{{item.discountsName || item.conditionName}}</text>
+                                    <text class="f28 c-222222 fw6" wx:if="{{ item.discount }}">{{item.discountsName}}</text>
+                                    <text class="f28 c-222222 fw6" wx:else>满{{ item.serviceConditions }}减{{ item.money }}</text>
                                     <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{ _t['限时'] }}</text>
                                     <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{item.payType == 1 ? _t['线上']:_t['线下']}}</text>
                                 </view>

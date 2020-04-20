@@ -19,7 +19,8 @@
             <view class="flex-1 discounts-items flex ml32 mr32">
                 <view class="flex-1">
                     <view >
-                        <text class="f28 c-222222 fw6">{{item.discountsName || item.conditionName}}</text>
+                        <text class="f28 c-222222 fw6" wx:if="{{item.discount}}">{{item.discountsName}}</text>
+                        <text class="f28 c-222222 fw6" wx:else>满{{ item.serviceConditions }}减{{ item.money }}</text>
                         <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{ _t['限时'] }}</text>
                         <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{item.payType == 1 ? _t['线上']:_t['线下']}}</text>
                     </view>
