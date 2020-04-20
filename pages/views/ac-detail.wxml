@@ -176,7 +176,7 @@
             </view>
         </view>
 
-        <view class="pl32">
+        <view class="pl32" wx:if="{{ acData.msGoodsVoList.length }}">
             <!-- 商品类型 -->
             <view class="product-types">
                 <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32">{{ _t['商品类型'] }}</view>
