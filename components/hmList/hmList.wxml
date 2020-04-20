@@ -10,7 +10,7 @@
             <image class="pic-default-new z-index5" src="{{item.coverUrl}}" lazy-load mode="aspectFill"/>
         </view>
         <view class="hm-bottom">
-            <view class="f30 c-222222 fw6">{{item.name}}</view>
+            <view class="f30 c-222222 fw6 ell">{{item.name}}</view>
             <!-- 评分处理 -->
             <view class="flex l-h32">
                 <view wx:for="{{[1,2,3,4,5]}}" wx:key="index" wx:for-item="i">
