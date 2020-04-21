@@ -1,7 +1,7 @@
 <!--pages/views/order-detail.wxml-->
 <view class="container {{isIphoneX ?'pb220':'pb180'}}">
     <view class="title ml16 mr16 mt16 bg-white">
-        <view class="flex">
+        <view class="flex flex-top">
             <view class="relative cover-image mr16">
                 <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill" />
                 <image class="pic-default-new z-index5" src="{{orderData.goodsImg || orderData.GoodsPic }}" mode="aspectFill" />
@@ -9,6 +9,7 @@
             <view class="flex-1 w-0 flex flex-column">
                 <view class="f32 c-222222 fw6 view">{{orderData.msName || ''}}</view>
                 <view class="f24 c-666666 view">{{ _t['编号：'] }}{{orderData.orderNumber || ''}}</view>
+                <view class="f24 c-666666 view" wx:if="{{ orderData.orderCreateTime }}">{{ _t['下单时间'] }} {{ orderData.orderCreateTime || '' }}</view>
                 <view class="f24 c-666666 view">{{ _t['内容：'] }}{{orderData.mealType || ''}}</view>
             </view>
             <view class="f24 price">MOP <text>{{ orderData.price || 0 }}</text></view>
@@ -26,11 +27,20 @@
     </view>
 
     <view class="title ml16 mr16 mt16 bg-white">
-        <view class="flex c-222222 h-100">
+        <view class="flex c-222222">
             <view class="flex-1 f32 fw6">{{ _t['商品内容'] }}</view>
         </view>
-        <view class="flex c-222222 h-100">
+        <view class="flex c-222222 mt16">
             <view class="f28">{{orderData.GoodsContent}}</view>
+        </view>
+    </view>
+
+    <view class="title ml16 mr16 mt16 bg-white" wx:if='{{ orderData.useConditions }}'>
+        <view class="flex c-222222">
+            <view class="flex-1 f32 fw6">{{ _t['使用规则'] }}</view>
+        </view>
+        <view class="flex c-222222 mt16">
+            <view class="f28">{{orderData.useConditions}}</view>
         </view>
     </view>
 

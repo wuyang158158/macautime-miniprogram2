@@ -258,6 +258,7 @@ Page({
     NT.showToast(_t['加载中..'])
     api.atsUnfreezingAndFreezing({ recordType: this.data.tradeType, updateTime: this.data.updateTime })
     .then(res=>{
+      res.sort(util.compare("updateTime",false)) //倒序
       var result = res
       let total = 0
       result.forEach(item => {

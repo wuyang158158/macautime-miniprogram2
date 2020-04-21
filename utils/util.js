@@ -179,6 +179,21 @@ const transleteDate = (date) => {
   }
 }
 
+// 排序
+const compare = (property,desc) => {
+  return function (a, b) {
+      var value1 = a[property];
+      var value2 = b[property];
+      if(desc === true) {
+          // 升序排列
+          return value1 - value2;
+      } else {
+          // 降序排列
+          return value2 - value1;
+      }
+  }
+}
+
 
 module.exports = {
   formatTime: formatTime,
@@ -189,5 +204,6 @@ module.exports = {
   packedArray: packedArray,
   discountPrice: discountPrice,
   dealWithData: dealWithData,
-  transleteDate: transleteDate
+  transleteDate: transleteDate,
+  compare
 };

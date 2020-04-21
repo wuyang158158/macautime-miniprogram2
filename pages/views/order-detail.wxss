@@ -10,6 +10,9 @@
     overflow: hidden;
     padding: 20rpx 16rpx;
 }
+.flex-top {
+    align-items: initial;
+}
 .cover-image{
     width: 160rpx;
     height: 160rpx;

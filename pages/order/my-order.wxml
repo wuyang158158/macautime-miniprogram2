@@ -32,15 +32,16 @@
                     </view>
                 </view>
                 <view class="t-bottom ml16 mr16">
-                    <view class="flex">
+                    <view class="flex flex-top">
                         <view class="relative order-icon mr16">
                             <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill" />
                             <image class="pic-default-new z-index5" src="{{item.GoodsPic}}" mode="aspectFill" />
                         </view>
-                        <view class="flex-1 pt16 f26 c-666666 w-0">
-                            <view class="ell mt10">{{ _t['编号'] }}：{{item.orderNumber}}</view>
-                            <view class="ell mt10">{{ _t['内容'] }}：{{item.content}}</view>
-                            <view class="ell mt10">{{ _t['总价'] }}：MOP {{item.moneny || 0}}</view>
+                        <view class="flex-1 f26 c-666666 w-0 pt25">
+                            <view class="ell mt5">{{ _t['下单时间'] }}：{{ item.orderCreateTime }}</view>
+                            <view class="ell mt5">{{ _t['编号'] }}：{{item.orderNumber}}</view>
+                            <view class="ell mt5">{{ _t['内容'] }}：{{item.content}}</view>
+                            <view class="ell mt5">{{ _t['总价'] }}：MOP {{item.moneny || 0}}</view>
                         </view>
                     </view>
                     <view class="t-handle flex">

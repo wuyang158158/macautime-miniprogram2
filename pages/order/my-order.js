@@ -2,6 +2,7 @@
 import api from "../../data/api";
 import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
+import util from "../../utils/util.js"
 var base = require('../../i18n/base.js');
 const _t = base._t().order
 const app = getApp();
@@ -353,6 +354,7 @@ Page({
         let timer = []
          res.forEach((ele, index) => {
            let time = null
+           ele.orderCreateTime = ele.orderCreateTime?util.formatTimeTwo(ele.orderCreateTime, 'Y-M-D h:m:s'): ''
           //   isUseTimer 防止后端状态未及时更新 页面出现闪动
            let isUseTimer = (parseInt(ele.reciprocal/1000) - parseInt(new Date().getTime()/1000)) > 0
           if(ele.status === 1 && isUseTimer) {

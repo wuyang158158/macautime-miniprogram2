@@ -22,9 +22,13 @@
         </view>
     </scroll-view>
 
-    <view class="p32">
-        <view class="f30 c-222222 fw5">{{ _t['商品内容'] }}</view>
-        <view class="f28 c-222222">{{choseData.text}}</view>
+    <view class="ml32 mr32 pt32 pb32 bt1 mt32">
+        <view class="f30 c-222222 fw6">{{ _t['商品内容'] }}</view>
+        <view class="f28 c-666666 mt8">{{choseData.text}}</view>
+    </view>
+    <view class="ml32 mr32 pt32 pb32 bt1" wx:if="{{ choseData.useConditions }}">
+        <view class="f30 c-222222 fw6">{{ _t['使用规则'] }}</view>
+        <view class="f28 c-666666 mt8">{{choseData.useConditions}}</view>
     </view>
     
     

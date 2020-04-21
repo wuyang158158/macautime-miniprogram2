@@ -13,6 +13,12 @@
     background:#fff;
     box-shadow:0px 4rpx 8rpx 0px rgba(0, 0, 0, 0.15);
 }
+.mt5 {
+    margin-top: 5rpx;
+}
+.flex-top {
+    align-items: initial;
+}
 .scroll-view_H{
     width: 100%;
     display: flex;
@@ -93,11 +99,15 @@
     margin-top: 20rpx;
 }
 .order-icon{
-    width: 100rpx;
-    height: 100rpx;
+    width: 160rpx;
+    height: 160rpx;
     border-radius:16rpx;
     margin-top: 0;
     overflow: hidden;
+    margin-top: 32rpx;
+}
+.pt25 {
+    padding-top: 25rpx;
 }
 .w-132{
     width: 132rpx;
