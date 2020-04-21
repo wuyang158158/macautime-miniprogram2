@@ -1392,10 +1392,16 @@ export default {
       execute(`/usGetPhoneCode/1.0/`, 'POST', query, resolve, reject)
     })
   },
-  // 获取手机验证码
+  // 获取消息列表
   ctNotify(query) {
     return new Promise((resolve, reject) => {
       execute(`/imSelectMessageNotifyByAccountId/1.0/`, 'POST', query, resolve, reject)
+    })
+  },
+  // 增加钱包金额 - 测试用
+  atsAmountToAdd(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/atsUpdateAmountToAdd/1.0/`, 'POST', query, resolve, reject)
     })
   },
   

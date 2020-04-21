@@ -40,7 +40,6 @@ Page({
   onLoad: function(options) {
     this.fnComputeH()
     this.getLocationCity()
-    
     wx.setNavigationBarTitle({
       title: _t['首页']
     });

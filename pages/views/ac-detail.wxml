@@ -239,7 +239,7 @@
             </view> -->
             <!-- 体验内容 -->
             <view class="content bd1 pb45">
-                <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32">{{ _t['体验内容'] }}</view>
+                <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32">{{ _t['商家介绍'] }}</view>
                 <view class="ql-container ql-snow">
                     <view class="ql-editor">
                         <!-- <rich-text nodes="{{acData.activityDetails}}"></rich-text> -->
