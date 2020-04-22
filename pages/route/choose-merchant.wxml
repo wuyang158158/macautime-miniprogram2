@@ -2,7 +2,7 @@
 <view class="container">
     <!-- 搜索组件 -->
     <view class="flex h-52">
-        <gh-searchbar bind:search="search" bind:tapSearch="tapSearch" searchPlaceholder="搜索体验" source="index" disabled></gh-searchbar>
+        <gh-searchbar bind:search="search" bind:tapSearch="tapSearch" searchPlaceholder="搜索商家" source="index" disabled></gh-searchbar>
     </view>
 
     <!-- 体验活动 -->

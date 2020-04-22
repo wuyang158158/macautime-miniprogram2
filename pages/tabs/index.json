@@ -4,11 +4,12 @@
     "gh-empty": "/components/empty/empty",
     "gh-aclist": "/components/acList/acList",
     "gh-hotRecommend": "/components/hotRecommend/hotRecommend",
-    "gh-kolList": "/components/kolList/kolList"
+    "gh-kolList": "/components/kolList/kolList",
+    "gh-hmList": "/components/hmList/hmList"
   },
   "navigationBarTitleText": "",
+  "backgroundTextStyle": "dark",
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50,
-  "backgroundTextStyle": "dark",
-  "navigationStyle": "custom"
+  "navigationStyle": "default"
 }

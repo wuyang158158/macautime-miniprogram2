@@ -1,7 +1,7 @@
 <!--pages/views/search-center.wxml-->
 <view class="container">
   <!-- 搜索组件 -->
-  <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="seach" input-val="{{inputVal}}" inputShowed searchPlaceholder="{{ _t['搜索体验/用户'] }}"></gh-searchbar>
+  <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="seach" input-val="{{inputVal}}" inputShowed searchPlaceholder="{{ _t['搜索商家/用户'] }}"></gh-searchbar>
 
   <view class="mt52">
 

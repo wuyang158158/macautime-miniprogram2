@@ -1,346 +1,390 @@
-// pages/tabs/experience.js
+// pages/tabs/index.js
 import NT from "../../utils/native.js"
 import PAGE from "../../utils/config.js"
 import api from "../../data/api.js"
+import util from "../../utils/util.js"
 import bmap from "../../utils/bmap-wx.min.js"
-var base = require('../../i18n/base.js');  //路径可能做相应调整
-const _t = base._t().EXPERIENCE; //翻译函数
-const titleBar = [ //顶部标题bar
-  {
-    name: '全部',
-    labelId: ''
-  }
-];
-var city = wx.getStorageSync("locationCity") ? wx.getStorageSync("locationCity").originalData.result.addressComponent.city : '';
-Page({
 
+var base = require('../../i18n/base.js');  //路径可能做相应调整
+const _t = base._t().INDEX; //翻译函数
+
+Page({
   /**
    * 页面的初始数据
    */
   data: {
+    showEndLine: false,
     _t: _t,
-    navArray: [_t['推荐路线'],_t['精选商家']],
-    idx: 1,
+    userInfo: wx.getStorageSync("userInfo") || {}, //用户信息
+    params: { //请求首页推荐列表
+      limit: PAGE.limit,
+      start: PAGE.start
+    },
+    total: 0,
+    sceneryData: [], //景点周边 数据
+    specialData: [], //专访栏目 数据
+    noData: false,  //没有数据时
+    activeMenu: 2,
+    // menuList: [{ title: '景点周边', type: 0},{ title: '金牌KOL', type: 1},{ title: '精选商家', type: 2},{ title: '专访栏目', type: 3}],
+    menuList: [{ title: _t['精选商家'], type: 2},{ title: '金牌KOL', type: 1},{ title: _t['专访栏目'], type: 3}],
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
-    noData: false,  //没有数据时
-    merchantList: [], // 商家列表
-    params: {
-      limit: PAGE.limit,  //条数
-      start: PAGE.start, //页码
-      keyWord: '',  //关键字
-      labelId: '',  // 类别ID
-      distance: '', // 距离（米）
-      lng: '',  // 纬度
-      lat: '',  // 经度
-      sortType: ''  // 排序类型：暂无
-    }
+    recommend: [], // 首页推荐体验列表
+    vImgUrls: [], // 会员限时礼体验列表
+    promotions: [], //会员专属列表
+    vTimeTitle: '', //会员限时礼标题
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    this.fnComputeH()
+    this.getLocationCity()
     wx.setNavigationBarTitle({
       title: _t['推荐']
     });
-    this.msSelectMsLabelList()
-    this.getLocationCity()
+    // 底部tab切换成繁体
+    base.setTabBarLang()
+    // this.initClientRect()
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    var customLocation = wx.getStorageSync("customLocation");
-    if(customLocation.isFirst){
-      delete customLocation.isFirst
-      wx.setStorage({
-        key:"customLocation",
-        data: customLocation
-      })
-      this.data.params.lng = customLocation.lng  // 纬度
-      this.data.params.lat = customLocation.lat  // 经度
-      const rgcData = {
-        city: customLocation.name ? customLocation.name : city
-      }
-      this.setData({
-        rgcData: rgcData
-      })
-      this.msSearchHome('onPullDownRefresh')
+  onShow: function() {
+    this.setData({
+      userInfo: wx.getStorageSync("userInfo"), //用户信息
+    })
+    if(wx.getStorageSync('activeMenu')) {
+      this.setData({ activeMenu: wx.getStorageSync('activeMenu') })
+      wx.removeStorageSync('activeMenu')
+      this.onLoad()
     }
   },
-
+  // 初始化高度
+  initClientRect() {
+    var that = this;
+    var query = wx.createSelectorQuery()
+    query.select('#fixed').boundingClientRect()
+    query.exec(function (res) {
+      that.setData({
+        menuTop: res[0].top
+      })
+    })
+  },
+  // 2.监听页面滚动距离scrollTop
+  onPageScroll: function (scroll) {
+    // if(wx.getStorageSync('systemInfo').system.indexOf('iOS')!==-1){
+    //   this.setData({
+    //     menuFixed: (scroll.scrollTop > this.data.menuTop)
+    //   })
+    // }
+    
+  },
+  // 切换菜单
+  changeTab(e) {
+    const index = e.currentTarget.dataset.index
+    if(index === this.data.activeMenu) {
+      return 
+    }
+    this.setData({ noData: false, showEndLine: false, activeMenu: index, 'params.start': PAGE.start })
+    this.fnComputeH()
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     NT.showToast('刷新中...')
     this.setData({
-      // params: { //请求首页推荐列表
-      //   limit: PAGE.limit,
-      //   start: PAGE.start,
-      //   labelId: this.data.params.labelId
-      // },
-      loadmoreLine: false,
-      loadmore: false
+      params: { //请求首页推荐列表
+        limit: PAGE.limit,
+        start: PAGE.start
+      },
+      showEndLine: false
     })
-    this.data.params.limit = PAGE.limit
-    this.data.params.start = PAGE.start
-    this.msSelectMsLabelList()
-    this.msSearchHome('onPullDownRefresh')
+    this.getLocationCity()
+    this.fnComputeH()
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
+    // 金牌KOL和景点周边不做分页
+    if(this.data.activeMenu === 0 || this.data.activeMenu === 1) return
+
     if ((this.data.params.start) * this.data.params.limit < this.data.total) {
       wx.showNavigationBarLoading();
       this.setData({
-        loadmoreLine: false,
-        loadmore: true
+        params:{
+          limit: PAGE.limit,
+          start: this.data.params.start + 1
+        }
       })
-      this.data.params.start = this.data.params.start + 1;
-      this.msSearchHome()
+      // 拉取数据
+      this.fnComputeH()
     }else {
       //暂无更多数据
       NT.hideToast()
-      if(this.data.merchantList.length){
-        this.setData({
-          loadmoreLine: true,
-          loadmore: false
-        })
-      }else{
-        this.setData({
-          loadmore: false
-        })
-      }
     }
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  // onShareAppMessage: function () {
-
-  // }
-  //搜索事件
-  search(e) {
-    console.log(e)
   },
   //跳转搜索中心
   tapSearch() {
     wx.navigateTo({
-      url: '/pages/views/search-center?source=merchant'
+      url: '/pages/views/search-center'
     })
+  },
+  vSwiperChange(e) { // 会员专属礼物滑动
+    const current = e.detail.current
+    this.data.vImgUrls.forEach((v,i) => {
+      if(Number(i) === current){
+        this.setData({
+          vTimeTitle: v.vipActivityTitle
+        })
+      }
+    });
+  },
+  tapToDetail(e) { // 点击查看体验详情
+    const ID = e.currentTarget.dataset.id
+    const TITLE = e.currentTarget.dataset.title
+    wx.navigateTo({
+      url: '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE + '&recommend=true'
+    })
+  },
+  tapToVipCenter() { // 点击进入会员介绍中心
+    if(!wx.getStorageSync('userInfo')){
+      NT.showModalPromise(_t['您还未注册，请先去个人中心点击「登录/注册」'])
+      .then(()=>{
+        wx.switchTab({
+          url: '/pages/tabs/center'
+        })
+      })
+      .catch(()=>{
+
+      })
+      return false;
+    } else {
+      wx.navigateTo({
+        url: '/pages/vip/vip-center'
+      })
+    }
   },
   tapToMapActivity() { // 点击进入活动地图
     // wx.navigateTo({
     //   url: '/pages/views/map-activity'
     // })
-    wx.navigateTo({
-      url: '/pages/location/seach-location?city=' + city
+    wx.switchTab({
+      url: '/pages/tabs/experience'
     })
   },
-  // 获取当前定位城市或者商圈
-  getLocationCity() {
-    // 是否有用户选择的指定地点，否则按当前城市请求
-    // var customLocation = wx.getStorageSync("customLocation");
-    // if(customLocation){
-    //   this.data.params.lng = customLocation.lng  // 纬度
-    //   this.data.params.lat = customLocation.lat  // 经度
-    //   const rgcData = {
-    //     city: customLocation.name ? customLocation.name : city
-    //   }
-    //   this.setData({
-    //     rgcData: rgcData
-    //   })
-    //   this.msSearchHome()
-    //   return false;
-    // }
-    // 是否有请求当前地点，否则正常请求
-    var locationCity = wx.getStorageSync("locationCity");
-    if(locationCity){
-      const pois = locationCity.originalData.result.pois[0]
-      city = locationCity.originalData.result.addressComponent.city
-      const rgcData = {
-        business: pois.name,
-        distance: pois.distance + 'm',
-        city: city
-      }
-      this.setData({
-        rgcData: rgcData
-      })
-      this.data.params.lng = locationCity.originalData.result.location.lng  // 纬度
-      this.data.params.lat = locationCity.originalData.result.location.lat  // 经度
-      this.msSearchHome()
-      return false;
-    }
-
-    var BMap = new bmap.BMapWX({
-      ak: PAGE.baiduMapAk
-    });
-    var success = data => {
-      // console.log(data)
-      wx.setStorage({
-        key:"locationCity",
-        data:data
-      })
-      const pois = data.originalData.result.pois[0]
-      const rgcData = {
-        business: pois.name,
-        distance: pois.distance + 'm',
-        city: data.originalData.result.addressComponent.city
-      }
-      this.setData({
-        rgcData: rgcData
-      })
-      this.data.params.lng = data.originalData.result.location.lng  // 纬度
-      this.data.params.lat = data.originalData.result.location.lat  // 经度
-      this.msSearchHome()
-    }
-    BMap.regeocoding({
-        success: success
-    });  
-  },
-  tapToNav(e) { //切换菜单
-    // console.log(e)
-    const index = e.currentTarget.dataset.index
-    this.setData({
-      idx: index
-    })
-    if(index === 1){
-      this.msSearchHome()
-    }
-  },
-  //点击tabbbar事件
-  tapTitleBar: function(e){
-    let name = e.currentTarget.dataset.name,
-        labelId = e.currentTarget.dataset.labelid,
-        t = this;
-        if(name===this.data.name){
-          return
-        }
-        // NT.showToast('加载中...');
-        wx.pageScrollTo({
-          scrollTop: 0,
-          duration: 300
-        })
-        t.setData({
-          name:name,
-          merchantList: [],
-          loadmoreLine: false,
-          loadmore: false,
-          params: { //请求订单列表
-            limit: PAGE.limit,  //条数
-            start: PAGE.start, //页码
-            keyWord: '',  //关键字
-            labelId: labelId,  // 类别ID
-            distance: '', // 距离（米）
-            lng: t.data.params.lng,  // 纬度
-            lat: t.data.params.lat,  // 经度
-            sortType: ''  // 排序类型：暂无
-          }
-        })
-        // this.getOrderListPersonal()
-        if(this.data.idx === 1){ //商家搜索
-          this.msSearchHome()
-        }
-        
-  },
-
-  // 轮播图
-  vSwiperChange(e) {
-    // console.log(e)
-  },
-  // 精选商家-按标签类别获取列表
-  msSearchHome(source) {
-    NT.showToast(_t['加载中...'])
-    const that = this
-    api.msSearchHome(this.data.params)
+  // 获取会员专属体验接口
+  getPromotions() {
+    api.getPromotions()
     .then(res=>{
-      console.log(res)
-      let data = res.data || []
-      if(data.length && !this.data.params.labelId){
-        that.setData({
-          swiperData: data.slice(0,3)
-        })
-      }
-      var merchantList = source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data)
-      merchantList.map(item=>{
-        item.distince = item.distince && item.distince > 1000 ? (item.distince / 1000).toFixed(2) + 'km' : item.distince || '0' + 'm'
-      })
-      that.setData({
-        noData: false,
-        merchantList: merchantList,
-        total: res.total,
-        loadmore: false
-      })
-      if(!that.data.merchantList.length>0){ //暂无数据
-        that.setData({
-          noData: true
-        })
-      }
-    })
-    .catch(err=>{
-      NT.showModal(err.message||_t['请求失败！'])
       this.setData({
-        loadmore: false,
-      })
-      if(!that.data.merchantList.length>0){ //暂无数据
-        that.setData({
-          noData: true
-        })
-      }
-    })
-  },
-  // 请求标签
-  msSelectMsLabelList() {
-    api.msSelectMsLabelList()
-    .then(res=>{
-      let data = res.sysLabel || []
-      data.map(item => {
-        // debugger
-        item.name = item.remark
-        item.labelId = item.id
-      })
-      this.setData({
-        titleBar: titleBar.concat(data),
-        name: '全部'
+        promotions: res
       })
     })
     .catch(err=>{
       console.log(err)
     })
   },
-  // 跳转到详情
-  tapToDetail(e) {
-    const ID = e.currentTarget.dataset.id
-    const TITLE = e.currentTarget.dataset.title
+  //会员限时礼
+  getLimitTimeGift() {
+    let that = this
+    api.getLimitTimeGift()
+    .then(res=>{
+      this.setData({
+        vImgUrls: res,
+        vTimeTitle: res.length ? res[0].vipActivityTitle : ''
+      })
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  },
+  //获取推荐列表
+  getExperience(source) {
+    let that = this
+    api.getExperience(that.data.params)
+    .then(res=>{
+      let data = res.rows || []
+      data.map(item => {
+        // debugger
+        item.stime = util.formatTimeTwo(item.stimeStr,'Y/M/D')
+        item.activityTag = item.activityTag ? item.activityTag.split(',')[0] : ''
+      })
+      that.setData({
+        noData: false,
+        recommend: source === 'onPullDownRefresh' ? data : this.data.recommend.concat(data),
+        total: res.total,
+        loadmore: false
+      })
+      if(!that.data.recommend.length>0){ //暂无数据
+        that.setData({
+          noData: true
+        })
+      }
+    })
+    .catch(err=>{
+      console.log(err)
+      NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
+      this.setData({
+        loadmore: false,
+      })
+      if(!that.data.recommend.length>0){ //暂无数据
+        that.setData({
+          noData: true
+        })
+      }
+    })
+  },
+  // 跳转到kol入驻
+  tapToKolEnter() {
     wx.navigateTo({
-      url: '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE
+      url: '/pages/attestation/kol-enter'
+    })
+  },
+  // 获取当前定位城市或者商圈
+  getLocationCity() {
+    var BMap = new bmap.BMapWX({
+      ak: PAGE.baiduMapAk
+    });
+    var success = data => {
+        // console.log(data)
+        wx.setStorage({
+          key:"locationCity",
+          data:data
+        })
+        const pois = data.originalData.result.pois[0]
+        const rgcData = {
+          business: pois.name,
+          distance: pois.distance + 'm',
+        }
+        this.setData({
+          rgcData: rgcData
+        })
+    }
+    BMap.regeocoding({
+        success: success
+    });  
+  },
+  // 景点周边 - 首页 -没有接口
+  sceneryNear() {
+    wx.hideNavigationBarLoading()
+    setTimeout(()=>{
+      wx.hideLoading()
+      this.setData({
+        kolList: [],
+        noData: true
+      })
+    }, 500)
+  },
+  // 金牌KOL - 首页
+  usIsCertificationKol() {
+    api.usIsCertificationKol()
+      .then(res => {
+        let userId = wx.getStorageSync('userInfo') && wx.getStorageSync('userInfo').userId || ''
+        res.forEach(ele => {
+          ele.hidden = ele.id !== userId
+          ele.usSysLabel = ele.usSysLabel.slice(0, 2)
+        })
+        this.setData({
+          kolList: res,
+          noData: !res.length,
+          showEndLine: res.length > 3
+        })
+      }).catch(err => {
+        this.setData({ noData: true })
+        NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
+      })
+  },
+  // 专访栏目 - 首页
+  msSpecialColumn() {
+    api.msSpecialColumn(this.data.params).then(res => {
+        this.setData({
+          specialData: this.data.params.start === 1? res.data: this.data.specialData.concat(res.data),
+          total: res.total,
+          noData: !res.total,
+          showEndLine: res.total > 3 && (this.data.params.start * this.data.params.limit >= res.total)
+        })
+    }).catch(err => {
+      this.setData({ noData: true })
+      NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
+    })
+  },
+  // 精选商家-首页
+  msSelectedMsListHome() {
+    api.msSelectedMsListHome(this.data.params)
+    .then(res=>{
+      var data = res.data || []
+      if(data.length) {
+        data.map(item=>{
+          let imgArr = item.imageUrls ?item.imageUrls.split(','): []
+          if(imgArr.length) {
+            imgArr.splice(0, 1)
+          }
+          item.averageScore = parseInt(item.averageScore) || 0
+          item.imageUrls =   imgArr
+        })
+      }
+      this.setData({
+        selecMerchants: this.data.params.start === 1 ? data : this.data.selecMerchants.concat(data),
+        total: res.total,
+        noData: !res.total,
+        showEndLine: res.total > 3 && (this.data.params.start * this.data.params.limit >= res.total)
+      })
+      }).catch(err => {
+        this.setData({ noData: true })
+        NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
+      })
+  },
+  // 根据type进行对应查询
+  fnComputeH() {
+    NT.showToast(_t['加载中...'])
+    let type = this.data.activeMenu
+    switch (type) {
+      case 0:
+        this.sceneryNear()
+        break;
+      case 1:
+        this.usIsCertificationKol()
+        break;
+      case 2:
+        this.msSelectedMsListHome()
+        break;
+      case 3:
+        this.msSpecialColumn()
+        break;
+    }
+  },
+  // 跳转专访详情
+  fnLinkTo(e) {
+    const id = e.currentTarget.dataset.id
+    const index = e.currentTarget.dataset.index
+    const data = this.data.specialData[index]
+    wx.navigateTo({
+      url: `/pages/topic/index?id=${id}`,
+      success: function(result) {
+        // 通过eventChannel向被打开页面传送数据
+        result.eventChannel.emit('params', data)
+      }
     })
   }
 })

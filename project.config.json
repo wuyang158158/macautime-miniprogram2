@@ -131,9 +131,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/address/address-list",
-					"pathName": "pages/address/address-list",
+					"id": 10,
+					"name": "pages/order/my-order",
+					"pathName": "pages/order/my-order",
 					"query": "",
 					"scene": null
 				}
