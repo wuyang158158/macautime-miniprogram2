@@ -19,14 +19,14 @@
     <!-- bannar大图展示
         object-fit="{{direction!=='horizontal'?'cover':'contain'}}" 
     -->
-    <view class="relative bannar-wrap" wx:if="{{acData.msMyVideoVo.videoUrl || acData.msPhotoVoList}}">
+    <view class="relative bannar-wrap" wx:if="{{(acData.msMyVideoVo && acData.msMyVideoVo.videoUrl) || acData.msPhotoVoList}}">
         <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
         <swiper class="bannar" bindchange="swiperHandle" current="{{current}}">
-            <swiper-item wx:if="{{acData.msMyVideoVo.videoUrl}}">
+            <swiper-item wx:if="{{acData.msMyVideoVo && acData.msMyVideoVo.videoUrl}}">
                 <video 
                     class="bannar" 
                     id="video" 
-                    src="{{acData.msMyVideoVo.videoUrl}}" 
+                    src="{{acData.msMyVideoVo && acData.msMyVideoVo.videoUrl}}" 
                     controls
                     loop
                     autoplay
@@ -47,14 +47,14 @@
             </swiper-item>
             </block>
         </swiper>
-        <view class="media flex c-222222" style="width:{{current||!acData.msMyVideoVo.videoUrl ? 80 : 50}}%;">
-            <view class="f20 item mr22 {{!current?'item-ac':''}}" data-current="0" bindtap="tapMedia" wx:if="{{acData.msMyVideoVo.videoUrl}}">
+        <view class="media flex c-222222" style="width:{{current||!(acData.msMyVideoVo && acData.msMyVideoVo.videoUrl) ? 80 : 50}}%;">
+            <view class="f20 item mr22 {{!current?'item-ac':''}}" data-current="0" bindtap="tapMedia" wx:if="{{acData.msMyVideoVo && acData.msMyVideoVo.videoUrl}}">
                 <image class="video-img" src="/images/detail/icon_video_w.png" mode="aspectFill" wx:if="{{!current}}"/>
                 <image class="video-img" src="/images/detail/icon_video_k.png" mode="aspectFill" wx:else/>
                 <text>{{ _t['作品'] }}</text>
             </view>
-            <view class="f20 item {{current?'item-ac':''}}" data-current="1" bindtap="tapMedia" wx:if="{{acData.msMyVideoVo.videoUrl}}">{{ _t['图片'] }}</view>
-            <view class="swiper-index f20 c-FFFFFF mr32" wx:if="{{current||!acData.msMyVideoVo.videoUrl}}">{{ acData.msMyVideoVo.videoUrl ?current || 1 : current + 1}}/{{acData.msPhotoVoList.length || 0}}</view>
+            <view class="f20 item {{current?'item-ac':''}}" data-current="1" bindtap="tapMedia" wx:if="{{acData.msMyVideoVo && acData.msMyVideoVo.videoUrl}}">{{ _t['图片'] }}</view>
+            <view class="swiper-index f20 c-FFFFFF mr32" wx:if="{{current||!(acData.msMyVideoVo && acData.msMyVideoVo.videoUrl)}}">{{ (acData.msMyVideoVo && acData.msMyVideoVo.videoUrl) ?current || 1 : current + 1}}/{{acData.msPhotoVoList.length || 0}}</view>
         </view>
     </view>
     <!-- 内容展示 -->
@@ -174,8 +174,8 @@
             </view>
         </view>
 
+        <!-- 商品类型 -->
         <view class="pl32" wx:if="{{ acData.msGoodsVoList.length }}">
-            <!-- 商品类型 -->
             <view class="product-types">
                 <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32">{{ _t['商品类型'] }}</view>
                 <scroll-view class="scroll-view_H" scroll-x="true">
@@ -191,8 +191,8 @@
             <view class="bd1 pb45 mr32"></view>
         </view>
 
+        <!-- 套餐类型 -->
         <view class="pl32 pr32">
-            <!-- 套餐类型 -->
             <view class="combo bd1 pb45" wx:if="{{acData.msMenuVoList.length}}">
                 <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32">{{ _t['套餐类型'] }}</view>
                 <button class="flex mb16 bg-white btn-flex" wx:for="{{acData.msMenuVoList}}" wx:key="index" data-id="{{item.id}}" type="none" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{userInfo? 'tapShowMealDetail':'tapToLogin'}}">
@@ -316,48 +316,11 @@
                 </view>
                 <view class="handpick-more f28 c-00A653" bindtap="tapToAllExpComment">查看全部 {{total}} {{ _t['条评论'] }}</view>
             </view>
-            <!-- 预定须知 -->
-            <!-- <view class="bd1 pb45">
-                <view class="f32 c-222222 fw6 l-h55 pt32 pb32">预订须知</view>
-                <view class="ql-container ql-snow">
-                    <view class="ql-editor">
-                        <rich-text nodes="{{acData.msBaseInfo.remark}}"></rich-text>
-                    </view>
-                </view>
-            </view> -->
-            <!-- 使用体验 -->
-            <!-- <view class="bd1 pb45">
-                <view class="f32 c-222222 fw6 l-h55 pt32 pb32">使用体验</view>
-                <view class="f28 c-222222 l-h30">{{acData.usage || ''}}</view>
-            </view> -->
-            <!-- 退改须知 -->
-            <!-- <view class="bd1 pb45">
-                <view class="f32 c-222222 fw6 l-h55 pt32 pb32">退改须知</view>
-                <view class="f28 c-222222 l-h30">{{acData.returnNotice || ''}}</view>
-            </view> -->
         </view>
         <!-- 猜你喜欢 -->
-        <view class="pl16 pr16" wx:if="{{vImgUrls.length}}">
+        <view class="pl16 pr16 mb32" wx:if="{{vImgUrls.length}}">
             <view class="f32 c-222222 fw6 l-h55 pt32 pb32 pl16 pr16">{{ _t['猜你喜欢'] }}</view>
             <gh-hmList merchantList="{{vImgUrls}}" source="detail" bd></gh-hmList>
-            <!-- <view class="recommend f28 c-222222">
-                <swiper class="re-swiper" autoplay interval="5000" previous-margin="24rpx" next-margin="24rpx">
-                <block wx:for="{{vImgUrls}}" wx:key="index">
-                    <swiper-item class="re-swiper-item" data-title="{{item.activityTitle}}" data-id="{{item.experienceSerial}}" bindtap="tapToDetail">
-                    <view class="slide flex ml8 mr8">
-                        <image class="slide-image" src="{{item.imgUrl}}" mode="aspectFill"/>
-                        <view class="flex-1 flex pl32 pr32 slide-text">
-                            <view class="flex-1 f32 c-222222 fw6">{{item.activityTitle}}</view>
-                            <view class="tag l-h30 c-00A653 f24">{{item.activityTag}}</view>
-                        </view>
-                    </view>
-                    </swiper-item>
-                </block>
-                </swiper>
-            </view> -->
-        </view>
-        <view class="weui-loadmore weui-loadmore_line">
-            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多了</view>
         </view>
         </view>
     <!-- 下单 -->

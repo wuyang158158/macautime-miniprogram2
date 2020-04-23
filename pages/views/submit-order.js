@@ -316,7 +316,6 @@ Page({
     }
     NT.showToast(_t['处理中...'])
     api.poInsertGoodsOrderAddDiscount(query).then(res=>{
-      console.log(res)
       wx.navigateTo({
         url: '/pages/vip/payment?id=' + res.orderNumber + '&money=' + this.data.payAmount + '&reciprocal=' + res.reciprocal + '&source=meal' + '&msId=' + choseData.msId
       })

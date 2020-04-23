@@ -51,7 +51,6 @@ Page({
    */
   onLoad: function (options) {
     NT.showToast(_t['加载中...'])
-    // console.log(options)
     wx.setNavigationBarTitle({
       title: options.title
     })
@@ -134,7 +133,7 @@ Page({
     const that = this //使用this 下面的视频暂停会有问题
     const current = e.detail.current
     that.setData({ current })
-    if(that.data.acData.msMyVideoVo.videoUrl && current === 0 && this.data._index == null){
+    if(that.data.acData.msMyVideoVo && that.data.acData.msMyVideoVo.videoUrl && current === 0 && this.data._index == null){
       that.videoContext.play()
     } else {
       that.videoContext.pause()
@@ -164,7 +163,6 @@ Page({
   // 作品进入和退出全屏时触发
   bindfullscreenchange(e) {
     const direction = e.detail.direction
-    console.log(e)
     this.setData({
       direction: direction
     })
@@ -206,7 +204,6 @@ Page({
         acData: data
       })
       this.selectMsEvaluateScoreList() //评论列表
-      // this.msSelectedMsVideoByMsId() //相关作品 - 暂时没有
       if(this.data.recommend){
         this.getGuessLike() //获取推荐喜欢数据
       }
@@ -237,7 +234,6 @@ Page({
   //打开地图
   openLocation() {
     const markers = this.data.acData.markers[0]
-    console.log(markers)
     wx.openLocation({
       latitude: markers.latitude,
       longitude: markers.longitude,
@@ -287,7 +283,6 @@ Page({
             fail () { //用户拒绝授权 则提示用户去授权
               wx.openSetting({
                 success (res) {
-                  console.log(res.authSetting)
                   res.authSetting = {
                     "scope.userInfo": true,
                     "scope.userLocation": true
@@ -300,7 +295,6 @@ Page({
           // 必须是在用户已经授权的情况下调用
           wx.getUserInfo({
             success: function(res) {
-              console.log(res)
               var userInfo = res.userInfo
               var nickName = userInfo.nickName
               var avatarUrl = userInfo.avatarUrl
@@ -366,7 +360,6 @@ Page({
       NT.toastFn('已收藏！',1000)
     })
     .catch(err=>{
-      console.log(err)
       NT.showModal(err.message||_t['请求失败！'])
     })
   },
@@ -380,7 +373,6 @@ Page({
       NT.toastFn( '已取消！',1000)
     })
     .catch(err=>{
-      console.log(err)
       NT.showModal(err.message||_t['请求失败！'])
     })
   },
@@ -440,7 +432,6 @@ Page({
     }
     api.saveDisCountOrder(saveDisCountOrderForm)
     .then(res=>{
-      console.log(res)
       acData.isBuyed = true;
       this.setData({
         acData: acData
@@ -485,12 +476,9 @@ Page({
         confirmColor: '#00A653',
         success (res) {
           if (res.confirm) {
-            
             wx.navigateTo({
               url: '/pages/vip/vip-center'
             })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
@@ -534,24 +522,10 @@ Page({
       url: '/pages/views/get-ticket-detail?id=' + id
     })
   },
-  // 相关作品
-  msSelectedMsVideoByMsId() {
-    api.msSelectedMsVideoByMsId()
-    .then(res=>{
-      const data = res
-      this.setData({
-        videoList: data||[]
-      })
-    })
-    .catch(err=>{
-      console.log(err)
-    })
-  },
   // 获取评价列表
   selectMsEvaluateScoreList() {
     api.selectMsEvaluateScoreList(this.data.roleFrom)
     .then(res=>{
-      console.log(res)
       var evaluateScore = res.data || []
       // 评论时间
       // debugger
@@ -565,16 +539,12 @@ Page({
         total: res.total
       })
     })
-    .catch(err=>{
-      console.log(err)
-    })
   },
   // 获取view高度
   getViewHeight(id) {
     var that = this;
     var query = wx.createSelectorQuery();
     query.select('#' + id).boundingClientRect(function (rect) {
-      console.log(rect.height)
       that.setData({
         height: rect.height
       })
