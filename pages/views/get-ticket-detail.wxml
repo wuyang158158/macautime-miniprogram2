@@ -34,9 +34,10 @@
             <view class="f26 c-222222 bd1 pb32">
                 <view class="f30">{{ _t['使用规则'] }}</view>
                 <view >1. {{ _t['仅限时光卡会员用户领取；'] }}</view>
-                <view >2. 全店商品都可以使用；</view>
-                <view >3. 有效期至 {{ item.endTimeStr || '' }}；</view>
-                <view >4. {{ _t['限时领取，每人仅限一张。'] }}</view>
+                <view >2. 有效期至 {{ item.endTimeStr || '' }}；</view>
+                <view >3. {{ _t['限时领取，每人仅限一张。'] }}</view>
+                <view wx:if="{{ item.conditionName }}">4. {{ item.conditionName }}；</view>
+                <view wx:if="{{ item.useConditions }}">5. {{ item.useConditions }}；</view>
             </view>
             <view class="f26 c-222222 pt32">
                 <view class="f30">{{ _t['注意事项'] }}</view>

@@ -24,7 +24,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     var title = options.source === 'djs' ? _t['待结算'] : _t['账单明细']
     wx.setNavigationBarTitle({
       title: title,

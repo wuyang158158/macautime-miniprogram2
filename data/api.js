@@ -14,10 +14,9 @@ const global = {
   appVersion: '',
   deviceMode: 3, //deviceMode   1-IOS 2-Android 3-小程序
   sellerId: '', 
-  userId: wx.getStorageSync('userInfo').userId || ''
+  userId: wx.getStorageSync('userInfo') && wx.getStorageSync('userInfo').userId || ''
   // , langType: 1 //1为简体，2为繁体
 }
-
 /**
  * 公共request方法(登录后接口调用)
  * @param url 请求接口地址
@@ -25,22 +24,52 @@ const global = {
  * @param params 请求参数
  * @param callback 请求成功回调
  */
+// 重新登录
+const reLogin = () => {
+  var langType = 1 //简体
+  var L = wx.getStorageSync('Language')
+  if(L === 'zh_HK' || L === 'zh_MO' || L === 'zh_TW'){
+    langType = 2 //繁体
+  }
+  global.langType = langType
+  wx.login({
+    success(res) {
+      if (res.code) {
+        wx.request({
+          url: baseUrl + '/usRegist/1.0/',
+          method: 'POST',
+          dataType: 'json',
+          data:{body: { code: res.code },global},
+          header: {
+            'content-type': 'text/DM-', // 默认值
+            auth: wx.getStorageSync('userInfo').auth || '' 
+          },
+          dataType: 'json',
+          success: (resq) => {
+            console.log(resq)
+            wx.setStorage({
+              key:"userInfo",
+              data:resq.data.body
+            })
+            wx.showToast({title: '登录成功！'})
+            setTimeout(()=>{
+              wx.switchTab({
+                url: '/pages/tabs/index'
+              })
+            }, 1000)
+          }
+        })
+      }
+    }
+  })
+}
 const execute = (url, method, params, resolve, reject) => {
-  const token = wx.getStorageSync('userInfo').token || ''
   const obj = { userName: wx.getStorageSync('userInfo').userName || '' }
 
   const header = {
     'content-type': 'text/DM-', // 默认值
-    // Authorization: 'Basic Yml4aW46Qml4aW5AMjAxOA==',
     auth: wx.getStorageSync('userInfo').auth || '' 
-    // token: token,
-    // loginType: 1
   }
-  // const data = Object.assign(params || {}, obj)
-
-  // const body = {
-  //   "password":"123456","account":"18168723160","verCode":"1"
-  // }
   global.userId = wx.getStorageSync('userInfo').userId || ''
   var langType = 1 //简体
   var L = wx.getStorageSync('Language')
@@ -76,6 +105,22 @@ const execute = (url, method, params, resolve, reject) => {
           }
         })
         return
+      }
+      // 异地登录重新登录
+      if(res.data.code === "E200000") {
+        wx.showModal({
+          title: '提示',
+          content: '您已在别的地方登录，是否重新登录?',
+          confirmColor: '#00A653',
+          success (ress) {
+            if (ress.confirm) {
+              reLogin()
+            } else if (ress.cancel) {
+              wx.navigateBack()
+            }
+          }
+        })
+        return resolve()
       }
       // if (res.statusCode === 401) {
       //   //需要校验用户信息
@@ -137,7 +182,6 @@ const executeBdMap = (url, method, params, resolve, reject) => {
  * 公共WebSocket方法
  */
 const socket = (url, method, params, source, callback) => {
-  let token = wx.getStorageSync('sie_iot_user_token')
   const ws = wx.connectSocket({
     url: wssBaseUrl + url,
     data: dealParam(params),
@@ -177,7 +221,6 @@ export default {
     let uploads=[];
     const url = config.env[config.curEnv].baseUrl + `/experience/expCMNT/expCommentUploadImg`
     const obj = { userName: wx.getStorageSync('userInfo').userName || '' }
-    const token = wx.getStorageSync('userInfo').token || ''
     const formData = Object.assign(params || {}, obj)
     return new Promise(resolve => {
       for(var i=0;i<filePath.length;i++){
@@ -261,28 +304,16 @@ export default {
       wx.login({
         success(res) {
           if (res.code) {
-            // console.log(res.code)
             const query = { code: res.code }
             if(option && option.spreadCode) {
               query.spreadCode = option.spreadCode
             }
-            //发起网络请求
-            // execute(
-            //   `/user/user/wxMiniProgramLogin`,
-            //   'POST',
-            //   query,
-            //   resolve,
-            //   reject
-            // )
             execute(`/usRegist/1.0/`, 'POST', query, resolve, reject)
           } else {
             reject('登录失败！')
           }
         }
       })
-      // return new Promise((resolve, reject) => {
-      //   execute(`/usRegist/1.0/`, 'POST', query, resolve, reject)
-      // })
     })
   },
   // 登录
