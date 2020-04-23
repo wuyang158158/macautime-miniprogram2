@@ -26,6 +26,7 @@ const global = {
  */
 // 重新登录
 const reLogin = () => {
+  wx.showLoading({title: '正在登录..',ask: true})
   var langType = 1 //简体
   var L = wx.getStorageSync('Language')
   if(L === 'zh_HK' || L === 'zh_MO' || L === 'zh_TW'){
@@ -46,11 +47,11 @@ const reLogin = () => {
           },
           dataType: 'json',
           success: (resq) => {
-            console.log(resq)
             wx.setStorage({
               key:"userInfo",
               data:resq.data.body
             })
+            wx.hideLoading()
             wx.showToast({title: '登录成功！'})
             setTimeout(()=>{
               wx.switchTab({
@@ -120,7 +121,7 @@ const execute = (url, method, params, resolve, reject) => {
             }
           }
         })
-        return resolve()
+        return 
       }
       // if (res.statusCode === 401) {
       //   //需要校验用户信息
