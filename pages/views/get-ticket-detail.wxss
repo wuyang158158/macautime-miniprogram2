@@ -13,6 +13,9 @@ page{
 .discounts-items{
     width: 195rpx;
 }
+.line-H {
+    line-height: 35rpx;
+}
 .remark{
     border-radius:16rpx;
     line-height: 48rpx;

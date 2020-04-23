@@ -16,6 +16,11 @@ Page({
     total: 0,
     noData: false,
     result: [],
+    showEndLine: false,
+    params: {
+      start: PAGE.start,
+      limit: PAGE.limit
+    }
   },
 
   /**
@@ -28,7 +33,6 @@ Page({
     this.setData({
       userInfo: wx.getStorageSync("userInfo") || {}, //用户信息
     })
-    NT.showToast(_t['加载中...'])
     this.getUserRecord()
   },
 
@@ -64,7 +68,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    NT.showToast('刷新中...')
+    this.setData({ 'params.start': 1 })
     this.getUserRecord()
   },
 
@@ -72,7 +76,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+    if(!this.data.showEndLine) return
+    let start = this.data.params.start
+    this.setData({ 'params.start': ++start })
+    this.getUserRecord()
   },
 
   /**
@@ -82,20 +89,21 @@ Page({
 
   // }
   getUserRecord() { // 请求用户记录
-    api.getUserRecord()
+    NT.showToast(_t['加载中...'])
+    api.getUserRecord(this.data.params)
     .then(res=>{
-      // res.forEach(item => {
-      //   item.createTimeStr = util.formatTimeTwo(item.creatTimeStamp?item.creatTimeStamp:item.createTime || '','Y年M月D日')
-      // })
+      const resData = res.data
       const arr = []
-      res.forEach(ele => {
-          const objNew = ele.MsBaseInfo
-          objNew.msId = ele.msId
+      resData.forEach(ele => {
+          const objNew = ele.MsBaseInfo || {}
+          objNew.msId = ele && ele.msId || ''
           arr.push(objNew)
       })
+      const result = this.data.params.start === 1?arr: this.data.result.concat(arr)
       this.setData({
-        result: arr,
-        noData: !arr.length
+        result: result,
+        noData: !result.length,
+        showEndLine: res.total > 5 && (this.data.params.start * this.data.params.limit >= res.total)
       })
     })
     .catch(err=>{

@@ -188,6 +188,9 @@ page{
     border-radius:4rpx;
     line-height: 24rpx;
 }
+.line-H {
+    line-height: 35rpx;
+}
 .handpick-more{
     line-height: 38rpx;
     margin-top: 43rpx;

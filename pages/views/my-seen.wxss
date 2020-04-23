@@ -1,1 +1,7 @@
 /* pages/views/my-seen.wxss */
+.weui-loadmore {
+  border-top: 1px solid rgba(0,0,0,.1);
+  margin: .6em auto;
+  margin-top: 65rpx;
+}
+  

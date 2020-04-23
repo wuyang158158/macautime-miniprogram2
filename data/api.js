@@ -24,46 +24,6 @@ const global = {
  * @param params 请求参数
  * @param callback 请求成功回调
  */
-// 重新登录
-const reLogin = () => {
-  wx.showLoading({title: '正在登录..',ask: true})
-  var langType = 1 //简体
-  var L = wx.getStorageSync('Language')
-  if(L === 'zh_HK' || L === 'zh_MO' || L === 'zh_TW'){
-    langType = 2 //繁体
-  }
-  global.langType = langType
-  wx.login({
-    success(res) {
-      if (res.code) {
-        wx.request({
-          url: baseUrl + '/usRegist/1.0/',
-          method: 'POST',
-          dataType: 'json',
-          data:{body: { code: res.code },global},
-          header: {
-            'content-type': 'text/DM-', // 默认值
-            auth: wx.getStorageSync('userInfo').auth || '' 
-          },
-          dataType: 'json',
-          success: (resq) => {
-            wx.setStorage({
-              key:"userInfo",
-              data:resq.data.body
-            })
-            wx.hideLoading()
-            wx.showToast({title: '登录成功！'})
-            setTimeout(()=>{
-              wx.switchTab({
-                url: '/pages/tabs/index'
-              })
-            }, 1000)
-          }
-        })
-      }
-    }
-  })
-}
 const execute = (url, method, params, resolve, reject) => {
   const obj = { userName: wx.getStorageSync('userInfo').userName || '' }
 
@@ -111,14 +71,14 @@ const execute = (url, method, params, resolve, reject) => {
       if(res.data.code === "E200000") {
         wx.showModal({
           title: '提示',
-          content: '您已在别的地方登录，是否重新登录?',
+          content: '登录已过期，请重新登录！',
+          showCancel: false,
           confirmColor: '#00A653',
-          success (ress) {
-            if (ress.confirm) {
-              reLogin()
-            } else if (ress.cancel) {
-              wx.navigateBack()
-            }
+          success () {
+            wx.removeStorageSync('userInfo')
+            wx.reLaunch({
+              url: '/pages/tabs/center'
+            })
           }
         })
         return 

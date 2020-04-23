@@ -5,12 +5,6 @@ import api from "../../data/api.js"
 import bmap from "../../utils/bmap-wx.min.js"
 var base = require('../../i18n/base.js');  //路径可能做相应调整
 const _t = base._t().EXPERIENCE; //翻译函数
-const titleBar = [ //顶部标题bar
-  {
-    name: '全部',
-    labelId: ''
-  }
-];
 var city = wx.getStorageSync("locationCity") ? wx.getStorageSync("locationCity").originalData.result.addressComponent.city : '';
 Page({
 
@@ -46,7 +40,6 @@ Page({
     titleBarFixed: [
       {name: '全部',labelId: ''},
       {name: '综合排序',labelId: ''},
-      {name: '老字号',labelId: ''},
       {name: '离我最近',labelId: ''},
     ]
   },
@@ -340,7 +333,7 @@ Page({
         item.labelId = item.id
       })
       this.setData({
-        titleBar: titleBar.concat(data),
+        titleBar: data,
         name: '全部'
       })
     })
