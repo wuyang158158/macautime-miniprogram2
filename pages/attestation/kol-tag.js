@@ -222,7 +222,7 @@ Page({
     .then(res=>{
       NT.toastFn(_t['处理成功！'])
       var result = res;
-      result.remark = result.labelRemark
+      result.remark = labelRemark
       result.selected = false
       this.setData({
         tagArray: this.data.tagArray.concat(result)

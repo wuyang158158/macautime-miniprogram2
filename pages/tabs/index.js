@@ -19,6 +19,7 @@ Page({
     loadmoreLine: false, //暂无更多信息
     noData: false,  //没有数据时
     merchantList: [], // 商家列表
+    customLocation: {},
     params: {
       limit: PAGE.limit,  //条数
       start: PAGE.start, //页码
@@ -40,7 +41,7 @@ Page({
     titleBarFixed: [
       {name: '全部',labelId: ''},
       {name: '综合排序',labelId: ''},
-      {name: '离我最近',labelId: ''},
+      {name: '离我最近',labelId: '', distance: true},
     ]
   },
 
@@ -173,20 +174,6 @@ Page({
   },
   // 获取当前定位城市或者商圈
   getLocationCity() {
-    // 是否有用户选择的指定地点，否则按当前城市请求
-    // var customLocation = wx.getStorageSync("customLocation");
-    // if(customLocation){
-    //   this.data.params.lng = customLocation.lng  // 纬度
-    //   this.data.params.lat = customLocation.lat  // 经度
-    //   const rgcData = {
-    //     city: customLocation.name ? customLocation.name : city
-    //   }
-    //   this.setData({
-    //     rgcData: rgcData
-    //   })
-    //   this.msSearchHome()
-    //   return false;
-    // }
     // 是否有请求当前地点，否则正常请求
     var locationCity = wx.getStorageSync("locationCity");
     if(locationCity){
@@ -198,10 +185,11 @@ Page({
         city: city
       }
       this.setData({
-        rgcData: rgcData
+        rgcData: rgcData,
+        customLocation: locationCity.originalData.result.location
       })
-      this.data.params.lng = locationCity.originalData.result.location.lng  // 纬度
-      this.data.params.lat = locationCity.originalData.result.location.lat  // 经度
+      // this.data.params.lng = locationCity.originalData.result.location.lng  // 纬度
+      // this.data.params.lat = locationCity.originalData.result.location.lat  // 经度
       this.msSearchHome()
       return false;
     }
@@ -245,8 +233,10 @@ Page({
   //点击tabbbar事件
   tapTitleBar: function(e){
     let name = e.currentTarget.dataset.name,
+        distance = e.currentTarget.dataset.distance,
         labelId = e.currentTarget.dataset.labelid,
         t = this;
+        
         if(name===this.data.name){
           return
         }
@@ -266,8 +256,8 @@ Page({
             keyWord: '',  //关键字
             labelId: labelId,  // 类别ID
             distance: '', // 距离（米）
-            lng: t.data.params.lng,  // 纬度
-            lat: t.data.params.lat,  // 经度
+            lng: distance?t.data.customLocation.lng: '',  // 纬度
+            lat: distance?t.data.customLocation.lat: '',  // 经度
             sortType: ''  // 排序类型：暂无
           }
         })
@@ -296,7 +286,9 @@ Page({
       }
       var merchantList = source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data)
       merchantList.map(item=>{
-        item.distince = item.distince && item.distince > 1000 ? (item.distince / 1000).toFixed(2) + 'km' : item.distince || '0' + 'm'
+        if(item.distince) {
+          item.distince = item.distince > 1000 ? (item.distince / 1000).toFixed(2) + 'km' : item.distince + 'm'
+        }
       })
       that.setData({
         noData: false,

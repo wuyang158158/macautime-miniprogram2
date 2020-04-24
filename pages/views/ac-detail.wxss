@@ -189,7 +189,7 @@ page{
     line-height: 24rpx;
 }
 .line-H {
-    line-height: 35rpx;
+    line-height: 32rpx;
 }
 .handpick-more{
     line-height: 38rpx;

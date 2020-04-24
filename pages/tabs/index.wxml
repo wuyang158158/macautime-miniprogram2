@@ -23,7 +23,7 @@
 
     <!-- 菜单 -->
     <view class="menu mr16 ml16 mt16 bg-white">
-        <view class="c-222222 f22 m-item" wx:for="{{ titleBar }}" data-name="{{item.name}}" data-labelid="{{item.labelId}}" wx:key="index" bindtap="tapTitleBar">
+        <view class="c-222222 f22 m-item" wx:for="{{ titleBar }}" data-name="{{item.name}}" data-labelid="{{item.id}}" wx:key="index" bindtap="tapTitleBar">
             <image src="{{ item.ext1 }}"></image>
             <view class="m-name">{{ item.name }}</view>
         </view>
@@ -41,7 +41,7 @@
         <!-- 顶部操作 -->
         <view class="title mt32">
             <scroll-view class="scroll-view_H" scroll-x="true">
-            <view wx:for="{{titleBarFixed}}" class="scroll-view-item_H {{item.name==name?'demo-text-1':''}}" data-name="{{item.name}}" data-labelid="{{item.labelId}}" wx:key="index" bindtap="tapTitleBar">
+            <view wx:for="{{titleBarFixed}}" class="scroll-view-item_H {{item.name==name?'demo-text-1':''}}" data-name="{{item.name}}" data-labelid="{{item.labelId}}" data-distance="{{ item.distance || false }}" wx:key="index" bindtap="tapTitleBar">
                 <text>{{item.name}}</text>
             </view>
             </scroll-view>
@@ -57,7 +57,7 @@
         <!-- 顶部操作 -->
         <view class="title mt32">
             <scroll-view class="scroll-view_H" scroll-x="true">
-            <view wx:for="{{titleBarFixed}}" class="scroll-view-item_H {{item.name==name?'demo-text-1':''}}" data-name="{{item.name}}" data-labelid="{{item.labelId}}" wx:key="index" bindtap="tapTitleBar">
+            <view wx:for="{{titleBarFixed}}" class="scroll-view-item_H {{item.name==name?'demo-text-1':''}}" data-name="{{item.name}}" data-labelid="{{item.labelId}}"  data-distance="{{ item.distance || false }}" wx:key="index" bindtap="tapTitleBar">
                 <text>{{item.name}}</text>
             </view>
             </scroll-view>

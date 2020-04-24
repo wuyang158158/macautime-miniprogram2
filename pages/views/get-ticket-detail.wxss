@@ -14,7 +14,7 @@ page{
     width: 195rpx;
 }
 .line-H {
-    line-height: 35rpx;
+    line-height: 32rpx;
 }
 .remark{
     border-radius:16rpx;
