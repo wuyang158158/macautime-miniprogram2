@@ -1,5 +1,5 @@
 <!--pages/views/all-exp-comment.wxml-->
-<view class="container comment {{ msId?'':'grey'}}">
+<view class="container comment {{ !msId && expComment.length?'grey':''}}">
 	<!-- 体验评论 -->
 	<view class="review pb45 pl16 pr16 mt16" wx:if="{{expComment.length && msId }}">
 		<!-- <view class="review-tag flex f28 c-00A653 fw5">
