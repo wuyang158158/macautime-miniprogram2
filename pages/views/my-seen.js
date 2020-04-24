@@ -76,7 +76,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(!this.data.showEndLine) return
+    if(this.data.showEndLine) return
     let start = this.data.params.start
     this.setData({ 'params.start': ++start })
     this.getUserRecord()
@@ -92,7 +92,7 @@ Page({
     NT.showToast(_t['加载中...'])
     api.getUserRecord(this.data.params)
     .then(res=>{
-      const resData = res.data
+      const resData = res.data || []
       const arr = []
       resData.forEach(ele => {
           const objNew = ele.MsBaseInfo || {}
