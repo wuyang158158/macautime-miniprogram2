@@ -9,7 +9,7 @@
         <view class="flex-1 c-222222 flex flex-custom">
             <view class="flex-1">
                 <view class="flex">
-                    <view class="f32 fw6 flex-1">{{item.name}}</view>
+                    <view class="f32 fw6 flex-1 ell">{{item.name}}</view>
                     <block wx:if="{{item.labelRemark.length}}">
                          <view class="tag c-00A653 f24" wx:for="{{ item.labelRemark }}" wx:key="index" wx:for-item="idx">{{idx.labelRemark}}</view>
                     </block>
@@ -25,7 +25,7 @@
                 </view>
             </view>
             <!-- <view class="f24 mt8 mb8">{{item.name || ''}}</view> -->
-            <view class="ell2 f24 c-999999">{{item.address||item.city||''}}</view>
+            <view class="ell2 f24 c-999999 ell2">{{item.address||item.city||''}}</view>
             <!-- <view class="f24 c-999999">参考价格：{{item.currencySymbol||'MOP'}} {{item.price || 0}}</view> -->
         </view>
     </view>

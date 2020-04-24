@@ -53,7 +53,6 @@ Page({
       title: _t['首页']
     });
     this.msSelectMsLabelList()
-    this.getLocationCity()
   },
 
   /**
@@ -316,6 +315,7 @@ Page({
   },
   // 请求标签
   msSelectMsLabelList() {
+    // NT.showToast(_t['加载中...'])
     api.msSelectMsLabelList()
     .then(res=>{
       let data = res.sysLabel || []
@@ -328,9 +328,9 @@ Page({
         titleBar: data,
         name: '全部'
       })
-    })
-    .catch(err=>{
-      console.log(err)
+      this.getLocationCity()
+    }).catch(err => {
+      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   // 跳转到详情
