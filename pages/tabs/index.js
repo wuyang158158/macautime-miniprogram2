@@ -283,12 +283,14 @@ Page({
           swiperData: data.slice(0,3)
         })
       }
-      var merchantList = source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data)
-      merchantList.map(item=>{
+      data.map(item=>{
         if(item.distince) {
-          item.distince = item.distince > 1000 ? (item.distince / 1000).toFixed(2) + 'km' : item.distince + 'm'
+          item.distince = item.distince > 1000 ? `${(item.distince / 1000).toFixed(1)}km` : `${item.distince}m`
         }
       })
+
+      var merchantList = source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data)
+
       that.setData({
         noData: false,
         merchantList: merchantList,
