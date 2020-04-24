@@ -337,9 +337,9 @@ Page({
       if(data.length) {
         data.map(item=>{
           let imgArr = item.imageUrls ?item.imageUrls.split(','): []
-          if(imgArr.length) {
-            imgArr.splice(0, 1)
-          }
+          // if(imgArr.length) {
+          //   imgArr.splice(0, 1)
+          // }
           item.averageScore = parseInt(item.averageScore) || 0
           item.imageUrls =   imgArr
         })

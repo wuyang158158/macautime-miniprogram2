@@ -26,3 +26,17 @@ page {
     border-radius:4rpx;
     line-height: 24rpx;
 }
+.circle16 {
+  border-radius: 16rpx !important;
+}
+.container {
+  min-height: 100%;
+  width: 100%;
+  background: #fff;
+}
+.container.grey {
+  background: #EFEFF4;
+}
+.bd5 {
+  border-bottom: 5rpx solid #EFEFF4;
+}

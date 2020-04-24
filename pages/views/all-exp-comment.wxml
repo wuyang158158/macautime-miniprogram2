@@ -1,7 +1,7 @@
 <!--pages/views/all-exp-comment.wxml-->
-<view class="container mt16 comment">
+<view class="container comment {{ msId?'':'grey'}}">
 	<!-- 体验评论 -->
-	<view class="review pb45 pl16 pr16" wx:if="{{expComment.length}}">
+	<view class="review pb45 pl16 pr16 mt16" wx:if="{{expComment.length && msId }}">
 		<!-- <view class="review-tag flex f28 c-00A653 fw5">
             <view class="tag-i flex mb16">浪漫美好(25)</view>
             <view class="tag-i flex mb16">性价比高(20)</view>
@@ -13,13 +13,13 @@
 		<view class="bg-white flex bdr16 handpick mb16 p16" wx:for="{{expComment}}" wx:key="orderId">
 			<view class="relative photo">
 				<image class="pic-default-new" src="/images/default/avatar.png" mode="aspectFill" />
-				<image class="pic-default-new z-index5" src="{{ msId?item.headImageUrl:userInfo.headIco}}" mode="aspectFill" />
+				<image class="pic-default-new z-index5" src="{{ item.headImageUrl}}" mode="aspectFill" />
 			</view>
 			<view class="flex-1 bd1 pb32">
 				<view class="pb16 flex c-222222 center">
 					<view class="">
 						<view class="user-name f30 l-h30">
-							{{ msId?item.nickName:userInfo.nickName}}
+							{{ item.nickName }}
 						</view>
 						<!-- 评分 -->
 						<view class="flex star mt16">
@@ -46,19 +46,44 @@
 			</view>
 		</view>
 	</view>
-	<!-- 加载更多 -->
-	<!-- <view class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
-		<view wx:if="{{loadmore}}">
-			<view class="weui-loading" />
-			<view class="weui-loadmore__tips">{{ _t['正在加载'] }}</view>
-		</view>
-		<view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line">{{ _t['已经到底了！'] }}</view>
-	</view> -->
-	<gh-empty
-	 prop-src="/images/default/no_evaluation.png"
-	 prop-text="{{emptytext?emptytext:_t['还没有任何评价哦']+'~~'}}"
-	 prop-mt="100"
-	 wx:if="{{noData}}"
-	/>
-</view>
 
+	<view class="review pb45 pl16 pr16 pt16" wx:if="{{expComment.length && !msId }}">
+		<view class="bg-white bdr16 handpick mb16 p16 bd5" wx:for="{{expComment}}" wx:key="orderId">
+			<view class="flex pb16 bd1">
+				<view class="relative photo">
+					<image class="pic-default-new" src="/images/default/avatar.png" mode="aspectFill" />
+					<image class="pic-default-new z-index5 circle16" src="{{ item.BackgroundPicture }}" mode="aspectFill" />
+				</view>
+				<view class="flex-1">
+					<view class="pb16 flex c-222222 center">
+						<view class="user-name f30 l-h30">
+							{{ item.title }}
+						</view>
+					</view>
+					<view class="f24 l-h30 c-999999">{{ _t['评价时间：'] }}{{item.createTime || ''}}</view>
+				</view>
+
+			</view>
+			<view class="">
+				<!-- 评分 -->
+				<view class="flex star mt32">
+					<image src="/images/index/icon_star1@2x.png" wx:for="{{ item.grade }}" wx:key="index" />
+					<image src="/images/index/icon_star2@2x.png" wx:for="{{ 5 - item.grade }}" wx:key="index" />
+				</view>
+				<view class="user-content f28 l-h40 mt16">{{item.content || ''}}</view>
+				<view class="weui-uploader__bd mb8 mt16" wx:if="{{ item.imageUrl }}">
+					<view class="weui-uploader__files" id="uploaderFiles">
+						<view class="weui-uploader__file" bindtap="previewImage" data-url="{{item.imageUrl}}">
+							<view class="relative weui-uploader__img bd">
+								<image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill" />
+								<image class="pic-default-new z-index5" src="{{item.imageUrl}}" mode="aspectFill" />
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<gh-empty prop-src="/images/default/no_evaluation.png" prop-text="{{emptytext?emptytext:_t['还没有任何评价哦']+'~~'}}" prop-mt="100" wx:if="{{noData}}" />
+</view>

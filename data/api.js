@@ -68,7 +68,7 @@ const execute = (url, method, params, resolve, reject) => {
         return
       }
       // 异地登录重新登录
-      if(res.data.code === "E200000") {
+      if(res.data.code === "E200000" || res.data.code === 'E100000') {
         wx.showModal({
           title: '提示',
           content: '登录已过期，请重新登录！',
