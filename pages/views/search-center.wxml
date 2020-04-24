@@ -21,9 +21,9 @@
           </view>
       </view>
       <view class="bg-EFEFF4 w-100">
-        <view class="f28 items {{item===distance?'c-00A653':'c-222222'}}" wx:for="{{seachType.distance}}" wx:key="{{index}}" wx:if="{{choseView==='distance'}}" data-text="{{item}}" bindtap="tapDistance">{{item}}</view>
-        <view class="f28 items {{item===tag?'c-00A653':'c-222222'}}" wx:for="{{seachType.tag}}" wx:key="{{index}}" wx:if="{{choseView==='tag'}}" data-text="{{item.name}}" data-id="{{item.labelId}}" bindtap="tapTag">{{item.name}}</view>
-        <view class="f28 items {{item===sort?'c-00A653':'c-222222'}}" wx:for="{{seachType.sort}}" wx:key="{{index}}" wx:if="{{choseView==='sort'}}" data-text="{{item}}" bindtap="tapSort">{{item}}</view>
+        <view class="f28 items {{item===distance?'c-00A653':'c-222222'}}" wx:for="{{seachType.distance}}" wx:key="index" wx:if="{{choseView==='distance'}}" data-text="{{item}}" bindtap="tapDistance">{{item}}</view>
+        <view class="f28 items {{item===tag?'c-00A653':'c-222222'}}" wx:for="{{seachType.tag}}" wx:key="index" wx:if="{{choseView==='tag'}}" data-text="{{item.name}}" data-id="{{item.labelId}}" bindtap="tapTag">{{item.name}}</view>
+        <view class="f28 items {{item===sort?'c-00A653':'c-222222'}}" wx:for="{{seachType.sort}}" wx:key="index" wx:if="{{choseView==='sort'}}" data-text="{{item}}" bindtap="tapSort">{{item}}</view>
       </view>
       <view class="model flex-1" bindtap="tapHide" catchtouchmove="ture"></view>
     </view>

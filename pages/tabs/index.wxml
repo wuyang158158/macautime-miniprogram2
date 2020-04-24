@@ -65,7 +65,7 @@
         <view class="ml16 mr16 mt32 pb32">
             <gh-hmList merchantList="{{merchantList}}" source="experience"></gh-hmList>
             <!-- <view class="more f32 fw5 c-00A653" wx:if="{{!noData}}">更多商家</view> -->
-            <gh-empty prop-type="no-data" prop-text="{{_t['还没有任何内容哦']}}~~" prop-mt="0" wx:if="{{noData}}"></gh-empty>
+            <gh-empty prop-type="no-data" prop-text="{{_t['还没有任何内容哦']}}~~" prop-mt="50" wx:if="{{noData}}"></gh-empty>
             <view class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
                 <view wx:if="{{loadmore}}">
                 <view class="weui-loading"></view>
