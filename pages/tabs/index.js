@@ -239,7 +239,7 @@ Page({
         if(name===this.data.name){
           return
         }
-        // NT.showToast('加载中...');
+        NT.showToast(_t['加载中...'])
         wx.pageScrollTo({
           scrollTop: 0,
           duration: 300
@@ -273,7 +273,6 @@ Page({
   },
   // 精选商家-按标签类别获取列表
   msSearchHome(source) {
-    NT.showToast(_t['加载中...'])
     const that = this
     api.msSearchHome(this.data.params)
     .then(res=>{
@@ -330,6 +329,7 @@ Page({
         titleBar: data,
         name: '全部'
       })
+      NT.showToast(_t['加载中...'])
       this.getLocationCity()
     }).catch(err => {
       NT.showModal(err.message||_t['请求失败！'])

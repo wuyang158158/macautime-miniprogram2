@@ -165,9 +165,9 @@
                                 </view>
                                 <view class="f24 c-999999 mt8">有效期至 {{item.endTimeStr || ''}}</view>
                             </view>
-                            <view >
+                            <!-- <view >
                                 <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" type="primary" data-amount="{{item.money}}" data-id="{{item.id}}" data-endTime="{{item.endTime}}" open-type="{{userInfo?'':'getUserInfo'}}" catchtap="{{userInfo? 'tapGetDiscounts':'tapToLogin'}}">{{ _t['领取'] }}</button>
-                            </view>
+                            </view> -->
                         </view>
                     </view>
                 </view>
