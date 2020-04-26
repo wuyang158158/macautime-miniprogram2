@@ -20,5 +20,5 @@
         </view>
         <view wx:if="{{loadmoreLine}}" class="weui-loadmore__tips weui-loadmore__tips_in-line bg-EFEFF4">{{ _t['已经到底了！'] }}</view>
     </view>
-    <gh-empty prop-url="/pages/tabs/index" prop-src="/images/default/no_attention.png" prop-text="{{emptytext?emptytext:_t['还没有任何关注哦~~']}}" prop-mt="150" wx:if="{{noData}}"></gh-empty>
+    <gh-empty prop-url="/pages/tabs/experience" prop-src="/images/default/no_attention.png" prop-text="{{emptytext?emptytext:_t['还没有任何关注哦~~']}}" prop-mt="150" wx:if="{{noData}}"></gh-empty>
 </view>

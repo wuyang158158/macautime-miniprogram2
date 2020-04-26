@@ -105,7 +105,7 @@ Page({
     } else {
       wx.setStorageSync('activeMenu',2)
       wx.switchTab({
-        url: '/pages/tabs/index'
+        url: '/pages/tabs/experience'
       })
     }
   }
