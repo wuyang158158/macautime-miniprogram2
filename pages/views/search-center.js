@@ -213,7 +213,6 @@ Page({
   },
   // 搜索
   search(e) {
-    console.log(e)
     if(e.detail){
       // this.getLikeage(e.detail)
       // 商家搜索
@@ -341,11 +340,10 @@ Page({
     api.msSearchHome(that.data.params)
     .then(res=>{
       let data = res.data || []
-      // data.map(item => {
-      //   // debugger
-      //   item.stime = util.formatTimeTwo(item.stimeStr,'Y/M/D')
-      //   item.activityTag = item.activityTag ? item.activityTag.split(',')[0] : ''
-      // })
+      data.map(item => {
+        // debugger
+        item.labelRemark = item.labelRemark?[{labelRemark: item.labelRemark}]:[]
+      })
       that.setData({
         noData: false,
         recommend: source === 'onPullDownRefresh' ? data : this.data.recommend.concat(data),
@@ -500,6 +498,7 @@ Page({
       sort:text,
       seachChoseMode: false
     })
+    this.msSearchHome('onPullDownRefresh')
   },
   tapHide() {
     this.setData({
