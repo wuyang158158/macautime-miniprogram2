@@ -61,7 +61,7 @@ Page({
       recommend: options.recommend,
       roleFrom: { //评论请求参数
         msId: options.id,
-        pageSize: PAGE.limit,
+        pageSize: 2,
         pageNo: PAGE.start
       }, 
     })
@@ -465,55 +465,43 @@ Page({
     })
   }, 
   // 领券中心
-  tapGetDiscounts(e) {
-    if(!this.data.userInfo.level){ //如果没有开通会员，则提示开通会员再领取
-      wx.showModal({
-        title: '提示',
-        content: _t['优惠券仅供时光卡会员用户使用，现在开通，领取优惠券，还能享受更多会员增值优惠及特权。'],
-        cancelText: '再看看',
-        cancelColor: '#999999',
-        confirmText: _t['开通会员'],
-        confirmColor: '#00A653',
-        success (res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/vip/vip-center'
-            })
-          }
-        }
-      })
-    }else{
-      const that = this
-      const id = e.currentTarget.dataset.id
-      const query = {
-        userId: that.data.userInfo.userId, //用户名
-        msId: that.data.msId, //商家Id
-        id: id, //优惠卷ID
-        endTime: e.currentTarget.dataset.endtime.toString()
-      }
-      NT.showToast(_t['处理中...'])
-      api.poInsertDiscountOrder(query)
-      .then(res=>{
-        NT.toastFn('领取成功！',1000)
-        setTimeout(()=>{},1000)
-      })
-      .catch(err=>{
-        NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
-      })
-    }
-  },
-
-  // 跳转到商户全部作品页面
-  tapToShopVideoAll() {
-    const that = this
-    wx.navigateTo({
-      url: '/pages/views/shop-video-all',
-      success: function(result) {
-        // 通过eventChannel向被打开页面传送数据
-        result.eventChannel.emit('msInterviewVideoVoList', that.data.acData.msInterviewVideoVoList)
-      }
-    })
-  },
+  // tapGetDiscounts(e) {
+  //   if(!this.data.userInfo.level){ //如果没有开通会员，则提示开通会员再领取
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: _t['优惠券仅供时光卡会员用户使用，现在开通，领取优惠券，还能享受更多会员增值优惠及特权。'],
+  //       cancelText: '再看看',
+  //       cancelColor: '#999999',
+  //       confirmText: _t['开通会员'],
+  //       confirmColor: '#00A653',
+  //       success (res) {
+  //         if (res.confirm) {
+  //           wx.navigateTo({
+  //             url: '/pages/vip/vip-center'
+  //           })
+  //         }
+  //       }
+  //     })
+  //   }else{
+  //     const that = this
+  //     const id = e.currentTarget.dataset.id
+  //     const query = {
+  //       userId: that.data.userInfo.userId, //用户名
+  //       msId: that.data.msId, //商家Id
+  //       id: id, //优惠卷ID
+  //       endTime: e.currentTarget.dataset.endtime.toString()
+  //     }
+  //     NT.showToast(_t['处理中...'])
+  //     api.poInsertDiscountOrder(query)
+  //     .then(res=>{
+  //       NT.toastFn('领取成功！',1000)
+  //       setTimeout(()=>{},1000)
+  //     })
+  //     .catch(err=>{
+  //       NT.showModal(err.codeMsg||err.message||_t['请求失败！'])
+  //     })
+  //   }
+  // },
 
   // 跳转到领券详情
   tapTopagesGetTicketDetail(e) {
