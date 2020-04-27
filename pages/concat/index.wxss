@@ -1,0 +1,10 @@
+/* pages/concat/index.wxss */
+image {
+  width: 160rpx;
+  height: 160rpx;
+}
+.center {
+  text-align: center;
+  margin-top: 130rpx;
+  margin-bottom: 95rpx;
+}

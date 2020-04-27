@@ -79,7 +79,8 @@
     "pages/message/detail",
     "pages/language/language",
     "pages/cropper/cropper",
-    "pages/views/exp-comment-success"
+    "pages/views/exp-comment-success",
+    "pages/concat/index"
   ],
   "subpackages": [],
   "preloadRule": {},

@@ -87,8 +87,9 @@ Page({
   },
   tapToAboutUs(e) { // 跳转到关于我们
     const id = e.currentTarget.dataset.id
+    const url = e.currentTarget.dataset.url || ''
     wx.navigateTo({
-      url: '/pages/views/about-us?id=' + id
+      url: url?url:'/pages/views/about-us?id=' + id
     })
   }
 })

@@ -126,9 +126,7 @@ Page({
       .then(res=>{
         NT.toastFn(_t['领取成功！'],1000)
         setTimeout(()=>{
-          wx.navigateTo({
-            url: '/pages/vip/spell-route-order-ok?route=get-ticket-detail' 
-          })
+            wx.navigateBack()
         },1000)
       })
       .catch(err=>{

@@ -1,0 +1,8 @@
+<view class="content">
+  <view class="">
+    <view class="center">
+      <image src="/images/index/login_logo.png"></image>
+    </view>
+    <view class="f26 c-666666 pl32 pr32">{{ _t['about'] }}</view>
+  </view>
+</view>
