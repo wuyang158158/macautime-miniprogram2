@@ -48,14 +48,14 @@
     </view>
     <view class="c-btn flex" data-flag="" bindtap="closeModal">{{ _t['我知道了']}}</view>
   </view>
-  <view class="content h350" wx:if="{{ code === 1 }}">
+  <view class="content h350 t30" wx:if="{{ code === 1 }}">
       <view class="mid-cont">
         <view class="test">{{ _t['你当前的注册量为'] }} <text>{{ rewardData.count }}</text></view>
         <view class="test">{{ _t['可领取奖励为'] }} <text>MOP {{ rewardData.reward }}</text></view>
       </view>
       <view class="c-btn flex" bindtap="fnGetMoney">{{ _t['确定领取'] }}</view>
   </view>
-  <view class="content h350" wx:if="{{ code === 2 }}">
+  <view class="content h350 t30" wx:if="{{ code === 2 }}">
       <view class="mid-cont">
         <view class="test">{{ _t['目前不在奖励领取时'] }}</view>
         <view class="test">{{ _t['请查看领取条件相关规定'] }}</view>
