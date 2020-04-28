@@ -462,6 +462,7 @@ Page({
         // debugger
         item.name = item.remark
         item.labelId = item.id
+        item.ext1 = `${item.ext1}?t=${new Date().getTime()}`
       })
       seachType.tag = titleBar.concat(data)
       this.setData({ titleBar: data, seachType: seachType})
