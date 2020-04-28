@@ -2,8 +2,7 @@
 /* 精选商家 */
 @import '../../app.wxss';
 .hm-list{
-    width: 350rpx;
-    height: 350rpx;
+    width: 718rpx;
     border-radius:16rpx;
     overflow: hidden;
 }
@@ -11,11 +10,10 @@
     border-radius: 16rpx 16rpx 0 0;
 }
 .hm-top{
-    height: 200rpx;
+    height: 336rpx;
 }
 .hm-bottom{
-    height: 150rpx;
-    padding: 20rpx;
+    padding: 20rpx 20rpx 32rpx;
 }
 .flex-c{
     flex-wrap: wrap;

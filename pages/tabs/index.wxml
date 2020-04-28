@@ -1,7 +1,7 @@
 <!--pages/tabs/experience.wxml-->
 <view class="container">
     <!-- 搜索组件 -->
-    <view class="flex h-52">
+    <view class="flex h-52 search-box  {{ isFixed?'bg-white':'' }}" style="top: {{ isFixed?0:statusBarHeight }}px;padding-top:{{isFixed?statusBarHeight:0}}px">
         <view class="location f24 flex ml32" bindtap="tapToMapActivity">
             <image class="location-icon" src="/images/index/index_icon_location.png" mode="aspectFill"/>
             <view class="c-222222 w-custom ell">{{rgcData.city}}</view>
@@ -9,10 +9,11 @@
         <view class="flex-1">
             <gh-searchbar bind:search="search" bind:tapSearch="tapSearch" searchPlaceholder="{{_t['搜索商家']}}" source="index" position="static" disabled></gh-searchbar>
         </view>
+        <view class="emtry-box"></view>
     </view>
     
     <!-- 轮播图 -->
-    <swiper class="swiper ml16 mr16" indicator-dots autoplay interval="5000" indicator-color="rgba(255,255,255,1)" indicator-active-color="#00A653" bindchange="vSwiperChange" wx:if="{{swiperData.length}}">
+    <swiper class="swiper" indicator-dots="{{ false }}" autoplay interval="5000" indicator-color="rgba(255,255,255,1)" indicator-active-color="#00A653" bindchange="vSwiperChange" wx:if="{{swiperData.length}}">
         <swiper-item wx:for="{{swiperData}}" wx:key="index" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
             <view class="relative swiper-url mr16">
                 <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
@@ -20,53 +21,46 @@
             </view>
         </swiper-item>
     </swiper>
-
     <!-- 菜单 -->
-    <view class="menu mr16 ml16 mt16 bg-white">
+    <view class="menu mr16 ml16 bg-white">
         <view class="c-222222 f22 m-item" wx:for="{{ titleBar }}" data-name="{{item.name}}" data-labelid="{{item.id}}" wx:key="index" bindtap="tapTitleBar">
             <image src="{{ item.ext1 }}"></image>
             <view class="m-name">{{ item.name }}</view>
         </view>
     </view>
 
-    <!-- 顶部切换栏 -->
-    <!-- <view class="flex c-222222 ml16 mr16 mt32">
-        <view wx:for="{{navArray}}" wx:key="index" class="flex-1 t-c" data-index="{{index}}" bindtap="tapToNav">
-            <text class="nav {{index===idx?'nav-ac':''}}">{{item}}</text>
-        </view>
-    </view> -->
-
-    <!-- 体验活动 -->
-    <view wx:if="{{idx===0}}">
-        <!-- 顶部操作 -->
-        <view class="title mt32">
-            <scroll-view class="scroll-view_H" scroll-x="true">
-            <view wx:for="{{titleBarFixed}}" class="scroll-view-item_H {{item.name==name?'demo-text-1':''}}" data-name="{{item.name}}" data-labelid="{{item.labelId}}" data-distance="{{ item.distance || false }}" wx:key="index" bindtap="tapTitleBar">
-                <text>{{item.name}}</text>
-            </view>
-            </scroll-view>
-        </view>
-        <view class="ml16 mr16 mt32 pb32">
-            <gh-hotRecommend></gh-hotRecommend>
-            <view class="more f32 fw5 c-00A653">{{_t['更多体验活动']}}</view>
-        </view>
-    </view>
-
     <!-- 精选商家 -->
-    <view wx:if="{{idx===1}}">
+    <view>
         <!-- 顶部操作 -->
-        <view class="title mt32">
-            <scroll-view class="scroll-view_H" scroll-x="true">
-            <view wx:for="{{titleBarFixed}}" class="scroll-view-item_H {{item.name==name?'demo-text-1':''}}" data-name="{{item.name}}" data-labelid="{{item.labelId}}"  data-distance="{{ item.distance || false }}" wx:key="index" bindtap="tapTitleBar">
-                <text>{{item.name}}</text>
+        <view class="title {{ isFixed?'isFixed':'' }}" style="top:{{ isFixed?52+statusBarHeight:0 }}px">
+            <view class="flex ml16 mr16 mb32 mt32 new-w">
+                <view class="flex f-j-c" data-id="sort" data-detail="{{sort || ''}}" bindtap="tapChoseView">
+                    <view class="m-left f26 {{choseView==='sort'||sort?'c-00A653':'c-222222'}}">{{sort?sort:_t['智能排序']}}</view>
+                    <view class="ml8 f24 {{choseView==='sort'||sort?'c-00A653':'c-000000'}}">▾</view>
+                </view>
+                <view class="flex f-j-c" data-id="tag" data-detail="{{tag || ''}}"  bindtap="tapChoseView">
+                    <view class="m-left f26 {{choseView==='tag'||tag?'c-00A653':'c-222222'}}">{{tag?tag:_t['分类']}}</view>
+                    <view class="ml8 f24 {{choseView==='tag'||tag?'c-00A653':'c-000000'}}">▾</view>
+                </view>
+                <view class="flex f-j-c" data-id="distance" data-detail="{{distance || ''}}"  bindtap="tapChoseView">
+                    <view class="m-left f26 {{choseView==='distance'||distance?'c-00A653':'c-222222'}}">{{distance?distance: _t['距离'] }}</view>
+                    <view class="ml8 f24 {{choseView==='distance'||distance?'c-00A653':'c-000000'}}">▾</view>
+                </view>
+                <view class="flex f-j-c" data-id="special" bindtap="tapChoseView">
+                    <view class="m-left f26 {{choseView==='special'||special?'c-00A653':'c-222222'}}">精选商家</view>
+                </view>
             </view>
-            </scroll-view>
+            <view class="bg-EFEFF4 w-100" wx:if="{{ seachChoseMode }}">
+                <view class="f28 items {{item===distance?'c-00A653':'c-222222'}}" wx:for="{{seachType.distance}}" wx:key="index" wx:if="{{choseView==='distance'}}" data-text="{{item}}" bindtap="tapDistance">{{item}}</view>
+                <view class="f28 items {{item===tag?'c-00A653':'c-222222'}}" wx:for="{{seachType.tag}}" wx:key="index" wx:if="{{choseView==='tag'}}" data-text="{{item.name}}" data-id="{{item.labelId}}" bindtap="tapTag">{{item.name}}</view>
+                <view class="f28 items {{item===sort?'c-00A653':'c-222222'}}" wx:for-index="ind" wx:for="{{seachType.sort}}" wx:key="index" wx:if="{{choseView==='sort'}}" data-index="{{ ind }}" data-text="{{item}}" bindtap="tapSort">{{item}}</view>
+            </view>
+            <view class="model flex-1" wx:if="{{ choseView }}" bindtap="tapHide" catchtouchmove="ture"></view>
         </view>
-        <view class="ml16 mr16 mt32 pb32">
+        <view class="ml16 mr16 pb32">
             <gh-hmList merchantList="{{merchantList}}" source="experience"></gh-hmList>
-            <!-- <view class="more f32 fw5 c-00A653" wx:if="{{!noData}}">更多商家</view> -->
             <gh-empty prop-type="no-data" prop-text="{{_t['还没有任何内容哦']}}~~" prop-mt="50" wx:if="{{noData}}"></gh-empty>
-            <view class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
+            <view wx:else class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
                 <view wx:if="{{loadmore}}">
                 <view class="weui-loading"></view>
                 <view class="weui-loadmore__tips">{{_t['正在加载']}}</view>

@@ -185,7 +185,7 @@ Page({
         wx.navigateBack({
           delta: 1
         })
-      },2000)
+      },1000)
     })
     .catch(err=>{
       that.setData({ canSubmit: true })

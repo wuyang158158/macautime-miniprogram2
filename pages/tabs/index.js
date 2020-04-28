@@ -6,15 +6,31 @@ import bmap from "../../utils/bmap-wx.min.js"
 var base = require('../../i18n/base.js');  //路径可能做相应调整
 const _t = base._t().EXPERIENCE; //翻译函数
 var city = wx.getStorageSync("locationCity") ? wx.getStorageSync("locationCity").originalData.result.addressComponent.city : '';
+var titleBar = [ //顶部标题bar
+  {
+    name: '全部',
+    labelId: ''
+  }
+];
+var seachType = {
+  distance: ['1km','5km','10km','全城'],
+  // tag: ['美食','娱乐','酒店','景点','购物'],
+  tag: titleBar,
+  sort: [_t['离我最近'],_t['好评优先'],_t['销量最高']]
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    seachChoseMode: false,
+    seachType: seachType,
+    distance: '', //已选择的搜索类型
+    tag: '',
+    sort: '',
     _t: _t,
     navArray: [_t['推荐路线'],_t['精选商家']],
-    idx: 1,
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
     noData: false,  //没有数据时
@@ -30,6 +46,7 @@ Page({
       lat: '',  // 经度
       sortType: ''  // 排序类型：暂无
     },
+    statusBarHeight: wx.getStorageSync('systemInfo').statusBarHeight - 5,
     menuData: [
       { title: '美食', icon: '/images/index/icon_food.png', url: ''},
       { title: '酒店', icon: '/images/index/icon_hotel.png', url: ''},
@@ -42,9 +59,16 @@ Page({
       {name: '全部',labelId: ''},
       {name: '综合排序',labelId: ''},
       {name: '离我最近',labelId: '', distance: true},
-    ]
+    ],
+    isFixed: false,
+    msParams: {
+      limit: PAGE.limit,  //条数
+      start: PAGE.start, //页码
+    }
   },
-
+  onPageScroll(e) {
+    this.setData({ isFixed: e.scrollTop > 500 })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -85,6 +109,112 @@ Page({
     }
   },
 
+  // 选择距离
+  tapDistance(e) {
+    const text = e.currentTarget.dataset.text
+    if(text === '全城'){
+      this.data.params.distance = ''
+    }else{
+      this.data.params.distance = Number(text.split('km')[0]) * 1000
+    }
+    this.setData({
+      distance:text,
+      seachChoseMode: false
+    })
+    NT.showToast(_t['加载中...'])
+    this.msSearchHome('onPullDownRefresh')
+  },
+  // 标签选择
+  tapTag(e) {
+    const text = e.currentTarget.dataset.text
+    this.data.params.labelId = e.currentTarget.dataset.id
+    this.setData({
+      tag:text,
+      seachChoseMode: false
+    })
+    NT.showToast(_t['加载中...'])
+    this.msSearchHome('onPullDownRefresh')
+  },
+  // 智能排序选择
+  tapSort(e) {
+    const text = e.currentTarget.dataset.text
+    var index = e.currentTarget.dataset.index
+    this.setData({
+      sort:text,
+      seachChoseMode: false,
+      'params.sortType':  ++index
+    })
+    NT.showToast(_t['加载中...'])
+    this.msSearchHome('onPullDownRefresh')
+  },
+  // 选择点击的类型
+  tapChoseView(e) {
+    const id = e.currentTarget.dataset.id
+    const detail = e.currentTarget.dataset.detail
+    // 精选商家
+    if(id === 'special') {
+      this.setData({
+        sort:'',
+        tag:'',
+        distance:'',
+        choseView: id,
+        seachChoseMode: false,
+        'params.sortType':  ''
+      })
+      NT.showToast(_t['加载中...'])
+      this.msSelectedMsListHome('onPullDownRefresh')
+      return
+    }
+
+    if(!detail && this.data.choseView === id) {
+      const flag = this.data.seachChoseMode
+      this.setData({
+        seachChoseMode: !flag,
+        choseView: flag?'':id
+      })
+      return
+    }
+    this.setData({
+      seachChoseMode: true,
+      choseView: id
+    })
+  },
+  // 精选商家-首页
+  msSelectedMsListHome(source) {
+    const that = this
+    api.msSelectedMsListHome(this.data.msParams)
+    .then(res=>{
+      let data = res.data || []
+      data.map(item=>{
+        if(item.distince) {
+          item.distince = item.distince > 1000 ? `${(item.distince / 1000).toFixed(1)}km` : `${item.distince}m`
+        }
+      })
+      var merchantList = source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data)
+      that.setData({
+        noData: false,
+        merchantList: merchantList,
+        total: res.total,
+        loadmore: false
+      })
+      if(!that.data.merchantList.length>0){ //暂无数据
+        that.setData({
+          noData: true
+        })
+      }
+    })
+    .catch(err=>{
+      NT.showModal(err.message||_t['请求失败！'])
+      this.setData({
+        loadmore: false,
+      })
+      if(!that.data.merchantList.length>0){ //暂无数据
+        that.setData({
+          noData: true
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -104,11 +234,13 @@ Page({
    */
   onPullDownRefresh: function () {
     this.setData({
-      // params: { //请求首页推荐列表
-      //   limit: PAGE.limit,
-      //   start: PAGE.start,
-      //   labelId: this.data.params.labelId
-      // },
+      choseView: '',
+      sort:'',
+      tag:'',
+      distance:'',
+      'params.labelId': '',
+      'params.sortType': '',
+      seachChoseMode: false,
       loadmoreLine: false,
       loadmore: false
     })
@@ -122,26 +254,51 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if ((this.data.params.start) * this.data.params.limit < this.data.total) {
-      wx.showNavigationBarLoading();
-      this.setData({
-        loadmoreLine: false,
-        loadmore: true
-      })
-      this.data.params.start = this.data.params.start + 1;
-      this.msSearchHome()
-    }else {
-      //暂无更多数据
-      NT.hideToast()
-      if(this.data.merchantList.length){
+    if(this.data.choseView !== 'special') {
+      if ((this.data.params.start) * this.data.params.limit < this.data.total) {
+        wx.showNavigationBarLoading();
         this.setData({
-          loadmoreLine: true,
-          loadmore: false
+          loadmoreLine: false,
+          loadmore: true
         })
-      }else{
+        this.data.params.start = this.data.params.start + 1;
+        this.msSearchHome()
+      }else {
+        //暂无更多数据
+        NT.hideToast()
+        if(this.data.merchantList.length){
+          this.setData({
+            loadmoreLine: true,
+            loadmore: false
+          })
+        }else{
+          this.setData({
+            loadmore: false
+          })
+        }
+      }
+    } else {
+      if ((this.data.msParams.start) * this.data.msParams.limit < this.data.total) {
+        wx.showNavigationBarLoading();
         this.setData({
-          loadmore: false
+          loadmoreLine: false,
+          loadmore: true
         })
+        this.data.msParams.start = this.data.msParams.start + 1;
+        this.msSelectedMsListHome()
+      }else {
+        //暂无更多数据
+        NT.hideToast()
+        if(this.data.merchantList.length){
+          this.setData({
+            loadmoreLine: true,
+            loadmore: false
+          })
+        }else{
+          this.setData({
+            loadmore: false
+          })
+        }
       }
     }
   },
@@ -186,8 +343,8 @@ Page({
         rgcData: rgcData,
         customLocation: locationCity.originalData.result.location
       })
-      // this.data.params.lng = locationCity.originalData.result.location.lng  // 纬度
-      // this.data.params.lat = locationCity.originalData.result.location.lat  // 经度
+      this.data.params.lng = locationCity.originalData.result.location.lng  // 纬度
+      this.data.params.lat = locationCity.originalData.result.location.lat  // 经度
       this.msSearchHome('onPullDownRefresh')
       return false;
     }
@@ -218,51 +375,33 @@ Page({
         success: success
     });  
   },
-  tapToNav(e) { //切换菜单
-    // console.log(e)
-    const index = e.currentTarget.dataset.index
-    this.setData({
-      idx: index
-    })
-    if(index === 1){
-      this.msSearchHome()
-    }
-  },
   //点击tabbbar事件
   tapTitleBar: function(e){
     let name = e.currentTarget.dataset.name,
-        distance = e.currentTarget.dataset.distance,
         labelId = e.currentTarget.dataset.labelid,
         t = this;
         
-        if(name===this.data.name){
-          return
-        }
+        // if(name===this.data.name){
+        //   return
+        // }
         NT.showToast(_t['加载中...'])
         wx.pageScrollTo({
           scrollTop: 0,
           duration: 300
         })
         t.setData({
+          choseView: '',
+          sort:'',
+          tag:'',
+          distance:'',
           name:name,
           merchantList: [],
           loadmoreLine: false,
           loadmore: false,
-          params: { //请求订单列表
-            limit: PAGE.limit,  //条数
-            start: PAGE.start, //页码
-            keyWord: '',  //关键字
-            labelId: labelId,  // 类别ID
-            distance: '', // 距离（米）
-            lng: distance?t.data.customLocation.lng: '',  // 纬度
-            lat: distance?t.data.customLocation.lat: '',  // 经度
-            sortType: ''  // 排序类型：暂无
-          }
+          'params.labelId': labelId
         })
-        // this.getOrderListPersonal()
-        if(this.data.idx === 1){ //商家搜索
-          this.msSearchHome()
-        }
+        this.msSearchHome()
+        
         
   },
 
@@ -324,10 +463,8 @@ Page({
         item.name = item.remark
         item.labelId = item.id
       })
-      this.setData({ titleBar: data})
-      if(!flag) {
-        this.setData({ name: '全部'})
-      }
+      seachType.tag = titleBar.concat(data)
+      this.setData({ titleBar: data, seachType: seachType})
       NT.showToast(_t['加载中...'])
       this.getLocationCity()
     }).catch(err => {

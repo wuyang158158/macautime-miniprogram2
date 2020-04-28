@@ -35,7 +35,6 @@ Page({
         display: 'ALWAYS',
       }
     }],
-    vImgUrls: [], // 会员限时礼体验列表
     recommend: false, //是否有喜欢推荐
     noData: false, //缺省页面
     type: 'video', //媒体展示默认作品
@@ -204,9 +203,6 @@ Page({
         acData: data
       })
       this.selectMsEvaluateScoreList() //评论列表
-      if(this.data.recommend){
-        this.getGuessLike() //获取推荐喜欢数据
-      }
       //获取视频轮播高度
       if(data.msInterviewVideoVoList.length){
         this.getViewHeight('item-video-0')
@@ -218,16 +214,6 @@ Page({
           text: err.message ||_t['请求失败！'],
           type: err.code === '00'? 'no-network' : 'no-data'
         }
-      })
-    })
-  },
-  //获取猜你喜欢推荐数据
-  getGuessLike() {
-    api.msSelectedMsListGuessYouLike()
-    .then(res=>{
-      const data = res
-      this.setData({
-        vImgUrls: data
       })
     })
   },

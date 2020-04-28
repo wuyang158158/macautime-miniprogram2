@@ -317,11 +317,6 @@
                 <view class="handpick-more f28 c-00A653" bindtap="tapToAllExpComment">查看全部 {{total}} {{ _t['条评论'] }}</view>
             </view>
         </view>
-        <!-- 猜你喜欢 -->
-        <view class="pl16 pr16 mb32" wx:if="{{vImgUrls.length}}">
-            <view class="f32 c-222222 fw6 l-h55 pt32 pb32 pl16 pr16">{{ _t['猜你喜欢'] }}</view>
-            <gh-hmList merchantList="{{vImgUrls}}" source="detail" bd></gh-hmList>
-        </view>
         </view>
     <!-- 下单 -->
     <cover-view class="orders {{isIphoneX ?'fix-iphonex-button':''}}" wx:if="{{direction!=='horizontal' && acData.isSigned}}" hidden="{{istrue}}">

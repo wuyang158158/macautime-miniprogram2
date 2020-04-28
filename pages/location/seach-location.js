@@ -83,14 +83,21 @@ Page({
         console.log(data) 
     }; 
     var success = function(data) { 
+       const formatData =  []
+       data.result.forEach(element => {
+         if(element.location) {
+           return formatData.push(element)
+         }
+       });
         that.setData({ 
-            sugData: data.result 
+            sugData: formatData 
         }); 
     } 
     // 发起suggestion检索请求 
     BMap.suggestion({ 
         query: e.detail, 
-        region: this.data.city, 
+        // region: this.data.city, 
+        region: e.detail, 
         city_limit: true, 
         fail: fail, 
         success: success 

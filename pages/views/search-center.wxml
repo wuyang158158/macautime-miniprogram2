@@ -1,7 +1,7 @@
 <!--pages/views/search-center.wxml-->
 <view class="container">
   <!-- 搜索组件 -->
-  <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="seach" input-val="{{inputVal}}" inputShowed searchPlaceholder="{{ _t['搜索商家/用户'] }}"></gh-searchbar>
+  <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="seach" input-val="{{inputVal}}" inputShowed searchPlaceholder="{{ source !== 'merchant'?_t['搜索商家/用户']: _t['搜索商家']}}"></gh-searchbar>
 
   <view class="mt52">
 
@@ -23,7 +23,7 @@
       <view class="bg-EFEFF4 w-100">
         <view class="f28 items {{item===distance?'c-00A653':'c-222222'}}" wx:for="{{seachType.distance}}" wx:key="index" wx:if="{{choseView==='distance'}}" data-text="{{item}}" bindtap="tapDistance">{{item}}</view>
         <view class="f28 items {{item===tag?'c-00A653':'c-222222'}}" wx:for="{{seachType.tag}}" wx:key="index" wx:if="{{choseView==='tag'}}" data-text="{{item.name}}" data-id="{{item.labelId}}" bindtap="tapTag">{{item.name}}</view>
-        <view class="f28 items {{item===sort?'c-00A653':'c-222222'}}" wx:for="{{seachType.sort}}" wx:key="index" wx:if="{{choseView==='sort'}}" data-text="{{item}}" bindtap="tapSort">{{item}}</view>
+        <view class="f28 items {{item===sort?'c-00A653':'c-222222'}}" data-index="{{ index }}" wx:for="{{seachType.sort}}" wx:key="index" wx:if="{{choseView==='sort'}}" data-text="{{item}}" bindtap="tapSort">{{item}}</view>
       </view>
       <view class="model flex-1" bindtap="tapHide" catchtouchmove="ture"></view>
     </view>
@@ -92,7 +92,7 @@
               </view>
           </view>
 
-          <gh-acmylist  result="{{recommend}}" wx:if="{{recommend.length}}"></gh-acmylist>
+          <gh-hmList  merchantList="{{recommend}}" wx:if="{{recommend.length}}"></gh-hmList>
         </view>
         <view class="" wx:if="{{menuDataIndex===1}}">
           <view wx:for="{{result}}" class="flex ml32 pt32 pb32 {{index+1!=result.length?'bd1':''}}" data-id="{{ item.accountId }}" bindtap="fnLinkTo">

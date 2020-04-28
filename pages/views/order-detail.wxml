@@ -8,8 +8,8 @@
             </view>
             <view class="flex-1 w-0 flex flex-column">
                 <view class="f32 c-222222 fw6 view">{{orderData.msName || ''}}</view>
-                <view class="f24 c-666666 view mt5">{{ _t['编号：'] }}{{orderData.orderNumber || ''}}</view>
                 <view class="f24 c-666666 view mt5" wx:if="{{ orderData.orderCreateTime }}">{{ _t['下单时间'] }} {{ orderData.orderCreateTime || '' }}</view>
+                <view class="f24 c-666666 view mt5">{{ _t['编号：'] }}{{orderData.orderNumber || ''}}</view>
                 <view class="f24 c-666666 view mt5">{{ _t['内容：'] }}{{orderData.mealType || ''}}</view>
             </view>
             <view class="f24 price">MOP <text>{{ orderData.price || 0 }}</text></view>

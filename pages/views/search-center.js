@@ -18,7 +18,7 @@ var seachType = {
   distance: ['1km','5km','10km','全城'],
   // tag: ['美食','娱乐','酒店','景点','购物'],
   tag: titleBar,
-  sort: [_t['好评优先'],_t['离我最近'],'最新上市',_t['最高热度'],_t['网红聚集地']]
+  sort: [_t['离我最近'],_t['好评优先'],_t['销量最高']]
 }
 const locationCity = wx.getStorageSync("locationCity")
 const location = locationCity ? locationCity.originalData.result.location : ''
@@ -343,6 +343,9 @@ Page({
       data.map(item => {
         // debugger
         item.labelRemark = item.labelRemark?[{labelRemark: item.labelRemark}]:[]
+        if(item.distince) {
+          item.distince = item.distince > 1000 ? `${(item.distince / 1000).toFixed(1)}km` : `${item.distince}m`
+        }
       })
       that.setData({
         noData: false,
@@ -494,9 +497,11 @@ Page({
   // 智能排序选择
   tapSort(e) {
     const text = e.currentTarget.dataset.text
+    var index = e.currentTarget.dataset.index
     this.setData({
       sort:text,
-      seachChoseMode: false
+      seachChoseMode: false,
+      'params.sortType':  ++index
     })
     this.msSearchHome('onPullDownRefresh')
   },

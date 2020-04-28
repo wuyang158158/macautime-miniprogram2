@@ -363,14 +363,27 @@
   display: none;
 }
 .tab-menu {
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 25rpx;
   height: 95rpx;
+  padding: 0 195rpx;
 }
 .tab-menu .t-item {
   font-size: 32rpx;
   color: #222;
   font-weight: 600;
+  position: relative;
+}
+.tab-menu .t-item.active::after {
+  content: '';
+  width:60rpx;
+  height:4rpx;
+  background:rgba(0,166,83,1);
+  border-radius:2rpx;
+  position: absolute;
+  bottom: -10rpx;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .tab-menu .t-item.active {
   color: #00A653 !important

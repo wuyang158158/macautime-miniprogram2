@@ -24,9 +24,8 @@ Page({
     sceneryData: [], //景点周边 数据
     specialData: [], //专访栏目 数据
     noData: false,  //没有数据时
-    activeMenu: 2,
-    // menuList: [{ title: '景点周边', type: 0},{ title: '金牌KOL', type: 1},{ title: '精选商家', type: 2},{ title: '专访栏目', type: 3}],
-    menuList: [{ title: _t['精选商家'], type: 2},{ title: '金牌KOL', type: 1},{ title: _t['专访栏目'], type: 3}],
+    activeMenu: 1,
+    menuList: [{ title: '金牌KOL', type: 1},{ title: _t['专访栏目'], type: 3}],
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
     recommend: [], // 首页推荐体验列表
@@ -328,32 +327,6 @@ Page({
       this.setData({ noData: true })
       NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
     })
-  },
-  // 精选商家-首页
-  msSelectedMsListHome() {
-    api.msSelectedMsListHome(this.data.params)
-    .then(res=>{
-      var data = res.data || []
-      if(data.length) {
-        data.map(item=>{
-          let imgArr = item.imageUrls ?item.imageUrls.split(','): []
-          // if(imgArr.length) {
-          //   imgArr.splice(0, 1)
-          // }
-          item.averageScore = parseInt(item.averageScore) || 0
-          item.imageUrls =   imgArr
-        })
-      }
-      this.setData({
-        selecMerchants: this.data.params.start === 1 ? data : this.data.selecMerchants.concat(data),
-        total: res.total,
-        noData: !res.total,
-        showEndLine: res.total > 3 && (this.data.params.start * this.data.params.limit >= res.total)
-      })
-      }).catch(err => {
-        this.setData({ noData: true })
-        NT.showModal(err.codeMsg || err.message || _t['请求失败！'])
-      })
   },
   // 根据type进行对应查询
   fnComputeH() {
