@@ -103,7 +103,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    NT.showToast('刷新中...')
     this.setData({
       // params: { //请求首页推荐列表
       //   limit: PAGE.limit,
@@ -115,8 +114,8 @@ Page({
     })
     this.data.params.limit = PAGE.limit
     this.data.params.start = PAGE.start
-    this.msSelectMsLabelList()
-    this.msSearchHome('onPullDownRefresh')
+    this.msSelectMsLabelList(true)
+    // this.msSearchHome('onPullDownRefresh')
   },
 
   /**
@@ -189,7 +188,7 @@ Page({
       })
       // this.data.params.lng = locationCity.originalData.result.location.lng  // 纬度
       // this.data.params.lat = locationCity.originalData.result.location.lat  // 经度
-      this.msSearchHome()
+      this.msSearchHome('onPullDownRefresh')
       return false;
     }
 
@@ -213,7 +212,7 @@ Page({
       })
       this.data.params.lng = data.originalData.result.location.lng  // 纬度
       this.data.params.lat = data.originalData.result.location.lat  // 经度
-      this.msSearchHome()
+      this.msSearchHome('onPullDownRefresh')
     }
     BMap.regeocoding({
         success: success
@@ -315,7 +314,7 @@ Page({
     })
   },
   // 请求标签
-  msSelectMsLabelList() {
+  msSelectMsLabelList(flag) {
     // NT.showToast(_t['加载中...'])
     api.msSelectMsLabelList()
     .then(res=>{
@@ -325,10 +324,10 @@ Page({
         item.name = item.remark
         item.labelId = item.id
       })
-      this.setData({
-        titleBar: data,
-        name: '全部'
-      })
+      this.setData({ titleBar: data})
+      if(!flag) {
+        this.setData({ name: '全部'})
+      }
       NT.showToast(_t['加载中...'])
       this.getLocationCity()
     }).catch(err => {
