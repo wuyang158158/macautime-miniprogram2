@@ -1,7 +1,7 @@
 <!--components/searchbar/searchbar.wxml-->
 <view class="page {{source==='index'?'absolute':'fixed'}} {{position==='static'?'static':''}} {{source==='location'?'weui-search-bar-bg':''}} {{navigationStyle==='custom'?'custom':''}}" style="z-index: 999;top:{{navigationStyle==='custom'?statusBarHeight:0}}px;">
   <view class="page__bd">
-    <view class="weui-search-bar {{source==='index'?'':'weui-search-bar-bg'}}" bindtap="tapToSearch">
+    <view class="weui-search-bar {{ navigationStyle==='custom'?'p-custom':'' }} {{source==='index'?'':'weui-search-bar-bg'}}" bindtap="tapToSearch">
       <view class="weui-search-bar__form {{navigationStyle==='custom'?'weui-search-bar__form-rgba':''}}">
         <view class="weui-search-bar__box {{source==='index'?'':'weui-search-bar_box-bg'}}">
           <icon class="weui-icon-search_in-box" type="search" color="{{navigationStyle==='custom'?'#222':''}}" size="14"></icon>

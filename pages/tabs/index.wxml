@@ -13,14 +13,22 @@
     </view>
     
     <!-- 轮播图 -->
-    <swiper class="swiper" indicator-dots="{{ false }}" autoplay interval="5000" indicator-color="rgba(255,255,255,1)" indicator-active-color="#00A653" bindchange="vSwiperChange" wx:if="{{swiperData.length}}">
-        <swiper-item wx:for="{{swiperData}}" wx:key="index" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
-            <view class="relative swiper-url mr16">
-                <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
-                <image class="pic-default z-index5" src="{{item.coverUrl}}" mode="aspectFill"/>
-            </view>
-        </swiper-item>
-    </swiper>
+    <view class="relative">
+        <swiper class="swiper" indicator-dots="{{ false }}" autoplay interval="5000" indicator-color="rgba(255,255,255,1)" indicator-active-color="#00A653" bindchange="vSwiperChange">
+            <swiper-item wx:for="{{swiperData}}" wx:key="index" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
+                <view class="relative swiper-url mr16">
+                    <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
+                    <image class="pic-default z-index5" src="{{item.coverUrl}}" mode="aspectFill"/>
+                </view>
+            </swiper-item>
+        </swiper>
+     <!--重置小圆点的样式 -->
+        <view class="dots"> 
+            <block wx:for="{{swiperData}}" wx:key="index"> 
+                <view class="dot {{index == currentSwiper ? ' active' : ''}}"></view> 
+            </block> 
+        </view> 
+    </view>
     <!-- 菜单 -->
     <view class="menu mr16 ml16 bg-white">
         <view class="c-222222 f22 m-item" wx:for="{{ titleBar }}" data-name="{{item.name}}" data-labelid="{{item.id}}" wx:key="index" bindtap="tapTitleBar">
@@ -58,7 +66,7 @@
             <view class="model flex-1" wx:if="{{ choseView }}" bindtap="tapHide" catchtouchmove="ture"></view>
         </view>
         <view class="ml16 mr16 pb32">
-            <gh-hmList merchantList="{{merchantList}}" source="experience"></gh-hmList>
+            <gh-hmList id='scroll-child' merchantList="{{merchantList}}" source="experience"></gh-hmList>
             <gh-empty prop-type="no-data" prop-text="{{_t['还没有任何内容哦']}}~~" prop-mt="50" wx:if="{{noData}}"></gh-empty>
             <view wx:else class="weui-loadmore {{loadmoreLine?'weui-loadmore_line':''}}">
                 <view wx:if="{{loadmore}}">
@@ -71,3 +79,4 @@
     </view>
    
 </view>
+<view class="to_top" wx:if="{{ scrollTop > 1500 }}" bindtap="fnScrollTop"><image src="/images/index/icon_back.png"></image></view>

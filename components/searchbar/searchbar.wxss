@@ -30,10 +30,12 @@
 .weui-search-bar {
     border: none;
     color: #999999;
-    padding: 10px;
+    padding: 9rpx 8rpx 7rpx;
     background-color: transparent;
 }
-
+.weui-search-bar.p-custom {
+    padding: 20rpx;
+}
 .weui-search-bar__form {
     border-radius: 32rpx;
     border: none;

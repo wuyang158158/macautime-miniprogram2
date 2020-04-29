@@ -16,10 +16,9 @@ var seachType = {
   distance: ['1km','5km','10km','全城'],
   // tag: ['美食','娱乐','酒店','景点','购物'],
   tag: titleBar,
-  sort: [_t['离我最近'],_t['好评优先'],_t['销量最高']]
+  sort: [_t['默认排序'],_t['离我最近'],_t['好评优先'],_t['销量最高']]
 }
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -44,30 +43,27 @@ Page({
       distance: '', // 距离（米）
       lng: '',  // 纬度
       lat: '',  // 经度
-      sortType: ''  // 排序类型：暂无
+      sortType: 0  // 排序类型：暂无
     },
     statusBarHeight: wx.getStorageSync('systemInfo').statusBarHeight - 5,
-    menuData: [
-      { title: '美食', icon: '/images/index/icon_food.png', url: ''},
-      { title: '酒店', icon: '/images/index/icon_hotel.png', url: ''},
-      { title: '购物', icon: '/images/index/icon_shopping.png', url: ''},
-      { title: '景点路线', icon: '/images/index/icon_attractions.png', url: ''},
-      { title: '优惠券', icon: '/images/index/icon_coupons.png', url: ''},
-      { title: '出入境', icon: '/images/index/icon_entry.png', url: ''},
-    ],
-    titleBarFixed: [
-      {name: '全部',labelId: ''},
-      {name: '综合排序',labelId: ''},
-      {name: '离我最近',labelId: '', distance: true},
-    ],
     isFixed: false,
     msParams: {
       limit: PAGE.limit,  //条数
       start: PAGE.start, //页码
-    }
+    },
+    scrollTop: 0,
+    currentSwiper: 0
+  },
+  // 回到顶部
+  fnScrollTop() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   },
   onPageScroll(e) {
-    this.setData({ isFixed: e.scrollTop > 500 })
+    this.selectComponent('#scroll-child').pageScroll(e)
+    this.setData({ isFixed: e.scrollTop > 500, scrollTop: e.scrollTop })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -99,13 +95,17 @@ Page({
       })
       this.data.params.lng = customLocation.lng  // 纬度
       this.data.params.lat = customLocation.lat  // 经度
+      
+      this.data.msParams.lng = customLocation.lng  // 纬度
+      this.data.msParams.lat = customLocation.lat  // 经度
       const rgcData = {
         city: customLocation.name ? customLocation.name : city
       }
       this.setData({
         rgcData: rgcData
       })
-      this.msSearchHome('onPullDownRefresh')
+      // this.msSearchHome('onPullDownRefresh')
+      this.msSelectedMsListHome('onPullDownRefresh')
     }
   },
 
@@ -119,7 +119,12 @@ Page({
     }
     this.setData({
       distance:text,
+      'params.start': 1,
       seachChoseMode: false
+    })
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
     })
     NT.showToast(_t['加载中...'])
     this.msSearchHome('onPullDownRefresh')
@@ -127,10 +132,15 @@ Page({
   // 标签选择
   tapTag(e) {
     const text = e.currentTarget.dataset.text
-    this.data.params.labelId = e.currentTarget.dataset.id
     this.setData({
       tag:text,
-      seachChoseMode: false
+      seachChoseMode: false,
+      'params.start': 1,
+      'params.labelId': e.currentTarget.dataset.id
+    })
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
     })
     NT.showToast(_t['加载中...'])
     this.msSearchHome('onPullDownRefresh')
@@ -142,7 +152,12 @@ Page({
     this.setData({
       sort:text,
       seachChoseMode: false,
-      'params.sortType':  ++index
+      'params.sortType':  index,
+      'params.start': 1,
+    })
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
     })
     NT.showToast(_t['加载中...'])
     this.msSearchHome('onPullDownRefresh')
@@ -150,7 +165,6 @@ Page({
   // 选择点击的类型
   tapChoseView(e) {
     const id = e.currentTarget.dataset.id
-    const detail = e.currentTarget.dataset.detail
     // 精选商家
     if(id === 'special') {
       this.setData({
@@ -159,14 +173,20 @@ Page({
         distance:'',
         choseView: id,
         seachChoseMode: false,
-        'params.sortType':  ''
+        'params.sortType':  0,
+        'params.start': 1,
+        'params.distance': ''
+      })
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 300
       })
       NT.showToast(_t['加载中...'])
       this.msSelectedMsListHome('onPullDownRefresh')
       return
     }
 
-    if(!detail && this.data.choseView === id) {
+    if(this.data.choseView === id) {
       const flag = this.data.seachChoseMode
       this.setData({
         seachChoseMode: !flag,
@@ -185,6 +205,10 @@ Page({
     api.msSelectedMsListHome(this.data.msParams)
     .then(res=>{
       let data = res.data || []
+      that.setData({
+        swiperData: data.slice(0,3),
+        choseView: 'special'
+      })
       data.map(item=>{
         if(item.distince) {
           item.distince = item.distince > 1000 ? `${(item.distince / 1000).toFixed(1)}km` : `${item.distince}m`
@@ -234,18 +258,21 @@ Page({
    */
   onPullDownRefresh: function () {
     this.setData({
-      choseView: '',
+      choseView: 'special',
       sort:'',
       tag:'',
       distance:'',
       'params.labelId': '',
-      'params.sortType': '',
+      'params.sortType': 0,
       seachChoseMode: false,
       loadmoreLine: false,
       loadmore: false
     })
     this.data.params.limit = PAGE.limit
     this.data.params.start = PAGE.start
+
+    this.data.msParams.limit = PAGE.limit
+    this.data.msParams.start = PAGE.start
     this.msSelectMsLabelList(true)
     // this.msSearchHome('onPullDownRefresh')
   },
@@ -345,7 +372,11 @@ Page({
       })
       this.data.params.lng = locationCity.originalData.result.location.lng  // 纬度
       this.data.params.lat = locationCity.originalData.result.location.lat  // 经度
-      this.msSearchHome('onPullDownRefresh')
+      
+      this.data.msParams.lng = locationCity.originalData.result.location.lng  // 纬度
+      this.data.msParams.lat = locationCity.originalData.result.location.lat  // 经度
+      // this.msSearchHome('onPullDownRefresh')
+      this.msSelectedMsListHome('onPullDownRefresh')
       return false;
     }
 
@@ -369,7 +400,11 @@ Page({
       })
       this.data.params.lng = data.originalData.result.location.lng  // 纬度
       this.data.params.lat = data.originalData.result.location.lat  // 经度
-      this.msSearchHome('onPullDownRefresh')
+      
+      this.data.msParams.lng = data.originalData.result.location.lng  // 纬度
+      this.data.msParams.lat = data.originalData.result.location.lat  // 经度
+      // this.msSearchHome('onPullDownRefresh')
+      this.msSelectedMsListHome('onPullDownRefresh')
     }
     BMap.regeocoding({
         success: success
@@ -398,7 +433,10 @@ Page({
           merchantList: [],
           loadmoreLine: false,
           loadmore: false,
-          'params.labelId': labelId
+          'params.labelId': labelId,
+          'params.distance': '',
+          'params.sortType': 0,
+          'params.start': 1
         })
         this.msSearchHome()
         
@@ -407,7 +445,9 @@ Page({
 
   // 轮播图
   vSwiperChange(e) {
-    // console.log(e)
+    this.setData({
+      currentSwiper: e.detail.current
+    })
   },
   // 精选商家-按标签类别获取列表
   msSearchHome(source) {
@@ -415,11 +455,6 @@ Page({
     api.msSearchHome(this.data.params)
     .then(res=>{
       let data = res.data || []
-      if(data.length && !this.data.params.labelId){
-        that.setData({
-          swiperData: data.slice(0,3)
-        })
-      }
       data.map(item=>{
         if(item.distince) {
           item.distince = item.distince > 1000 ? `${(item.distince / 1000).toFixed(1)}km` : `${item.distince}m`

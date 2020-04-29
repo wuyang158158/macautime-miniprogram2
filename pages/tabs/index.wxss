@@ -31,8 +31,20 @@
 }
 .menu .m-item {
     width: 80rpx;
-    margin-right: 90rpx;
+    margin-right: 93rpx;
     margin-bottom: 20rpx;
+}
+.to_top {
+    position: fixed;
+    right: 33rpx;
+    width: 72rpx;
+    height: 72rpx;
+    bottom: 150rpx;
+    z-index: 20;
+}
+.to_top image {
+    width: 100%;
+    height: 100%;
 }
 .menu .m-item image {
     width: 100%;
@@ -127,7 +139,7 @@
     z-index: 1000;
 }
 .emtry-box {
-    width: 190rpx;
+    width: 210rpx;
 }
 .new-w {
     justify-content: space-between;
@@ -144,3 +156,25 @@
     width: 100%;
     background: #EFEFF4;
 }    
+.dots {
+    position: absolute;
+    bottom: 40rpx;
+    right: 16rpx;
+    display: flex;
+}
+    /*未选中时的小圆点样式 */
+    .dot {
+        width:10rpx;
+        height:10rpx;
+        background:rgba(255,255,255,1);
+        opacity:0.5;
+        border-radius:50%;
+        margin-left: 10rpx;
+    }
+    /*选中以后的小圆点样式 */
+.active {
+    width:20rpx;
+    height:10rpx;
+    background:#00A653;
+    border-radius:5rpx;
+}
