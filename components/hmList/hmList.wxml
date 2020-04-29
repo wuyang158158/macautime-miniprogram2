@@ -1,12 +1,12 @@
 <!--components/hmList/hmList.wxml-->
 <view class="flex flex-c">
     <view wx:key="index" wx:for="{{merchantList}}" class="hm-list bg-white mb16 {{bd?'bd1':''}}">
-        <view class="relative hm-top {{ _index === index && item.myVideoUrl && isVideo? 'none' : 'block' }}">
+        <view data-id="{{item.msId}}" data-title="{{item.name}}" catchtap="tapToDetail" class="relative hm-top {{ _index === index && item.myVideoUrl && isVideo? 'none' : 'block' }}">
             <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
             <image class="pic-default-new z-index5" src="{{item.coverUrl}}" lazy-load mode="aspectFill"/>
         </view>
          <video object-fit="cover" class="relative hm-top" custom-cache="{{false}}" enable-progress-gesture="{{ false }}" loop="{{ true }}" controls="{{ false }}" src="{{item.myVideoUrl}}" data-id="{{index}}" wx:if="{{_index === index && item.myVideoUrl && isVideo}}"  autoplay='true' data-id="{{index}}" show-fullscreen-btn="false"/>
-        <view class="hm-bottom" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
+        <view class="hm-bottom" data-id="{{item.msId}}" data-title="{{item.name}}" catchtap="tapToDetail">
             <view class="f30 c-222222 fw6">{{item.name}}</view>
             <!-- 评分处理 -->
             <view class="flex l-h32 mb8 mt8">

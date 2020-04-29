@@ -28,5 +28,5 @@
         <view class="flex-1 c-333333 f30">{{ _t['我的收入明细'] }}</view>
         <image class="icon-more" src="/images/default/icon_more.png" mode="aspectFill"/>
     </view>
-    <view class="issue c-999999 f24 t-c">{{ _t['常见问题'] }}</view>
+    <!-- <view class="issue c-999999 f24 t-c">{{ _t['常见问题'] }}</view> -->
 </view>
