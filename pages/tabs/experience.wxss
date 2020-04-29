@@ -385,6 +385,16 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.h-52 {
+  height: 52px;
+}
+.pl8 {
+  padding-left: 8rpx;
+}
+.top-search {
+  width: 530rpx;
+  z-index: 1000;
+}
 .tab-menu .t-item.active {
   color: #00A653 !important
 }

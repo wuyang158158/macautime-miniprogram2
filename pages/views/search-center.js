@@ -18,7 +18,7 @@ var seachType = {
   distance: ['1km','5km','10km','全城'],
   // tag: ['美食','娱乐','酒店','景点','购物'],
   tag: titleBar,
-  sort: [_t['离我最近'],_t['好评优先'],_t['销量最高']]
+  sort: [_t['默认排序'],_t['离我最近'],_t['好评优先'],_t['销量最高']]
 }
 const locationCity = wx.getStorageSync("locationCity")
 const location = locationCity ? locationCity.originalData.result.location : ''
@@ -38,7 +38,7 @@ Page({
       distance: '', // 距离（米）
       lng: location.lng,  // 纬度
       lat: location.lat,  // 经度
-      sortType: ''  // 排序类型：暂无
+      sortType: 0  // 排序类型：暂无
     },
     total: 0,
     merchantTotal: 0,
@@ -286,18 +286,9 @@ Page({
   // 热搜词请求
   hostSearch() {
     this.setData({
-      historyRecord: wx.getStorageSync('historyRecord') || []
+      historyRecord: wx.getStorageSync('historyRecord') || [],
+      hostSearch: ['咖啡','美发','小食','家常菜','日本料理']
     })
-    // api.hostSearch()
-    // .then(res=>{
-    //   // console.log(res)
-    //   this.setData({
-    //     hostSearch: res
-    //   })
-    // })
-    // .catch(err=>{
-    //   console.log(err)
-    // })
   },
   // 清空搜索历史记录
   tapClearRecord() {
@@ -504,7 +495,7 @@ Page({
     this.setData({
       sort:text,
       seachChoseMode: false,
-      'params.sortType':  ++index
+      'params.sortType':  index
     })
     this.msSearchHome('onPullDownRefresh')
   },

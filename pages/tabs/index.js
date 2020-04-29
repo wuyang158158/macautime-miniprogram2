@@ -104,6 +104,7 @@ Page({
       this.setData({
         rgcData: rgcData
       })
+      NT.showToast(_t['加载中...'])
       // this.msSearchHome('onPullDownRefresh')
       this.msSelectedMsListHome('onPullDownRefresh')
     }

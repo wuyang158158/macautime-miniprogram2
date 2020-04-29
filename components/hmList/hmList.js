@@ -65,7 +65,6 @@ Component({
     },
     //页面滚动触发
     pageScroll(event) {
-      // console.log(meigeSP,11) //每个视频距离顶部的高度 
       curScrollTop = event.scrollTop
       let scrollTop = event.scrollTop //页面滚动
       if (scrollTop==0){
@@ -76,7 +75,6 @@ Component({
         if (indexKey + 1 < meigeSP.length && scrollTop >= (meigeSP[indexKey]) - 100) {
           this.setData({ _index: indexKey + 1 })
           indexKey += 1
-          console.log("indexKey", indexKey)
         }
       } else { //页面向下滚动
         if (direction - scrollTop < 15) { //每次滚动的距离小于15时不改变  减少setData的次数
@@ -115,7 +113,7 @@ Component({
       meigeSP = []
       totalLength = 0
      }
-     this.setData({ isVideo: true || wx.getStorageSync('isVideo') })
+     this.setData({ isVideo: wx.getStorageSync('isVideo') })
      curPage = Math.ceil(params.length/8)
       setTimeout(()=>{
         this.spHeight()

@@ -2,7 +2,9 @@
 <image class="header-bg header-bg-h" src="/images/index/index-bgv.png" mode="aspectFill" wx:if="{{userInfo.level}}"/>
 <view class="container">
   <!-- 搜索组件 -->
-  <gh-searchbar bind:search="search" bind:tapSearch="tapSearch" searchPlaceholder="{{ _t['搜索商家/用户'] }}" source="index" navigationStyle="custom" disabled></gh-searchbar>
+  <view class="flex h-52 fixed top-search pl8" style="top: {{ statusBarHeight }}px">
+    <gh-searchbar bind:search="search" bind:tapSearch="tapSearch" searchPlaceholder="{{ _t['搜索商家/用户'] }}" source="index" navigationStyle="custom" disabled></gh-searchbar>
+  </view>
   <view class="header">
     <view class="common" wx:if="{{!userInfo.level}}">
       <image class="header-bg" src="/images/index/index-bg.jpg" mode="aspectFill"/>

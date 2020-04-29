@@ -14,6 +14,7 @@ Page({
    */
   data: {
     showEndLine: false,
+    statusBarHeight: wx.getStorageSync('systemInfo').statusBarHeight - 5,
     _t: _t,
     userInfo: wx.getStorageSync("userInfo") || {}, //用户信息
     params: { //请求首页推荐列表

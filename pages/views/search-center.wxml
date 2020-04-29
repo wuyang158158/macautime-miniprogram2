@@ -48,7 +48,7 @@
             <view class="flex-1 c-333333 f32">{{ _t['热门搜索'] }}</view>
           </view>
           <view class="flex flex-wrap mt32" wx:if="{{hostSearch.length}}">
-            <view wx:for="{{hostSearch}}" wx:key="index" class="s-tag mb16" data-content="{{item.content}}" bindtap="tapHostSearch">{{item.content}}</view>
+            <view wx:for="{{hostSearch}}" wx:key="index" class="s-tag mb16" data-content="{{item}}" bindtap="tapHostSearch">{{item}}</view>
           </view>
         </view>
       </view>
