@@ -3,8 +3,8 @@
     <!-- 搜索组件 -->
     <view class="flex h-52 search-box  {{ isFixed?'bg-white':'' }}" style="top: {{ isFixed?0:statusBarHeight }}px;padding-top:{{isFixed?statusBarHeight:0}}px">
         <view class="location f24 flex ml32" bindtap="tapToMapActivity">
-            <image class="location-icon" src="/images/index/index_icon_location.png" mode="aspectFill"/>
-            <view class="c-222222 w-custom ell">{{rgcData.city}}</view>
+            <image class="location-icon" src="{{ isFixed?'/images/index/index_icon_location.png':'/images/index/home_icon_location_b.png' }}" mode="aspectFill"/>
+            <view class="{{ isFixed?'c-222222':'c-FFFFFF' }} w-custom ell">{{rgcData.city}}</view>
         </view>
         <view class="flex-1">
             <gh-searchbar bind:search="search" bind:tapSearch="tapSearch" searchPlaceholder="{{_t['搜索商家']}}" source="index" position="static" disabled></gh-searchbar>
@@ -15,15 +15,17 @@
     <!-- 轮播图 -->
     <view class="relative b-banner">
         <swiper class="swiper" indicator-dots="{{ false }}" autoplay interval="5000" indicator-color="rgba(255,255,255,1)" indicator-active-color="#00A653" bindchange="vSwiperChange">
-            <swiper-item wx:for="{{swiperData}}" wx:key="index" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
+            <swiper-item wx:for="{{swiperData}}" wx:key="index" data-index="{{ index }}" bindtap="tapToDetail">
                 <view class="relative swiper-url mr16">
                     <image class="pic-default" src="/images/default/bg_img.png" mode="aspectFill"/>
-                    <image class="pic-default z-index5" src="{{item.coverUrl}}" mode="aspectFill"/>
+                    <image class="pic-default z-index5" src="{{item.imageUrl}}" mode="aspectFill"/>
                 </view>
             </swiper-item>
         </swiper>
+        <!-- 占位图 -->
+        <image class="pic-default" src="/images/index/mg_placeholder.png" mode="aspectFill"/>
      <!--重置小圆点的样式 -->
-        <view class="dots"> 
+        <view class="dots" wx:if="{{ swiperData.length }}"> 
             <block wx:for="{{swiperData}}" wx:key="index"> 
                 <view class="dot {{index == currentSwiper ? ' active' : ''}}"></view> 
             </block> 

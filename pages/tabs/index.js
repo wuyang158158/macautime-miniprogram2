@@ -63,7 +63,7 @@ Page({
   },
   onPageScroll(e) {
     this.selectComponent('#scroll-child').pageScroll(e)
-    this.setData({ isFixed: e.scrollTop > 500, scrollTop: e.scrollTop })
+    this.setData({ isFixed: e.scrollTop > 160, scrollTop: e.scrollTop })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -73,6 +73,7 @@ Page({
       title: _t['首页']
     });
     this.msSelectMsLabelList()
+    this.getBannerData()
   },
 
   /**
@@ -110,7 +111,12 @@ Page({
       this.msSelectedMsListHome('onPullDownRefresh')
     }
   },
-
+  // banner 数据
+  getBannerData() {
+    api.imListAllActivityInfo().then(res =>{
+      this.setData({ swiperData: res })
+    })
+  },
   // 选择距离
   tapDistance(e) {
     const text = e.currentTarget.dataset.text
@@ -211,9 +217,6 @@ Page({
     api.msSelectedMsListHome(this.data.msParams)
     .then(res=>{
       let data = res.data || []
-      that.setData({
-        swiperData: data.slice(0,3)
-      })
       data.map(item=>{
         if(item.distince) {
           item.distince = item.distince > 1000 ? `${(item.distince / 1000).toFixed(1)}km` : `${item.distince}m`
@@ -279,7 +282,7 @@ Page({
     this.data.msParams.limit = PAGE.limit
     this.data.msParams.start = PAGE.start
     this.msSelectMsLabelList(true)
-    // this.msSearchHome('onPullDownRefresh')
+    this.getBannerData()
   },
 
   /**
@@ -412,7 +415,20 @@ Page({
       this.msSelectedMsListHome('onPullDownRefresh')
     }
     BMap.regeocoding({
-        success: success
+        success: success,
+        fail: () => {
+          wx.hideLoading()
+          wx.showModal({
+            content: _t['检测到您没打开定位权限，是否去设置打开'],
+            confirmText: _t['前往设置'],
+            confirmColor: '#00A653',
+            success(res) {
+              if (res.confirm) {
+                wx.openSetting()
+              }
+            }
+          })
+        }
     });  
   },
   //点击tabbbar事件
@@ -514,10 +530,20 @@ Page({
   },
   // 跳转到详情
   tapToDetail(e) {
-    const ID = e.currentTarget.dataset.id
-    const TITLE = e.currentTarget.dataset.title
+    const index = e.currentTarget.dataset.index
+    const params = this.data.swiperData[index]
+    if(params.ex2) {
+      wx.navigateTo({
+        url: '/pages/views/ac-detail?id=' + params.ex2 + '&title=' + params.ex3
+      })
+      return
+    }
     wx.navigateTo({
-      url: '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE
+      url: `/pages/html/index`,
+      success: function(result) {
+        // 通过eventChannel向被打开页面传送数据
+        result.eventChannel.emit('params', {url: params.activityUrl ,name: params.name})
+      }
     })
   }
 })

@@ -1356,6 +1356,12 @@ export default {
       execute(`/locationSearch/1.0/`, 'POST', query, resolve, reject)
     })
   },
+  // 首页banner
+  imListAllActivityInfo(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/imListAllActivityInfo/1.0/`, 'POST', query, resolve, reject)
+    })
+  },
   
   /*** file-end ***/
 }

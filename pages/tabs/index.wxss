@@ -13,6 +13,8 @@
 }
 .swiper{
     height: 400rpx;
+    position: relative;
+    z-index: 3;
 }
 .swiper-url{
     width: 100%;

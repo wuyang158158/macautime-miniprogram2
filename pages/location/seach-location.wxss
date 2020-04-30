@@ -3,7 +3,7 @@ page{
     background: #fff;
 }
 .content{
-    margin-top: 52px;
+    margin-top: 10px;
 }
 .h-132{
     height: 132rpx;

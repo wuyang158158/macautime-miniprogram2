@@ -45,33 +45,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.poSelectOrderPaySuccess()
-    // ctime = setInterval(()=>{
-    //   this.poSelectOrderPaySuccess()
-    // },2000)
+    ctime = setInterval(()=>{
+      this.poSelectOrderPaySuccess()
+    },2000)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    // clearInterval(ctime)
-    // ctime = null
+    clearInterval(ctime)
+    ctime = null
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    // clearInterval(ctime)
-    // ctime = null
+    clearInterval(ctime)
+    ctime = null
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    
   },
 
   /**
@@ -107,9 +106,9 @@ Page({
     api.poSelectOrderPaySuccess({orderNumber:options.orderNumber})
     .then(res=>{
       if(res){
-        // clearInterval(that.data.ctime)
-        // that.data.ctime = null
         if(res.result){
+          clearInterval(that.data.ctime)
+          that.data.ctime = null
           wx.redirectTo({
             url: '/pages/vip/payment-ok?source=' + options.source + '&orderNumber=' + options.orderNumber
           })

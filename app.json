@@ -80,7 +80,8 @@
     "pages/language/language",
     "pages/cropper/cropper",
     "pages/views/exp-comment-success",
-    "pages/concat/index"
+    "pages/concat/index",
+    "pages/html/index"
   ],
   "subpackages": [],
   "preloadRule": {},
