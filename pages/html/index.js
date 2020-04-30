@@ -15,19 +15,12 @@ Page({
     const that = this
     const eventChannel = that.getOpenerEventChannel()
     eventChannel.on('params', function(data) {
-      console.log(data)
-      wx.showLoading({ title: '加载中..' })
       wx.setNavigationBarTitle({
         title: data.name
       })
       that.setData({ url: data.url })
     })
 
-  },
-  bindloadSuccess() {
-    wx.hideLoading({
-      complete: (res) => {},
-    })
   },
 
   /**
