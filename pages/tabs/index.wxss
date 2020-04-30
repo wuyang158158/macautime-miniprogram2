@@ -139,7 +139,7 @@
     z-index: 1000;
 }
 .emtry-box {
-    width: 210rpx;
+    width: 220rpx;
 }
 .new-w {
     justify-content: space-between;
