@@ -23,8 +23,9 @@ Page({
     choseVip: false, // 默认不选中会员优惠
     userAgreement: true, //购买协议需要用户手动确认
     discountPrice: 0, //已优惠
-    // payAmount: 0, //总价
+    payAmount: '', //总价
     ePrice: 0, //最终价格
+    params: {}
   },
 
   /**
@@ -38,7 +39,6 @@ Page({
     const eventChannel = this.getOpenerEventChannel()
     // 接受上一个页面传递过来的数据
     eventChannel.on('params', data => {
-      console.log(data)
       this.setData({
         params: data,
         payAmount: data.price, //总价
@@ -150,7 +150,6 @@ Page({
     }
     api.saveOrder(saveOrderRequest)
     .then(res=>{
-      console.log(res)
       if(Number(data.options.paymentType) === 1){ //线上支付
         const expPayOrderModel = {
           amount: data.ePrice ,

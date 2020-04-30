@@ -11,7 +11,8 @@ Page({
    */
   data: {
     _t: _t,
-    copyTxt: ''
+    copyTxt: '',
+    options: {}
   },
 
   /**
