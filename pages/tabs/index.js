@@ -93,15 +93,16 @@ Page({
         key:"customLocation",
         data: customLocation
       })
-      this.data.params.lng = customLocation.lng  // 纬度
-      this.data.params.lat = customLocation.lat  // 经度
       
-      this.data.msParams.lng = customLocation.lng  // 纬度
-      this.data.msParams.lat = customLocation.lat  // 经度
       const rgcData = {
         city: customLocation.name ? customLocation.name : city
       }
       this.setData({
+        'params.lng': customLocation.lng,
+        'params.lat': customLocation.lat,
+        'msParams.lng': customLocation.lng,
+        'msParams.lat': customLocation.lat,
+        'msParams.start': PAGE.start,
         rgcData: rgcData
       })
       NT.showToast(_t['加载中...'])
@@ -169,14 +170,8 @@ Page({
     // 精选商家
     if(id === 'special') {
       this.setData({
-        sort:'',
-        tag:'',
-        distance:'',
         choseView: id,
-        seachChoseMode: false,
-        'params.sortType':  0,
-        'params.start': 1,
-        'params.distance': ''
+        seachChoseMode: false
       })
       wx.pageScrollTo({
         scrollTop: 0,
@@ -203,12 +198,21 @@ Page({
   // 精选商家-首页
   msSelectedMsListHome(source) {
     const that = this
+    this.setData({
+      sort:'',
+      tag:'',
+      distance:'',
+      choseView: 'special',
+      'params.sortType':  0,
+      'params.start': 1,
+      'params.labelId': '',
+      'params.distance': ''
+    })
     api.msSelectedMsListHome(this.data.msParams)
     .then(res=>{
       let data = res.data || []
       that.setData({
-        swiperData: data.slice(0,3),
-        choseView: 'special'
+        swiperData: data.slice(0,3)
       })
       data.map(item=>{
         if(item.distince) {

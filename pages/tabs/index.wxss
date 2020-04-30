@@ -178,3 +178,6 @@
     background:#00A653;
     border-radius:5rpx;
 }
+.b-banner {
+    height: 400rpx;
+}
