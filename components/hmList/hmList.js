@@ -29,7 +29,8 @@ Component({
   data: {
     _t: _t, //翻译
     _index: 0,
-    isVideo: false
+    isVideo: false,
+    showVideo: false
   },
 
   /**
@@ -73,7 +74,7 @@ Component({
       }
       if (scrollTop >= direction) { //页面向上滚动indexKey
         if (indexKey + 1 < meigeSP.length && scrollTop >= (meigeSP[indexKey]) - 100) {
-          this.setData({ _index: indexKey + 1 })
+          this.setData({ _index: indexKey + 1, showVideo: false })
           indexKey += 1
         }
       } else { //页面向下滚动
@@ -82,28 +83,32 @@ Component({
         }
         if (indexKey - 1 > 0 && scrollTop < (meigeSP[indexKey - 1] - 100)) {
           indexKey -= 1
-          this.setData({ _index: indexKey })
+          this.setData({ _index: indexKey, showVideo: false })
         }
       }
       direction = scrollTop
     },
   
     //播放按钮点击时触发触发
-    videoPlay(e) {
-      let _index = e.currentTarget.dataset.id
-      this.setData({ //让video组件显示出来，不然点击时没有效果
-        _index
-      })
-      //停止正在播放的视频
-      let videoContextPrev = wx.createVideoContext(_index )
-      videoContextPrev.stop();
+    // videoPlay(e) {
+    //   let _index = e.currentTarget.dataset.id
+    //   this.setData({ //让video组件显示出来，不然点击时没有效果
+    //     _index
+    //   })
+    //   //停止正在播放的视频
+    //   let videoContextPrev = wx.createVideoContext(_index )
+    //   videoContextPrev.stop();
   
-      setTimeout( ()=> {
-        //将点击视频进行播放
-        let videoContext = wx.createVideoContext(_index )
-        videoContext.play();
-      }, 500)
-    },
+    //   setTimeout( ()=> {
+    //     //将点击视频进行播放
+    //     let videoContext = wx.createVideoContext(_index )
+    //     videoContext.play();
+    //   }, 500)
+    // },
+    // 视频缓冲完成时
+    tagLoadingEnd() {
+      this.setData({ showVideo: true })
+    }
   },
   observers: {
     'merchantList': function (params) {//  'merchantList'是要监听的字段，（params）是已更新变化后的数据
