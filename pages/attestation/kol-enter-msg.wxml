@@ -34,6 +34,23 @@
         </view>
     </view>
 
+    <view class="weui-msg" wx:if="{{isCertificationKol == '2'}}">
+        <view class="weui-msg__icon-area">
+            <icon type="success" color="#00A653" size="100"></icon>
+        </view>
+        <view class="weui-msg__text-area pl32 pr32">
+            <view class="weui-msg__title f36">{{ _t['审核已通过'] }}</view>
+            <view class="weui-msg__desc f28 c-999999">
+                <view class="t-c">{{_t['恭喜您，审核已通过']}}</view>
+            </view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn next c-00A653 f36" type="primary" bindtap="tapToBack">{{_t['确定']}}</button>
+            </view>
+        </view>
+    </view>
+
     <view class="weui-msg" wx:if="{{isCertificationKol == '3'}}">
         <view class="weui-msg__icon-area">
             <image class="img" src="/images/attestation/icon_fail.png" mode="aspectFill"/>

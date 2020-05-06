@@ -47,16 +47,15 @@
             </view>
         </view>
 
-        <view class="flex f30 c-222222 h-90 ml32 mr32" bindtap="tapToBindBankCard">
+        <!-- <view class="flex f30 c-222222 h-90 ml32 mr32" bindtap="tapToBindBankCard">
             <view class="">{{_t['银行卡']}}</view>
             <input class="flex-1 weui-input t-right" disabled placeholder="{{isUsBankAuth?_t['已绑定有银行卡']:_t['请绑定']}}"/>
             <view class="picker flex">
-                <!-- <text >{{array[item.account]}}</text> -->
                 <image class="more-icon" src="/images/center/icon_more-2.png" mode="aspectFill"/>
             </view>
-        </view>
+        </view> -->
     </view>
 
-    <button class="weui-btn" type="primary" formType="submit">提交</button>
+    <button class="weui-btn mt155" type="primary" formType="submit">提交</button>
     </form>
 </view>
