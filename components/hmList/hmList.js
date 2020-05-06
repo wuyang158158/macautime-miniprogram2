@@ -106,7 +106,7 @@ Component({
     },
   },
   observers: {
-    'merchantList': function (params) {//  'params'是要监听的字段，（params）是已更新变化后的数据
+    'merchantList': function (params) {//  'merchantList'是要监听的字段，（params）是已更新变化后的数据
     if(!params.length) return
     // 是否为第一页的数据 是则清空
      if(params.length <= 8) {

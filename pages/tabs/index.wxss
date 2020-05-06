@@ -163,6 +163,7 @@
     bottom: 40rpx;
     right: 16rpx;
     display: flex;
+    z-index: 3;
 }
     /*未选中时的小圆点样式 */
     .dot {
