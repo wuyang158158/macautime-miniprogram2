@@ -62,7 +62,7 @@
         <view class="c-nav flex bg-white">
             <button class="flex-1 bg-white flex br1" type="contact" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{ userInfo? 'tapToVip': 'tapToLogin' }}">
                 <image class="open-vip-icon" src="/images/center/icon_vip42.png" mode="aspectFill"/>
-                <view class="open-vip-text f30 c-222222 fw6 ml16">{{ userInfo.level? _t['会员中心']: _t['开通会员']}}</view>
+                <view class="open-vip-text f30 c-222222 fw6 ml16">{{ userInfo.level? _t['黄金会员']: _t['开通会员']}}</view>
             </button>
             <button class="flex-1 bg-white flex" type="contact" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{ userInfo? 'tapAttestation': 'tapToLogin' }}">
                 <image class="open-vip-icon" src="/images/center/icon_attest.png" mode="aspectFill"/>

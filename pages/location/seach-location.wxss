@@ -3,14 +3,47 @@ page{
     background: #fff;
 }
 .content{
-    margin-top: 10px;
+    margin-top: 50px;
 }
 .h-132{
-    height: 132rpx;
+    /* height: 132rpx; */
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
 }
-.c-999999{
+.lo-item {
+    padding: 25rpx 0;
+}
+/* .c-999999{
     height: 38rpx;
+} */
+.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    z-index: 10;
+    background: #fff;
+}
+.green {
+    color: #00A653;
+    margin-left: 10rpx;
+}
+.h-tag {
+    padding: 10rpx 32rpx;
+    background: #F5F5F5;
+    font-size: 26rpx;
+    display: inline-block;
+    color: #222;
+    border-radius: 28rpx;
+    margin-right: 10rpx;
+    margin-bottom: 16rpx;
+}
+.mt50 {
+    margin-top: 50rpx;
+}
+.icon {
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 10rpx;
 }

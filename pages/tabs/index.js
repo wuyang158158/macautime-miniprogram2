@@ -96,7 +96,7 @@ Page({
       })
       
       const rgcData = {
-        city: customLocation.name ? customLocation.name : city
+        city: customLocation.name || customLocation.city
       }
       this.setData({
         'params.lng': customLocation.lng,

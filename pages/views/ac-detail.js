@@ -362,15 +362,6 @@ Page({
       NT.showModal(err.message||_t['请求失败！'])
     })
   },
-  // 关闭half-screen-dialog
-  closeDialog(e){
-    this.setData({
-      istrue: false
-    })
-    if(this.data.acData.videoUrl&&this.data.current===0){
-      this.videoContext.play()
-    }
-  },
   //点击查看套餐详情
   tapShowMealDetail(e){
     const id = e.currentTarget.dataset.id
@@ -405,35 +396,6 @@ Page({
         // 通过eventChannel向被打开页面传送数据
         result.eventChannel.emit('params', params)
       }
-    })
-  },
-  // 领取体验
-  tapGetEx() {
-    NT.showToast(_t['处理中...'])
-    const acData = this.data.acData
-    const expAllMeal = this.data.expAllMeal
-    const saveDisCountOrderForm = {
-      expMealSerial: expAllMeal[0].mealSerial,
-      expSerial: acData.experienceSerial
-    }
-    api.saveDisCountOrder(saveDisCountOrderForm)
-    .then(res=>{
-      acData.isBuyed = true;
-      this.setData({
-        acData: acData
-      })
-      NT.showModalPromise(_t['领取成功，是否查看订单详情？'])
-        .then(()=>{
-          wx.navigateTo({
-            url: '/pages/views/ticket-detail?orderCode=' + res + '&userName=' + this.data.userInfo.userName
-          })
-        })
-        .catch(()=>{
-
-        })
-    })
-    .catch(err=>{
-      NT.showModal(err.message||_t['请求失败！'])
     })
   },
   //点击查看全部评论

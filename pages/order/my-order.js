@@ -68,9 +68,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // wx.navigateTo({
-    //   url: '/pages/views/ticket-detail?id=1'
-    // })
     wx.setNavigationBarTitle({
       title: _t['我的订单'],
     })
@@ -231,13 +228,6 @@ Page({
     wx.navigateTo({
       // url: '/pages/views/order-detail?orderNumber=' + orderCode + '&userName=' + wx.getStorageSync("userInfo").userName + '&status=' + status + '&coverImgUrl=' + coverImgUrl + '&statusStr=' + statusStr
       url: '/pages/views/order-detail?orderNumber=' + orderCode
-    })
-  },
-  //点击去验票页面
-  tapToTicketDetail(e){
-    const orderCode = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/views/ticket-detail?orderCode=' + orderCode + '&userName=' + wx.getStorageSync("userInfo").userName
     })
   },
   // 跳转到申请退款页面

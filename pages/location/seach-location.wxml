@@ -1,15 +1,30 @@
 <!--pages/location/seach-location.wxml-->
 <view class="container">
   <!-- 搜索组件 -->
-  <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="seach" source="location" input-val="{{inputVal}}" inputShowed searchPlaceholder="{{ _t['搜索地点'] }}"></gh-searchbar>
+  <view class="fixed-top">
+      <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="location" input-val="{{inputVal}}" inputShowed searchPlaceholder="{{ _t['搜索地点'] }}"></gh-searchbar>
+  </view>
   
 
   <view class="content pl32 pr32">
-    <view wx:for="{{sugData}}" wx:if="{{sugData.length}}" wx:key="index" class="flex h-132 {{index+1 != sugData.length ? 'bd1' : ''}}" data-uid="{{item.uid}}" bindtap="tapTable">
-        <view class="f32 c-222222">{{item.name}}</view>
-        <view class="f24 c-999999">{{item.province+item.city+item.district}}</view>
+    <view wx:for="{{sugData}}" wx:if="{{sugData.length}}" wx:key="index" class="lo-item flex h-132 {{index+1 != sugData.length ? 'bd1' : ''}}" data-index="{{index}}" bindtap="tapTable">
+        <view class="f32 c-222222">{{item.title}}</view>
+        <view class="f24 c-999999 mt8">{{item.address}}</view>
     </view>
-
-    <gh-empty prop-type="no-order" prop-text="{{ _t['搜索地点'] }}" prop-mt="250" wx:if="{{!sugData.length}}"></gh-empty>
+    <view class="history mt32" wx:if="{{!sugData.length}}">
+      <view class="h-cont">
+        <view class="h-title f32 c-333333 fw6">当前定位</view>
+        <view class="h-desc mt32">
+          <view class="c-222222 f26 flex" bindtap="tapTableCur"><image class="icon" src="/images/index/index_icon_location.png"></image>{{ rgcData.city || '定位失败' }} <text class="green" wx:if="{{ !rgcData.city }}" catchtap="getCurrentCity">重新定位</text></view>
+        </view>
+      </view>
+      <view class="h-cont mt50" wx:if="{{ historyCity.length }}">
+        <view class="h-title f32 c-333333 fw6">历史记录</view>
+        <view class="h-desc mt32">
+          <view class="h-tag" wx:key="*this" wx:for="{{ historyCity }}" data-name="{{ item }}" bindtap="tapGetHistory">{{ item }}</view>
+        </view>
+      </view>
+    </view>
+    <!-- <gh-empty prop-type="no-order" prop-text="{{ _t['搜索地点'] }}" prop-mt="250" wx:if="{{!sugData.length}}"></gh-empty> -->
   </view>
 </view>

@@ -3,7 +3,7 @@
   <!-- 搜索组件 -->
   <gh-searchbar bind:search="search" bind:bindconfirm="bindconfirm" source="seach" input-val="{{inputVal}}" inputShowed searchPlaceholder="{{ source !== 'merchant'?_t['搜索商家/用户']: _t['搜索商家']}}"></gh-searchbar>
 
-  <view class="mt52">
+  <view class="">
 
     <view class="flex m-h flex-d" wx:if="{{seachChoseMode}}">
       <view class="flex pl16 pr16 pb32 pt16 w-100 bg-EFEFF4">

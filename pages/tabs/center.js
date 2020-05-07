@@ -124,9 +124,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // wx.navigateTo({
-    //   url: '/pages/integral/time-coin-task'
-    // })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -139,10 +137,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // console.log(this.data.userInfo)
-    // this.setData({
-    //   userInfo: wx.getStorageSync("userInfo"), //用户信息
-    // })
     this.fnGetUserInfo()
   },
 

@@ -78,7 +78,7 @@ Page({
   },
   tapToBack() {
     wx.navigateBack({
-      delta: 2
+      delta: 1
     })
   },
   tapResubmit() {
