@@ -14,7 +14,7 @@ Page({
     baseImageHost: config.baseImageHost,
     userAgreement: true,
     accordingImage: '',
-    array: ['微博', '抖音', '快手', _t['微视']],
+    array: ['微博', '抖音', '快手', _t['微视'],'西瓜','今日头条','小红书','大众点评','携程','其他'],
     platformList: [
       {
         platformName: '微博',
