@@ -35,7 +35,7 @@
                 <view class="f30">{{ _t['使用规则'] }}</view>
                 <view >1. {{ _t['仅限时光卡会员用户领取；'] }}</view>
                 <view >2. 有效期至 {{ item.endTimeStr || '' }}；</view>
-                <view >3. {{ _t['限时领取，每人仅限一张。'] }}</view>
+                <view >3. {{ _t['限时领取，每人仅限一张；'] }}</view>
                 <view wx:if="{{ item.conditionName }}">4. {{ item.conditionName }}；</view>
                 <view wx:if="{{ item.useConditions }}">5. {{ item.useConditions }}；</view>
             </view>

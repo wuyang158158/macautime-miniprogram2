@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -141,6 +141,20 @@
 					"id": -1,
 					"name": "pages/views/all-exp-comment",
 					"pathName": "pages/views/all-exp-comment",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/views/ac-detail",
+					"pathName": "pages/views/ac-detail",
+					"query": "id=26631410320147581&title=%E6%B9%98%E8%8F%9C%E9%A6%86",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/concat/index",
+					"pathName": "pages/concat/index",
 					"query": "",
 					"scene": null
 				}

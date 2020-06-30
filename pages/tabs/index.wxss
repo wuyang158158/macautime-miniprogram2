@@ -12,38 +12,51 @@
     height: 52px;
 }
 .swiper{
-    height: 336rpx;
+    height: 400rpx;
+    position: relative;
+    z-index: 3;
 }
 .swiper-url{
     width: 100%;
-    height: 336rpx;
-    border-radius:16rpx;
+    height: 400rpx;
+    /* border-radius:16rpx; */
     overflow: hidden;
 }
 .menu {
     border-radius: 16rpx;
-    padding: 30rpx 39rpx 10rpx;
+    padding: 30rpx 59rpx 10rpx;
     display: flex;
     flex-wrap: wrap;
+    margin-top: -16rpx;
+    position: relative;
+    z-index: 10;
 }
 .menu .m-item {
-    width: 120rpx;
-    height: 140rpx;
-    margin-right: 55rpx;
+    width: 80rpx;
+    margin-right: 93rpx;
     margin-bottom: 20rpx;
-    position: relative;
+}
+.to_top {
+    position: fixed;
+    right: 33rpx;
+    width: 72rpx;
+    height: 72rpx;
+    bottom: 150rpx;
+    z-index: 20;
+}
+.to_top image {
+    width: 100%;
+    height: 100%;
 }
 .menu .m-item image {
     width: 100%;
     display: block;
-    height: 120rpx;
+    height: 80rpx;
 }
 .menu .m-item .m-name {
     text-align: center;
-    position: absolute;
     width: 100%;
     text-align: center;
-    bottom: 0;
 }
 .menu .m-item:nth-child(4n) {
     margin-right: 0;
@@ -69,7 +82,6 @@
     width: 100%;
     font-size: 26rpx;
     color: #222222;
-    display: flex;
     top:0;
     left:0;
     z-index:100;
@@ -119,9 +131,56 @@
     margin-top: 40rpx;
 }
 .w-custom{
-    width: 100rpx;
+    width: 80rpx;
 }
 .pic-default{
     height: 100%;
 }
-
+.search-box {
+    position: fixed;
+    z-index: 1000;
+}
+.emtry-box {
+    width: 230rpx;
+}
+.new-w {
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 40rpx;
+}
+.items {
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 80rpx;
+}
+.isFixed {
+    position: fixed;
+    width: 100%;
+    background: #EFEFF4;
+}    
+.dots {
+    position: absolute;
+    bottom: 40rpx;
+    right: 16rpx;
+    display: flex;
+    z-index: 3;
+}
+    /*未选中时的小圆点样式 */
+    .dot {
+        width:10rpx;
+        height:10rpx;
+        background:rgba(255,255,255,1);
+        opacity:0.5;
+        border-radius:50%;
+        margin-left: 10rpx;
+    }
+    /*选中以后的小圆点样式 */
+.active {
+    width:20rpx;
+    height:10rpx;
+    background:#00A653;
+    border-radius:5rpx;
+}
+.b-banner {
+    height: 400rpx;
+}

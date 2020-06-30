@@ -18,7 +18,7 @@ var seachType = {
   distance: ['1km','5km','10km','全城'],
   // tag: ['美食','娱乐','酒店','景点','购物'],
   tag: titleBar,
-  sort: [_t['好评优先'],_t['离我最近'],'最新上市',_t['最高热度'],_t['网红聚集地']]
+  sort: [_t['默认排序'],_t['离我最近'],_t['好评优先'],_t['销量最高']]
 }
 const locationCity = wx.getStorageSync("locationCity")
 const location = locationCity ? locationCity.originalData.result.location : ''
@@ -38,7 +38,7 @@ Page({
       distance: '', // 距离（米）
       lng: location.lng,  // 纬度
       lat: location.lat,  // 经度
-      sortType: ''  // 排序类型：暂无
+      sortType: 0  // 排序类型：暂无
     },
     total: 0,
     merchantTotal: 0,
@@ -104,6 +104,9 @@ Page({
 
   },
 
+  onPageScroll(e) {
+    this.selectComponent('#scroll-child').pageScroll(e)
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    
@@ -213,7 +216,6 @@ Page({
   },
   // 搜索
   search(e) {
-    console.log(e)
     if(e.detail){
       // this.getLikeage(e.detail)
       // 商家搜索
@@ -284,18 +286,9 @@ Page({
   // 热搜词请求
   hostSearch() {
     this.setData({
-      historyRecord: wx.getStorageSync('historyRecord') || []
+      historyRecord: wx.getStorageSync('historyRecord') || [],
+      hostSearch: ['咖啡','美发','小食','家常菜','日本料理']
     })
-    // api.hostSearch()
-    // .then(res=>{
-    //   // console.log(res)
-    //   this.setData({
-    //     hostSearch: res
-    //   })
-    // })
-    // .catch(err=>{
-    //   console.log(err)
-    // })
   },
   // 清空搜索历史记录
   tapClearRecord() {
@@ -341,11 +334,13 @@ Page({
     api.msSearchHome(that.data.params)
     .then(res=>{
       let data = res.data || []
-      // data.map(item => {
-      //   // debugger
-      //   item.stime = util.formatTimeTwo(item.stimeStr,'Y/M/D')
-      //   item.activityTag = item.activityTag ? item.activityTag.split(',')[0] : ''
-      // })
+      data.map(item => {
+        // debugger
+        item.labelRemark = item.labelRemark?[{labelRemark: item.labelRemark}]:[]
+        if(item.distince) {
+          item.distince = item.distince > 1000 ? `${(item.distince / 1000).toFixed(1)}km` : `${item.distince}m`
+        }
+      })
       that.setData({
         noData: false,
         recommend: source === 'onPullDownRefresh' ? data : this.data.recommend.concat(data),
@@ -496,10 +491,13 @@ Page({
   // 智能排序选择
   tapSort(e) {
     const text = e.currentTarget.dataset.text
+    var index = e.currentTarget.dataset.index
     this.setData({
       sort:text,
-      seachChoseMode: false
+      seachChoseMode: false,
+      'params.sortType':  index
     })
+    this.msSearchHome('onPullDownRefresh')
   },
   tapHide() {
     this.setData({

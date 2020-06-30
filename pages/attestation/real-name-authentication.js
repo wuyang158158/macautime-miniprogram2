@@ -185,7 +185,7 @@ Page({
         wx.navigateBack({
           delta: 1
         })
-      },2000)
+      },1000)
     })
     .catch(err=>{
       that.setData({ canSubmit: true })
@@ -198,12 +198,22 @@ Page({
     NT.showToast(_t['加载中...'])
     api.usGetAuthentication()
     .then(res=>{
-      console.log(res)
       let identityQuery = Object.assign(this.data.identityQuery,res.identityAuth)
       this.setData({
         identityQuery: identityQuery,
         isUsBankAuth: res.usBankAuth.length, //是否有绑定有银行卡
       })
+      // 接口返回状态status 1.已认证 2.待审核 3.未通过
+      let auditStatus = identityQuery && identityQuery.status || ''
+      if(auditStatus === 1) {
+        wx.navigateTo({
+          url: '/pages/attestation/kol-enter-msg?isCertificationKol=' + 2
+        })
+      } else if(auditStatus){
+        wx.navigateTo({
+          url: '/pages/attestation/kol-enter-msg?isCertificationKol=' + (auditStatus === 2?1:3)
+        })
+      }
     })
     .catch(err=>{
       NT.showModal(err.message||_t['请求失败！'])

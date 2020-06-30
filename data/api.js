@@ -50,12 +50,6 @@ const execute = (url, method, params, resolve, reject) => {
       // console.log({url:baseUrl + url,body,global})
       NT.hideToast()
       const result = res.data.body || {}
-      // if(url === '/usRegist/1.0/'&&result.openId === 'oBV8p4yY71L8CE18QD7KDq_ydfWM'){
-      //   // 打开调试
-      //   wx.setEnableDebug({
-      //     enableDebug: true
-      //   })
-      // }
       if(url==='/usRegist/1.0/' && result.hasOwnProperty('register') && !result.register){ //未注册
         wx.removeStorageSync('userInfo')
         reject({
@@ -83,22 +77,6 @@ const execute = (url, method, params, resolve, reject) => {
         })
         return 
       }
-      // if (res.statusCode === 401) {
-      //   //需要校验用户信息
-      //   reject({
-      //     code: '401',
-      //     codeMsg: '暂未登录'
-      //   })
-      //   NT.showToastNone('需要登录！')
-      //   // wx.switchTab({
-      //   //   url: '/pages/tabs/center'
-      //   // })
-      //   if(getApp()){
-      //     NT.showToast('登录中...')
-      //     getApp().login()
-      //   }
-      //   return
-      // }
       if (res.data.code === '000000') {
         resolve(result)
       } else if(url === '/usInsertFocus/1.0/' && res.data.code === 'E00024') {
@@ -205,30 +183,9 @@ export default {
         })
       }
       Promise.all(uploads).then((result)=>{
-        // console.log('上传成功Promise')
-        // console.log(result)
         resolve(result)
       })
     })
-    /*
-    return new Promise(resolve => {
-      wx.uploadFile({
-        url: config.env[config.curEnv].baseUrl + `/experience/expCMNT/expCommentImg`,
-        header: header,
-        filePath: filePath,
-        formData: formData,
-        name: 'file',
-        success: res => {
-          console.log('上传成功')
-          resolve(res)
-        },
-        fail: err => {
-          console.log(err)
-          NT.showModal(err)
-        }
-      })
-    })
-    */
   },
   // 上传图片 - 单张
   userUploadImage(filePath,noBaseUrl) {
@@ -285,9 +242,6 @@ export default {
   },
   // 注册
   register(query) {
-    // return new Promise((resolve, reject) => {
-    //   execute(`/user/user/wxRegistered`, 'POST', query, resolve, reject)
-    // })
     return new Promise((resolve, reject) => {
       execute(`/usRegist/1.0/`, 'POST', query, resolve, reject)
     })
@@ -1394,6 +1348,18 @@ export default {
   atsAmountToAdd(query) {
     return new Promise((resolve, reject) => {
       execute(`/atsUpdateAmountToAdd/1.0/`, 'POST', query, resolve, reject)
+    })
+  },
+  // 地址搜索
+  locationSearch(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/locationSearch/1.0/`, 'POST', query, resolve, reject)
+    })
+  },
+  // 首页banner
+  imListAllActivityInfo(query) {
+    return new Promise((resolve, reject) => {
+      execute(`/imListAllActivityInfo/1.0/`, 'POST', query, resolve, reject)
     })
   },
   

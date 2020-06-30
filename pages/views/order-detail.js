@@ -100,8 +100,10 @@ Page({
     .then(res=>{
       const data = res;
       data.orderCreateTime = data.orderCreateTime?util.formatTimeTwo(data.orderCreateTime, 'Y-M-D h:m:s'): ''
-      this.createQrCode(data.checkCode, "mycanvas", 200, 200);
-      this.createQrCode(data.checkCode, "mincanvas", 40, 40)
+      if(data.status === 2) {
+        this.createQrCode(data.checkCode, "mycanvas", 200, 200);
+        this.createQrCode(data.checkCode, "mincanvas", 40, 40)
+      }
       // 生成二维码
       this.setData({
         isGetData: 2,

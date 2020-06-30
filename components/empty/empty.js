@@ -31,7 +31,7 @@ Component({
     methods: {
         fnLinkTo(e) {
             const url = e.currentTarget.dataset.url
-            if(url === '/pages/tabs/index') {
+            if(url === '/pages/tabs/experience') {
                 wx.setStorageSync('activeMenu', 1)
             }
             wx.switchTab({

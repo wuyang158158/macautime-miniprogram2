@@ -155,7 +155,7 @@
                 </view> -->
             </view>
             <!-- <button class="weui-btn w-296" type="primary" bindtap="submitOrder">确认</button> -->
-            <button class="weui-btn w-296" type="primary" bindtap="{{userInfo.level?'submitOrderNew':'tapModalToVip'}}">{{ _t['确认'] }}</button>
+            <button class="weui-btn w-296" type="primary" bindtap="submitOrderNew">{{ _t['确认'] }}</button>
         </view>
     </view>
 </view>

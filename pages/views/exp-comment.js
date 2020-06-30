@@ -99,7 +99,7 @@ Page({
     const options = this.data.options
     const expCommentForm = {
       content: textarea, //评论内容 
-      grade: this.data.grade, //评分 
+      grade: String(this.data.grade), //评分 
       orderId: options.orderNumber || '', //订单id
       imageUrl: this.data.imageUrl || '', //封面图
     }

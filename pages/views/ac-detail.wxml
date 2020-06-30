@@ -1,8 +1,8 @@
 <!--pages/views/ac-detail.wxml-->
-<view class="container {{acData.isSigned?'pb220':''}}" wx:if="{{acData}}">
-    <view class="back-to" style="top:{{statusBarHeight}}px;" bindtap="tapToBack">
-        <image src="/images/detail/nav_icon_back_w.png" mode="aspectFill"/>
-    </view>
+<view class="back-to" style="top:{{statusBarHeight}}px;" bindtap="tapToBack">
+    <image src="/images/detail/nav_icon_back_w.png" mode="aspectFill"/>
+</view>
+<view class="container" wx:if="{{acData}}">
     <!-- 操作 -->
     <view class="nav flex">
         <view class="flex-1"></view>
@@ -12,13 +12,7 @@
         <button class="nav-icon flex" type="none" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{userInfo? 'tapLike':'tapToLogin'}}">
             <image src="{{acData.isMarK?'/images/index/nav_icon_like_pre.png':'/images/detail/nav_icon_like_w.png'}}" mode="aspectFill"/>
         </button>
-        <!-- <view class="nav-icon" bindtap="tapToActivityCalendar">
-            <image src="/images/detail/nav_icon_calendar_w.png" mode="aspectFill"/>
-        </view> -->
     </view>
-    <!-- bannar大图展示
-        object-fit="{{direction!=='horizontal'?'cover':'contain'}}" 
-    -->
     <view class="relative bannar-wrap" wx:if="{{(acData.msMyVideoVo && acData.msMyVideoVo.videoUrl) || acData.msPhotoVoList}}">
         <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
         <swiper class="bannar" bindchange="swiperHandle" current="{{current}}">
@@ -119,9 +113,6 @@
                 <swiper-item>
                     <view class="item-video" id="item-video-{{index}}">
                         <view class="myVideo">
-                            <!-- <image class="pic-default-new z-index5" src="{{acData.msInterviewVideoVoList[0].videoThumbUrl}}" mode="aspectFill" />
-                            <image class="icon_video86" src="/images/detail/icon_video86.png" mode="aspectFill" /> -->
-                            
                             <view class="relative video" style="display: {{ _index == index ? 'none' : 'block' }};" bindtap="fnChangeVideoPlay" data-id="{{index}}">
                                 <image class="absolute video" src="{{item.videoThumbUrl || '/images/default/bg_img.png'}}" mode="aspectFill"/>
                                 <image class="icon_video86" src="/images/detail/icon_video86.png" mode="aspectFill" />
@@ -164,9 +155,6 @@
                                     <text class="f20 c-FFFFFF bg-FF7626 discounts-tag">{{item.payType == 1 ? _t['线上']:_t['线下']}}</text>
                                 </view>
                                 <view class="f24 c-999999 mt8">有效期至 {{item.endTimeStr || ''}}</view>
-                            </view>
-                            <view >
-                                <button class="weui-btn weui-btn-get c-00A653 ml16 fw5" type="primary" data-amount="{{item.money}}" data-id="{{item.id}}" data-endTime="{{item.endTime}}" open-type="{{userInfo?'':'getUserInfo'}}" catchtap="{{userInfo? 'tapGetDiscounts':'tapToLogin'}}">{{ _t['领取'] }}</button>
                             </view>
                         </view>
                     </view>
@@ -228,15 +216,6 @@
                     </swiper>
                 </view>
             </view> -->
-            <!-- 体验时长 -->
-            <!-- <view class="ac-time h-156 bd1 flex">
-                <view class="f32 c-222222 fw6 l-h55">开始时间</view>
-                <view class="f28 c-222222 l-h55">{{acData.stimeStr}}</view>
-            </view>
-            <view class="ac-time h-156 bd1 flex">
-                <view class="f32 c-222222 fw6 l-h55">结束时间</view>
-                <view class="f28 c-222222 l-h55">{{acData.etimeStr}}</view>
-            </view> -->
             <!-- 体验内容 -->
             <view class="content bd1 pb45">
                 <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32">{{ _t['商家介绍'] }}</view>
@@ -267,11 +246,6 @@
                     <cover-image class="map-bg" src="/images/detail/mask_map.png" hidden="{{istrue}}" bindtap="openLocation"/>
                 </view>
             </view>
-            <!-- 营业时间 -->
-            <!-- <view class="ac-time h-156 bd1 flex" wx:if="{{acData.msBaseInfo.openTime}}">
-                <view class="f32 c-222222 fw6 l-h55">营业时间</view>
-                <view class="f28 c-222222 l-h55">{{ acData.msBaseInfo.openDate }} {{ acData.msBaseInfo.openTime }}</view>
-            </view> -->
             <!-- 体验评论 -->
             <view class="review bd1 pb45" wx:if="{{evaluateScore.length>0}}">
                 <view class="c-title f32 c-222222 fw6 l-h55 pt32 pb32">{{ _t['用户评论'] }}</view>
@@ -317,36 +291,6 @@
                 <view class="handpick-more f28 c-00A653" bindtap="tapToAllExpComment">查看全部 {{total}} {{ _t['条评论'] }}</view>
             </view>
         </view>
-        <!-- 猜你喜欢 -->
-        <view class="pl16 pr16 mb32" wx:if="{{vImgUrls.length}}">
-            <view class="f32 c-222222 fw6 l-h55 pt32 pb32 pl16 pr16">{{ _t['猜你喜欢'] }}</view>
-            <gh-hmList merchantList="{{vImgUrls}}" source="detail" bd></gh-hmList>
         </view>
-        </view>
-    <!-- 下单 -->
-    <cover-view class="orders {{isIphoneX ?'fix-iphonex-button':''}}" wx:if="{{direction!=='horizontal' && acData.isSigned}}" hidden="{{istrue}}">
-        <!-- 是否可购买    0：不可被购买  1：可以被购买 -->
-        <cover-view class="flex" wx:if="{{acData.isBuying===0}}">
-            <cover-view class="price">
-                <cover-view class="sp2 mr16">有效期：{{acData.daysBetween||0}}天</cover-view>
-            </cover-view>
-            <button class="ordersbtn" type="primary" hover-class="hoverclass" disabled wx:if="{{acData.isBuyed||isBuyed}}">已领取</button>
-            <button class="ordersbtn" type="primary" hover-class="hoverclass" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{userInfo? 'tapGetEx':'tapToLogin'}}" wx:else>领取</button>
-            
-        </cover-view>
-        <cover-view class="flex">
-            <cover-view class="price">
-                <cover-view class="sp2 mr16">{{acData.symbol||'MOP'}} {{lowestPrice ? lowestPrice : 0 }}</cover-view>
-                <cover-view class="f24 c-999999 upper-price">
-                    <cover-view>{{ upperPrice ? upperPrice : 0 }}</cover-view>
-                    <cover-view class="text-bd"></cover-view>
-                </cover-view>
-            </cover-view>
-            <button class="ordersbtn" type="primary" hover-class="hoverclass" disabled wx:if="{{acData.expStatus === 2}}">敬请期待</button>
-            <button class="ordersbtn" type="primary" hover-class="hoverclass" open-type="{{userInfo?'':'getUserInfo'}}" bindtap="{{userInfo? 'tapToSetMeal':'tapToLogin'}}" wx:else>立即预订</button>
-        </cover-view>
-    </cover-view>
 </view>
-<!-- 详情 -->
-<half-screen-dialog istrue="{{istrue}}" result="{{mealDetailResult}}" bind:closeDialog="closeDialog"></half-screen-dialog>
 <gh-empty prop-type="{{noData.type}}" prop-text="{{noData.text}}" prop-mt="200" wx:if="{{noData&&!acData}}"></gh-empty>

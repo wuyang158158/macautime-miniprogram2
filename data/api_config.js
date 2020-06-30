@@ -9,7 +9,8 @@ export default {
     },
     "prod": {
       // "baseUrl": "https://time.guoh.com.cn:8443"
-      "baseUrl": "https://www.soulmate.zone"
+      // "baseUrl": "https://www.soulmate.zone",
+      "baseUrl": "https://lianshidai.top",
     },
   },
   "baseImageHost": "https://bixintech.oss-cn-shenzhen.aliyuncs.com", //上传图片的域名

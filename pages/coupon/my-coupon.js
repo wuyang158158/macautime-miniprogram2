@@ -103,7 +103,7 @@ Page({
         url: '/pages/views/ac-detail?id=' + msId + '&title=' + name
       })
     } else {
-      wx.setStorageSync('activeMenu',2)
+      // wx.setStorageSync('activeMenu',2)
       wx.switchTab({
         url: '/pages/tabs/index'
       })

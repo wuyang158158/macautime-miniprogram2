@@ -117,6 +117,9 @@ button {
 .content.h350 {
   height: 350rpx
 }
+.content.t30 {
+  top: 30%;
+}
 .c-title {
   height: 175rpx;
   box-sizing: border-box;

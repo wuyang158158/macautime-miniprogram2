@@ -7,7 +7,6 @@
     "pages/order/my-order",
     "pages/views/ac-detail",
     "pages/views/submit-order",
-    "pages/views/ticket-detail",
     "pages/views/map-activity",
     "pages/views/center-detail",
     "pages/views/more-settings",
@@ -79,7 +78,9 @@
     "pages/message/detail",
     "pages/language/language",
     "pages/cropper/cropper",
-    "pages/views/exp-comment-success"
+    "pages/views/exp-comment-success",
+    "pages/concat/index",
+    "pages/html/index"
   ],
   "subpackages": [],
   "preloadRule": {},

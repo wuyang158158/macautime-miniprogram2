@@ -6,15 +6,30 @@ import bmap from "../../utils/bmap-wx.min.js"
 var base = require('../../i18n/base.js');  //路径可能做相应调整
 const _t = base._t().EXPERIENCE; //翻译函数
 var city = wx.getStorageSync("locationCity") ? wx.getStorageSync("locationCity").originalData.result.addressComponent.city : '';
+var titleBar = [ //顶部标题bar
+  {
+    name: '全部',
+    labelId: ''
+  }
+];
+var seachType = {
+  distance: ['1km','5km','10km','全城'],
+  // tag: ['美食','娱乐','酒店','景点','购物'],
+  tag: titleBar,
+  sort: [_t['默认排序'],_t['离我最近'],_t['好评优先'],_t['销量最高']]
+}
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    seachChoseMode: false,
+    seachType: seachType,
+    distance: '', //已选择的搜索类型
+    tag: '',
+    sort: '',
     _t: _t,
     navArray: [_t['推荐路线'],_t['精选商家']],
-    idx: 1,
     loadmore: false, //加载更多
     loadmoreLine: false, //暂无更多信息
     noData: false,  //没有数据时
@@ -28,23 +43,28 @@ Page({
       distance: '', // 距离（米）
       lng: '',  // 纬度
       lat: '',  // 经度
-      sortType: ''  // 排序类型：暂无
+      sortType: 0  // 排序类型：暂无
     },
-    menuData: [
-      { title: '美食', icon: '/images/index/icon_food.png', url: ''},
-      { title: '酒店', icon: '/images/index/icon_hotel.png', url: ''},
-      { title: '购物', icon: '/images/index/icon_shopping.png', url: ''},
-      { title: '景点路线', icon: '/images/index/icon_attractions.png', url: ''},
-      { title: '优惠券', icon: '/images/index/icon_coupons.png', url: ''},
-      { title: '出入境', icon: '/images/index/icon_entry.png', url: ''},
-    ],
-    titleBarFixed: [
-      {name: '全部',labelId: ''},
-      {name: '综合排序',labelId: ''},
-      {name: '离我最近',labelId: '', distance: true},
-    ]
+    statusBarHeight: wx.getStorageSync('systemInfo').statusBarHeight - 5,
+    isFixed: false,
+    msParams: {
+      limit: PAGE.limit,  //条数
+      start: PAGE.start, //页码
+    },
+    scrollTop: 0,
+    currentSwiper: 0
   },
-
+  // 回到顶部
+  fnScrollTop() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
+  },
+  onPageScroll(e) {
+    this.selectComponent('#scroll-child').pageScroll(e)
+    this.setData({ isFixed: e.scrollTop > 160, scrollTop: e.scrollTop })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -53,6 +73,7 @@ Page({
       title: _t['首页']
     });
     this.msSelectMsLabelList()
+    this.getBannerData()
   },
 
   /**
@@ -73,18 +94,159 @@ Page({
         key:"customLocation",
         data: customLocation
       })
-      this.data.params.lng = customLocation.lng  // 纬度
-      this.data.params.lat = customLocation.lat  // 经度
+      
       const rgcData = {
-        city: customLocation.name ? customLocation.name : city
+        city: customLocation.name || customLocation.city
       }
       this.setData({
+        'params.lng': customLocation.lng,
+        'params.lat': customLocation.lat,
+        'msParams.lng': customLocation.lng,
+        'msParams.lat': customLocation.lat,
+        'msParams.start': PAGE.start,
         rgcData: rgcData
       })
-      this.msSearchHome('onPullDownRefresh')
+      NT.showToast(_t['加载中...'])
+      // this.msSearchHome('onPullDownRefresh')
+      this.msSelectedMsListHome('onPullDownRefresh')
     }
   },
+  // banner 数据
+  getBannerData() {
+    api.imListAllActivityInfo().then(res =>{
+      this.setData({ swiperData: res })
+    })
+  },
+  // 选择距离
+  tapDistance(e) {
+    const text = e.currentTarget.dataset.text
+    if(text === '全城'){
+      this.data.params.distance = ''
+    }else{
+      this.data.params.distance = Number(text.split('km')[0]) * 1000
+    }
+    this.setData({
+      distance:text,
+      'params.start': 1,
+      seachChoseMode: false
+    })
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
+    NT.showToast(_t['加载中...'])
+    this.msSearchHome('onPullDownRefresh')
+  },
+  // 标签选择
+  tapTag(e) {
+    const text = e.currentTarget.dataset.text
+    this.setData({
+      tag:text,
+      seachChoseMode: false,
+      'params.start': 1,
+      'params.labelId': e.currentTarget.dataset.id
+    })
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
+    NT.showToast(_t['加载中...'])
+    this.msSearchHome('onPullDownRefresh')
+  },
+  // 智能排序选择
+  tapSort(e) {
+    const text = e.currentTarget.dataset.text
+    var index = e.currentTarget.dataset.index
+    this.setData({
+      sort:text,
+      seachChoseMode: false,
+      'params.sortType':  index,
+      'params.start': 1,
+    })
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
+    NT.showToast(_t['加载中...'])
+    this.msSearchHome('onPullDownRefresh')
+  },
+  // 选择点击的类型
+  tapChoseView(e) {
+    const id = e.currentTarget.dataset.id
+    // 精选商家
+    if(id === 'special') {
+      this.setData({
+        choseView: id,
+        seachChoseMode: false
+      })
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 300
+      })
+      NT.showToast(_t['加载中...'])
+      this.msSelectedMsListHome('onPullDownRefresh')
+      return
+    }
 
+    if(this.data.choseView === id) {
+      const flag = this.data.seachChoseMode
+      this.setData({
+        seachChoseMode: !flag,
+        choseView: flag?'':id
+      })
+      return
+    }
+    this.setData({
+      seachChoseMode: true,
+      choseView: id
+    })
+  },
+  // 精选商家-首页
+  msSelectedMsListHome(source) {
+    const that = this
+    this.setData({
+      sort:'',
+      tag:'',
+      distance:'',
+      choseView: 'special',
+      'params.sortType':  0,
+      'params.start': 1,
+      'params.labelId': '',
+      'params.distance': ''
+    })
+    api.msSelectedMsListHome(this.data.msParams)
+    .then(res=>{
+      let data = res.data || []
+      data.map(item=>{
+        if(item.distince) {
+          item.distince = item.distince > 1000 ? `${(item.distince / 1000).toFixed(1)}km` : `${item.distince}m`
+        }
+      })
+      var merchantList = source === 'onPullDownRefresh' ? data : this.data.merchantList.concat(data)
+      that.setData({
+        noData: false,
+        merchantList: merchantList,
+        total: res.total,
+        loadmore: false
+      })
+      if(!that.data.merchantList.length>0){ //暂无数据
+        that.setData({
+          noData: true
+        })
+      }
+    })
+    .catch(err=>{
+      NT.showModal(err.message||_t['请求失败！'])
+      this.setData({
+        loadmore: false,
+      })
+      if(!that.data.merchantList.length>0){ //暂无数据
+        that.setData({
+          noData: true
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -103,46 +265,75 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    NT.showToast('刷新中...')
     this.setData({
-      // params: { //请求首页推荐列表
-      //   limit: PAGE.limit,
-      //   start: PAGE.start,
-      //   labelId: this.data.params.labelId
-      // },
+      choseView: 'special',
+      sort:'',
+      tag:'',
+      distance:'',
+      'params.labelId': '',
+      'params.sortType': 0,
+      seachChoseMode: false,
       loadmoreLine: false,
       loadmore: false
     })
     this.data.params.limit = PAGE.limit
     this.data.params.start = PAGE.start
-    this.msSelectMsLabelList()
-    this.msSearchHome('onPullDownRefresh')
+
+    this.data.msParams.limit = PAGE.limit
+    this.data.msParams.start = PAGE.start
+    this.msSelectMsLabelList(true)
+    this.getBannerData()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if ((this.data.params.start) * this.data.params.limit < this.data.total) {
-      wx.showNavigationBarLoading();
-      this.setData({
-        loadmoreLine: false,
-        loadmore: true
-      })
-      this.data.params.start = this.data.params.start + 1;
-      this.msSearchHome()
-    }else {
-      //暂无更多数据
-      NT.hideToast()
-      if(this.data.merchantList.length){
+    if(this.data.choseView !== 'special') {
+      if ((this.data.params.start) * this.data.params.limit < this.data.total) {
+        wx.showNavigationBarLoading();
         this.setData({
-          loadmoreLine: true,
-          loadmore: false
+          loadmoreLine: false,
+          loadmore: true
         })
-      }else{
+        this.data.params.start = this.data.params.start + 1;
+        this.msSearchHome()
+      }else {
+        //暂无更多数据
+        NT.hideToast()
+        if(this.data.merchantList.length){
+          this.setData({
+            loadmoreLine: true,
+            loadmore: false
+          })
+        }else{
+          this.setData({
+            loadmore: false
+          })
+        }
+      }
+    } else {
+      if ((this.data.msParams.start) * this.data.msParams.limit < this.data.total) {
+        wx.showNavigationBarLoading();
         this.setData({
-          loadmore: false
+          loadmoreLine: false,
+          loadmore: true
         })
+        this.data.msParams.start = this.data.msParams.start + 1;
+        this.msSelectedMsListHome()
+      }else {
+        //暂无更多数据
+        NT.hideToast()
+        if(this.data.merchantList.length){
+          this.setData({
+            loadmoreLine: true,
+            loadmore: false
+          })
+        }else{
+          this.setData({
+            loadmore: false
+          })
+        }
       }
     }
   },
@@ -187,9 +378,13 @@ Page({
         rgcData: rgcData,
         customLocation: locationCity.originalData.result.location
       })
-      // this.data.params.lng = locationCity.originalData.result.location.lng  // 纬度
-      // this.data.params.lat = locationCity.originalData.result.location.lat  // 经度
-      this.msSearchHome()
+      this.data.params.lng = locationCity.originalData.result.location.lng  // 纬度
+      this.data.params.lat = locationCity.originalData.result.location.lat  // 经度
+      
+      this.data.msParams.lng = locationCity.originalData.result.location.lng  // 纬度
+      this.data.msParams.lat = locationCity.originalData.result.location.lat  // 经度
+      // this.msSearchHome('onPullDownRefresh')
+      this.msSelectedMsListHome('onPullDownRefresh')
       return false;
     }
 
@@ -213,76 +408,74 @@ Page({
       })
       this.data.params.lng = data.originalData.result.location.lng  // 纬度
       this.data.params.lat = data.originalData.result.location.lat  // 经度
-      this.msSearchHome()
+      
+      this.data.msParams.lng = data.originalData.result.location.lng  // 纬度
+      this.data.msParams.lat = data.originalData.result.location.lat  // 经度
+      // this.msSearchHome('onPullDownRefresh')
+      this.msSelectedMsListHome('onPullDownRefresh')
     }
     BMap.regeocoding({
-        success: success
+        success: success,
+        fail: () => {
+          wx.hideLoading()
+          wx.showModal({
+            content: _t['检测到您没打开定位权限，是否去设置打开'],
+            confirmText: _t['前往设置'],
+            confirmColor: '#00A653',
+            success(res) {
+              if (res.confirm) {
+                wx.openSetting()
+              }
+            }
+          })
+        }
     });  
-  },
-  tapToNav(e) { //切换菜单
-    // console.log(e)
-    const index = e.currentTarget.dataset.index
-    this.setData({
-      idx: index
-    })
-    if(index === 1){
-      this.msSearchHome()
-    }
   },
   //点击tabbbar事件
   tapTitleBar: function(e){
     let name = e.currentTarget.dataset.name,
-        distance = e.currentTarget.dataset.distance,
         labelId = e.currentTarget.dataset.labelid,
         t = this;
         
-        if(name===this.data.name){
-          return
-        }
-        // NT.showToast('加载中...');
+        // if(name===this.data.name){
+        //   return
+        // }
+        NT.showToast(_t['加载中...'])
         wx.pageScrollTo({
           scrollTop: 0,
           duration: 300
         })
         t.setData({
+          choseView: '',
+          sort:'',
+          tag:'',
+          distance:'',
           name:name,
           merchantList: [],
           loadmoreLine: false,
           loadmore: false,
-          params: { //请求订单列表
-            limit: PAGE.limit,  //条数
-            start: PAGE.start, //页码
-            keyWord: '',  //关键字
-            labelId: labelId,  // 类别ID
-            distance: '', // 距离（米）
-            lng: distance?t.data.customLocation.lng: '',  // 纬度
-            lat: distance?t.data.customLocation.lat: '',  // 经度
-            sortType: ''  // 排序类型：暂无
-          }
+          'params.labelId': labelId,
+          'params.distance': '',
+          'params.sortType': 0,
+          'params.start': 1
         })
-        // this.getOrderListPersonal()
-        if(this.data.idx === 1){ //商家搜索
-          this.msSearchHome()
-        }
+        this.msSearchHome()
+        
         
   },
 
   // 轮播图
   vSwiperChange(e) {
-    // console.log(e)
+    this.setData({
+      currentSwiper: e.detail.current
+    })
   },
   // 精选商家-按标签类别获取列表
   msSearchHome(source) {
-    NT.showToast(_t['加载中...'])
     const that = this
     api.msSearchHome(this.data.params)
     .then(res=>{
       let data = res.data || []
-      if(data.length && !this.data.params.labelId){
-        that.setData({
-          swiperData: data.slice(0,3)
-        })
-      }
       data.map(item=>{
         if(item.distince) {
           item.distince = item.distince > 1000 ? `${(item.distince / 1000).toFixed(1)}km` : `${item.distince}m`
@@ -316,7 +509,7 @@ Page({
     })
   },
   // 请求标签
-  msSelectMsLabelList() {
+  msSelectMsLabelList(flag) {
     // NT.showToast(_t['加载中...'])
     api.msSelectMsLabelList()
     .then(res=>{
@@ -325,11 +518,11 @@ Page({
         // debugger
         item.name = item.remark
         item.labelId = item.id
+        item.ext1 = `${item.ext1}?t=${new Date().getTime()}`
       })
-      this.setData({
-        titleBar: data,
-        name: '全部'
-      })
+      seachType.tag = titleBar.concat(data)
+      this.setData({ titleBar: data, seachType: seachType})
+      NT.showToast(_t['加载中...'])
       this.getLocationCity()
     }).catch(err => {
       NT.showModal(err.message||_t['请求失败！'])
@@ -337,10 +530,20 @@ Page({
   },
   // 跳转到详情
   tapToDetail(e) {
-    const ID = e.currentTarget.dataset.id
-    const TITLE = e.currentTarget.dataset.title
+    const index = e.currentTarget.dataset.index
+    const params = this.data.swiperData[index]
+    if(params.ex2) {
+      wx.navigateTo({
+        url: '/pages/views/ac-detail?id=' + params.ex2 + '&title=' + params.ex3
+      })
+      return
+    }
     wx.navigateTo({
-      url: '/pages/views/ac-detail?id=' + ID + '&title=' + TITLE
+      url: `/pages/html/index`,
+      success: function(result) {
+        // 通过eventChannel向被打开页面传送数据
+        result.eventChannel.emit('params', {url: params.activityUrl ,name: params.name})
+      }
     })
   }
 })

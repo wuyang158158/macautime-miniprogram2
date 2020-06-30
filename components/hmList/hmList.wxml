@@ -1,29 +1,28 @@
 <!--components/hmList/hmList.wxml-->
 <view class="flex flex-c">
-    <view wx:key="index" wx:for="{{merchantList}}" class="hm-list bg-white mb16 {{bd?'bd1':''}}" data-id="{{item.msId}}" data-title="{{item.name}}" bindtap="tapToDetail">
-        <view class="relative hm-top">
-            <!-- <view class="merchant-discount">
-                <image class="merchant-discount-tag" src="/images/index/bg_tag@2x.png" mode="aspectFill"/>
-                <view class="merchant-discount-text f22 c-FFFFFF fw5">8折</view>
-            </view> -->
+    <view wx:key="index" wx:for="{{merchantList}}" class="hm-list bg-white mb16 {{bd?'bd1':''}}">
+        <view data-id="{{item.msId}}" data-title="{{item.name}}" catchtap="tapToDetail" class="relative hm-top {{ _index === index && item.myVideoUrl && isVideo && showVideo? 'none' : 'block' }}">
             <image class="pic-default-new" src="/images/default/bg_img.png" mode="aspectFill"/>
             <image class="pic-default-new z-index5" src="{{item.coverUrl}}" lazy-load mode="aspectFill"/>
         </view>
-        <view class="hm-bottom">
-            <view class="f30 c-222222 fw6 ell">{{item.name}}</view>
+         <video hidden="{{ !showVideo }}" bindloadedmetadata="tagLoadingEnd" object-fit="cover" class="relative hm-top" custom-cache="{{false}}" enable-progress-gesture="{{ false }}" loop="{{ true }}" controls="{{ false }}" src="{{item.myVideoUrl}}" data-id="{{index}}" wx:if="{{_index === index && item.myVideoUrl && isVideo}}"  autoplay='true' data-id="{{index}}" show-fullscreen-btn="false"/>
+        <view class="hm-bottom" data-id="{{item.msId}}" data-title="{{item.name}}" catchtap="tapToDetail">
+            <view class="f30 c-222222 fw6">{{item.name}}</view>
             <!-- 评分处理 -->
-            <view class="flex l-h32">
-                <view wx:for="{{[1,2,3,4,5]}}" wx:key="index" wx:for-item="i">
-                    <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" wx:if="{{item.averageScore >= index+1 }}"></image>
-                    <image class="merchant-star-icon" src="/images/index/icon_star3@2x.png" wx:elif="{{item.averageScore >= index && item.averageScore%1 !=0 }}"></image>
-                    <image class="merchant-star-icon" src="/images/index/icon_star2@2x.png" wx:else></image>
+            <view class="flex l-h32 mb8 mt8">
+                <view class="flex-1 flex">
+                    <block wx:for="{{[1,2,3,4,5]}}" wx:key="index" wx:for-item="i">
+                        <image class="merchant-star-icon" src="/images/index/icon_star1@2x.png" wx:if="{{item.averageScore >= index+1 }}"></image>
+                        <image class="merchant-star-icon" src="/images/index/icon_star3@2x.png" wx:elif="{{item.averageScore >= index && item.averageScore%1 !=0 }}"></image>
+                        <image class="merchant-star-icon" src="/images/index/icon_star2@2x.png" wx:else></image>
+                    </block>
+                     <view class="f24 c-222222 ml16">{{ item.averageScore || _t['未评分']}}</view>
                 </view>
-                <view class="f24 c-222222 ml16">{{ item.averageScore || _t['未评分']}}</view>
+                
+                <view wx:if="{{item.distince}}" class="f24 c-999999">{{item.distince}}</view>
             </view>
-            <view class="flex f24 c-999999">
-                <view class="flex-1 ell">{{item.address||item.city||''}}</view>
-                <view wx:if="{{source==='experience' && item.distince}}">{{item.distince}}</view>
-                <view class="tag mb5 c-00A653" wx:if="{{item.labelRemark&&source!=='experience'}}">{{item.labelRemark}}</view>
+            <view class="f24 c-999999">
+                <view class="">{{item.address||item.city||''}}</view>
             </view>
         </view>
     </view>
